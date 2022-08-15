@@ -311,6 +311,7 @@ label.disabled p{
     z-index: 10;
 }
 .mainMenu .titleButton{
+    display: block;
     border: solid 2px #000;
     transform: skew(-15deg);
     background-image: linear-gradient(to right, #1A3366, #214798);
@@ -318,7 +319,7 @@ label.disabled p{
     font-size: 48pt;
     font-family: 'BebasNeueBold', sans-serif;
     width: 400px;
-    margin: 10px;
+    margin: 10px auto;
     cursor: pointer;
     /*
     font-family: 'RedkostComicRegular', sans-serif;
@@ -352,9 +353,9 @@ label.disabled p{
     /*
     margin: 150px 0px 0px 150px;
     */
-   
     display:flex;
     flex-wrap:wrap;
+    margin-bottom: 40px;
 }
 .campaignSection button{
     background: transparent;
@@ -432,6 +433,7 @@ label.disabled p{
 }
 
 .continueGame{
+    display: block;
     width: 500px;
     height: 200px;
     background-size: cover;
@@ -1268,6 +1270,8 @@ label.disabled p{
     border: 0;
     text-align: center;
     margin-top: 40px;
+    height: 100px;
+    min-width: 220px;
 }
 .pow {
     display: block;

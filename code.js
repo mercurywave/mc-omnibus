@@ -198,41 +198,41 @@ var T54=OObj.MakeFunc(__FUNCS["campai_2"]["403::IsComplete"]);
 __RUN.setStaticGlo("Campaign.State.IsComplete",T54);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
-var T0=OObj.MakeFunc(__FUNCS["Red Sk_3"]["338::TooltipGen"]);
+var T0=OObj.MakeFunc(__FUNCS["Red Sk_3"]["312::TooltipGen"]);
 __RUN.setStaticGlo("RedSkull.TooltipGen",T0);
-var T2=OObj.MakeFunc(__FUNCS["Red Sk_3"]["351::HealSlide"]);
+var T2=OObj.MakeFunc(__FUNCS["Red Sk_3"]["325::HealSlide"]);
 __RUN.setStaticGlo("RedSkull.HealSlide",T2);
-var T4=OObj.MakeFunc(__FUNCS["Red Sk_3"]["377::IfCanHeal"]);
+var T4=OObj.MakeFunc(__FUNCS["Red Sk_3"]["351::IfCanHeal"]);
 __RUN.setStaticGlo("RedSkull.IfCanHeal",T4);
-var T6=OObj.MakeFunc(__FUNCS["Red Sk_3"]["403::SetupTechCards"]);
+var T6=OObj.MakeFunc(__FUNCS["Red Sk_3"]["377::SetupTechCards"]);
 __RUN.setStaticGlo("RedSkull.SetupTechCards",T6);
-var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["416::IfWeapons"]);
+var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["390::IfWeapons"]);
 __RUN.setStaticGlo("RedSkull.IfWeapons",T8);
-var T10=OObj.MakeFunc(__FUNCS["Red Sk_3"]["429::SetupWeapons"]);
+var T10=OObj.MakeFunc(__FUNCS["Red Sk_3"]["403::SetupWeapons"]);
 __RUN.setStaticGlo("RedSkull.SetupWeapons",T10);
-var T12=OObj.MakeFunc(__FUNCS["Red Sk_3"]["507::DoPickNumbers"]);
+var T12=OObj.MakeFunc(__FUNCS["Red Sk_3"]["481::DoPickNumbers"]);
 __RUN.setStaticGlo("RedSkull.DoPickNumbers",T12);
-var T14=OObj.MakeFunc(__FUNCS["Red Sk_3"]["546::DoDistributeVictory"]);
+var T14=OObj.MakeFunc(__FUNCS["Red Sk_3"]["520::DoDistributeVictory"]);
 __RUN.setStaticGlo("RedSkull.DoDistributeVictory",T14);
-var T16=OObj.MakeFunc(__FUNCS["Red Sk_3"]["585::DoHeal"]);
+var T16=OObj.MakeFunc(__FUNCS["Red Sk_3"]["559::DoHeal"]);
 __RUN.setStaticGlo("RedSkull.DoHeal",T16);
-var T18=OObj.MakeFunc(__FUNCS["Red Sk_3"]["650::DoRecordDelay"]);
+var T18=OObj.MakeFunc(__FUNCS["Red Sk_3"]["624::DoRecordDelay"]);
 __RUN.setStaticGlo("RedSkull.DoRecordDelay",T18);
-var T20=OObj.MakeFunc(__FUNCS["Red Sk_3"]["689::DoDistributeVictoryMulti"]);
+var T20=OObj.MakeFunc(__FUNCS["Red Sk_3"]["663::DoDistributeVictoryMulti"]);
 __RUN.setStaticGlo("RedSkull.DoDistributeVictoryMulti",T20);
-var T22=OObj.MakeFunc(__FUNCS["Red Sk_3"]["754::addSelectorToPane"]);
+var T22=OObj.MakeFunc(__FUNCS["Red Sk_3"]["728::addSelectorToPane"]);
 __RUN.setStaticGlo("RedSkull.addSelectorToPane",T22);
-var T24=OObj.MakeFunc(__FUNCS["Red Sk_3"]["767::IfPromptForPrisoners"]);
+var T24=OObj.MakeFunc(__FUNCS["Red Sk_3"]["741::IfPromptForPrisoners"]);
 __RUN.setStaticGlo("RedSkull.IfPromptForPrisoners",T24);
-var T26=OObj.MakeFunc(__FUNCS["Red Sk_3"]["780::GetAlliesFreed"]);
+var T26=OObj.MakeFunc(__FUNCS["Red Sk_3"]["754::GetAlliesFreed"]);
 __RUN.setStaticGlo("RedSkull.GetAlliesFreed",T26);
-var T28=OObj.MakeFunc(__FUNCS["Red Sk_3"]["793::IfUpgradeConditions"]);
+var T28=OObj.MakeFunc(__FUNCS["Red Sk_3"]["767::IfUpgradeConditions"]);
 __RUN.setStaticGlo("RedSkull.IfUpgradeConditions",T28);
-var T30=OObj.MakeFunc(__FUNCS["Red Sk_3"]["819::DoUpgradeCondition"]);
+var T30=OObj.MakeFunc(__FUNCS["Red Sk_3"]["793::DoUpgradeCondition"]);
 __RUN.setStaticGlo("RedSkull.DoUpgradeCondition",T30);
-var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["871::GetUpgradedCondition"]);
+var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["845::GetUpgradedCondition"]);
 __RUN.setStaticGlo("RedSkull.GetUpgradedCondition",T32);
-var T34=OObj.MakeFunc(__FUNCS["Red Sk_3"]["884::IfEnemyEngaged"]);
+var T34=OObj.MakeFunc(__FUNCS["Red Sk_3"]["858::IfEnemyEngaged"]);
 __RUN.setStaticGlo("RedSkull.IfEnemyEngaged",T34);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
@@ -680,24 +680,26 @@ var T6="complete";
 __RUN.setStaticGlo("Campaign.Complete",T6);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
-var T0="tech upgrade";
-__RUN.setStaticGlo("RedSkull.TechUp",T0);
-var T2="condition";
-__RUN.setStaticGlo("RedSkull.Condition",T2);
-var T4="condition upgraded";
-__RUN.setStaticGlo("RedSkull.ConditionUpgraded",T4);
-var T6="obligations";
-__RUN.setStaticGlo("RedSkull.Obligations",T6);
-var T8="delay counters";
-__RUN.setStaticGlo("RedSkull.DelayCounters",T8);
-var T10="allies";
-__RUN.setStaticGlo("RedSkull.AlliesUnlocked",T10);
-var T12="enemy engaged";
-__RUN.setStaticGlo("RedSkull.EnemyEngaged",T12);
-var T14="prison in play";
-__RUN.setStaticGlo("RedSkull.Prison",T14);
-var T16="allies in prison";
-__RUN.setStaticGlo("RedSkull.AlliesInPrison",T16);
+var T0="experimental weapon";
+__RUN.setStaticGlo("RedSkull.Weapon",T0);
+var T2="tech upgrade";
+__RUN.setStaticGlo("RedSkull.TechUp",T2);
+var T4="condition";
+__RUN.setStaticGlo("RedSkull.Condition",T4);
+var T6="condition upgraded";
+__RUN.setStaticGlo("RedSkull.ConditionUpgraded",T6);
+var T8="obligations";
+__RUN.setStaticGlo("RedSkull.Obligations",T8);
+var T10="delay counters";
+__RUN.setStaticGlo("RedSkull.DelayCounters",T10);
+var T12="allies";
+__RUN.setStaticGlo("RedSkull.AlliesUnlocked",T12);
+var T14="enemy engaged";
+__RUN.setStaticGlo("RedSkull.EnemyEngaged",T14);
+var T16="prison in play";
+__RUN.setStaticGlo("RedSkull.Prison",T16);
+var T18="allies in prison";
+__RUN.setStaticGlo("RedSkull.AlliesInPrison",T18);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
 var T0=new OObj();
@@ -981,647 +983,608 @@ OObj.SetChild(T37,2,T106);
 var T108=__RUN.getStaticGlo("Slide.PlayGame").func(null);
 var T109=DU.ReadReturn(T108,1);
 OObj.SetChild(T37,3,T109);
-//  $IfExpert($CheckList("Experimental Weapons", dim, "Which *EXPERIMENTAL* attachments entered the game?", null, true))
-var T111="Experimental Weapons";
-var T112=new OObj();
-//  $CheckList.MakeCheck("Laser Rifle", null, lambda)
-var T113="Laser Rifle";
-var T114=null;
-var T115=OObj.MakeFunc(__FUNCS["Red Sk_3"]["26_func45"],{});
-var T116=[T113,T114,T115];
-var T117=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T116);
-var T118=DU.ReadReturn(T117,1);
-OObj.SetChild(T112,0,T118);
-//  $CheckList.MakeCheck("Energy Shield", null, lambda)
-var T120="Energy Shield";
-var T121=null;
-var T122=OObj.MakeFunc(__FUNCS["Red Sk_3"]["39_func47"],{});
-var T123=[T120,T121,T122];
-var T124=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T123);
+//  $Slide.Create(lambda(stage => async))
+var T111=OObj.MakeFunc(__FUNCS["Red Sk_3"]["26_func44"],{});
+var T112=[T111];
+var T113=__RUN.getStaticGlo("Slide.Create").func(null,...T112);
+var T114=DU.ReadReturn(T113,1);
+OObj.SetChild(T37,4,T114);
+//  $IfExpert($RecordHP())
+var T116=__RUN.getStaticGlo("Slide.RecordHP").func(null);
+var T117=DU.ReadReturn(T116,1);
+var T118=[T117];
+var T119=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T118);
+var T120=DU.ReadReturn(T119,1);
+OObj.SetChild(T37,5,T120);
+//  $Slide.Create(lambda(stage => async))
+var T122=OObj.MakeFunc(__FUNCS["Red Sk_3"]["52_func54"],{});
+var T123=[T122];
+var T124=__RUN.getStaticGlo("Slide.Create").func(null,...T123);
 var T125=DU.ReadReturn(T124,1);
-OObj.SetChild(T112,1,T125);
-//  $CheckList.MakeCheck("Power Gauntlets", null, lambda)
-var T127="Power Gauntlets";
-var T128=null;
-var T129=OObj.MakeFunc(__FUNCS["Red Sk_3"]["52_func49"],{});
-var T130=[T127,T128,T129];
-var T131=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T130);
-var T132=DU.ReadReturn(T131,1);
-OObj.SetChild(T112,2,T132);
-//  $CheckList.MakeCheck("Exo Suit", null, lambda)
-var T134="Exo Suit";
-var T135=null;
-var T136=OObj.MakeFunc(__FUNCS["Red Sk_3"]["65_func51"],{});
-var T137=[T134,T135,T136];
-var T138=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T137);
-var T139=DU.ReadReturn(T138,1);
-OObj.SetChild(T112,3,T139);
-var T141="Which *EXPERIMENTAL* attachments entered the game?";
-var T142=null;
-var T143=true;
-var T144=[T111,T112,T141,T142,T143];
-var T145=__RUN.getStaticGlo("Slide.CheckList").func(null,...T144);
-var T146=DU.ReadReturn(T145,1);
-var T147=[T146];
-var T148=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T147);
-var T149=DU.ReadReturn(T148,1);
-OObj.SetChild(T37,4,T149);
-//  $IfExpert($RecordHP())
-var T151=__RUN.getStaticGlo("Slide.RecordHP").func(null);
-var T152=DU.ReadReturn(T151,1);
-var T153=[T152];
-var T154=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T153);
-var T155=DU.ReadReturn(T154,1);
-OObj.SetChild(T37,5,T155);
-//  $Slide.Create(lambda(stage => async))
-var T157=OObj.MakeFunc(__FUNCS["Red Sk_3"]["78_func56"],{});
-var T158=[T157];
-var T159=__RUN.getStaticGlo("Slide.Create").func(null,...T158);
-var T160=DU.ReadReturn(T159,1);
-OObj.SetChild(T37,6,T160);
-var T162="bBlack";
-var T163="lBlack";
-var T164="fWhite";
-var T165="Read page 4 from The Rise of Red Skull rule book";
-var T166=[T33,T34,T35,T36,T37,T162,T163,T164,T165];
-var T167=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T32},...T166);
+OObj.SetChild(T37,6,T125);
+var T127="bBlack";
+var T128="lBlack";
+var T129="fWhite";
+var T130="Read page 4 from The Rise of Red Skull rule book";
+var T131=[T33,T34,T35,T36,T37,T127,T128,T129,T130];
+var T132=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T32},...T131);
 //  mixin $mixMission("R1", 2, "None Shall Pass", $Img.AbsorbingMan, dim
-var T168=DU.Ref(T11);
-var T169="R1";
-var T170=2;
-var T171="None Shall Pass";
-var T172=DU.Ref(__RUN.getStaticGlo("Img.AbsorbingMan"));
-var T173=new OObj();
+var T133=DU.Ref(T11);
+var T134="R1";
+var T135=2;
+var T136="None Shall Pass";
+var T137=DU.Ref(__RUN.getStaticGlo("Img.AbsorbingMan"));
+var T138=new OObj();
 //  $CheckList("Setup", dim, null, $Img.AbsorbingMan)
-var T174="Setup";
-var T175=new OObj();
+var T139="Setup";
+var T140=new OObj();
 //  $EnemyStageCheck("Absorbing Man")
-var T176="Absorbing Man";
-var T177=[T176];
-var T178=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T177);
-var T179=DU.ReadReturn(T178,1);
-OObj.SetChild(T175,0,T179);
+var T141="Absorbing Man";
+var T142=[T141];
+var T143=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T142);
+var T144=DU.ReadReturn(T143,1);
+OObj.SetChild(T140,0,T144);
 //  $CheckList.MakeCheck("**Main Scheme Deck**: None Shall Pass")
-var T181="**Main Scheme Deck**: None Shall Pass";
-var T182=[T181];
-var T183=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T182);
-var T184=DU.ReadReturn(T183,1);
-OObj.SetChild(T175,1,T184);
-var T186=null;
-var T187=DU.Ref(__RUN.getStaticGlo("Img.AbsorbingMan"));
-var T188=[T174,T175,T186,T187];
-var T189=__RUN.getStaticGlo("Slide.CheckList").func(null,...T188);
-var T190=DU.ReadReturn(T189,1);
-OObj.SetChild(T173,0,T190);
+var T146="**Main Scheme Deck**: None Shall Pass";
+var T147=[T146];
+var T148=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T147);
+var T149=DU.ReadReturn(T148,1);
+OObj.SetChild(T140,1,T149);
+var T151=null;
+var T152=DU.Ref(__RUN.getStaticGlo("Img.AbsorbingMan"));
+var T153=[T139,T140,T151,T152];
+var T154=__RUN.getStaticGlo("Slide.CheckList").func(null,...T153);
+var T155=DU.ReadReturn(T154,1);
+OObj.SetChild(T138,0,T155);
 //  $CheckList("Setup", dim, "**Encounter Deck**", $Img.AbandonedFacility)
-var T192="Setup";
-var T193=new OObj();
+var T157="Setup";
+var T158=new OObj();
 //  $CheckList.MakeCheck("Absorbing Man set")
-var T194="Absorbing Man set";
-var T195=[T194];
-var T196=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T195);
-var T197=DU.ReadReturn(T196,1);
-OObj.SetChild(T193,0,T197);
+var T159="Absorbing Man set";
+var T160=[T159];
+var T161=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T160);
+var T162=DU.ReadReturn(T161,1);
+OObj.SetChild(T158,0,T162);
 //  $CheckList.MakeCheck("Hydra Patrol set")
-var T199="Hydra Patrol set";
+var T164="Hydra Patrol set";
+var T165=[T164];
+var T166=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T165);
+var T167=DU.ReadReturn(T166,1);
+OObj.SetChild(T158,1,T167);
+//  $CheckList.MakeCheck("Standard set")
+var T169="Standard set";
+var T170=[T169];
+var T171=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T170);
+var T172=DU.ReadReturn(T171,1);
+OObj.SetChild(T158,2,T172);
+//  $ExpertEncounterSetCheck()
+var T174=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
+var T175=DU.ReadReturn(T174,1);
+OObj.SetChild(T158,3,T175);
+var T177="**Encounter Deck**";
+var T178=DU.Ref(__RUN.getStaticGlo("Img.AbandonedFacility"));
+var T179=[T157,T158,T177,T178];
+var T180=__RUN.getStaticGlo("Slide.CheckList").func(null,...T179);
+var T181=DU.ReadReturn(T180,1);
+OObj.SetChild(T138,1,T181);
+//  $RedSkull.SetupWeapons()
+var T183=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
+var T184=DU.ReadReturn(T183,1);
+OObj.SetChild(T138,2,T184);
+//  $RedSkull.SetupTechCards()
+var T186=new OObj();
+var T187="Each player searches their deck for all cards with the setup keyword and puts them into play.";
+OObj.SetChild(T186,0,T187);
+var T189="";
+OObj.SetChild(T186,1,T189);
+var T191=[T186];
+var T192=__RUN.getStaticGlo("Slide.Setup").func(null,...T191);
+var T193=DU.ReadReturn(T192,1);
+OObj.SetChild(T138,3,T193);
+//  $RedSkull.HealSlide()
+var T195=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
+var T196=DU.ReadReturn(T195,1);
+OObj.SetChild(T138,4,T196);
+//  $IfExpert($SetInitialHP())
+var T198=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
+var T199=DU.ReadReturn(T198,1);
 var T200=[T199];
-var T201=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T200);
+var T201=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T200);
 var T202=DU.ReadReturn(T201,1);
-OObj.SetChild(T193,1,T202);
-//  $CheckList.MakeCheck("Standard set")
-var T204="Standard set";
-var T205=[T204];
-var T206=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T205);
-var T207=DU.ReadReturn(T206,1);
-OObj.SetChild(T193,2,T207);
-//  $ExpertEncounterSetCheck()
-var T209=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
+OObj.SetChild(T138,5,T202);
+//  $PlayGame()
+var T204=__RUN.getStaticGlo("Slide.PlayGame").func(null);
+var T205=DU.ReadReturn(T204,1);
+OObj.SetChild(T138,6,T205);
+//  $Slide.Create(lambda(stage => async))
+var T207=OObj.MakeFunc(__FUNCS["Red Sk_3"]["65_func85"],{});
+var T208=[T207];
+var T209=__RUN.getStaticGlo("Slide.Create").func(null,...T208);
 var T210=DU.ReadReturn(T209,1);
-OObj.SetChild(T193,3,T210);
-var T212="**Encounter Deck**";
-var T213=DU.Ref(__RUN.getStaticGlo("Img.AbandonedFacility"));
-var T214=[T192,T193,T212,T213];
-var T215=__RUN.getStaticGlo("Slide.CheckList").func(null,...T214);
+OObj.SetChild(T138,7,T210);
+//  $IfExpert($RecordHP())
+var T212=__RUN.getStaticGlo("Slide.RecordHP").func(null);
+var T213=DU.ReadReturn(T212,1);
+var T214=[T213];
+var T215=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T214);
 var T216=DU.ReadReturn(T215,1);
-OObj.SetChild(T173,1,T216);
-//  $RedSkull.SetupWeapons()
-var T218=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
-var T219=DU.ReadReturn(T218,1);
-OObj.SetChild(T173,2,T219);
-//  $RedSkull.SetupTechCards()
-var T221=new OObj();
-var T222="Each player searches their deck for all cards with the setup keyword and puts them into play.";
-OObj.SetChild(T221,0,T222);
-var T224="";
-OObj.SetChild(T221,1,T224);
-var T226=[T221];
-var T227=__RUN.getStaticGlo("Slide.Setup").func(null,...T226);
-var T228=DU.ReadReturn(T227,1);
-OObj.SetChild(T173,3,T228);
-//  $RedSkull.HealSlide()
-var T230=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
-var T231=DU.ReadReturn(T230,1);
-OObj.SetChild(T173,4,T231);
-//  $IfExpert($SetInitialHP())
-var T233=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
-var T234=DU.ReadReturn(T233,1);
-var T235=[T234];
-var T236=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T235);
-var T237=DU.ReadReturn(T236,1);
-OObj.SetChild(T173,5,T237);
-//  $PlayGame()
-var T239=__RUN.getStaticGlo("Slide.PlayGame").func(null);
-var T240=DU.ReadReturn(T239,1);
-OObj.SetChild(T173,6,T240);
+OObj.SetChild(T138,8,T216);
 //  $Slide.Create(lambda(stage => async))
-var T242=OObj.MakeFunc(__FUNCS["Red Sk_3"]["91_func87"],{});
-var T243=[T242];
-var T244=__RUN.getStaticGlo("Slide.Create").func(null,...T243);
-var T245=DU.ReadReturn(T244,1);
-OObj.SetChild(T173,7,T245);
-//  $IfExpert($RecordHP())
-var T247=__RUN.getStaticGlo("Slide.RecordHP").func(null);
-var T248=DU.ReadReturn(T247,1);
-var T249=[T248];
-var T250=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T249);
-var T251=DU.ReadReturn(T250,1);
-OObj.SetChild(T173,8,T251);
-//  $Slide.Create(lambda(stage => async))
-var T253=OObj.MakeFunc(__FUNCS["Red Sk_3"]["104_func92"],{});
-var T254=[T253];
-var T255=__RUN.getStaticGlo("Slide.Create").func(null,...T254);
-var T256=DU.ReadReturn(T255,1);
-OObj.SetChild(T173,9,T256);
-var T258="bCyan";
-var T259="lBlue";
-var T260="fOrange";
-var T261="Read page 6 from The Rise of Red Skull rule book";
-var T262=[T169,T170,T171,T172,T173,T258,T259,T260,T261];
-var T263=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T168},...T262);
+var T218=OObj.MakeFunc(__FUNCS["Red Sk_3"]["78_func90"],{});
+var T219=[T218];
+var T220=__RUN.getStaticGlo("Slide.Create").func(null,...T219);
+var T221=DU.ReadReturn(T220,1);
+OObj.SetChild(T138,9,T221);
+var T223="bCyan";
+var T224="lBlue";
+var T225="fOrange";
+var T226="Read page 6 from The Rise of Red Skull rule book";
+var T227=[T134,T135,T136,T137,T138,T223,T224,T225,T226];
+var T228=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T133},...T227);
 //  mixin $mixMission("R2", 3, "Hunting Down Heroes", $Img.Taskmaster, dim
-var T264=DU.Ref(T11);
-var T265="R2";
-var T266=3;
-var T267="Hunting Down Heroes";
-var T268=DU.Ref(__RUN.getStaticGlo("Img.Taskmaster"));
-var T269=new OObj();
+var T229=DU.Ref(T11);
+var T230="R2";
+var T231=3;
+var T232="Hunting Down Heroes";
+var T233=DU.Ref(__RUN.getStaticGlo("Img.Taskmaster"));
+var T234=new OObj();
 //  $CheckList("Setup", dim, null, $Img.Taskmaster)
-var T270="Setup";
-var T271=new OObj();
+var T235="Setup";
+var T236=new OObj();
 //  $EnemyStageCheck("Taskmaster")
-var T272="Taskmaster";
-var T273=[T272];
-var T274=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T273);
-var T275=DU.ReadReturn(T274,1);
-OObj.SetChild(T271,0,T275);
+var T237="Taskmaster";
+var T238=[T237];
+var T239=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T238);
+var T240=DU.ReadReturn(T239,1);
+OObj.SetChild(T236,0,T240);
 //  $CheckList.MakeCheck("**Main Scheme Deck**: Hunting Down Heroes")
-var T277="**Main Scheme Deck**: Hunting Down Heroes";
-var T278=[T277];
-var T279=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T278);
-var T280=DU.ReadReturn(T279,1);
-OObj.SetChild(T271,1,T280);
-var T282=null;
-var T283=DU.Ref(__RUN.getStaticGlo("Img.Taskmaster"));
-var T284=[T270,T271,T282,T283];
-var T285=__RUN.getStaticGlo("Slide.CheckList").func(null,...T284);
-var T286=DU.ReadReturn(T285,1);
-OObj.SetChild(T269,0,T286);
+var T242="**Main Scheme Deck**: Hunting Down Heroes";
+var T243=[T242];
+var T244=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T243);
+var T245=DU.ReadReturn(T244,1);
+OObj.SetChild(T236,1,T245);
+var T247=null;
+var T248=DU.Ref(__RUN.getStaticGlo("Img.Taskmaster"));
+var T249=[T235,T236,T247,T248];
+var T250=__RUN.getStaticGlo("Slide.CheckList").func(null,...T249);
+var T251=DU.ReadReturn(T250,1);
+OObj.SetChild(T234,0,T251);
 //  $CheckList("Setup", dim, "**Encounter Deck**", $Img.TaskmastersShield)
-var T288="Setup";
-var T289=new OObj();
+var T253="Setup";
+var T254=new OObj();
 //  $CheckList.MakeCheck("Taskmaster set")
-var T290="Taskmaster set";
-var T291=[T290];
-var T292=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T291);
-var T293=DU.ReadReturn(T292,1);
-OObj.SetChild(T289,0,T293);
+var T255="Taskmaster set";
+var T256=[T255];
+var T257=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T256);
+var T258=DU.ReadReturn(T257,1);
+OObj.SetChild(T254,0,T258);
 //  $CheckList.MakeCheck("Hydra Patrol set")
-var T295="Hydra Patrol set";
-var T296=[T295];
-var T297=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T296);
-var T298=DU.ReadReturn(T297,1);
-OObj.SetChild(T289,1,T298);
+var T260="Hydra Patrol set";
+var T261=[T260];
+var T262=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T261);
+var T263=DU.ReadReturn(T262,1);
+OObj.SetChild(T254,1,T263);
 //  $CheckList.MakeCheck("Weapon Master set")
-var T300="Weapon Master set";
+var T265="Weapon Master set";
+var T266=[T265];
+var T267=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T266);
+var T268=DU.ReadReturn(T267,1);
+OObj.SetChild(T254,2,T268);
+//  $CheckList.MakeCheck("Standard set")
+var T270="Standard set";
+var T271=[T270];
+var T272=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T271);
+var T273=DU.ReadReturn(T272,1);
+OObj.SetChild(T254,3,T273);
+//  $ExpertEncounterSetCheck()
+var T275=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
+var T276=DU.ReadReturn(T275,1);
+OObj.SetChild(T254,4,T276);
+var T278="**Encounter Deck**";
+var T279=DU.Ref(__RUN.getStaticGlo("Img.TaskmastersShield"));
+var T280=[T253,T254,T278,T279];
+var T281=__RUN.getStaticGlo("Slide.CheckList").func(null,...T280);
+var T282=DU.ReadReturn(T281,1);
+OObj.SetChild(T234,1,T282);
+//  $RedSkull.SetupWeapons()
+var T284=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
+var T285=DU.ReadReturn(T284,1);
+OObj.SetChild(T234,2,T285);
+//  $RedSkull.SetupTechCards()
+var T287=new OObj();
+var T288="Each player searches their deck for all cards with the setup keyword and puts them into play.";
+OObj.SetChild(T287,0,T288);
+var T290="";
+OObj.SetChild(T287,1,T290);
+var T292=[T287];
+var T293=__RUN.getStaticGlo("Slide.Setup").func(null,...T292);
+var T294=DU.ReadReturn(T293,1);
+OObj.SetChild(T234,3,T294);
+//  $RedSkull.HealSlide()
+var T296=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
+var T297=DU.ReadReturn(T296,1);
+OObj.SetChild(T234,4,T297);
+//  $IfExpert($SetInitialHP())
+var T299=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
+var T300=DU.ReadReturn(T299,1);
 var T301=[T300];
-var T302=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T301);
+var T302=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T301);
 var T303=DU.ReadReturn(T302,1);
-OObj.SetChild(T289,2,T303);
-//  $CheckList.MakeCheck("Standard set")
-var T305="Standard set";
-var T306=[T305];
-var T307=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T306);
-var T308=DU.ReadReturn(T307,1);
-OObj.SetChild(T289,3,T308);
-//  $ExpertEncounterSetCheck()
-var T310=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
-var T311=DU.ReadReturn(T310,1);
-OObj.SetChild(T289,4,T311);
-var T313="**Encounter Deck**";
-var T314=DU.Ref(__RUN.getStaticGlo("Img.TaskmastersShield"));
-var T315=[T288,T289,T313,T314];
-var T316=__RUN.getStaticGlo("Slide.CheckList").func(null,...T315);
+OObj.SetChild(T234,5,T303);
+//  $PlayGame()
+var T305=__RUN.getStaticGlo("Slide.PlayGame").func(null);
+var T306=DU.ReadReturn(T305,1);
+OObj.SetChild(T234,6,T306);
+//  $IfExpert($RecordHP())
+var T308=__RUN.getStaticGlo("Slide.RecordHP").func(null);
+var T309=DU.ReadReturn(T308,1);
+var T310=[T309];
+var T311=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T310);
+var T312=DU.ReadReturn(T311,1);
+OObj.SetChild(T234,7,T312);
+//  $Slide.Create(lambda(stage => async))
+var T314=OObj.MakeFunc(__FUNCS["Red Sk_3"]["91_func126"],{});
+var T315=[T314];
+var T316=__RUN.getStaticGlo("Slide.Create").func(null,...T315);
 var T317=DU.ReadReturn(T316,1);
-OObj.SetChild(T269,1,T317);
-//  $RedSkull.SetupWeapons()
-var T319=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
-var T320=DU.ReadReturn(T319,1);
-OObj.SetChild(T269,2,T320);
-//  $RedSkull.SetupTechCards()
-var T322=new OObj();
-var T323="Each player searches their deck for all cards with the setup keyword and puts them into play.";
-OObj.SetChild(T322,0,T323);
-var T325="";
-OObj.SetChild(T322,1,T325);
-var T327=[T322];
-var T328=__RUN.getStaticGlo("Slide.Setup").func(null,...T327);
-var T329=DU.ReadReturn(T328,1);
-OObj.SetChild(T269,3,T329);
-//  $RedSkull.HealSlide()
-var T331=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
-var T332=DU.ReadReturn(T331,1);
-OObj.SetChild(T269,4,T332);
-//  $IfExpert($SetInitialHP())
-var T334=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
-var T335=DU.ReadReturn(T334,1);
-var T336=[T335];
-var T337=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T336);
-var T338=DU.ReadReturn(T337,1);
-OObj.SetChild(T269,5,T338);
-//  $PlayGame()
-var T340=__RUN.getStaticGlo("Slide.PlayGame").func(null);
-var T341=DU.ReadReturn(T340,1);
-OObj.SetChild(T269,6,T341);
-//  $IfExpert($RecordHP())
-var T343=__RUN.getStaticGlo("Slide.RecordHP").func(null);
-var T344=DU.ReadReturn(T343,1);
-var T345=[T344];
-var T346=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T345);
-var T347=DU.ReadReturn(T346,1);
-OObj.SetChild(T269,7,T347);
-//  $Slide.Create(lambda(stage => async))
-var T349=OObj.MakeFunc(__FUNCS["Red Sk_3"]["117_func128"],{});
-var T350=[T349];
-var T351=__RUN.getStaticGlo("Slide.Create").func(null,...T350);
-var T352=DU.ReadReturn(T351,1);
-OObj.SetChild(T269,8,T352);
-var T354="bBlack";
-var T355="lWhite";
-var T356="fOrange";
-var T357="Read pages 8-9 from The Rise of Red Skull rule book";
-var T358=[T265,T266,T267,T268,T269,T354,T355,T356,T357];
-var T359=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T264},...T358);
+OObj.SetChild(T234,8,T317);
+var T319="bBlack";
+var T320="lWhite";
+var T321="fOrange";
+var T322="Read pages 8-9 from The Rise of Red Skull rule book";
+var T323=[T230,T231,T232,T233,T234,T319,T320,T321,T322];
+var T324=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T229},...T323);
 //  mixin $mixMission("R3", 4, "The Island of Dr. Zola", $Img.Zola, dim
-var T360=DU.Ref(T11);
-var T361="R3";
-var T362=4;
-var T363="The Island of Dr. Zola";
-var T364=DU.Ref(__RUN.getStaticGlo("Img.Zola"));
-var T365=new OObj();
+var T325=DU.Ref(T11);
+var T326="R3";
+var T327=4;
+var T328="The Island of Dr. Zola";
+var T329=DU.Ref(__RUN.getStaticGlo("Img.Zola"));
+var T330=new OObj();
 //  $CheckList("Setup", dim, null, $Img.Zola)
-var T366="Setup";
-var T367=new OObj();
+var T331="Setup";
+var T332=new OObj();
 //  $EnemyStageCheck("Zola")
-var T368="Zola";
-var T369=[T368];
-var T370=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T369);
-var T371=DU.ReadReturn(T370,1);
-OObj.SetChild(T367,0,T371);
+var T333="Zola";
+var T334=[T333];
+var T335=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T334);
+var T336=DU.ReadReturn(T335,1);
+OObj.SetChild(T332,0,T336);
 //  $CheckList.MakeCheck("**Main Scheme Deck**: The Island of Dr. Zola, The Mad Doctor")
-var T373="**Main Scheme Deck**: The Island of Dr. Zola, The Mad Doctor";
-var T374=[T373];
-var T375=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T374);
-var T376=DU.ReadReturn(T375,1);
-OObj.SetChild(T367,1,T376);
-var T378=null;
-var T379=DU.Ref(__RUN.getStaticGlo("Img.Zola"));
-var T380=[T366,T367,T378,T379];
-var T381=__RUN.getStaticGlo("Slide.CheckList").func(null,...T380);
-var T382=DU.ReadReturn(T381,1);
-OObj.SetChild(T365,0,T382);
+var T338="**Main Scheme Deck**: The Island of Dr. Zola, The Mad Doctor";
+var T339=[T338];
+var T340=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T339);
+var T341=DU.ReadReturn(T340,1);
+OObj.SetChild(T332,1,T341);
+var T343=null;
+var T344=DU.Ref(__RUN.getStaticGlo("Img.Zola"));
+var T345=[T331,T332,T343,T344];
+var T346=__RUN.getStaticGlo("Slide.CheckList").func(null,...T345);
+var T347=DU.ReadReturn(T346,1);
+OObj.SetChild(T330,0,T347);
 //  $CheckList("Setup", dim, "**Encounter Deck**", $Img.TechnologicalEnhancements)
-var T384="Setup";
-var T385=new OObj();
+var T349="Setup";
+var T350=new OObj();
 //  $CheckList.MakeCheck("Zola set")
-var T386="Zola set";
-var T387=[T386];
-var T388=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T387);
-var T389=DU.ReadReturn(T388,1);
-OObj.SetChild(T385,0,T389);
+var T351="Zola set";
+var T352=[T351];
+var T353=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T352);
+var T354=DU.ReadReturn(T353,1);
+OObj.SetChild(T350,0,T354);
 //  $CheckList.MakeCheck("Under Attack set")
-var T391="Under Attack set";
+var T356="Under Attack set";
+var T357=[T356];
+var T358=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T357);
+var T359=DU.ReadReturn(T358,1);
+OObj.SetChild(T350,1,T359);
+//  $CheckList.MakeCheck("Standard set")
+var T361="Standard set";
+var T362=[T361];
+var T363=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T362);
+var T364=DU.ReadReturn(T363,1);
+OObj.SetChild(T350,2,T364);
+//  $ExpertEncounterSetCheck()
+var T366=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
+var T367=DU.ReadReturn(T366,1);
+OObj.SetChild(T350,3,T367);
+var T369="**Encounter Deck**";
+var T370=DU.Ref(__RUN.getStaticGlo("Img.TechnologicalEnhancements"));
+var T371=[T349,T350,T369,T370];
+var T372=__RUN.getStaticGlo("Slide.CheckList").func(null,...T371);
+var T373=DU.ReadReturn(T372,1);
+OObj.SetChild(T330,1,T373);
+//  $RedSkull.SetupWeapons()
+var T375=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
+var T376=DU.ReadReturn(T375,1);
+OObj.SetChild(T330,2,T376);
+//  $RedSkull.SetupTechCards()
+var T378=new OObj();
+var T379="Each player searches their deck for all cards with the setup keyword and puts them into play.";
+OObj.SetChild(T378,0,T379);
+var T381="";
+OObj.SetChild(T378,1,T381);
+var T383=[T378];
+var T384=__RUN.getStaticGlo("Slide.Setup").func(null,...T383);
+var T385=DU.ReadReturn(T384,1);
+OObj.SetChild(T330,3,T385);
+//  $RedSkull.HealSlide()
+var T387=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
+var T388=DU.ReadReturn(T387,1);
+OObj.SetChild(T330,4,T388);
+//  $IfExpert($SetInitialHP())
+var T390=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
+var T391=DU.ReadReturn(T390,1);
 var T392=[T391];
-var T393=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T392);
+var T393=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T392);
 var T394=DU.ReadReturn(T393,1);
-OObj.SetChild(T385,1,T394);
-//  $CheckList.MakeCheck("Standard set")
-var T396="Standard set";
-var T397=[T396];
-var T398=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T397);
-var T399=DU.ReadReturn(T398,1);
-OObj.SetChild(T385,2,T399);
-//  $ExpertEncounterSetCheck()
-var T401=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
-var T402=DU.ReadReturn(T401,1);
-OObj.SetChild(T385,3,T402);
-var T404="**Encounter Deck**";
-var T405=DU.Ref(__RUN.getStaticGlo("Img.TechnologicalEnhancements"));
-var T406=[T384,T385,T404,T405];
-var T407=__RUN.getStaticGlo("Slide.CheckList").func(null,...T406);
-var T408=DU.ReadReturn(T407,1);
-OObj.SetChild(T365,1,T408);
-//  $RedSkull.SetupWeapons()
-var T410=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
-var T411=DU.ReadReturn(T410,1);
-OObj.SetChild(T365,2,T411);
-//  $RedSkull.SetupTechCards()
-var T413=new OObj();
-var T414="Each player searches their deck for all cards with the setup keyword and puts them into play.";
-OObj.SetChild(T413,0,T414);
-var T416="";
-OObj.SetChild(T413,1,T416);
-var T418=[T413];
-var T419=__RUN.getStaticGlo("Slide.Setup").func(null,...T418);
-var T420=DU.ReadReturn(T419,1);
-OObj.SetChild(T365,3,T420);
-//  $RedSkull.HealSlide()
-var T422=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
-var T423=DU.ReadReturn(T422,1);
-OObj.SetChild(T365,4,T423);
-//  $IfExpert($SetInitialHP())
-var T425=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
-var T426=DU.ReadReturn(T425,1);
-var T427=[T426];
-var T428=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T427);
-var T429=DU.ReadReturn(T428,1);
-OObj.SetChild(T365,5,T429);
+OObj.SetChild(T330,5,T394);
 //  $PlayGame()
-var T431=__RUN.getStaticGlo("Slide.PlayGame").func(null);
-var T432=DU.ReadReturn(T431,1);
-OObj.SetChild(T365,6,T432);
+var T396=__RUN.getStaticGlo("Slide.PlayGame").func(null);
+var T397=DU.ReadReturn(T396,1);
+OObj.SetChild(T330,6,T397);
 //  $IfExpert($RecordHP())
-var T434=__RUN.getStaticGlo("Slide.RecordHP").func(null);
-var T435=DU.ReadReturn(T434,1);
-var T436=[T435];
-var T437=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T436);
-var T438=DU.ReadReturn(T437,1);
-OObj.SetChild(T365,7,T438);
+var T399=__RUN.getStaticGlo("Slide.RecordHP").func(null);
+var T400=DU.ReadReturn(T399,1);
+var T401=[T400];
+var T402=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T401);
+var T403=DU.ReadReturn(T402,1);
+OObj.SetChild(T330,7,T403);
 //  $Slide.Create(lambda(stage => async))
-var T440=OObj.MakeFunc(__FUNCS["Red Sk_3"]["130_func161"],{});
-var T441=[T440];
-var T442=__RUN.getStaticGlo("Slide.Create").func(null,...T441);
-var T443=DU.ReadReturn(T442,1);
-OObj.SetChild(T365,8,T443);
+var T405=OObj.MakeFunc(__FUNCS["Red Sk_3"]["104_func159"],{});
+var T406=[T405];
+var T407=__RUN.getStaticGlo("Slide.Create").func(null,...T406);
+var T408=DU.ReadReturn(T407,1);
+OObj.SetChild(T330,8,T408);
 //  $Slide.Create(lambda(stage => async))
-var T445=OObj.MakeFunc(__FUNCS["Red Sk_3"]["156_func166"],{});
-var T446=[T445];
-var T447=__RUN.getStaticGlo("Slide.Create").func(null,...T446);
-var T448=DU.ReadReturn(T447,1);
-OObj.SetChild(T365,9,T448);
+var T410=OObj.MakeFunc(__FUNCS["Red Sk_3"]["130_func164"],{});
+var T411=[T410];
+var T412=__RUN.getStaticGlo("Slide.Create").func(null,...T411);
+var T413=DU.ReadReturn(T412,1);
+OObj.SetChild(T330,9,T413);
 //  $If(`$RedSkull.IfPromptForPrisoners(state)`, $Slide.Create(lambda(stage => async)))
-var T450=OObj.MakeFunc(__FUNCS["Red Sk_3"]["169_func"],{});
-var T451=OObj.MakeFunc(__FUNCS["Red Sk_3"]["182_func173"],{});
-var T452=[T451];
-var T453=__RUN.getStaticGlo("Slide.Create").func(null,...T452);
-var T454=DU.ReadReturn(T453,1);
-var T455=[T450,T454];
-var T456=__RUN.getStaticGlo("Slide.If").func(null,...T455);
-var T457=DU.ReadReturn(T456,1);
-OObj.SetChild(T365,10,T457);
+var T415=OObj.MakeFunc(__FUNCS["Red Sk_3"]["143_func"],{});
+var T416=OObj.MakeFunc(__FUNCS["Red Sk_3"]["156_func171"],{});
+var T417=[T416];
+var T418=__RUN.getStaticGlo("Slide.Create").func(null,...T417);
+var T419=DU.ReadReturn(T418,1);
+var T420=[T415,T419];
+var T421=__RUN.getStaticGlo("Slide.If").func(null,...T420);
+var T422=DU.ReadReturn(T421,1);
+OObj.SetChild(T330,10,T422);
 //  $If(`$RedSkull.IfUpgradeConditions(state)`, $Slide.Create(lambda(stage => async)))
-var T459=OObj.MakeFunc(__FUNCS["Red Sk_3"]["221_func"],{});
-var T460=OObj.MakeFunc(__FUNCS["Red Sk_3"]["234_func183"],{});
-var T461=[T460];
-var T462=__RUN.getStaticGlo("Slide.Create").func(null,...T461);
-var T463=DU.ReadReturn(T462,1);
-var T464=[T459,T463];
-var T465=__RUN.getStaticGlo("Slide.If").func(null,...T464);
-var T466=DU.ReadReturn(T465,1);
-OObj.SetChild(T365,11,T466);
-var T468="bPurple";
-var T469="lYellow";
-var T470="fYellow";
-var T471="Read page 11 from The Rise of Red Skull rule book";
-var T472=[T361,T362,T363,T364,T365,T468,T469,T470,T471];
-var T473=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T360},...T472);
+var T424=OObj.MakeFunc(__FUNCS["Red Sk_3"]["195_func"],{});
+var T425=OObj.MakeFunc(__FUNCS["Red Sk_3"]["208_func181"],{});
+var T426=[T425];
+var T427=__RUN.getStaticGlo("Slide.Create").func(null,...T426);
+var T428=DU.ReadReturn(T427,1);
+var T429=[T424,T428];
+var T430=__RUN.getStaticGlo("Slide.If").func(null,...T429);
+var T431=DU.ReadReturn(T430,1);
+OObj.SetChild(T330,11,T431);
+var T433="bPurple";
+var T434="lYellow";
+var T435="fYellow";
+var T436="Read page 11 from The Rise of Red Skull rule book";
+var T437=[T326,T327,T328,T329,T330,T433,T434,T435,T436];
+var T438=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T325},...T437);
 //  mixin $mixMission("R4", 5, "New World Hydra", $Img.RedSkullVillian, dim
-var T474=DU.Ref(T11);
-var T475="R4";
-var T476=5;
-var T477="New World Hydra";
-var T478=DU.Ref(__RUN.getStaticGlo("Img.RedSkullVillian"));
-var T479=new OObj();
+var T439=DU.Ref(T11);
+var T440="R4";
+var T441=5;
+var T442="New World Hydra";
+var T443=DU.Ref(__RUN.getStaticGlo("Img.RedSkullVillian"));
+var T444=new OObj();
 //  $CheckList("Setup", dim, null, $Img.RedSkullVillian)
-var T480="Setup";
-var T481=new OObj();
+var T445="Setup";
+var T446=new OObj();
 //  $EnemyStageCheck("Red Skull")
-var T482="Red Skull";
-var T483=[T482];
-var T484=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T483);
-var T485=DU.ReadReturn(T484,1);
-OObj.SetChild(T481,0,T485);
+var T447="Red Skull";
+var T448=[T447];
+var T449=__RUN.getStaticGlo("Slide.EnemyStageCheck").func(null,...T448);
+var T450=DU.ReadReturn(T449,1);
+OObj.SetChild(T446,0,T450);
 //  $CheckList.MakeCheck("**Main Scheme Deck**: The Rise of Red Skull, New World Hydra")
-var T487="**Main Scheme Deck**: The Rise of Red Skull, New World Hydra";
-var T488=[T487];
-var T489=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T488);
-var T490=DU.ReadReturn(T489,1);
-OObj.SetChild(T481,1,T490);
-var T492=null;
-var T493=DU.Ref(__RUN.getStaticGlo("Img.RedSkullVillian"));
-var T494=[T480,T481,T492,T493];
-var T495=__RUN.getStaticGlo("Slide.CheckList").func(null,...T494);
-var T496=DU.ReadReturn(T495,1);
-OObj.SetChild(T479,0,T496);
+var T452="**Main Scheme Deck**: The Rise of Red Skull, New World Hydra";
+var T453=[T452];
+var T454=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T453);
+var T455=DU.ReadReturn(T454,1);
+OObj.SetChild(T446,1,T455);
+var T457=null;
+var T458=DU.Ref(__RUN.getStaticGlo("Img.RedSkullVillian"));
+var T459=[T445,T446,T457,T458];
+var T460=__RUN.getStaticGlo("Slide.CheckList").func(null,...T459);
+var T461=DU.ReadReturn(T460,1);
+OObj.SetChild(T444,0,T461);
 //  $CheckList("Setup", dim, "**Encounter Deck**", $Img.TwistedReality)
-var T498="Setup";
-var T499=new OObj();
+var T463="Setup";
+var T464=new OObj();
 //  $CheckList.MakeCheck("Red Skull set")
-var T500="Red Skull set";
-var T501=[T500];
-var T502=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T501);
-var T503=DU.ReadReturn(T502,1);
-OObj.SetChild(T499,0,T503);
+var T465="Red Skull set";
+var T466=[T465];
+var T467=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T466);
+var T468=DU.ReadReturn(T467,1);
+OObj.SetChild(T464,0,T468);
 //  $CheckList.MakeCheck("Hydra Assault set")
-var T505="Hydra Assault set";
-var T506=[T505];
-var T507=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T506);
-var T508=DU.ReadReturn(T507,1);
-OObj.SetChild(T499,1,T508);
+var T470="Hydra Assault set";
+var T471=[T470];
+var T472=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T471);
+var T473=DU.ReadReturn(T472,1);
+OObj.SetChild(T464,1,T473);
 //  $CheckList.MakeCheck("Hydra Patrol set")
-var T510="Hydra Patrol set";
-var T511=[T510];
-var T512=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T511);
-var T513=DU.ReadReturn(T512,1);
-OObj.SetChild(T499,2,T513);
+var T475="Hydra Patrol set";
+var T476=[T475];
+var T477=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T476);
+var T478=DU.ReadReturn(T477,1);
+OObj.SetChild(T464,2,T478);
 //  $CheckList.MakeCheck("Standard set")
-var T515="Standard set";
-var T516=[T515];
-var T517=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T516);
-var T518=DU.ReadReturn(T517,1);
-OObj.SetChild(T499,3,T518);
+var T480="Standard set";
+var T481=[T480];
+var T482=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T481);
+var T483=DU.ReadReturn(T482,1);
+OObj.SetChild(T464,3,T483);
 //  $ExpertEncounterSetCheck()
-var T520=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
-var T521=DU.ReadReturn(T520,1);
-OObj.SetChild(T499,4,T521);
-var T523="**Encounter Deck**";
-var T524=DU.Ref(__RUN.getStaticGlo("Img.TwistedReality"));
-var T525=[T498,T499,T523,T524];
-var T526=__RUN.getStaticGlo("Slide.CheckList").func(null,...T525);
-var T527=DU.ReadReturn(T526,1);
-OObj.SetChild(T479,1,T527);
+var T485=__RUN.getStaticGlo("Slide.ExpertEncounterSetCheck").func(null);
+var T486=DU.ReadReturn(T485,1);
+OObj.SetChild(T464,4,T486);
+var T488="**Encounter Deck**";
+var T489=DU.Ref(__RUN.getStaticGlo("Img.TwistedReality"));
+var T490=[T463,T464,T488,T489];
+var T491=__RUN.getStaticGlo("Slide.CheckList").func(null,...T490);
+var T492=DU.ReadReturn(T491,1);
+OObj.SetChild(T444,1,T492);
 //  $Setup(textdata)
-var T529=new OObj();
-var T530="Construct the side-scheme deck (see The Rise of Red Skull 1A).";
-OObj.SetChild(T529,0,T530);
-var T532="Search the encounter deck for each side scheme and shuffle them together";
-OObj.SetChild(T529,1,T532);
-var T534="into their own deck. This is the side-scheme deck. Set it next to the";
-OObj.SetChild(T529,2,T534);
-var T536="main-scheme deck.";
-OObj.SetChild(T529,3,T536);
-var T538="";
-OObj.SetChild(T529,4,T538);
-var T540="**Reminder:** the side-scheme deck has it's own discard pile. When a side-scheme is";
-OObj.SetChild(T529,5,T540);
-var T542="defeated or otherwise discarded, place it in the side-scheme discard pile.";
-OObj.SetChild(T529,6,T542);
-var T544="if the side-scheme deck is ever empty, shuffle the side-scheme discard pile";
-OObj.SetChild(T529,7,T544);
-var T546="into the side-scheme deck. There is no penalty for doing this.";
-OObj.SetChild(T529,8,T546);
-var T548="";
-OObj.SetChild(T529,9,T548);
-var T550=[T529];
-var T551=__RUN.getStaticGlo("Slide.Setup").func(null,...T550);
-var T552=DU.ReadReturn(T551,1);
-OObj.SetChild(T479,2,T552);
+var T494=new OObj();
+var T495="Construct the side-scheme deck (see The Rise of Red Skull 1A).";
+OObj.SetChild(T494,0,T495);
+var T497="Search the encounter deck for each side scheme and shuffle them together";
+OObj.SetChild(T494,1,T497);
+var T499="into their own deck. This is the side-scheme deck. Set it next to the";
+OObj.SetChild(T494,2,T499);
+var T501="main-scheme deck.";
+OObj.SetChild(T494,3,T501);
+var T503="";
+OObj.SetChild(T494,4,T503);
+var T505="**Reminder:** the side-scheme deck has it's own discard pile. When a side-scheme is";
+OObj.SetChild(T494,5,T505);
+var T507="defeated or otherwise discarded, place it in the side-scheme discard pile.";
+OObj.SetChild(T494,6,T507);
+var T509="if the side-scheme deck is ever empty, shuffle the side-scheme discard pile";
+OObj.SetChild(T494,7,T509);
+var T511="into the side-scheme deck. There is no penalty for doing this.";
+OObj.SetChild(T494,8,T511);
+var T513="";
+OObj.SetChild(T494,9,T513);
+var T515=[T494];
+var T516=__RUN.getStaticGlo("Slide.Setup").func(null,...T515);
+var T517=DU.ReadReturn(T516,1);
+OObj.SetChild(T444,2,T517);
 //  $RedSkull.SetupWeapons()
-var T554=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
-var T555=DU.ReadReturn(T554,1);
-OObj.SetChild(T479,3,T555);
+var T519=__RUN.getStaticGlo("RedSkull.SetupWeapons").func(null);
+var T520=DU.ReadReturn(T519,1);
+OObj.SetChild(T444,3,T520);
 //  $RedSkull.SetupTechCards()
-var T557=new OObj();
-var T558="Each player searches their deck for all cards with the setup keyword and puts them into play.";
-OObj.SetChild(T557,0,T558);
-var T560="";
-OObj.SetChild(T557,1,T560);
-var T562=[T557];
-var T563=__RUN.getStaticGlo("Slide.Setup").func(null,...T562);
-var T564=DU.ReadReturn(T563,1);
-OObj.SetChild(T479,4,T564);
+var T522=new OObj();
+var T523="Each player searches their deck for all cards with the setup keyword and puts them into play.";
+OObj.SetChild(T522,0,T523);
+var T525="";
+OObj.SetChild(T522,1,T525);
+var T527=[T522];
+var T528=__RUN.getStaticGlo("Slide.Setup").func(null,...T527);
+var T529=DU.ReadReturn(T528,1);
+OObj.SetChild(T444,4,T529);
 //  $Slide.Create(lambda(stage => async))
-var T566=OObj.MakeFunc(__FUNCS["Red Sk_3"]["247_func217"],{});
-var T567=[T566];
-var T568=__RUN.getStaticGlo("Slide.Create").func(null,...T567);
-var T569=DU.ReadReturn(T568,1);
-OObj.SetChild(T479,5,T569);
+var T531=OObj.MakeFunc(__FUNCS["Red Sk_3"]["221_func215"],{});
+var T532=[T531];
+var T533=__RUN.getStaticGlo("Slide.Create").func(null,...T532);
+var T534=DU.ReadReturn(T533,1);
+OObj.SetChild(T444,5,T534);
 //  $RedSkull.HealSlide()
-var T571=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
-var T572=DU.ReadReturn(T571,1);
-OObj.SetChild(T479,6,T572);
+var T536=__RUN.getStaticGlo("RedSkull.HealSlide").func(null);
+var T537=DU.ReadReturn(T536,1);
+OObj.SetChild(T444,6,T537);
 //  $IfExpert($SetInitialHP())
-var T574=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
-var T575=DU.ReadReturn(T574,1);
-var T576=[T575];
-var T577=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T576);
-var T578=DU.ReadReturn(T577,1);
-OObj.SetChild(T479,7,T578);
+var T539=__RUN.getStaticGlo("Slide.SetInitialHP").func(null);
+var T540=DU.ReadReturn(T539,1);
+var T541=[T540];
+var T542=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T541);
+var T543=DU.ReadReturn(T542,1);
+OObj.SetChild(T444,7,T543);
 //  $If(`$RedSkull.IfEnemyEngaged(state)`, $Slide.Create(lambda(stage => async)))
-var T580=OObj.MakeFunc(__FUNCS["Red Sk_3"]["260_func"],{});
-var T581=OObj.MakeFunc(__FUNCS["Red Sk_3"]["273_func229"],{});
-var T582=[T581];
-var T583=__RUN.getStaticGlo("Slide.Create").func(null,...T582);
-var T584=DU.ReadReturn(T583,1);
-var T585=[T580,T584];
-var T586=__RUN.getStaticGlo("Slide.If").func(null,...T585);
-var T587=DU.ReadReturn(T586,1);
-OObj.SetChild(T479,8,T587);
+var T545=OObj.MakeFunc(__FUNCS["Red Sk_3"]["234_func"],{});
+var T546=OObj.MakeFunc(__FUNCS["Red Sk_3"]["247_func227"],{});
+var T547=[T546];
+var T548=__RUN.getStaticGlo("Slide.Create").func(null,...T547);
+var T549=DU.ReadReturn(T548,1);
+var T550=[T545,T549];
+var T551=__RUN.getStaticGlo("Slide.If").func(null,...T550);
+var T552=DU.ReadReturn(T551,1);
+OObj.SetChild(T444,8,T552);
 //  $IfNotExpert($PlayGame()) // can't lose on basic
-var T589=__RUN.getStaticGlo("Slide.PlayGame").func(null);
-var T590=DU.ReadReturn(T589,1);
-var T591=[T590];
-var T592=__RUN.getStaticGlo("Slide.IfNotExpert").func(null,...T591);
-var T593=DU.ReadReturn(T592,1);
-OObj.SetChild(T479,9,T593);
+var T554=__RUN.getStaticGlo("Slide.PlayGame").func(null);
+var T555=DU.ReadReturn(T554,1);
+var T556=[T555];
+var T557=__RUN.getStaticGlo("Slide.IfNotExpert").func(null,...T556);
+var T558=DU.ReadReturn(T557,1);
+OObj.SetChild(T444,9,T558);
 //  $IfExpert($PlayGame(lambda)) // can lose on expert
-var T595=OObj.MakeFunc(__FUNCS["Red Sk_3"]["299_func238"],{});
-var T596=[T595];
-var T597=__RUN.getStaticGlo("Slide.PlayGame").func(null,...T596);
-var T598=DU.ReadReturn(T597,1);
-var T599=[T598];
-var T600=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T599);
-var T601=DU.ReadReturn(T600,1);
-OObj.SetChild(T479,10,T601);
+var T560=OObj.MakeFunc(__FUNCS["Red Sk_3"]["273_func236"],{});
+var T561=[T560];
+var T562=__RUN.getStaticGlo("Slide.PlayGame").func(null,...T561);
+var T563=DU.ReadReturn(T562,1);
+var T564=[T563];
+var T565=__RUN.getStaticGlo("Slide.IfExpert").func(null,...T564);
+var T566=DU.ReadReturn(T565,1);
+OObj.SetChild(T444,10,T566);
 //  $ConfirmDefeat()
-var T603=__RUN.getStaticGlo("Slide.ConfirmDefeat").func(null);
-var T604=DU.ReadReturn(T603,1);
-OObj.SetChild(T479,11,T604);
+var T568=__RUN.getStaticGlo("Slide.ConfirmDefeat").func(null);
+var T569=DU.ReadReturn(T568,1);
+OObj.SetChild(T444,11,T569);
 //  $PassThrough(lambda(stage))
-var T606=OObj.MakeFunc(__FUNCS["Red Sk_3"]["312_func242"],{});
-var T607=[T606];
-var T608=__RUN.getStaticGlo("Slide.PassThrough").func(null,...T607);
-var T609=DU.ReadReturn(T608,1);
-OObj.SetChild(T479,12,T609);
-var T611="bBlack";
-var T612="lRed";
-var T613="fRed";
-var T614="Read page 13-14 from The Rise of Red Skull rule book";
-var T615=[T475,T476,T477,T478,T479,T611,T612,T613,T614];
-var T616=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T474},...T615);
+var T571=OObj.MakeFunc(__FUNCS["Red Sk_3"]["286_func240"],{});
+var T572=[T571];
+var T573=__RUN.getStaticGlo("Slide.PassThrough").func(null,...T572);
+var T574=DU.ReadReturn(T573,1);
+OObj.SetChild(T444,12,T574);
+var T576="bBlack";
+var T577="lRed";
+var T578="fRed";
+var T579="Read page 13-14 from The Rise of Red Skull rule book";
+var T580=[T440,T441,T442,T443,T444,T576,T577,T578,T579];
+var T581=__RUN.getStaticGlo("Campaign.mixMission").func({__THIS:T439},...T580);
 //  mixin $mixWrapUpDefeat(dim)
-var T617=DU.Ref(T11);
-var T618=new OObj();
+var T582=DU.Ref(T11);
+var T583=new OObj();
 //  $Checkpoint("R5", "Red Skull conquers the world")
-var T619=new OObj();
-var T620="R5";
-OObj.SetChild(T619,"checkpoint",T620);
-var T622=new OObj();
-var T623="Red Skull conquers the world";
-OObj.SetChild(T622,"progress",T623);
-OObj.SetChild(T619,"delta",T622);
-OObj.SetChild(T618,0,T619);
+var T584=new OObj();
+var T585="R5";
+OObj.SetChild(T584,"checkpoint",T585);
+var T587=new OObj();
+var T588="Red Skull conquers the world";
+OObj.SetChild(T587,"progress",T588);
+OObj.SetChild(T584,"delta",T587);
+OObj.SetChild(T583,0,T584);
 //  $Slide.Popup("DEFEAT","The heroes were defeated. Red Skull conquers the world.")
-var T627="DEFEAT";
-var T628="The heroes were defeated. Red Skull conquers the world.";
-var T629=[T627,T628];
-var T630=__RUN.getStaticGlo("Slide.Popup").func(null,...T629);
-var T631=DU.ReadReturn(T630,1);
-OObj.SetChild(T618,1,T631);
-var T633=[T618];
-var T634=__RUN.getStaticGlo("Campaign.mixWrapUpDefeat").func({__THIS:T617},...T633);
+var T592="DEFEAT";
+var T593="The heroes were defeated. Red Skull conquers the world.";
+var T594=[T592,T593];
+var T595=__RUN.getStaticGlo("Slide.Popup").func(null,...T594);
+var T596=DU.ReadReturn(T595,1);
+OObj.SetChild(T583,1,T596);
+var T598=[T583];
+var T599=__RUN.getStaticGlo("Campaign.mixWrapUpDefeat").func({__THIS:T582},...T598);
 //  mixin $mixWrapUpVictory(dim)
-var T635=DU.Ref(T11);
-var T636=new OObj();
+var T600=DU.Ref(T11);
+var T601=new OObj();
 //  $PassThrough(lambda(stage))
-var T637=OObj.MakeFunc(__FUNCS["Red Sk_3"]["325_func250"],{});
-var T638=[T637];
-var T639=__RUN.getStaticGlo("Slide.PassThrough").func(null,...T638);
-var T640=DU.ReadReturn(T639,1);
-OObj.SetChild(T636,0,T640);
+var T602=OObj.MakeFunc(__FUNCS["Red Sk_3"]["299_func248"],{});
+var T603=[T602];
+var T604=__RUN.getStaticGlo("Slide.PassThrough").func(null,...T603);
+var T605=DU.ReadReturn(T604,1);
+OObj.SetChild(T601,0,T605);
 //  $Checkpoint("R6", "Hydra was defeated!")
-var T642=new OObj();
-var T643="R6";
-OObj.SetChild(T642,"checkpoint",T643);
-var T645=new OObj();
-var T646="Hydra was defeated!";
-OObj.SetChild(T645,"progress",T646);
-OObj.SetChild(T642,"delta",T645);
-OObj.SetChild(T636,1,T642);
+var T607=new OObj();
+var T608="R6";
+OObj.SetChild(T607,"checkpoint",T608);
+var T610=new OObj();
+var T611="Hydra was defeated!";
+OObj.SetChild(T610,"progress",T611);
+OObj.SetChild(T607,"delta",T610);
+OObj.SetChild(T601,1,T607);
 //  $Slide.Popup("VICTORY!", "Read page 16 from The Rise of Red Skull rule book")
-var T650="VICTORY!";
-var T651="Read page 16 from The Rise of Red Skull rule book";
-var T652=[T650,T651];
-var T653=__RUN.getStaticGlo("Slide.Popup").func(null,...T652);
-var T654=DU.ReadReturn(T653,1);
-OObj.SetChild(T636,2,T654);
+var T615="VICTORY!";
+var T616="Read page 16 from The Rise of Red Skull rule book";
+var T617=[T615,T616];
+var T618=__RUN.getStaticGlo("Slide.Popup").func(null,...T617);
+var T619=DU.ReadReturn(T618,1);
+OObj.SetChild(T601,2,T619);
 //  $Slide.Victory("Hydra is defeated and the players win the campaign!")
-var T656="Hydra is defeated and the players win the campaign!";
-var T657=[T656];
-var T658=__RUN.getStaticGlo("Slide.Victory").func(null,...T657);
-var T659=DU.ReadReturn(T658,1);
-OObj.SetChild(T636,3,T659);
-var T661=[T636];
-var T662=__RUN.getStaticGlo("Campaign.mixWrapUpVictory").func({__THIS:T635},...T661);
+var T621="Hydra is defeated and the players win the campaign!";
+var T622=[T621];
+var T623=__RUN.getStaticGlo("Slide.Victory").func(null,...T622);
+var T624=DU.ReadReturn(T623,1);
+OObj.SetChild(T601,3,T624);
+var T626=[T601];
+var T627=__RUN.getStaticGlo("Campaign.mixWrapUpVictory").func({__THIS:T600},...T626);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
 var T0="base";
@@ -3215,7 +3178,7 @@ return [$stack];
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\campaign\campaign.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\campaign\campaign.wng
 __FUNCS["campai_2"] = {
 "13::Create" : function(__DIV, $name, $img){
 var $obj;
@@ -4029,7 +3992,7 @@ return [$bool];
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\campaign\Red Skull.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\campaign\Red Skull.wng
 __FUNCS["Red Sk_3"] = {
 "13_func" : function(__DIV){
 var $state,$player;
@@ -4041,55 +4004,87 @@ var T3=[T1,T2];
 var T4=__RUN.getStaticGlo("RedSkull.TooltipGen").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 return [T5];},
-"26_func45" : function(__DIV){
-var $stage;
+"26_func44" : async function(__DIV, $stage){
+var $opts,$$iter2,$it;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-//  stage.delta["Weapon", "Laser Rifle"] : true
-var T1=true;
-var T2=DU.Ref($stage);
-var T3=OObj.DotAccess(T2,"delta");
-var T4="Weapon";
-var T5="Laser Rifle";
-OObj.SetPath(T3,[T4,T5],T1);
+//  @opts : dim()
+var T1=new OObj();
+$opts=T1;
+//  for dim("Laser Rifle", "Energy Shield", "Power Gauntlets", "Exo Suit")
+var T3=new OObj();
+var T4="Laser Rifle";
+OObj.SetChild(T3,0,T4);
+var T6="Energy Shield";
+OObj.SetChild(T3,1,T6);
+var T8="Power Gauntlets";
+OObj.SetChild(T3,2,T8);
+var T10="Exo Suit";
+OObj.SetChild(T3,3,T10);
+var T12=DU.MakeIter(T3);
+$$iter2=T12;
+for(var T14=0;;T14++)
+{
+if(T14>0)
+{
+var T15=DU.Ref($$iter2);
+T15.Next();
+}var T17=DU.Ref($$iter2);
+var T18=T17.iter.done;
+var T19=!T18;
+if(!T19){break;}
+var T21=DU.Ref($$iter2);
+var T22=T21.iter.value[0];
+$it=T22;
+//  opts.$List.Add($CheckList.MakeCheck(it, null, lambda, stage.ghost[$RedSkull.Weapon, it] ? false))
+var T24=DU.Ref($opts);
+var T25=DU.Ref($it);
+var T26=null;
+var T27=OObj.MakeFunc(__FUNCS["Red Sk_3"]["39_func47"],{$stage: DU.Ref($stage),$it: DU.Ref($it)});
+var T28=DU.Ref($stage);
+var T29=OObj.DotAccess(T28,"ghost");
+var T30="experimental weapon";
+var T31=DU.Ref($it);
+var T32=OObj.GetPath(T29,[T30,T31]);
+if(T32 != null)
+{
+var T35=T32;
+}else{
+var T35=false;
+}var T36=[T25,T26,T27,T35];
+var T37=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T36);
+var T38=DU.ReadReturn(T37,1);
+var T39=[T38];
+var T40=__RUN.getStaticGlo("List.Add").func({__THIS:T24},...T39);
+var T41=DU.ReadReturn(T40,1);
+continue;
+}//  await $CheckList.DoChecklist(stage, "Experimental Weapons"
+var T44=$it;
+$it=undefined;
+var T46=DU.Ref($stage);
+var T47="Experimental Weapons";
+var T48="Which *EXPERIMENTAL* attachments entered the game?";
+var T49=DU.Ref($opts);
+var T50=null;
+var T51=true;
+var T53=[T46,T47,T48,T49,T50,T51];
+var T54=await __RUN.getStaticGlo("Slide.CheckList.DoChecklist").func(null,...T53);
+var T55=DU.ReadReturn(T54,1);
 return [];
 },
 "39_func47" : function(__DIV){
-var $stage;
+var $stage,$it;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-//  stage.delta["Weapon", "Energy Shield"] : true
+if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
+//  stage.delta[$RedSkull.Weapon, it] : true
 var T1=true;
 var T2=DU.Ref($stage);
 var T3=OObj.DotAccess(T2,"delta");
-var T4="Weapon";
-var T5="Energy Shield";
+var T4="experimental weapon";
+var T5=DU.Ref($it);
 OObj.SetPath(T3,[T4,T5],T1);
 return [];
 },
-"52_func49" : function(__DIV){
-var $stage;
-if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-//  stage.delta["Weapon", "Power Gauntlets"] : true
-var T1=true;
-var T2=DU.Ref($stage);
-var T3=OObj.DotAccess(T2,"delta");
-var T4="Weapon";
-var T5="Power Gauntlets";
-OObj.SetPath(T3,[T4,T5],T1);
-return [];
-},
-"65_func51" : function(__DIV){
-var $stage;
-if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-//  stage.delta["Weapon", "Exo Suit"] : true
-var T1=true;
-var T2=DU.Ref($stage);
-var T3=OObj.DotAccess(T2,"delta");
-var T4="Weapon";
-var T5="Exo Suit";
-OObj.SetPath(T3,[T4,T5],T1);
-return [];
-},
-"78_func56" : async function(__DIV, $stage){
+"52_func54" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Each player chooses a TECH upgrade from the Hydra Campaign set and adds it to their deck."
@@ -4117,7 +4112,7 @@ var T17=await __RUN.getStaticGlo("RedSkull.DoDistributeVictory").func(null,...T1
 var T18=DU.ReadReturn(T17,1);
 return [];
 },
-"91_func87" : async function(__DIV, $stage){
+"65_func85" : async function(__DIV, $stage){
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  await $RedSkull.DoRecordDelay(stage)
 var T1=DU.Ref($stage);
@@ -4126,7 +4121,7 @@ var T4=await __RUN.getStaticGlo("RedSkull.DoRecordDelay").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 return [];
 },
-"104_func92" : async function(__DIV, $stage){
+"78_func90" : async function(__DIV, $stage){
 var $$parTmp2,$$$sOut23,$text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : $GTW(textdata)
@@ -4175,7 +4170,7 @@ var T38=await __RUN.getStaticGlo("RedSkull.DoDistributeVictory").func(null,...T3
 var T39=DU.ReadReturn(T38,1);
 return [];
 },
-"117_func128" : async function(__DIV, $stage){
+"91_func126" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Each player who rescured an ally from the Taskmaster encounter set adds those allies to their deck"
@@ -4203,7 +4198,7 @@ var T17=await __RUN.getStaticGlo("RedSkull.DoDistributeVictoryMulti").func(null,
 var T18=DU.ReadReturn(T17,1);
 return [];
 },
-"130_func161" : async function(__DIV, $stage){
+"104_func159" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Which players ended the game engaged with an enemy?"
@@ -4215,14 +4210,14 @@ var T4="enemy engaged";
 var T5="Victory";
 var T6=DU.Ref($text);
 var T7="Engaged with an enemy";
-var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["143_func"],{});
+var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["117_func"],{});
 var T9="Not in play";
 var T11=[T3,T4,T5,T6,T7,T8,T9];
 var T12=await __RUN.getStaticGlo("Slide.CheckList.DoPlayerList").func(null,...T11);
 var T13=DU.ReadReturn(T12,1);
 return [];
 },
-"143_func" : function(__DIV){
+"117_func" : function(__DIV){
 var $player;
 if('$player' in __DIV.capture){$player=__DIV.capture["$player"];}
 var T1=DU.Ref($player);
@@ -4236,7 +4231,7 @@ var T6=1;
 }var T7=0;
 var T8=gVal(T6) > gVal(T7);
 return [T8];},
-"156_func166" : async function(__DIV, $stage){
+"130_func164" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Is the Hydra Prison side scheme still in play?"
@@ -4267,7 +4262,7 @@ var T22=await __RUN.getStaticGlo("Slide.Fork.DoFork").func(null,...T21);
 var T23=DU.ReadReturn(T22,1);
 return [];
 },
-"169_func" : function(__DIV){
+"143_func" : function(__DIV){
 var $state;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 var T1=DU.Ref($state);
@@ -4275,7 +4270,7 @@ var T2=[T1];
 var T3=__RUN.getStaticGlo("RedSkull.IfPromptForPrisoners").func(null,...T2);
 var T4=DU.ReadReturn(T3,1);
 return [T4];},
-"182_func173" : async function(__DIV, $stage){
+"156_func171" : async function(__DIV, $stage){
 var $poss,$list;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @poss : $RedSkull.GetAlliesFreed(stage.state)
@@ -4287,7 +4282,7 @@ var T5=DU.ReadReturn(T4,1);
 $poss=T5;
 //  @list : poss.$List.Map(`$MakeCheck(it, null, lambda, stage.ghost[$RedSkull.AlliesInPrison, it])`)
 var T7=DU.Ref($poss);
-var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["195_func"],{$stage: DU.Ref($stage)});
+var T8=OObj.MakeFunc(__FUNCS["Red Sk_3"]["169_func"],{$stage: DU.Ref($stage)});
 var T9=[T8];
 var T10=__RUN.getStaticGlo("List.Map").func({__THIS:T7},...T9);
 var T11=DU.ReadReturn(T10,1);
@@ -4315,13 +4310,13 @@ var T32=await __RUN.getStaticGlo("Slide.CheckList.DoChecklist").func(null,...T31
 var T33=DU.ReadReturn(T32,1);
 return [];
 },
-"195_func" : function(__DIV){
+"169_func" : function(__DIV){
 var $it,$stage;
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 var T1=DU.Ref($it);
 var T2=null;
-var T3=OObj.MakeFunc(__FUNCS["Red Sk_3"]["208_func-1"],{$it: DU.Ref($it),$stage: DU.Ref($stage)});
+var T3=OObj.MakeFunc(__FUNCS["Red Sk_3"]["182_func-1"],{$it: DU.Ref($it),$stage: DU.Ref($stage)});
 var T4=DU.Ref($stage);
 var T5=OObj.DotAccess(T4,"ghost");
 var T6="allies in prison";
@@ -4331,7 +4326,7 @@ var T9=[T1,T2,T3,T8];
 var T10=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T9);
 var T11=DU.ReadReturn(T10,1);
 return [T11];},
-"208_func-1" : function(__DIV){
+"182_func-1" : function(__DIV){
 var $stage,$it;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
@@ -4344,7 +4339,7 @@ var T5=DU.Ref($it);
 OObj.SetPath(T3,[T4,T5],T1);
 return [];
 },
-"221_func" : function(__DIV){
+"195_func" : function(__DIV){
 var $state;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 var T1=DU.Ref($state);
@@ -4352,7 +4347,7 @@ var T2=[T1];
 var T3=__RUN.getStaticGlo("RedSkull.IfUpgradeConditions").func(null,...T2);
 var T4=DU.ReadReturn(T3,1);
 return [T4];},
-"234_func183" : async function(__DIV, $stage){
+"208_func181" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Which players ended the game in hero form?"
@@ -4365,7 +4360,7 @@ var T6=await __RUN.getStaticGlo("RedSkull.DoUpgradeCondition").func(null,...T5);
 var T7=DU.ReadReturn(T6,1);
 return [];
 },
-"247_func217" : async function(__DIV, $stage){
+"221_func215" : async function(__DIV, $stage){
 var $cnt,$text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @cnt : stage.state[$RedSkull.DelayCounters] ? 1
@@ -4416,7 +4411,7 @@ var T35=await __RUN.getStaticGlo("Slide.DoSimplePopup").func(null,...T34);
 var T36=DU.ReadReturn(T35,1);
 return [];
 },
-"260_func" : function(__DIV){
+"234_func" : function(__DIV){
 var $state;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 var T1=DU.Ref($state);
@@ -4424,7 +4419,7 @@ var T2=[T1];
 var T3=__RUN.getStaticGlo("RedSkull.IfEnemyEngaged").func(null,...T2);
 var T4=DU.ReadReturn(T3,1);
 return [T4];},
-"273_func229" : async function(__DIV, $stage){
+"247_func227" : async function(__DIV, $stage){
 var $text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : "Players engaged with an enemy after the last mission deal themselves an encounter card"
@@ -4434,13 +4429,13 @@ $text=T1;
 var T3=DU.Ref($stage);
 var T4="Setup";
 var T5=DU.Ref($text);
-var T6=OObj.MakeFunc(__FUNCS["Red Sk_3"]["286_func231"],{});
+var T6=OObj.MakeFunc(__FUNCS["Red Sk_3"]["260_func229"],{});
 var T8=[T3,T4,T5,T6];
 var T9=await __RUN.getStaticGlo("Slide.CheckList.DoPlayerSpecificInstructions").func(null,...T8);
 var T10=DU.ReadReturn(T9,1);
 return [];
 },
-"286_func231" : function(__DIV, $player){
+"260_func229" : function(__DIV, $player){
 var $$sOut2;
 if('$player' in __DIV.capture){$player=__DIV.capture["$player"];}
 //  player[$RedSkull.EnemyEngaged] ? false : "Deal 1 face down encounter card"
@@ -4463,7 +4458,7 @@ var T12="";
 $$sOut2=T12;
 }var T14=DU.Ref($$sOut2);
 return [T14];},
-"299_func238" : function(__DIV){
+"273_func236" : function(__DIV){
 var $stage;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  stage.delta[$Campaign.Defeated] : true
@@ -4474,7 +4469,7 @@ var T4="defeated";
 OObj.SetPath(T3,[T4],T1);
 return [];
 },
-"312_func242" : function(__DIV, $stage){
+"286_func240" : function(__DIV, $stage){
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  stage.delta[$Campaign.Complete] : true
 var T1=true;
@@ -4484,7 +4479,7 @@ var T4="complete";
 OObj.SetPath(T3,[T4],T1);
 return [];
 },
-"325_func250" : function(__DIV, $stage){
+"299_func248" : function(__DIV, $stage){
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  stage.delta[$Campaign.Victory] : true
 var T1=true;
@@ -4494,7 +4489,7 @@ var T4="victory";
 OObj.SetPath(T3,[T4],T1);
 return [];
 },
-"338::TooltipGen" : function(__DIV, $state, $player){
+"312::TooltipGen" : function(__DIV, $state, $player){
 var $tooltip,$addCard,$remCard,$$iter2,$key,$$struct3,$$key4,$$$key45,$card,$$struct6,$$card7,$$iter8,$it,$$iter9;
 //  @addCard : dim()
 var T2=new OObj();
@@ -4716,10 +4711,10 @@ continue;
 $it=undefined;
 }return [$tooltip];
 },
-"351::HealSlide" : function(__DIV){
+"325::HealSlide" : function(__DIV){
 var $slide;
 //  => $IfCanHeal($Create(lambda(stage => async)))
-var T0=OObj.MakeFunc(__FUNCS["Red Sk_3"]["364_func293"],{});
+var T0=OObj.MakeFunc(__FUNCS["Red Sk_3"]["338_func292"],{});
 var T1=[T0];
 var T2=__RUN.getStaticGlo("Slide.Create").func(null,...T1);
 var T3=DU.ReadReturn(T2,1);
@@ -4729,7 +4724,7 @@ var T6=DU.ReadReturn(T5,1);
 $slide=T6;
 return [$slide];
 },
-"364_func293" : async function(__DIV, $stage){
+"338_func292" : async function(__DIV, $stage){
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  await $DoHeal(stage)
 var T1=DU.Ref($stage);
@@ -4738,10 +4733,10 @@ var T4=await __RUN.getStaticGlo("RedSkull.DoHeal").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 return [];
 },
-"377::IfCanHeal" : function(__DIV, $subSlide){
+"351::IfCanHeal" : function(__DIV, $subSlide){
 var $slide;
 //  => $If(lambda(state => bool), free subSlide)
-var T1=OObj.MakeFunc(__FUNCS["Red Sk_3"]["390_func297"],{});
+var T1=OObj.MakeFunc(__FUNCS["Red Sk_3"]["364_func296"],{});
 var T2=$subSlide;
 $subSlide=undefined;
 var T3=[T1,T2];
@@ -4750,7 +4745,7 @@ var T5=DU.ReadReturn(T4,1);
 $slide=T5;
 return [$slide];
 },
-"390_func297" : function(__DIV, $state){
+"364_func296" : function(__DIV, $state){
 var $bool,$$struct2,$idx,$$idx3,$hero;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 //  if !state.$Campaign.State.IsExpert()
@@ -4830,7 +4825,7 @@ var T56=false;
 $bool=T56;
 return [$bool];
 },
-"403::SetupTechCards" : function(__DIV){
+"377::SetupTechCards" : function(__DIV){
 var $slide;
 //  => $Setup(textdata)
 var T0=new OObj();
@@ -4844,15 +4839,18 @@ var T7=DU.ReadReturn(T6,1);
 $slide=T7;
 return [$slide];
 },
-"416::IfWeapons" : function(__DIV, $state){
+"390::IfWeapons" : function(__DIV, $state){
 var $bool;
-//  => state has Weapon
+//  => state[$Weapon] != null
 var T1=DU.Ref($state);
-var T2=T1.inner!=null && ("Weapon" in T1.inner);
-$bool=T2;
+var T2="experimental weapon";
+var T3=OObj.GetPath(T1,[T2]);
+var T4=null;
+var T5=!DU.AreEqual(T3,T4);
+$bool=T5;
 return [$bool];
 },
-"429::SetupWeapons" : function(__DIV){
+"403::SetupWeapons" : function(__DIV){
 var $slide,$lbl;
 //  @lbl : $GT(textdata)
 var T0=new OObj();
@@ -4863,33 +4861,33 @@ var T4=__RUN.getStaticGlo("GT").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 $lbl=T5;
 //  slide : $Slide.If(`$IfWeapons(state)`, $CheckList("Experimental Weapons", dim, lbl, $Img.PowerGauntlets))
-var T7=OObj.MakeFunc(__FUNCS["Red Sk_3"]["442_func"],{});
+var T7=OObj.MakeFunc(__FUNCS["Red Sk_3"]["416_func"],{});
 var T8="Experimental Weapons";
 var T9=new OObj();
-//  $CheckList.MakeCheck("Laser Rifle", `stage.state["Weapon", "Laser Rifle"] ? false`)
+//  $CheckList.MakeCheck("Laser Rifle", `stage.state[$Weapon, "Laser Rifle"] ? false`)
 var T10="Laser Rifle";
-var T11=OObj.MakeFunc(__FUNCS["Red Sk_3"]["455_func"],{});
+var T11=OObj.MakeFunc(__FUNCS["Red Sk_3"]["429_func"],{});
 var T12=[T10,T11];
 var T13=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T12);
 var T14=DU.ReadReturn(T13,1);
 OObj.SetChild(T9,0,T14);
-//  $CheckList.MakeCheck("Energy Shield", `stage.state["Weapon", "Energy Shield"] ? false`)
+//  $CheckList.MakeCheck("Energy Shield", `stage.state[$Weapon, "Energy Shield"] ? false`)
 var T16="Energy Shield";
-var T17=OObj.MakeFunc(__FUNCS["Red Sk_3"]["468_func"],{});
+var T17=OObj.MakeFunc(__FUNCS["Red Sk_3"]["442_func"],{});
 var T18=[T16,T17];
 var T19=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T18);
 var T20=DU.ReadReturn(T19,1);
 OObj.SetChild(T9,1,T20);
-//  $CheckList.MakeCheck("Power Gauntlets", `stage.state["Weapon", "Power Gauntlets"] ? false`)
+//  $CheckList.MakeCheck("Power Gauntlets", `stage.state[$Weapon, "Power Gauntlets"] ? false`)
 var T22="Power Gauntlets";
-var T23=OObj.MakeFunc(__FUNCS["Red Sk_3"]["481_func"],{});
+var T23=OObj.MakeFunc(__FUNCS["Red Sk_3"]["455_func"],{});
 var T24=[T22,T23];
 var T25=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T24);
 var T26=DU.ReadReturn(T25,1);
 OObj.SetChild(T9,2,T26);
-//  $CheckList.MakeCheck("Exo Suit", `stage.state["Weapon", "Exo Suit"] ? false`)
+//  $CheckList.MakeCheck("Exo Suit", `stage.state[$Weapon, "Exo Suit"] ? false`)
 var T28="Exo Suit";
-var T29=OObj.MakeFunc(__FUNCS["Red Sk_3"]["494_func"],{});
+var T29=OObj.MakeFunc(__FUNCS["Red Sk_3"]["468_func"],{});
 var T30=[T28,T29];
 var T31=__RUN.getStaticGlo("Slide.CheckList.MakeCheck").func(null,...T30);
 var T32=DU.ReadReturn(T31,1);
@@ -4905,19 +4903,50 @@ var T41=DU.ReadReturn(T40,1);
 $slide=T41;
 return [$slide];
 },
-"442_func" : function(__DIV){
+"416_func" : function(__DIV){
 var $state;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 var T1=DU.Ref($state);
-var T2=T1.inner!=null && ("Weapon" in T1.inner);
-return [T2];},
+var T2="experimental weapon";
+var T3=OObj.GetPath(T1,[T2]);
+var T4=null;
+var T5=!DU.AreEqual(T3,T4);
+return [T5];},
+"429_func" : function(__DIV){
+var $stage;
+if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
+var T1=DU.Ref($stage);
+var T2=OObj.DotAccess(T1,"state");
+var T3="experimental weapon";
+var T4="Laser Rifle";
+var T5=OObj.GetPath(T2,[T3,T4]);
+if(T5 != null)
+{
+var T8=T5;
+}else{
+var T8=false;
+}return [T8];},
+"442_func" : function(__DIV){
+var $stage;
+if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
+var T1=DU.Ref($stage);
+var T2=OObj.DotAccess(T1,"state");
+var T3="experimental weapon";
+var T4="Energy Shield";
+var T5=OObj.GetPath(T2,[T3,T4]);
+if(T5 != null)
+{
+var T8=T5;
+}else{
+var T8=false;
+}return [T8];},
 "455_func" : function(__DIV){
 var $stage;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 var T1=DU.Ref($stage);
 var T2=OObj.DotAccess(T1,"state");
-var T3="Weapon";
-var T4="Laser Rifle";
+var T3="experimental weapon";
+var T4="Power Gauntlets";
 var T5=OObj.GetPath(T2,[T3,T4]);
 if(T5 != null)
 {
@@ -4930,35 +4959,7 @@ var $stage;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 var T1=DU.Ref($stage);
 var T2=OObj.DotAccess(T1,"state");
-var T3="Weapon";
-var T4="Energy Shield";
-var T5=OObj.GetPath(T2,[T3,T4]);
-if(T5 != null)
-{
-var T8=T5;
-}else{
-var T8=false;
-}return [T8];},
-"481_func" : function(__DIV){
-var $stage;
-if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-var T1=DU.Ref($stage);
-var T2=OObj.DotAccess(T1,"state");
-var T3="Weapon";
-var T4="Power Gauntlets";
-var T5=OObj.GetPath(T2,[T3,T4]);
-if(T5 != null)
-{
-var T8=T5;
-}else{
-var T8=false;
-}return [T8];},
-"494_func" : function(__DIV){
-var $stage;
-if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
-var T1=DU.Ref($stage);
-var T2=OObj.DotAccess(T1,"state");
-var T3="Weapon";
+var T3="experimental weapon";
 var T4="Exo Suit";
 var T5=OObj.GetPath(T2,[T3,T4]);
 if(T5 != null)
@@ -4967,7 +4968,7 @@ var T8=T5;
 }else{
 var T8=false;
 }return [T8];},
-"507::DoPickNumbers" : async function(__DIV, $stage){
+"481::DoPickNumbers" : async function(__DIV, $stage){
 var $pipe,$$parTmp2,$$$sOut23,$pop,$container,$assignments,$$struct4,$idx,$$idx5,$hero,$num;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T1=DU.Ref($stage);
@@ -5141,13 +5142,13 @@ $hero=undefined;
 var T150=$num;
 $num=undefined;
 var T152=DU.Ref($pop);
-var T153=OObj.MakeFunc(__FUNCS["Red Sk_3"]["520_func347"],{$pipe: DU.Ref($pipe)});
+var T153=OObj.MakeFunc(__FUNCS["Red Sk_3"]["494_func346"],{$pipe: DU.Ref($pipe)});
 var T154=[T153];
 var T155=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T152},...T154);
 var T156=DU.ReadReturn(T155,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T158=DU.Ref($stage);
-var T159=OObj.MakeFunc(__FUNCS["Red Sk_3"]["533_func350"],{$pipe: DU.Ref($pipe)});
+var T159=OObj.MakeFunc(__FUNCS["Red Sk_3"]["507_func349"],{$pipe: DU.Ref($pipe)});
 var T160=[T158,T159];
 var T161=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T160);
 var T162=DU.ReadReturn(T161,1);
@@ -5168,7 +5169,7 @@ var T178=await __RUN.getStaticGlo("Job.Pause").func(null,...T177);
 var T179=DU.ReadReturn(T178,1);
 return [];
 },
-"520_func347" : function(__DIV){
+"494_func346" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -5177,7 +5178,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"533_func350" : function(__DIV){
+"507_func349" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -5186,7 +5187,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"546::DoDistributeVictory" : async function(__DIV, $stage, $key, $text, $cards){
+"520::DoDistributeVictory" : async function(__DIV, $stage, $key, $text, $cards){
 var $pipe,$$$sOut22,$pop,$container,$selectors,$$struct3,$idx,$$idx4,$hero,$alive,$playerCard,$rightPane,$drop,$$iter5,$it,$$idx6,$$idx7,$pick,$val;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T4=DU.Ref($stage);
@@ -5404,7 +5405,7 @@ var T179=[T177,T178];
 var T180=__RUN.getStaticGlo("Dom.Dropdown.AddOption").func({__THIS:T176},...T179);
 var T181=DU.ReadReturn(T180,1);
 continue;
-}//  drop.$Dropdown.SetValue(stage.ghost["player", idx, key, 0] ? "")
+}//  drop.$Dropdown.SetValue(stage.ghost["player", idx, key] ? "")
 var T184=$it;
 $it=undefined;
 var T186=DU.Ref($drop);
@@ -5414,133 +5415,132 @@ var T189=OObj.DotAccess(T188,"ghost");
 var T190="player";
 var T191=DU.Ref($idx);
 var T192=DU.Ref($key);
-var T193=0;
-var T194=OObj.GetPath(T189,[T190,T191,T192,T193]);
-if(T194 != null)
+var T193=OObj.GetPath(T189,[T190,T191,T192]);
+if(T193 != null)
 {
-var T197=T194;
+var T196=T193;
 }else{
-var T197="";
-}var T198=[T187,T197];
-var T199=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T186},...T198);
-var T200=DU.ReadReturn(T199,1);
+var T196="";
+}var T197=[T187,T196];
+var T198=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T186},...T197);
+var T199=DU.ReadReturn(T198,1);
 //  selectors[idx] : drop
-var T202=DU.Ref($drop);
-var T203=DU.Ref($selectors);
-var T204=DU.Ref($idx);
-OObj.SetPath(T203,[T204],T202);
+var T201=DU.Ref($drop);
+var T202=DU.Ref($selectors);
+var T203=DU.Ref($idx);
+OObj.SetPath(T202,[T203],T201);
 }else
 {
 //  else
-var T207=$drop;
+var T206=$drop;
 $drop=undefined;
-var T209=$$iter5;
+var T208=$$iter5;
 $$iter5=undefined;
 //  rightPane.$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))
-var T212=DU.Ref($rightPane);
-var T213="Recovering (not participating)";
-var T214=[T213];
-var T215=__RUN.getStaticGlo("Dom.Paragraph.Create").func(null,...T214);
-var T216=DU.ReadReturn(T215,1);
-var T217=[T216];
-var T218=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T212},...T217);
-var T219=DU.ReadReturn(T218,1);
+var T211=DU.Ref($rightPane);
+var T212="Recovering (not participating)";
+var T213=[T212];
+var T214=__RUN.getStaticGlo("Dom.Paragraph.Create").func(null,...T213);
+var T215=DU.ReadReturn(T214,1);
+var T216=[T215];
+var T217=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T211},...T216);
+var T218=DU.ReadReturn(T217,1);
 }continue;
 }//  pop.$Popup.AddBotRightButton(lambda)
-var T222=$$idx4;
+var T221=$$idx4;
 $$idx4=null;
-$idx=T222;
-var T224=$hero;
+$idx=T221;
+var T223=$hero;
 $hero=undefined;
-var T226=$alive;
+var T225=$alive;
 $alive=undefined;
-var T228=$playerCard;
+var T227=$playerCard;
 $playerCard=undefined;
-var T230=$rightPane;
+var T229=$rightPane;
 $rightPane=undefined;
-var T232=DU.Ref($pop);
-var T233=OObj.MakeFunc(__FUNCS["Red Sk_3"]["559_func390"],{$pipe: DU.Ref($pipe)});
-var T234=[T233];
-var T235=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T232},...T234);
-var T236=DU.ReadReturn(T235,1);
+var T231=DU.Ref($pop);
+var T232=OObj.MakeFunc(__FUNCS["Red Sk_3"]["533_func389"],{$pipe: DU.Ref($pipe)});
+var T233=[T232];
+var T234=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T231},...T233);
+var T235=DU.ReadReturn(T234,1);
 //  $Slide.HookAdvance(stage, lambda)
-var T238=DU.Ref($stage);
-var T239=OObj.MakeFunc(__FUNCS["Red Sk_3"]["572_func393"],{$pipe: DU.Ref($pipe)});
-var T240=[T238,T239];
-var T241=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T240);
-var T242=DU.ReadReturn(T241,1);
+var T237=DU.Ref($stage);
+var T238=OObj.MakeFunc(__FUNCS["Red Sk_3"]["546_func392"],{$pipe: DU.Ref($pipe)});
+var T239=[T237,T238];
+var T240=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T239);
+var T241=DU.ReadReturn(T240,1);
 //  await pipe.$Pipe.ReadAsync()
-var T244=DU.Ref($pipe);
-var T246=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T244});
-var T247=DU.ReadReturn(T246,1);
+var T243=DU.Ref($pipe);
+var T245=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T243});
+var T246=DU.ReadReturn(T245,1);
 //  for @pick of selectors at @idx
-var T249=DU.Ref($selectors);
-var T250=OObj.getFirstKey(T249);
-var T251=$idx;
+var T248=DU.Ref($selectors);
+var T249=OObj.getFirstKey(T248);
+var T250=$idx;
 $idx=null;
-$$idx6=T251;
-$idx=T250;
-for(var T254=0;;T254++)
+$$idx6=T250;
+$idx=T249;
+for(var T253=0;;T253++)
 {
-if(T254>0)
+if(T253>0)
 {
-var T255=DU.Ref($selectors);
-var T256=DU.Ref($idx);
-var T257=OObj.getNextKey(T255,T256);
-var T258=$idx;
+var T254=DU.Ref($selectors);
+var T255=DU.Ref($idx);
+var T256=OObj.getNextKey(T254,T255);
+var T257=$idx;
 $idx=null;
-$$idx7=T258;
-$idx=T257;
-}var T261=DU.Ref($idx);
-var T262=T261 != null;
-if(!T262){break;}
-var T264=DU.Ref($selectors);
-var T265=DU.Ref($idx);
-var T266=OObj.GetPath(T264,[T265]);
-$pick=T266;
+$$idx7=T257;
+$idx=T256;
+}var T260=DU.Ref($idx);
+var T261=T260 != null;
+if(!T261){break;}
+var T263=DU.Ref($selectors);
+var T264=DU.Ref($idx);
+var T265=OObj.GetPath(T263,[T264]);
+$pick=T265;
 //  @val : pick.$Dropdown.GetValue()
-var T268=DU.Ref($pick);
-var T269="value";
-var T270=[T269];
-var T271=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T268},...T270);
-var T272=DU.ReadReturn(T271,1);
-$val=T272;
+var T267=DU.Ref($pick);
+var T268="value";
+var T269=[T268];
+var T270=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T267},...T269);
+var T271=DU.ReadReturn(T270,1);
+$val=T271;
 //  if val != ""
-var T274=DU.Ref($val);
-var T275="";
-var T276=!DU.AreEqual(T274,T275);
-if(T276)
+var T273=DU.Ref($val);
+var T274="";
+var T275=!DU.AreEqual(T273,T274);
+if(T275)
 {
 //  stage.delta["player", idx, key] : val
-var T278=DU.Ref($val);
-var T279=DU.Ref($stage);
-var T280=OObj.DotAccess(T279,"delta");
-var T281="player";
-var T282=DU.Ref($idx);
-var T283=DU.Ref($key);
-OObj.SetPath(T280,[T281,T282,T283],T278);
+var T277=DU.Ref($val);
+var T278=DU.Ref($stage);
+var T279=OObj.DotAccess(T278,"delta");
+var T280="player";
+var T281=DU.Ref($idx);
+var T282=DU.Ref($key);
+OObj.SetPath(T279,[T280,T281,T282],T277);
 }continue;
 }//  pop.$Style.AddClasses("fadingOut")
-var T287=$$idx7;
+var T286=$$idx7;
 $$idx7=null;
-$idx=T287;
-var T289=$pick;
+$idx=T286;
+var T288=$pick;
 $pick=undefined;
-var T291=$val;
+var T290=$val;
 $val=undefined;
-var T293=DU.Ref($pop);
-var T294="fadingOut";
-var T295=[T294];
-var T296=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T293},...T295);
-var T297=DU.ReadReturn(T296,1);
+var T292=DU.Ref($pop);
+var T293="fadingOut";
+var T294=[T293];
+var T295=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T292},...T294);
+var T296=DU.ReadReturn(T295,1);
 //  await $Job.Pause(50)
-var T299=50;
-var T301=[T299];
-var T302=await __RUN.getStaticGlo("Job.Pause").func(null,...T301);
-var T303=DU.ReadReturn(T302,1);
+var T298=50;
+var T300=[T298];
+var T301=await __RUN.getStaticGlo("Job.Pause").func(null,...T300);
+var T302=DU.ReadReturn(T301,1);
 return [];
 },
-"559_func390" : function(__DIV){
+"533_func389" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -5549,7 +5549,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"572_func393" : function(__DIV){
+"546_func392" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -5558,7 +5558,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"585::DoHeal" : async function(__DIV, $stage){
+"559::DoHeal" : async function(__DIV, $stage){
 var $pipe,$$parTmp2,$$$sOut23,$pop,$container,$allObligations,$checks,$selectors,$$struct4,$idx,$$idx5,$hp,$hero,$alive,$currOblig,$possOblig,$ghost,$playerCard,$rightPane,$id,$lbl,$paneAdd,$chk,$lblObligation,$$iter6,$it,$pick,$$idx7,$$idx8;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T1=DU.Ref($stage);
@@ -5707,7 +5707,7 @@ var T120=OObj.GetPath(T117,[T118,T119]);
 $currOblig=T120;
 //  @possOblig : allObligations.$List.Filter(`!currOblig[it]`)
 var T122=DU.Ref($allObligations);
-var T123=OObj.MakeFunc(__FUNCS["Red Sk_3"]["598_func"],{$currOblig: DU.Ref($currOblig),$it: DU.Ref($it)});
+var T123=OObj.MakeFunc(__FUNCS["Red Sk_3"]["572_func"],{$currOblig: DU.Ref($currOblig),$it: DU.Ref($it)});
 var T124=[T123];
 var T125=__RUN.getStaticGlo("List.Filter").func({__THIS:T122},...T124);
 var T126=DU.ReadReturn(T125,1);
@@ -5902,7 +5902,7 @@ var T288=DU.Ref($idx);
 OObj.SetPath(T287,[T288],T286);
 //  chk.$Checkbox.HookChange(lambda)
 var T290=DU.Ref($chk);
-var T291=OObj.MakeFunc(__FUNCS["Red Sk_3"]["611_func460"],{$paneAdd: DU.Ref($paneAdd),$chk: DU.Ref($chk)});
+var T291=OObj.MakeFunc(__FUNCS["Red Sk_3"]["585_func459"],{$paneAdd: DU.Ref($paneAdd),$chk: DU.Ref($chk)});
 var T292=[T291];
 var T293=__RUN.getStaticGlo("Dom.Checkbox.HookChange").func({__THIS:T290},...T292);
 var T294=DU.ReadReturn(T293,1);
@@ -6032,13 +6032,13 @@ $$iter6=undefined;
 var T407=$pick;
 $pick=undefined;
 var T409=DU.Ref($pop);
-var T410=OObj.MakeFunc(__FUNCS["Red Sk_3"]["624_func475"],{$pipe: DU.Ref($pipe)});
+var T410=OObj.MakeFunc(__FUNCS["Red Sk_3"]["598_func474"],{$pipe: DU.Ref($pipe)});
 var T411=[T410];
 var T412=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T409},...T411);
 var T413=DU.ReadReturn(T412,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T415=DU.Ref($stage);
-var T416=OObj.MakeFunc(__FUNCS["Red Sk_3"]["637_func478"],{$pipe: DU.Ref($pipe)});
+var T416=OObj.MakeFunc(__FUNCS["Red Sk_3"]["611_func477"],{$pipe: DU.Ref($pipe)});
 var T417=[T415,T416];
 var T418=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T417);
 var T419=DU.ReadReturn(T418,1);
@@ -6137,7 +6137,7 @@ var T501=await __RUN.getStaticGlo("Job.Pause").func(null,...T500);
 var T502=DU.ReadReturn(T501,1);
 return [];
 },
-"598_func" : function(__DIV){
+"572_func" : function(__DIV){
 var $currOblig,$it;
 if('$currOblig' in __DIV.capture){$currOblig=__DIV.capture["$currOblig"];}
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
@@ -6146,7 +6146,7 @@ var T2=DU.Ref($it);
 var T3=OObj.GetPath(T1,[T2]);
 var T4=!T3;
 return [T4];},
-"611_func460" : function(__DIV){
+"585_func459" : function(__DIV){
 var $paneAdd,$chk;
 if('$paneAdd' in __DIV.capture){$paneAdd=__DIV.capture["$paneAdd"];}
 if('$chk' in __DIV.capture){$chk=__DIV.capture["$chk"];}
@@ -6164,7 +6164,7 @@ var T10=__RUN.getStaticGlo("Dom.Style.SetClassIf").func({__THIS:T1},...T9);
 var T11=DU.ReadReturn(T10,1);
 return [];
 },
-"624_func475" : function(__DIV){
+"598_func474" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6173,7 +6173,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"637_func478" : function(__DIV){
+"611_func477" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6182,7 +6182,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"650::DoRecordDelay" : async function(__DIV, $stage){
+"624::DoRecordDelay" : async function(__DIV, $stage){
 var $pipe,$$parTmp2,$$$sOut23,$pop,$initNum,$entryField;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T1=DU.Ref($stage);
@@ -6272,13 +6272,13 @@ var T75=DU.ReadReturn(T74,1);
 $entryField=T75;
 //  pop.$Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
 var T77=DU.Ref($pop);
-var T78=OObj.MakeFunc(__FUNCS["Red Sk_3"]["663_func"],{$pipe: DU.Ref($pipe)});
+var T78=OObj.MakeFunc(__FUNCS["Red Sk_3"]["637_func"],{$pipe: DU.Ref($pipe)});
 var T79=[T78];
 var T80=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T77},...T79);
 var T81=DU.ReadReturn(T80,1);
 //  $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
 var T83=DU.Ref($stage);
-var T84=OObj.MakeFunc(__FUNCS["Red Sk_3"]["676_func"],{$pipe: DU.Ref($pipe)});
+var T84=OObj.MakeFunc(__FUNCS["Red Sk_3"]["650_func"],{$pipe: DU.Ref($pipe)});
 var T85=[T83,T84];
 var T86=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T85);
 var T87=DU.ReadReturn(T86,1);
@@ -6318,21 +6318,21 @@ var T119=await __RUN.getStaticGlo("Job.Pause").func(null,...T118);
 var T120=DU.ReadReturn(T119,1);
 }return [];
 },
-"663_func" : function(__DIV){
+"637_func" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 var T1=DU.Ref($pipe);
 var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [T3];},
-"676_func" : function(__DIV){
+"650_func" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 var T1=DU.Ref($pipe);
 var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [T3];},
-"689::DoDistributeVictoryMulti" : async function(__DIV, $stage, $key, $text, $cards){
+"663::DoDistributeVictoryMulti" : async function(__DIV, $stage, $key, $text, $cards){
 var $pipe,$$$sOut22,$pop,$container,$panesForSelectors,$selectors,$placeholder,$$struct3,$idx,$$idx4,$hero,$alive,$playerCard,$$idx5,$$idx6,$arr,$$key7,$$$key78,$pick,$val;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T4=DU.Ref($stage);
@@ -6405,7 +6405,7 @@ $selectors=T61;
 var T63=new OObj();
 $placeholder=T63;
 //  placeholder.syncSelectors : lambda
-var T65=OObj.MakeFunc(__FUNCS["Red Sk_3"]["702_func537"],{$stage: DU.Ref($stage),$key: DU.Ref($key),$cards: DU.Ref($cards),$panesForSelectors: DU.Ref($panesForSelectors),$selectors: DU.Ref($selectors),$placeholder: DU.Ref($placeholder),$idx: DU.Ref($idx)});
+var T65=OObj.MakeFunc(__FUNCS["Red Sk_3"]["676_func536"],{$stage: DU.Ref($stage),$key: DU.Ref($key),$cards: DU.Ref($cards),$panesForSelectors: DU.Ref($panesForSelectors),$selectors: DU.Ref($selectors),$placeholder: DU.Ref($placeholder),$idx: DU.Ref($idx)});
 var T66=DU.Ref($placeholder);
 OObj.SetChild(T66,"syncSelectors",T65);
 //  for @idx in stage.state.player
@@ -6559,13 +6559,13 @@ var T188=OObj._RunLambda(T187,{});
 var T189=DU.ReadReturn(T188,1);
 //  pop.$Popup.AddBotRightButton(lambda)
 var T191=DU.Ref($pop);
-var T192=OObj.MakeFunc(__FUNCS["Red Sk_3"]["728_func563"],{$pipe: DU.Ref($pipe)});
+var T192=OObj.MakeFunc(__FUNCS["Red Sk_3"]["702_func562"],{$pipe: DU.Ref($pipe)});
 var T193=[T192];
 var T194=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T191},...T193);
 var T195=DU.ReadReturn(T194,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T197=DU.Ref($stage);
-var T198=OObj.MakeFunc(__FUNCS["Red Sk_3"]["741_func566"],{$pipe: DU.Ref($pipe)});
+var T198=OObj.MakeFunc(__FUNCS["Red Sk_3"]["715_func565"],{$pipe: DU.Ref($pipe)});
 var T199=[T197,T198];
 var T200=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T199);
 var T201=DU.ReadReturn(T200,1);
@@ -6681,7 +6681,7 @@ var T296=await __RUN.getStaticGlo("Job.Pause").func(null,...T295);
 var T297=DU.ReadReturn(T296,1);
 return [];
 },
-"702_func537" : function(__DIV){
+"676_func536" : function(__DIV){
 var $selectors,$idx,$$idx2,$cIdx,$stage,$key,$prev,$panesForSelectors,$cards,$placeholder,$drop,$it;
 if('$selectors' in __DIV.capture){$selectors=__DIV.capture["$selectors"];}
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
@@ -6714,7 +6714,7 @@ for(var T14=0;;T14++)
 var T15=DU.Ref($selectors);
 var T16=DU.Ref($idx);
 var T17=OObj.GetPath(T15,[T16]);
-var T18=OObj.MakeFunc(__FUNCS["Red Sk_3"]["715_func"],{$it: DU.Ref($it)});
+var T18=OObj.MakeFunc(__FUNCS["Red Sk_3"]["689_func"],{$it: DU.Ref($it)});
 var T19=[T18];
 var T20=__RUN.getStaticGlo("List.Any").func({__THIS:T17},...T19);
 var T21=DU.ReadReturn(T20,1);
@@ -6770,7 +6770,7 @@ $drop=undefined;
 continue;
 }return [];
 },
-"715_func" : function(__DIV){
+"689_func" : function(__DIV){
 var $it;
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
 var T1=DU.Ref($it);
@@ -6781,7 +6781,7 @@ var T5=DU.ReadReturn(T4,1);
 var T6="";
 var T7=DU.AreEqual(T5,T6);
 return [T7];},
-"728_func563" : function(__DIV){
+"702_func562" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6790,7 +6790,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"741_func566" : function(__DIV){
+"715_func565" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6799,7 +6799,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"754::addSelectorToPane" : function(__DIV, $pane, $options, $selected){
+"728::addSelectorToPane" : function(__DIV, $pane, $options, $selected){
 var $drop,$$iter2,$it;
 //  drop : pane.$AppendChild(dim $Dropdown.Create())
 var T3=DU.Ref($pane);
@@ -6858,7 +6858,7 @@ var T48=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T44},...T47);
 var T49=DU.ReadReturn(T48,1);
 }return [$drop];
 },
-"767::IfPromptForPrisoners" : function(__DIV, $state){
+"741::IfPromptForPrisoners" : function(__DIV, $state){
 var $bool;
 //  if state[$RedSkull.Prison] ? false
 var T1=DU.Ref($state);
@@ -6887,7 +6887,7 @@ var T19=false;
 $bool=T19;
 return [$bool];
 },
-"780::GetAlliesFreed" : function(__DIV, $state){
+"754::GetAlliesFreed" : function(__DIV, $state){
 var $list,$$iter2,$it;
 //  list : dim()
 var T1=new OObj();
@@ -6930,7 +6930,7 @@ var T30=DU.ReadReturn(T29,1);
 }continue;
 }return [$list];
 },
-"793::IfUpgradeConditions" : function(__DIV, $state){
+"767::IfUpgradeConditions" : function(__DIV, $state){
 var $bool;
 //  if state[$RedSkull.Prison] ? false
 var T1=DU.Ref($state);
@@ -6950,14 +6950,14 @@ return [$bool];
 }//  bool : state.player.$List.Any(`it[$Condition] != null`)
 var T12=DU.Ref($state);
 var T13=OObj.DotAccess(T12,"player");
-var T14=OObj.MakeFunc(__FUNCS["Red Sk_3"]["806_func"],{});
+var T14=OObj.MakeFunc(__FUNCS["Red Sk_3"]["780_func"],{});
 var T15=[T14];
 var T16=__RUN.getStaticGlo("List.Any").func({__THIS:T13},...T15);
 var T17=DU.ReadReturn(T16,1);
 $bool=T17;
 return [$bool];
 },
-"806_func" : function(__DIV){
+"780_func" : function(__DIV){
 var $it;
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
 var T1=DU.Ref($it);
@@ -6966,7 +6966,7 @@ var T3=OObj.GetPath(T1,[T2]);
 var T4=null;
 var T5=!DU.AreEqual(T3,T4);
 return [T5];},
-"819::DoUpgradeCondition" : async function(__DIV, $stage){
+"793::DoUpgradeCondition" : async function(__DIV, $stage){
 var $pipe,$pop,$elems,$$struct2,$idx,$$idx3,$player,$hero,$condition,$isEnabled,$id,$isPreChecked,$lbl,$chk,$$sOut4,$disp,$rPane,$textBonus,$ctlBonus,$$struct5,$$idx6,$$idx7,$prev,$$$sOut28;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T1=DU.Ref($stage);
@@ -6999,13 +6999,13 @@ var T24=[T19];
 var T25=__RUN.getStaticGlo("Popup.AddMarkdown").func({__THIS:T18},...T24);
 //  mixin $Popup.AddBotRightButton(lambda)
 var T26=DU.Ref(T13);
-var T27=OObj.MakeFunc(__FUNCS["Red Sk_3"]["832_func616"],{$pipe: DU.Ref($pipe)});
+var T27=OObj.MakeFunc(__FUNCS["Red Sk_3"]["806_func615"],{$pipe: DU.Ref($pipe)});
 var T28=[T27];
 var T29=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T26},...T28);
 $pop=T13;
 //  $Slide.HookAdvance(stage, lambda)
 var T31=DU.Ref($stage);
-var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["845_func619"],{$pipe: DU.Ref($pipe)});
+var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["819_func618"],{$pipe: DU.Ref($pipe)});
 var T33=[T31,T32];
 var T34=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T33);
 var T35=DU.ReadReturn(T34,1);
@@ -7265,7 +7265,7 @@ var T250=DU.ReadReturn(T249,1);
 $ctlBonus=T250;
 //  chk.$Checkbox.HookChange(lambda)
 var T252=DU.Ref($chk);
-var T253=OObj.MakeFunc(__FUNCS["Red Sk_3"]["858_func654"],{$chk: DU.Ref($chk),$ctlBonus: DU.Ref($ctlBonus)});
+var T253=OObj.MakeFunc(__FUNCS["Red Sk_3"]["832_func653"],{$chk: DU.Ref($chk),$ctlBonus: DU.Ref($ctlBonus)});
 var T254=[T253];
 var T255=__RUN.getStaticGlo("Dom.Checkbox.HookChange").func({__THIS:T252},...T254);
 var T256=DU.ReadReturn(T255,1);
@@ -7415,7 +7415,7 @@ var T386=await __RUN.getStaticGlo("Job.Pause").func(null,...T385);
 var T387=DU.ReadReturn(T386,1);
 }return [];
 },
-"832_func616" : function(__DIV){
+"806_func615" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -7424,7 +7424,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"845_func619" : function(__DIV){
+"819_func618" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -7433,7 +7433,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"858_func654" : function(__DIV){
+"832_func653" : function(__DIV){
 var $ctlBonus,$chk;
 if('$ctlBonus' in __DIV.capture){$ctlBonus=__DIV.capture["$ctlBonus"];}
 if('$chk' in __DIV.capture){$chk=__DIV.capture["$chk"];}
@@ -7451,7 +7451,7 @@ var T10=__RUN.getStaticGlo("Dom.Style.SetClassIf").func({__THIS:T1},...T9);
 var T11=DU.ReadReturn(T10,1);
 return [];
 },
-"871::GetUpgradedCondition" : function(__DIV, $condition){
+"845::GetUpgradedCondition" : function(__DIV, $condition){
 var $$sOut2;
 //  "Basic Thwart Upgrade" : "Improved Thwart Upgrade"
 var T2=DU.Ref($condition);
@@ -7500,7 +7500,7 @@ $$sOut2=T33;
 $condition=T35;
 return [$condition];
 },
-"884::IfEnemyEngaged" : function(__DIV, $state){
+"858::IfEnemyEngaged" : function(__DIV, $state){
 var $bool;
 //  if !state.$Campaign.State.IsExpert()
 var T1=DU.Ref($state);
@@ -7523,14 +7523,14 @@ return [$bool];
 }//  bool : state.player.$List.Any(`it[$EnemyEngaged] ? false`)
 var T13=DU.Ref($state);
 var T14=OObj.DotAccess(T13,"player");
-var T15=OObj.MakeFunc(__FUNCS["Red Sk_3"]["897_func"],{});
+var T15=OObj.MakeFunc(__FUNCS["Red Sk_3"]["871_func"],{});
 var T16=[T15];
 var T17=__RUN.getStaticGlo("List.Any").func({__THIS:T14},...T16);
 var T18=DU.ReadReturn(T17,1);
 $bool=T18;
 return [$bool];
 },
-"897_func" : function(__DIV){
+"871_func" : function(__DIV){
 var $it;
 if('$it' in __DIV.capture){$it=__DIV.capture["$it"];}
 var T1=DU.Ref($it);
@@ -7545,7 +7545,7 @@ var T6=false;
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\dom.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\dom.wng
 __FUNCS["dom.wn_4"] = {
 "13::CreateElement" : function(__DIV, $tag){
 var $elem;
@@ -8118,7 +8118,7 @@ return [$ticks];
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\global.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\global.wng
 __FUNCS["global_5"] = {
 "13::HookKeyDown" : function(__DIV, $ct, $lamb){
 //  ^KeyListeners.$List.Add(dim)
@@ -8825,7 +8825,7 @@ $listener=undefined;
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\Heroes.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\Heroes.wng
 __FUNCS["Heroes_6"] = {
 "13::mkHero" : function(__DIV, $left, $right, $band, $file, $alt, $hp){
 var $img;
@@ -9284,7 +9284,7 @@ var T102=DU.ReadReturn(T101,1);
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\images.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\images.wng
 __FUNCS["images_7"] = {
 "13::mkCard" : function(__DIV, $file, $alt){
 var $img;
@@ -9443,7 +9443,7 @@ $it=undefined;
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\Main.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\Main.wng
 __FUNCS["Main.w_8"] = {
 "13::Main" : async function(__DIV){
 //  await $Menu.Run($Menu.DoMain)
@@ -10769,7 +10769,7 @@ $text=undefined;
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\Menu.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\Menu.wng
 __FUNCS["Menu.w_9"] = {
 "13::Run" : async function(__DIV, $menu){
 var $next;
@@ -11538,29 +11538,31 @@ var T40="This app was coded using the [Wingra programming language](https://gith
 OObj.SetChild(T33,3,T40);
 var T42="";
 OObj.SetChild(T33,4,T42);
-var T44="Please post bug reports and feature requests to the projects GitHub page.";
+var T44="Please post bug reports and feature requests to the projects";
 OObj.SetChild(T33,5,T44);
-var T46="";
+var T46="[GitHub page](https://github.com/mercurywave/mc-omnibus).";
 OObj.SetChild(T33,6,T46);
-var T48="Question? Contact [@mercurywave on Twitter](https://twitter.com/mercurywave).";
+var T48="";
 OObj.SetChild(T33,7,T48);
-var T50="";
+var T50="Question? Contact [@mercurywave on Twitter](https://twitter.com/mercurywave).";
 OObj.SetChild(T33,8,T50);
-var T52=[T33];
-var T53=__RUN.getStaticGlo("Popup.AddMarkdown").func({__THIS:T32},...T52);
-var T54=[T15];
-var T55=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T11},...T54);
-var T56=DU.ReadReturn(T55,1);
+var T52="";
+OObj.SetChild(T33,9,T52);
+var T54=[T33];
+var T55=__RUN.getStaticGlo("Popup.AddMarkdown").func({__THIS:T32},...T54);
+var T56=[T15];
+var T57=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T11},...T56);
+var T58=DU.ReadReturn(T57,1);
 //  arun $BackButton(ct, lambda)
-var T58=OObj.MakeFunc(__FUNCS["Menu.w_9"]["273_func169"],{$ct: DU.Ref($ct)});
-var T59=__RUN.runJobLambda(T58);
+var T60=OObj.MakeFunc(__FUNCS["Menu.w_9"]["273_func170"],{$ct: DU.Ref($ct)});
+var T61=__RUN.runJobLambda(T60);
 //  await ct.$Canceler.AsyncWait()
-var T61=DU.Ref($ct);
-var T63=await __RUN.getStaticGlo("Canceler.AsyncWait").func({__THIS:T61});
-var T64=DU.ReadReturn(T63,1);
+var T63=DU.Ref($ct);
+var T65=await __RUN.getStaticGlo("Canceler.AsyncWait").func({__THIS:T63});
+var T66=DU.ReadReturn(T65,1);
 return [];
 },
-"273_func169" : async function(__DIV){
+"273_func170" : async function(__DIV){
 var $ct;
 if('$ct' in __DIV.capture){$ct=__DIV.capture["$ct"];}
 var T1=DU.Ref($ct);
@@ -11636,7 +11638,7 @@ var T22=[T21];
 var T23=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T20},...T22);
 //  mixin $Button.HookClick(lambda)
 var T24=DU.Ref(T19);
-var T25=OObj.MakeFunc(__FUNCS["Menu.w_9"]["325_func189"],{$key: DU.Ref($key),$ct: DU.Ref($ct),$camp: DU.Ref($camp)});
+var T25=OObj.MakeFunc(__FUNCS["Menu.w_9"]["325_func190"],{$key: DU.Ref($key),$ct: DU.Ref($ct),$camp: DU.Ref($camp)});
 var T26=[T25];
 var T27=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T24},...T26);
 //  mixin $AppendChild(camp.$Campaign.MakeBadge())
@@ -11788,7 +11790,7 @@ var T152=DU.ReadReturn(T151,1);
 continue;
 }return [$elem];
 },
-"325_func189" : function(__DIV){
+"325_func190" : function(__DIV){
 var $ct,$camp,$key;
 if('$ct' in __DIV.capture){$ct=__DIV.capture["$ct"];}
 if('$camp' in __DIV.capture){$camp=__DIV.capture["$camp"];}
@@ -11800,13 +11802,13 @@ var T3=DU.ReadReturn(T2,1);
 if(T3)
 {
 //  $Menu.QueueLaunch(lambda)
-var T5=OObj.MakeFunc(__FUNCS["Menu.w_9"]["338_func191"],{$camp: DU.Ref($camp),$key: DU.Ref($key)});
+var T5=OObj.MakeFunc(__FUNCS["Menu.w_9"]["338_func192"],{$camp: DU.Ref($camp),$key: DU.Ref($key)});
 var T6=[T5];
 var T7=__RUN.getStaticGlo("Menu.QueueLaunch").func(null,...T6);
 var T8=DU.ReadReturn(T7,1);
 }return [];
 },
-"338_func191" : async function(__DIV){
+"338_func192" : async function(__DIV){
 var $camp,$key;
 if('$camp' in __DIV.capture){$camp=__DIV.capture["$camp"];}
 if('$key' in __DIV.capture){$key=__DIV.capture["$key"];}
@@ -11971,7 +11973,7 @@ var T28=[T27];
 var T29=__RUN.getStaticGlo("Dom.Style.SetBackgroundImage").func({__THIS:T24},...T28);
 //  mixin $Button.HookClick(lambda)
 var T30=DU.Ref(T19);
-var T31=OObj.MakeFunc(__FUNCS["Menu.w_9"]["377_func230"],{$key: DU.Ref($key),$ct: DU.Ref($ct),$camp: DU.Ref($camp)});
+var T31=OObj.MakeFunc(__FUNCS["Menu.w_9"]["377_func231"],{$key: DU.Ref($key),$ct: DU.Ref($ct),$camp: DU.Ref($camp)});
 var T32=[T31];
 var T33=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T30},...T32);
 //  mixin $AppendChild($Heading.Create(1, "Continue"))
@@ -12060,7 +12062,7 @@ var T104=DU.ReadReturn(T103,1);
 continue;
 }return [$elem];
 },
-"377_func230" : function(__DIV){
+"377_func231" : function(__DIV){
 var $ct,$camp,$key;
 if('$ct' in __DIV.capture){$ct=__DIV.capture["$ct"];}
 if('$camp' in __DIV.capture){$camp=__DIV.capture["$camp"];}
@@ -12072,13 +12074,13 @@ var T3=DU.ReadReturn(T2,1);
 if(T3)
 {
 //  $Menu.QueueLaunch(lambda)
-var T5=OObj.MakeFunc(__FUNCS["Menu.w_9"]["390_func232"],{$camp: DU.Ref($camp),$key: DU.Ref($key)});
+var T5=OObj.MakeFunc(__FUNCS["Menu.w_9"]["390_func233"],{$camp: DU.Ref($camp),$key: DU.Ref($key)});
 var T6=[T5];
 var T7=__RUN.getStaticGlo("Menu.QueueLaunch").func(null,...T6);
 var T8=DU.ReadReturn(T7,1);
 }return [];
 },
-"390_func232" : async function(__DIV){
+"390_func233" : async function(__DIV){
 var $camp,$key;
 if('$camp' in __DIV.capture){$camp=__DIV.capture["$camp"];}
 if('$key' in __DIV.capture){$key=__DIV.capture["$key"];}
@@ -12159,7 +12161,7 @@ var T19=[T18];
 var T20=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T17},...T19);
 //  mixin $Button.HookClick(lambda)
 var T21=DU.Ref(T16);
-var T22=OObj.MakeFunc(__FUNCS["Menu.w_9"]["429_func263"],{$pipe: DU.Ref($pipe)});
+var T22=OObj.MakeFunc(__FUNCS["Menu.w_9"]["429_func264"],{$pipe: DU.Ref($pipe)});
 var T23=[T22];
 var T24=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T21},...T23);
 //  mixin $AppendChild(dim $Image.Create("assets/back.png"))
@@ -12191,7 +12193,7 @@ var T47=DU.ReadReturn(T46,1);
 $bt=T47;
 //  $g.HookKeyDown(ct, lambda(event))
 var T49=DU.Ref($ct);
-var T50=OObj.MakeFunc(__FUNCS["Menu.w_9"]["442_func267"],{$pipe: DU.Ref($pipe)});
+var T50=OObj.MakeFunc(__FUNCS["Menu.w_9"]["442_func268"],{$pipe: DU.Ref($pipe)});
 var T51=[T49,T50];
 var T52=__RUN.getStaticGlo("g.HookKeyDown").func(null,...T51);
 var T53=DU.ReadReturn(T52,1);
@@ -12211,7 +12213,7 @@ var T65=OObj._RunLambda(T64,{});
 var T66=DU.ReadReturn(T65,1);
 }return [];
 },
-"429_func263" : function(__DIV){
+"429_func264" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -12220,7 +12222,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"442_func267" : function(__DIV, $event){
+"442_func268" : function(__DIV, $event){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 if('$event' in __DIV.capture){$event=__DIV.capture["$event"];}
@@ -12256,7 +12258,7 @@ var T20=DU.ReadReturn(T19,1);
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\SaveLoad.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\SaveLoad.wng
 __FUNCS["SaveLo_10"] = {
 "13::GetNewSaveKey" : function(__DIV){
 var $key;
@@ -12504,7 +12506,7 @@ return [$cleaned];
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\slides\checklist.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\slides\checklist.wng
 __FUNCS["checkl_11"] = {
 "13::CheckList" : function(__DIV, $title, $checks, $text, $card, $showNext){
 var $slide;
@@ -13589,7 +13591,7 @@ return [T6];},
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\slides\fork.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\slides\fork.wng
 __FUNCS["fork.w_12"] = {
 "13::DoCampaignMode" : async function(__DIV, $stage){
 //  await $DoFork(stage, $Campaign.ExpertMode, "Campaign Mode", "Select the Campaign Mode", dim)
@@ -13997,7 +13999,7 @@ var T7=DU.ReadReturn(T6,1);
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\slides\hitpoints.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\slides\hitpoints.wng
 __FUNCS["hitpoi_13"] = {
 "13::RecordHP" : function(__DIV){
 var $slide;
@@ -14529,7 +14531,7 @@ return [T3];},
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\slides\slides.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\slides\slides.wng
 __FUNCS["slides_14"] = {
 "13::Create" : function(__DIV, $func){
 var $slide;
@@ -15516,7 +15518,7 @@ var T3=DU.ReadReturn(T2,1);
 return [];
 },
 "702::DoHeroPicker" : async function(__DIV, $stage, $idx){
-var $pipe,$pop,$txt,$scroller,$$iter2,$hero,$bt,$pick,$name;
+var $pipe,$ghostName,$pop,$txt,$scroller,$$iter2,$hero,$bt,$pick,$name;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T2=DU.Ref($stage);
 var T3=OObj.DotAccess(T2,"ct");
@@ -15527,194 +15529,207 @@ var T7=[T6];
 var T8=__RUN.getStaticGlo("List.Add").func({__THIS:T4},...T7);
 var T9=DU.ReadReturn(T8,1);
 $pipe=T9;
+//  @ghostName : stage.ghost["player",idx, "name"] ? ("Player " + idx)
+var T11=DU.Ref($stage);
+var T12=OObj.DotAccess(T11,"ghost");
+var T13="player";
+var T14=DU.Ref($idx);
+var T15="name";
+var T16=OObj.GetPath(T12,[T13,T14,T15]);
+if(T16 != null)
+{
+var T21=T16;
+}else{
+var T19="Player ";
+var T20=DU.Ref($idx);
+var T21=gVal(T19)+gVal(T20);
+}$ghostName=T21;
 //  @pop : $g.Stage.$AppendChild(dim $Div.Create())
-var T11=DU.Ref(__RUN.getStaticGlo("g.Stage"));
-var T12="div";
-var T13=[T12];
-var T14=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T13);
-var T15=DU.ReadReturn(T14,1);
-//  mixin $Style.AddClasses("popup", "heroSelect")
-var T16=DU.Ref(T15);
-var T17="popup";
-var T18="heroSelect";
-var T19=[T17,T18];
-var T20=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T16},...T19);
-//  mixin $AppendChild(dim $Paragraph.Create("Player " + idx))
-var T21=DU.Ref(T15);
-var T22="Player ";
-var T23=DU.Ref($idx);
-var T24=gVal(T22)+gVal(T23);
+var T23=DU.Ref(__RUN.getStaticGlo("g.Stage"));
+var T24="div";
 var T25=[T24];
-var T26=__RUN.getStaticGlo("Dom.Paragraph.Create").func(null,...T25);
+var T26=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T25);
 var T27=DU.ReadReturn(T26,1);
-//  mixin $Style.AddClasses("text", "top-left")
+//  mixin $Style.AddClasses("popup", "heroSelect")
 var T28=DU.Ref(T27);
-var T29="text";
-var T30="top-left";
+var T29="popup";
+var T30="heroSelect";
 var T31=[T29,T30];
 var T32=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T28},...T31);
-var T33=[T27];
-var T34=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T21},...T33);
-//  mixin $AppendChild(dim $Paragraph.Create("Player Name:"))
-var T35=DU.Ref(T15);
-var T36="Player Name:";
+//  mixin $AppendChild(dim $Paragraph.Create("Player " + idx))
+var T33=DU.Ref(T27);
+var T34="Player ";
+var T35=DU.Ref($idx);
+var T36=gVal(T34)+gVal(T35);
 var T37=[T36];
 var T38=__RUN.getStaticGlo("Dom.Paragraph.Create").func(null,...T37);
 var T39=DU.ReadReturn(T38,1);
-//  mixin $Style.AddClasses("label")
+//  mixin $Style.AddClasses("text", "top-left")
 var T40=DU.Ref(T39);
-var T41="label";
-var T42=[T41];
-var T43=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T40},...T42);
-var T44=[T39];
-var T45=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T35},...T44);
-var T46=[T15];
-var T47=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T11},...T46);
-var T48=DU.ReadReturn(T47,1);
-$pop=T48;
+var T41="text";
+var T42="top-left";
+var T43=[T41,T42];
+var T44=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T40},...T43);
+var T45=[T39];
+var T46=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T33},...T45);
+//  mixin $AppendChild(dim $Paragraph.Create("Player Name:"))
+var T47=DU.Ref(T27);
+var T48="Player Name:";
+var T49=[T48];
+var T50=__RUN.getStaticGlo("Dom.Paragraph.Create").func(null,...T49);
+var T51=DU.ReadReturn(T50,1);
+//  mixin $Style.AddClasses("label")
+var T52=DU.Ref(T51);
+var T53="label";
+var T54=[T53];
+var T55=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T52},...T54);
+var T56=[T51];
+var T57=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T47},...T56);
+var T58=[T27];
+var T59=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T23},...T58);
+var T60=DU.ReadReturn(T59,1);
+$pop=T60;
 //  @txt : pop.$AppendChild(dim $TextEntry.Create())
-var T50=DU.Ref($pop);
-var T51="input";
-var T52=[T51];
-var T53=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T52);
-var T54=DU.ReadReturn(T53,1);
-var T55=DU.Ref(T54);
-var T56="text";
-var T57=[T56];
-var T58=__RUN.getStaticGlo("Dom.Input.SetType").func({__THIS:T55},...T57);
-//  mixin $TextEntry.SetText("Player " + idx)
-var T59=DU.Ref(T54);
-var T60="Player ";
-var T61=DU.Ref($idx);
-var T62=gVal(T60)+gVal(T61);
-var T63=[T62];
-var T64=__RUN.getStaticGlo("Dom.TextEntry.SetText").func({__THIS:T59},...T63);
-var T65=[T54];
-var T66=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T50},...T65);
-var T67=DU.ReadReturn(T66,1);
-$txt=T67;
+var T62=DU.Ref($pop);
+var T63="input";
+var T64=[T63];
+var T65=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T64);
+var T66=DU.ReadReturn(T65,1);
+var T67=DU.Ref(T66);
+var T68="text";
+var T69=[T68];
+var T70=__RUN.getStaticGlo("Dom.Input.SetType").func({__THIS:T67},...T69);
+//  mixin $TextEntry.SetText(ghostName)
+var T71=DU.Ref(T66);
+var T72=DU.Ref($ghostName);
+var T73=[T72];
+var T74=__RUN.getStaticGlo("Dom.TextEntry.SetText").func({__THIS:T71},...T73);
+var T75=[T66];
+var T76=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T62},...T75);
+var T77=DU.ReadReturn(T76,1);
+$txt=T77;
 //  @scroller : pop.$AppendChild(dim $Div.Create())
-var T69=DU.Ref($pop);
-var T70="div";
-var T71=[T70];
-var T72=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T71);
-var T73=DU.ReadReturn(T72,1);
+var T79=DU.Ref($pop);
+var T80="div";
+var T81=[T80];
+var T82=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T81);
+var T83=DU.ReadReturn(T82,1);
 //  mixin $Style.AddClasses("heroScroll")
-var T74=DU.Ref(T73);
-var T75="heroScroll";
-var T76=[T75];
-var T77=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T74},...T76);
-var T78=[T73];
-var T79=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T69},...T78);
-var T80=DU.ReadReturn(T79,1);
-$scroller=T80;
+var T84=DU.Ref(T83);
+var T85="heroScroll";
+var T86=[T85];
+var T87=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T84},...T86);
+var T88=[T83];
+var T89=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T79},...T88);
+var T90=DU.ReadReturn(T89,1);
+$scroller=T90;
 //  for @hero : $Heroes.GetHeroes()
-var T82="Heroes_6";
-var T83=DU.Ref(__RUN.getScratchFile(T82,"AllHer_17"));
-var T84=DU.MakeIter(T83);
-$$iter2=T84;
-for(var T86=0;;T86++)
+var T92="Heroes_6";
+var T93=DU.Ref(__RUN.getScratchFile(T92,"AllHer_17"));
+var T94=DU.MakeIter(T93);
+$$iter2=T94;
+for(var T96=0;;T96++)
 {
-if(T86>0)
+if(T96>0)
 {
-var T87=DU.Ref($$iter2);
-T87.Next();
-}var T89=DU.Ref($$iter2);
-var T90=T89.iter.done;
-var T91=!T90;
-if(!T91){break;}
-var T93=DU.Ref($$iter2);
-var T94=T93.iter.value[0];
-$hero=T94;
+var T97=DU.Ref($$iter2);
+T97.Next();
+}var T99=DU.Ref($$iter2);
+var T100=T99.iter.done;
+var T101=!T100;
+if(!T101){break;}
+var T103=DU.Ref($$iter2);
+var T104=T103.iter.value[0];
+$hero=T104;
 //  @bt : scroller.$AppendChild(dim $Button.Create())
-var T96=DU.Ref($scroller);
-var T97="button";
-var T98=[T97];
-var T99=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T98);
-var T100=DU.ReadReturn(T99,1);
+var T106=DU.Ref($scroller);
+var T107="button";
+var T108=[T107];
+var T109=__RUN.getStaticGlo("Dom.CreateElement").func(null,...T108);
+var T110=DU.ReadReturn(T109,1);
 //  mixin $Style.AddClasses("btHero")
-var T101=DU.Ref(T100);
-var T102="btHero";
-var T103=[T102];
-var T104=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T101},...T103);
-//  mixin $Button.HookClick(lambda)
-var T105=DU.Ref(T100);
-var T106=OObj.MakeFunc(__FUNCS["slides_14"]["715_func202"],{$pipe: DU.Ref($pipe),$hero: DU.Ref($hero)});
-var T107=[T106];
-var T108=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T105},...T107);
-//  mixin $AppendChild(hero.$Heroes.MakeHeroBanner())
-var T109=DU.Ref(T100);
-var T110=DU.Ref($hero);
-var T111=__RUN.getStaticGlo("Heroes.MakeHeroBanner").func({__THIS:T110});
-var T112=DU.ReadReturn(T111,1);
+var T111=DU.Ref(T110);
+var T112="btHero";
 var T113=[T112];
-var T114=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T109},...T113);
-var T115=[T100];
-var T116=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T96},...T115);
-var T117=DU.ReadReturn(T116,1);
-$bt=T117;
+var T114=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T111},...T113);
+//  mixin $Button.HookClick(lambda)
+var T115=DU.Ref(T110);
+var T116=OObj.MakeFunc(__FUNCS["slides_14"]["715_func204"],{$pipe: DU.Ref($pipe),$hero: DU.Ref($hero)});
+var T117=[T116];
+var T118=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T115},...T117);
+//  mixin $AppendChild(hero.$Heroes.MakeHeroBanner())
+var T119=DU.Ref(T110);
+var T120=DU.Ref($hero);
+var T121=__RUN.getStaticGlo("Heroes.MakeHeroBanner").func({__THIS:T120});
+var T122=DU.ReadReturn(T121,1);
+var T123=[T122];
+var T124=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T119},...T123);
+var T125=[T110];
+var T126=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T106},...T125);
+var T127=DU.ReadReturn(T126,1);
+$bt=T127;
 continue;
 }//  @pick : await pipe.$Pipe.ReadAsync()
-var T120=$hero;
+var T130=$hero;
 $hero=undefined;
-var T122=$bt;
+var T132=$bt;
 $bt=undefined;
-var T124=DU.Ref($pipe);
-var T126=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T124});
-var T127=DU.ReadReturn(T126,1);
-$pick=T127;
+var T134=DU.Ref($pipe);
+var T136=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T134});
+var T137=DU.ReadReturn(T136,1);
+$pick=T137;
 //  if pick != null
-var T129=DU.Ref($pick);
-var T130=null;
-var T131=!DU.AreEqual(T129,T130);
-if(T131)
+var T139=DU.Ref($pick);
+var T140=null;
+var T141=!DU.AreEqual(T139,T140);
+if(T141)
 {
 //  stage.delta["player", idx, "hero"] : pick.$Heroes.GetName()
-var T133=DU.Ref($pick);
-var T134=OObj.DotAccess(T133,"name");
-var T135=DU.Ref($stage);
-var T136=OObj.DotAccess(T135,"delta");
-var T137="player";
-var T138=DU.Ref($idx);
-var T139="hero";
-OObj.SetPath(T136,[T137,T138,T139],T134);
+var T143=DU.Ref($pick);
+var T144=OObj.DotAccess(T143,"name");
+var T145=DU.Ref($stage);
+var T146=OObj.DotAccess(T145,"delta");
+var T147="player";
+var T148=DU.Ref($idx);
+var T149="hero";
+OObj.SetPath(T146,[T147,T148,T149],T144);
 //  @name : txt.$TextEntry.GetText()
-var T141=DU.Ref($txt);
-var T142="value";
-var T143=[T142];
-var T144=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T141},...T143);
-var T145=DU.ReadReturn(T144,1);
-$name=T145;
+var T151=DU.Ref($txt);
+var T152="value";
+var T153=[T152];
+var T154=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T151},...T153);
+var T155=DU.ReadReturn(T154,1);
+$name=T155;
 //  if name = "" \ name : "Mr. Smartypants"
-var T147=DU.Ref($name);
-var T148="";
-var T149=DU.AreEqual(T147,T148);
-if(T149)
+var T157=DU.Ref($name);
+var T158="";
+var T159=DU.AreEqual(T157,T158);
+if(T159)
 {
-var T151="Mr. Smartypants";
-$name=T151;
+var T161="Mr. Smartypants";
+$name=T161;
 }//  stage.delta["player", idx, "name"] : name
-var T154=DU.Ref($name);
-var T155=DU.Ref($stage);
-var T156=OObj.DotAccess(T155,"delta");
-var T157="player";
-var T158=DU.Ref($idx);
-var T159="name";
-OObj.SetPath(T156,[T157,T158,T159],T154);
+var T164=DU.Ref($name);
+var T165=DU.Ref($stage);
+var T166=OObj.DotAccess(T165,"delta");
+var T167="player";
+var T168=DU.Ref($idx);
+var T169="name";
+OObj.SetPath(T166,[T167,T168,T169],T164);
 //  pop.$Style.AddClasses("fadingOut")
-var T161=DU.Ref($pop);
-var T162="fadingOut";
-var T163=[T162];
-var T164=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T161},...T163);
-var T165=DU.ReadReturn(T164,1);
+var T171=DU.Ref($pop);
+var T172="fadingOut";
+var T173=[T172];
+var T174=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T171},...T173);
+var T175=DU.ReadReturn(T174,1);
 //  await $Job.Pause(50) // pause is waiting for an animation frame already
-var T167=50;
-var T169=[T167];
-var T170=await __RUN.getStaticGlo("Job.Pause").func(null,...T169);
-var T171=DU.ReadReturn(T170,1);
+var T177=50;
+var T179=[T177];
+var T180=await __RUN.getStaticGlo("Job.Pause").func(null,...T179);
+var T181=DU.ReadReturn(T180,1);
 }return [];
 },
-"715_func202" : function(__DIV){
+"715_func204" : function(__DIV){
 var $pipe,$hero,$error;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 if('$hero' in __DIV.capture){$hero=__DIV.capture["$hero"];}
@@ -15860,7 +15875,7 @@ var T116=__RUN.getStaticFile("slides_14","mkPowButton").func(null,...T115);
 var T117=DU.ReadReturn(T116,1);
 //  mixin $Button.HookClick(lambda)
 var T118=DU.Ref(T117);
-var T119=OObj.MakeFunc(__FUNCS["slides_14"]["741_func239"],{$pipe: DU.Ref($pipe)});
+var T119=OObj.MakeFunc(__FUNCS["slides_14"]["741_func241"],{$pipe: DU.Ref($pipe)});
 var T120=[T119];
 var T121=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T118},...T120);
 var T122=[T117];
@@ -15868,7 +15883,7 @@ var T123=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T113},...T122);
 var T124=DU.ReadReturn(T123,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T126=DU.Ref($stage);
-var T127=OObj.MakeFunc(__FUNCS["slides_14"]["754_func242"],{$pipe: DU.Ref($pipe)});
+var T127=OObj.MakeFunc(__FUNCS["slides_14"]["754_func244"],{$pipe: DU.Ref($pipe)});
 var T128=[T126,T127];
 var T129=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T128);
 var T130=DU.ReadReturn(T129,1);
@@ -15950,7 +15965,7 @@ var T198=await __RUN.getStaticGlo("Job.Pause").func(null,...T197);
 var T199=DU.ReadReturn(T198,1);
 return [];
 },
-"741_func239" : function(__DIV){
+"741_func241" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -15959,7 +15974,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"754_func242" : function(__DIV){
+"754_func244" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -16031,7 +16046,7 @@ var T49=[T48];
 var T50=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T47},...T49);
 //  mixin $Button.HookClick(lambda)
 var T51=DU.Ref(T46);
-var T52=OObj.MakeFunc(__FUNCS["slides_14"]["780_func268"],{$stage: DU.Ref($stage),$onDefeat: DU.Ref($onDefeat),$pipe: DU.Ref($pipe)});
+var T52=OObj.MakeFunc(__FUNCS["slides_14"]["780_func270"],{$stage: DU.Ref($stage),$onDefeat: DU.Ref($onDefeat),$pipe: DU.Ref($pipe)});
 var T53=[T52];
 var T54=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T51},...T53);
 var T55=[T46];
@@ -16045,7 +16060,7 @@ var T63=__RUN.getStaticFile("slides_14","mkPowButton").func(null,...T62);
 var T64=DU.ReadReturn(T63,1);
 //  mixin $Button.HookClick(lambda)
 var T65=DU.Ref(T64);
-var T66=OObj.MakeFunc(__FUNCS["slides_14"]["793_func274"],{$pipe: DU.Ref($pipe)});
+var T66=OObj.MakeFunc(__FUNCS["slides_14"]["793_func276"],{$pipe: DU.Ref($pipe)});
 var T67=[T66];
 var T68=__RUN.getStaticGlo("Dom.Button.HookClick").func({__THIS:T65},...T67);
 var T69=[T64];
@@ -16058,7 +16073,7 @@ if(T74)
 {
 //  $Slide.HookAdvance(stage, lambda)
 var T76=DU.Ref($stage);
-var T77=OObj.MakeFunc(__FUNCS["slides_14"]["806_func277"],{$pipe: DU.Ref($pipe)});
+var T77=OObj.MakeFunc(__FUNCS["slides_14"]["806_func279"],{$pipe: DU.Ref($pipe)});
 var T78=[T76,T77];
 var T79=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T78);
 var T80=DU.ReadReturn(T79,1);
@@ -16068,7 +16083,7 @@ var T85=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T83});
 var T86=DU.ReadReturn(T85,1);
 return [];
 },
-"780_func268" : function(__DIV){
+"780_func270" : function(__DIV){
 var $stage,$onDefeat,$pipe;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 if('$onDefeat' in __DIV.capture){$onDefeat=__DIV.capture["$onDefeat"];}
@@ -16090,7 +16105,7 @@ var T12=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T11});
 var T13=DU.ReadReturn(T12,1);
 return [];
 },
-"793_func274" : function(__DIV){
+"793_func276" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -16099,7 +16114,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"806_func277" : function(__DIV){
+"806_func279" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -16192,7 +16207,7 @@ continue;
 };
 
 
-// C:\Users\mettu\OneDrive\dev\MC Campaign Tracker\MC Campaign Tracker\source\util.wng
+// C:\Users\mettu\Source\Repos\mc-omnibus\source\util.wng
 __FUNCS["util.w_15"] = {
 "13::Shuffle" : function(__DIV){
 var __THIS,$cnt,$it,$$terminate2,$target,$temp;

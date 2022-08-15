@@ -42,15 +42,13 @@ library Campaign
             
             $PlayGame()
 
-            $IfExpert($CheckList("Experimental Weapons", dim, "Which *EXPERIMENTAL* attachments entered the game?", null, true))
-                $CheckList.MakeCheck("Laser Rifle", null, lambda)
-                    stage.delta["Weapon", "Laser Rifle"] : true
-                $CheckList.MakeCheck("Energy Shield", null, lambda)
-                    stage.delta["Weapon", "Energy Shield"] : true
-                $CheckList.MakeCheck("Power Gauntlets", null, lambda)
-                    stage.delta["Weapon", "Power Gauntlets"] : true
-                $CheckList.MakeCheck("Exo Suit", null, lambda)
-                    stage.delta["Weapon", "Exo Suit"] : true
+            $Slide.Create(lambda(stage => async))
+                @opts : dim()
+                for dim("Laser Rifle", "Energy Shield", "Power Gauntlets", "Exo Suit")
+                    opts.$List.Add($CheckList.MakeCheck(it, null, lambda, stage.ghost[$RedSkull.Weapon, it] ? false))
+                        stage.delta[$RedSkull.Weapon, it] : true
+                await $CheckList.DoChecklist(stage, "Experimental Weapons"
+                    _, "Which *EXPERIMENTAL* attachments entered the game?", opts, null, true)
                     
             $IfExpert($RecordHP())
 
@@ -256,6 +254,7 @@ library Campaign
             
 
 library RedSkull
+    $Weapon : "experimental weapon"
     $TechUp : "tech upgrade"
     $Condition : "condition"
     $ConditionUpgraded : "condition upgraded"
@@ -308,16 +307,16 @@ library RedSkull
             Each player searches their deck for all cards with the setup keyword and puts them into play.
 
     ::IfWeapons(state => bool)
-        => state has Weapon
+        => state[$Weapon] != null
 
     ::SetupWeapons(=> slide)
         @lbl : $GT(textdata)
             Shuffle each *EXPERIMENTAL* attachment recorded in the capaign log into the encounter deck
         slide : $Slide.If(`$IfWeapons(state)`, $CheckList("Experimental Weapons", dim, lbl, $Img.PowerGauntlets))
-            $CheckList.MakeCheck("Laser Rifle", `stage.state["Weapon", "Laser Rifle"] ? false`)
-            $CheckList.MakeCheck("Energy Shield", `stage.state["Weapon", "Energy Shield"] ? false`)
-            $CheckList.MakeCheck("Power Gauntlets", `stage.state["Weapon", "Power Gauntlets"] ? false`)
-            $CheckList.MakeCheck("Exo Suit", `stage.state["Weapon", "Exo Suit"] ? false`)
+            $CheckList.MakeCheck("Laser Rifle", `stage.state[$Weapon, "Laser Rifle"] ? false`)
+            $CheckList.MakeCheck("Energy Shield", `stage.state[$Weapon, "Energy Shield"] ? false`)
+            $CheckList.MakeCheck("Power Gauntlets", `stage.state[$Weapon, "Power Gauntlets"] ? false`)
+            $CheckList.MakeCheck("Exo Suit", `stage.state[$Weapon, "Exo Suit"] ? false`)
 
     ::DoPickNumbers(stage => async)
         // TODO: probably delete this - I totally misunderstood how this worked
@@ -383,7 +382,7 @@ library RedSkull
                     mixin $Dropdown.AddOption("")
                 for cards
                     drop.$Dropdown.AddOption(it, it)
-                drop.$Dropdown.SetValue(stage.ghost["player", idx, key, 0] ? "")
+                drop.$Dropdown.SetValue(stage.ghost["player", idx, key] ? "")
                 selectors[idx] : drop
             else
                 rightPane.$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))

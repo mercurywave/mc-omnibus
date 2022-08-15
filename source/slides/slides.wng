@@ -182,6 +182,8 @@ library Slide
 ::DoHeroPicker(stage, idx => async)
     @pipe : stage.ct.$Canceler.MakePipe()
 
+    @ghostName : stage.ghost["player",idx, "name"] ? ("Player " + idx)
+
     @pop : $g.Stage.$AppendChild(dim $Div.Create())
         mixin $Style.AddClasses("popup", "heroSelect")
 
@@ -192,7 +194,7 @@ library Slide
             mixin $Style.AddClasses("label")
 
     @txt : pop.$AppendChild(dim $TextEntry.Create())
-        mixin $TextEntry.SetText("Player " + idx)
+        mixin $TextEntry.SetText(ghostName)
 
     @scroller : pop.$AppendChild(dim $Div.Create())
         mixin $Style.AddClasses("heroScroll")
