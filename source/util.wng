@@ -1,0 +1,199 @@
+
+library List
+    ::.Shuffle()
+        @cnt : this.$Obj.Count()
+        if cnt = 1 \ quit
+        for 0 to cnt
+            @target : $Rand.Int(0, cnt)
+            if target != it
+                @temp : free? this[it]
+                this[it] : free? this[target]
+                this[target] : free? temp
+
+    ::.RemoveFirst(elem)
+        // removes the first time this element appears
+        @idx : this.$List.IndexOf(elem)
+        if(idx >= 0)
+            free this[idx]
+            this.$List.Compress()
+
+    ::.IndexOf(elem => idx)
+        for @i in this
+            if this[i] = elem
+                return i
+        return -1
+
+    ::.GetSubset(start, length => list)
+        // make a new list that is a subset of the current list
+        // CAUTION: a bit fragile in edge cases
+        list : $List.New()
+        for start to start + length
+            list.$Add(this[it])
+
+    ::.FirstIndex(condition => idx)
+        for @i in this
+            @it : this[i]
+            if $(condition, it)
+                return i
+        return -1
+
+    ::.RemoveItem(item)
+        this.$List.RemoveAll(`it = item`)
+
+    ::.Compress()
+        @idx : 0
+        for @k : this.$Obj.Keys()
+            if k != idx
+                this[idx] : free this[k]
+            idx : idx + 1
+            
+    ::.Map(lamb => list)
+        list : dim()
+        for @it of this at @k
+            list[k] : $(lamb, it)
+            
+    ::.Filter(lamb => list)
+        list : dim()
+        for @it of this at @k
+            if $(lamb, it)
+                list.$Add(it)
+        
+    ::.Join(?delim => str)
+        delim ?: ""
+        str : ""
+        for this
+            if str != "" \ str : str + delim
+            str : str + it
+
+    ::.QuickPick( => item)
+        @idx : $Rand.Int(0, this.$Obj.Count())
+        item : this[idx]
+
+    ::.NumMatches(lamb => count)
+        count : 0
+        for this
+            if $(lamb, it)
+                count +: 1
+
+    ::.Min(toNumLamb => value)
+        // NOTE: make sure the list is empty! this returns null in that case
+        value : null
+        for this
+            @val : $(toNumLamb, it)
+            value : $Math.Min(value ? val, val)
+
+    ::.AppendList(&list)
+        // CAUTION: destructive!
+        for @idx in list.$Obj.ShallowCopy()
+            this.$List.Add(free list[idx])
+
+    ::.Reverse()
+        @cnt : this.$Obj.Count()
+        if cnt <= 1 \ quit
+        for 0 to cnt / 2
+            @target : cnt - it - 1
+            @temp : free? this[it]
+            this[it] : free? this[target]
+            this[target] : free? temp
+
+library Util
+    ::QuickPick(picks[] => val)
+        => picks.$List.QuickPick()
+
+
+global ::iif(test, ifTrue, ifFalse => value)
+    => switch
+        test : ifTrue
+        else : ifFalse
+
+            
+global ::log(list[])
+    for list
+        $IO.Log(it)
+global ::exLog(e => e)
+    $log(e)
+
+global ::logDeep(obj)
+    $log($logHelp(obj, 0))
+
+::logHelp(obj, depth => str)
+    if !obj.$Obj.HasChildren()
+        return obj
+    str : ""
+    @sp : ""
+    for 0 to depth
+        sp : sp + "  "
+    for @k in obj
+        @val : obj[k]
+        if !val.$Obj.HasChildren()
+            str +: sp + ~k + ": " + $Debug.ObjDebug(val)
+        else
+            str +: sp + ~k + " >>" + $logHelp(val, depth + 1)
+        str +: "\n"
+
+
+library Math
+    $PI : 3.1415926535
+    
+    ::Clamp(val, min, max)
+        if val < min
+            return min
+        if val > max
+            return max
+        return val
+    
+    ::Min(a,b => min)
+        return switch
+            a < b : a
+            else : b
+    ::Max(a, b => max)
+        return switch
+            a > b : a
+            else : b
+    ::Abs(a => a)
+        if a < 0 \ a : -a
+
+
+library Str
+    ::RepeatStr(piece, count, ?delim => str)
+        @list : dim()
+        str : ""
+        delim ?: ""
+        for 0 to count
+            if it > 0
+                str : str + delim
+            str : str + piece
+
+    extern ::.Hash(=> hash)
+        //TODO: move to stdlib
+
+
+registry RND : $Time.Now()
+library Rand
+    extern ::_Next(=> val)
+        ^RND : (^RND + 37) * 6211
+        ^RND : $Math.Mod(^RND, 27361)
+        return ^RND
+        
+    // [min, max)
+    extern ::Int(min, max => val)
+        return min + $Math.Floor($Math.Mod($_Next(), max - min))
+
+library Obj
+    // TODO: move to standard library
+    extern ::.MergeIn(obj)
+
+
+global ::GT(strOrArr => str)
+    // combine a textdata object or string into a single string (newline separated)
+    str : switch
+        strOrArr.$Obj.HasChildren() : strOrArr.$List.Join("\n")
+        else : strOrArr
+    str : str.$Str.Replace("|","  ")
+
+global ::GTW(strOrArr => str)
+    // combine a textdata object or string into a single string (like a single paragraph)
+    str : switch
+        strOrArr.$Obj.HasChildren() : strOrArr.$List.Join(" ")
+        else : strOrArr
+    

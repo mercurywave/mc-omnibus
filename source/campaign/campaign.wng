@@ -1,0 +1,138 @@
+registry AllCampaigns : dim()
+
+library Campaign
+    $ExpertMode : "isExpertMode"
+    $Defeated : "defeated"
+    $Victory : "victory"
+    $Complete : "complete"
+    ::Create(name, img => obj)
+        obj : ^AllCampaigns.$List.Add(dim)
+            name : name
+            img : img
+            slides : dim()
+    ::.mixOfficalCampaign(releaseOrder)
+        this.sort : releaseOrder
+        this.isOfficial : true
+    ::.mixBookStyles(backStyle, lineStyle, foreStyle)
+        this.backStyle : backStyle
+        this.lineStyle : lineStyle
+        this.foreStyle : foreStyle
+    ::.mixComingSoon()
+        this.comingSoon : true
+    
+    ::GetAllCampaigns(=> list) => ^AllCampaigns
+    
+    ::GetOfficialCampaigns(=> list)
+        @sorted : dim()
+        for ^AllCampaigns
+            if it["isOfficial"] ? false
+                sorted[it.sort] : it
+        list : dim()
+        for sorted
+            list.$List.Add(it)
+
+    ::GetCustomCampaigns(=> list)
+        @sorted : dim()
+        for ^AllCampaigns
+            if !(it["isOfficial"] ? false)
+                sorted[it.name] : it
+        list : dim()
+        for sorted
+            list.$List.Add(it)
+
+    ::LookupByName(name => campaign)
+        for $GetAllCampaigns()
+            if it.$GetName() = name
+                return it
+    ::.mixTooltipGen(lamb)
+        this.tooltipGen : free? lamb
+
+    ::.mixSlides(&slides)
+        this.slides.$List.AppendList(free slides)
+
+    ::.mixMission(key, number, name, img, &slides, backSty, lineSty, foreSty, ?narrative)
+        using Slide
+        this.$mixSlides(dim)
+            $Checkpoint(key, "Mission " + number +": " + name)
+            $Scenario(img, number, name, backSty, lineSty, foreSty)
+        if narrative != null
+            this.slides.$List.Add($Narrative(narrative))
+        this.$mixSlides(free slides)
+
+    ::.mixModeSelect()
+        this.$mixSlides(dim)
+            $Slide.CampaignMode()
+
+    ::.mixDifficulty()
+        this.$mixSlides(dim)
+
+    ::.mixHeroSelection()
+        using Slide
+        this.$mixSlides(dim)
+            $NumPlayers()
+            $HeroPicker(1)
+            $If(`stage.state.players > 1`, $HeroPicker(2))
+            $If(`stage.state.players > 2`, $HeroPicker(3))
+            $If(`stage.state.players > 3`, $HeroPicker(4))
+
+    ::.mixProductInfo(requiredComponents)
+        @text : "**Requirement**: This campaign requires the following components:\n"
+        text +: "* Core Set\n"
+        for requiredComponents
+            text +: "* " + it + "\n"
+        this.$mixSlides(dim)
+            $Slide.Popup(this.$Campaign.GetName(), text)
+
+    ::.mixSaveGameReminder()
+        this.$mixSlides(dim)
+            $Slide.Popup("Saved Data", textdata)
+                Your campaign progress will automatically be saved between missions 
+                using your browser's local storage.
+                
+                **Caution:** clearing your browser history can delete your saved campaigns.
+
+    ::.mixWrapUpDefeat(&slides)
+        for @idx in slides
+            this.slides.$List.Add($Slide.IfDefeat(free slides[idx]))
+    
+    ::.mixWrapUpVictory(&slides)
+        for @idx in slides
+            this.slides.$List.Add($Slide.IfNotDefeat(free slides[idx]))
+
+    ::.MakeHeader(=> img)
+        => dim this.img.$Img.MakeElem()
+            mixin $Dom.Style.AddClasses("vh", "vImg")
+    ::.MakeBadge(=> elem)
+        => dim $Dom.Div.Create()
+            mixin $Dom.Style.AddClasses("campaignBadgeContainer")
+            mixin $Dom.AppendChild(dim this.img.$Img.MakeElem())
+                mixin $Dom.Style.AddClasses("campaignBadge")
+    ::.MakeImage(=> img) => this.img.$Img.MakeElem()
+    ::.GetName(=> name) => this.name
+    ::.GetImagePath() => this.img.$Img.GetPath()
+
+    ::.mixApplyExtraStyles(camp)
+        this.$Img.mixApplyExtraStyles(camp.img)
+
+    library State
+        ::.IsExpert( => bool) => this.?isExpertMode ? false
+        ::.GetHero(idx => hero)
+            @name : this["player",idx,"hero"] ? ""
+            return $Heroes.LookupByName(name)
+        ::.GetHp(idx => hp) => this["player",idx,"hp"] ? 0
+        ::.IsComplete(=> bool) => this[$Campaign.Complete] ? false
+
+
+data : dim $Campaign.Create("The Galaxy's Most Wanted", $Img.GalaxysMostWanted)
+    mixin $Campaign.mixOfficalCampaign(2)
+    mixin $Campaign.mixComingSoon()
+data : dim $Campaign.Create("The Mad Titan's Shadow", $Img.MadTitan)
+    mixin $Campaign.mixOfficalCampaign(3)
+    mixin $Campaign.mixComingSoon()
+data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
+    mixin $Campaign.mixOfficalCampaign(4)
+    mixin $Campaign.mixComingSoon()
+
+data : dim $Campaign.Create("Countdown to Oblivion", $Img.SwarmAttack)
+    mixin $Campaign.mixBookStyles($g.BackStyle.Gray, $g.LineStyle.Gray, $g.ForeStyle.Orange)
+    mixin $Campaign.mixComingSoon()

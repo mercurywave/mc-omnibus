@@ -1,0 +1,156 @@
+
+
+library g
+    data Body : $Dom.GetElement("base")
+    data CampaignHeader : $Dom.GetElement("camp_header")
+    data Stage : $Dom.GetElement("stage")
+    data HeroFooter : $Dom.GetElement("heroes_footer")
+    data HeroFooterInner : $Dom.GetElement("heroes_footer_inner")
+        
+    library BackStyle
+        $Cyan : "bCyan"
+        $Gray : "bGray"
+        $Black : "bBlack"
+        $Purple : "bPurple"
+
+    library LineStyle
+        $Blue : "lBlue"
+        $Gray : "lGray"
+        $Black : "lBlack"
+        $White : "lWhite"
+        $Yellow : "lYellow"
+        $Red : "lRed"
+    
+    library ForeStyle
+        $Orange : "fOrange"
+        $White : "fWhite" // this is a lie - it's actually black because it's on white background
+        $Purple : "fPurple" // not implement
+        $Yellow : "fYellow"
+        $Red : "fRed"
+
+    ::HookKeyDown(ct, &lamb)
+        ^KeyListeners.$List.Add(dim)
+            pipe : ct.$Canceler.MakePipe()
+            lamb : free lamb
+
+    ::MakeComicBookCard(card, series, seriesSub, issue, title, backSty, lineSty, foreSty => book)
+        using Dom
+        book : dim $Div.Create()
+            mixin $Style.AddClasses("bigBook", backSty, lineSty, foreSty)
+            
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("cardBack")
+                mixin $Style.SetBackgroundImage(card.$Img.GetPath())
+                mixin $Img.mixApplyExtraStyles(card)
+
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("topBack", "back")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("topDots")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("title")
+                mixin $SetText(series)
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("seriesSub")
+                    mixin $SetText(seriesSub)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("issueNum", "back")
+                mixin $SetText("#" + issue)
+                mixin $AppendChild($Paragraph.Create("20XX"))
+                mixin $AppendChild($Paragraph.Create("JAN"))
+            
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("botBack", "back")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("botDots")
+            mixin $AppendChild(dim $Image.Create("assets/barcode.png"))
+                mixin $Style.AddClasses("barcode")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("subtitleBack")
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("subtitle", "fore")
+                    mixin $SetText(title)
+
+
+library Util
+    ::WaitGetFirst(ct, &valToLambda => async val)
+        // returns null if canceled!
+        @pipe : $Pipe.Create()
+        ct.$Canceler.PipeClean(pipe)
+
+        for @lamb of valToLambda at @idx
+            arun lambda
+                await $(lamb)
+                trap pipe.$Pipe.Write(idx)
+        
+        val : await pipe.$Pipe.ReadAsync()
+
+    
+
+library Popup
+    ::Create(?title => div)
+        // expects to add to the stage directly
+        using Dom
+        div : $g.Stage.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("popup")
+
+        if title != null
+            div.$AppendChild(dim $Paragraph.Create(title))
+                mixin $Style.AddClasses("text", "top-left")
+
+    ::.AddMarkdown(md)
+        using Dom
+        @text : $GT(md)
+        this.$AppendChild(dim $Paragraph.Create())
+            mixin $SetHtml($MarkdownToHtml(text))
+            mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
+    
+    ::.AddBotRightButton(onclick, ?label)
+        using Dom
+        label ?: "Continue"
+        this.$AppendChild(dim $Button.Create())
+            mixin $SetText(label)
+            mixin $Style.AddClasses("bottom-right")
+            mixin $Button.HookClick(free? onclick)
+
+// it's handy to spin up jobs, but very easy for those jobs to leak
+// I need a mechanism to cancel pipes. not sure language changes can help this problem
+library Canceler
+    ::Create(=> obj) 
+        => dim
+            live : true
+            pipes : dim()
+    ::.MakePipe(=> pipe)
+        => this.pipes.$List.Add($Pipe.Create())
+    ::.PipeClean(pipe)
+        // register a pipe to be killed when the workflow is cancelled
+        this.pipes.$List.Add(pipe)
+    ::.Cancel()
+        if this.$IsLive()
+            this.live : false
+            for this.pipes
+                it.$Pipe.Kill()
+    ::.IsLive(=> bool) => this.live
+    ::.TryCancel(=> bool)
+        bool : this.$IsLive()
+        if bool \ this.$Cancel()
+    ::.AsyncWait(=> async)
+        @pipe : this.$MakePipe()
+        await pipe.$Pipe.ReadAsync()
+
+scratch KeyListeners : dim()
+::CleanKeyListeners()
+    for @listener of copy ^KeyListeners at @idx
+        if !listener.pipe.$Pipe.IsLive()
+            free ^KeyListeners[idx]
+    ^KeyListeners.$List.Compress()
+
+using Dom
+$Document.$HookEvent("keydown", lambda(event))
+    @foc : $Document["activeElement"]
+    @tag : foc.$GetAttribute("tagName")?.$Str.ToLower()
+    @type : foc.$GetAttribute("type")?.$Str.ToLower()
+    if foc = null | tag != "input" | (type != "text" & type != "number")
+        $CleanKeyListeners()
+        for @listener : ^KeyListeners
+            $(listener.lamb, event)

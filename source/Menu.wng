@@ -1,0 +1,274 @@
+scratch NextAction : null
+library Menu
+    $Container : $Dom.GetElement("menu_cont")
+
+    ::Run(menu => async)
+        $IO.Log("Menu.Run")
+        $MakeTitle()
+
+        $Container.$Dom.ClearChildren()
+        $Container.$Dom.Style.RemoveClasses("fadeOut")
+        $Container.$Dom.Style.AddClasses("fadeIn")
+
+        await $(menu)
+
+        $Container.$Dom.Style.AddClasses("fadeOut")
+        $Container.$Dom.Style.RemoveClasses("fadeIn")
+        await $Job.Pause(250)
+        $Container.$Dom.ClearChildren()
+        
+        @next : free ^NextAction
+        next ?: $DoMain
+        $IO.Log("Menu.Run Complete")
+        arun $(next)
+            
+
+    ::QueueMenu(lamb)
+        ^NextAction : lambda
+            await $Run(lamb)
+
+    ::QueueLaunch(lamb)
+        ^NextAction : free? lamb
+
+    ::DoMain(=> async)
+        $IO.Log("main menu")
+        using Dom
+        @ct : $Canceler.Create()
+        
+        @container : $Container.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("mainMenu")
+
+        if $Storage.CanContinue()
+            trap container.$AppendChild($mkContinueButton($Storage.GetContinueKey(), ct))
+
+        container.$AppendChild(dim $Button.Create())
+            mixin $Style.AddClasses("titleButton")
+            mixin $SetText("New Campaign")
+            mixin $Button.HookClick(lambda)
+                if ct.$Canceler.TryCancel()
+                    $QueueMenu($DoNewGame)
+
+        @hasSaves : $Storage.HasSaveGames()
+        @btLoad : container.$AppendChild(dim $Button.Create())
+            mixin $Style.AddClasses("titleButton")
+            mixin $SetText("Load")
+        
+        if hasSaves
+            btLoad.$Button.HookClick(lambda)
+                if ct.$Canceler.TryCancel()
+                    $QueueMenu($DoLoadGame)
+        else
+            btLoad.$SetAttribute("disabled", "disabled")
+
+        container.$AppendChild(dim $Button.Create())
+            mixin $Style.AddClasses("titleButton")
+            mixin $SetText("About")
+            mixin $Button.HookClick(lambda)
+                if ct.$Canceler.TryCancel()
+                    $QueueMenu($DoAbout)
+        
+        await ct.$Canceler.AsyncWait()
+
+    ::DoNewGame(=> async)
+        $IO.Log("select campaign")
+        using Dom
+        @ct : $Canceler.Create()
+        
+        @scroller : $Container.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("campaignScroller")
+        
+        $renderCampaignList(ct, "Official Campaigns", scroller, $Campaign.GetOfficialCampaigns())
+
+        $renderCampaignList(ct, "Unofficial Campaigns", scroller, $Campaign.GetCustomCampaigns())
+
+        arun $BackButton(ct, lambda)
+            $QueueMenu($DoMain)
+        
+        await ct.$Canceler.AsyncWait()
+    
+    ::renderCampaignList(ct, title, scroller, list)
+        using Dom
+        scroller.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("sectionHead")
+            mixin $SetText(title)
+        @container : scroller.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("campaignSection")
+        for @camp : list
+            container.$AppendChild($renderCampaignCover(ct, camp))
+                
+
+    ::renderCampaignCover(ct, camp => elem)
+        using Dom
+        @comingSoon : camp["comingSoon"] ? false
+        elem : dim $Button.Create()
+            mixin $Style.AddClasses("campaignContainer")
+            mixin $Style.SetClassIf("comingSoon", comingSoon)
+        
+        if !comingSoon
+            elem.$Button.HookClick(lambda)
+                if ct.$Canceler.TryCancel()
+                    $QueueLaunch(lambda)
+                        await $RunCampaign(camp)
+        else
+            elem.$SetAttribute("disabled", "disabled")
+
+        if camp["isOfficial"] ? false
+            elem.$AppendChild($mkCampaignComic(camp))
+        else
+            @book : $g.MakeComicBookCard(camp.img, "Champions", "The Card Game", 0, camp.name
+                _ , camp.backStyle, camp.lineStyle, camp.foreStyle)
+            elem.$AppendChild(book)
+        
+        if comingSoon
+            elem.$AppendChild(dim $Paragraph.Create("COMING SOON"))
+                mixin $Style.AddClasses("banner")
+
+
+    ::DoLoadGame( => async)
+        $IO.Log("load games")
+        using Dom
+        @ct : $Canceler.Create()
+        
+        @container : $Container.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("loadScroller")
+
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("loadHeader")
+                mixin $SetText("Load Saved Campaigns")
+
+        for @key : $Storage.FindAllSaves()
+            trap container.$AppendChild($mkGameLoadButton(key, ct))
+                $IO.Log("FAILED TO LOAD SAVE: " + key + " - " + error)
+
+        arun $BackButton(ct, lambda)
+            $QueueMenu($DoMain)
+        
+        await ct.$Canceler.AsyncWait()
+
+    ::DoAbout( => async)
+        $IO.Log("about page")
+        using Dom
+        @ct : $Canceler.Create()
+
+        using Dom
+        // this isn't the stage, so this is duplciated for this container
+        $Container.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("popup")
+            mixin $AppendChild(dim $Paragraph.Create("About"))
+                mixin $Style.AddClasses("text", "top-left")
+
+            mixin $Popup.AddMarkdown(textdata)
+                Marvel Champions: The Card Game is copyrighted by Fantasy Flight Games.
+                This website is not produced, endorsed, supported, or affiliated either Fantasy Flight Games.
+                
+                This app was coded using the [Wingra programming language](https://github.com/mercurywave/wingra).
+
+                Please post bug reports and feature requests to the projects GitHub page.
+
+                Question? Contact [@mercurywave on Twitter](https://twitter.com/mercurywave).
+
+        arun $BackButton(ct, lambda)
+            $QueueMenu($DoMain)
+        
+        await ct.$Canceler.AsyncWait()
+
+
+::mkCampaignComic(camp => elem)
+    using Dom
+    elem : dim $Div.Create()
+        mixin $Style.AddClasses("campaign")
+        mixin $Style.SetBackgroundImage(camp.$Campaign.GetImagePath())
+        mixin $Campaign.mixApplyExtraStyles(camp)
+
+::mkGameLoadButton(key, ct => throw elem)
+    trap @state, @camp, @heroes : $tryReadSave(key)
+        throw error
+    
+    using Dom
+    elem : dim $Button.Create()
+        mixin $Style.AddClasses("loadGame")
+        mixin $Button.HookClick(lambda)
+            if ct.$Canceler.TryCancel()
+                $Menu.QueueLaunch(lambda)
+                    await $RunCampaign(camp, key)
+        //mixin $AppendChild($mkCampaignComic(camp))
+        mixin $AppendChild(camp.$Campaign.MakeBadge())
+        mixin $Style.ToggleBetweenClasses(state[$Campaign.Complete] ? false, "complete", "active")
+        mixin $Style.SetClassIf("defeat", state[$Campaign.Defeated] ? false)
+        mixin $Style.SetClassIf("victory", state[$Campaign.Victory] ? false)
+    
+    @content : elem.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("content")
+        mixin $AppendChild($Heading.Create(3, camp.$Campaign.GetName()))
+        mixin $AppendChild($Paragraph.Create(state["progress"]))
+
+    for heroes
+        content.$AppendChild(it.$Heroes.MakeHeroBadge())
+
+::tryReadSave(key => throw state, camp, heroes)
+    state : $Storage.LoadGameState(key)
+    if state = null \ throw "no state"
+    camp : $Campaign.LookupByName(state["campaign"])
+    if camp = null \ throw "no camp"
+    
+    @cnt : state["players"] ? 0
+    heroes : dim()
+    for @idx : 1 to cnt + 1
+        @play : state["player", idx]
+        if play = null \ throw "player " + idx + " not found"
+        @hero : $Heroes.LookupByName(play["hero"])
+        if hero = null \ throw "hero " + idx + " not found"
+        heroes.$List.Add(hero)
+
+::mkContinueButton(key, ct => throw elem)
+    trap @state, @camp, @heroes : $tryReadSave(key)
+        throw error
+
+    using Dom
+    elem : dim $Button.Create()
+        mixin $Style.AddClasses("continueGame")
+        mixin $Style.SetBackgroundImage(camp.$Campaign.GetImagePath())
+        mixin $Button.HookClick(lambda)
+            if ct.$Canceler.TryCancel()
+                $Menu.QueueLaunch(lambda)
+                    await $RunCampaign(camp, key)
+        
+        mixin $AppendChild($Heading.Create(1, "Continue"))
+        mixin $AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("progress")
+            mixin $AppendChild($Heading.Create(3, camp.$Campaign.GetName()))
+            mixin $AppendChild($Paragraph.Create(state["progress"]))
+    
+    @content : elem.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("heroes")
+
+    for heroes
+        content.$AppendChild(it.$Heroes.MakeHeroBadge())
+
+::MakeTitle()
+    using Dom
+    if $Dom.GetElement("Title") = null
+        $g.CampaignHeader.$ClearChildren()
+        $g.CampaignHeader.$AppendChild(dim $Div.Create())
+            mixin $AppendChild(dim $Div.Create())
+                mixin $SetId("Title")
+                mixin $SetText("MC: Campaign Omnibus")
+
+::BackButton(ct, onClick => async)
+    @pipe : $Pipe.Create()
+    ct.$Canceler.PipeClean(pipe)
+    
+    using Dom
+    @bt : $Menu.Container.$AppendChild(dim $Button.Create())
+        mixin $Style.AddClasses("btBack")
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+        mixin $AppendChild(dim $Image.Create("assets/back.png"))
+
+    $g.HookKeyDown(ct, lambda(event))
+        if event.key = "ArrowLeft" | event.key = "Backspace" | event.key = "Escape"
+            pipe.$Pipe.Kill()
+
+    await pipe.$Pipe.ReadAsync()
+    if ct.$Canceler.TryCancel()
+        $(onClick)

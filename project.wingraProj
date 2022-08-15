@@ -1,0 +1,5 @@
+version=1
+
+; export to javascript
+jsExport=web/code.js
+jsFunc=MCTRACK

@@ -1,0 +1,53 @@
+
+
+::mkCard(file, alt => img) => $Img.Reg("assets/cards/" + file + ".jpg", "Card: " + alt)
+::mkCampaign(file, alt => img) => $Img.Reg("assets/campaigns/" + file + ".jpg", "Campaign: " + alt)
+::.mixExtraStyle(style)
+    this["style"] ?: dim()
+    this.style.$List.Add(style)
+
+library Img
+    ::Reg(file, alt => img)
+        => dim
+            path : file
+            alt : alt
+
+    ::.GetPath(=> path) => this.path
+    ::.GetAltText(=> alt) => this.alt
+    ::.MakeElem( => imgElem)
+        => $Dom.Image.Create(this.path, this.alt)
+        
+    ::.mixApplyExtraStyles(img)
+        if img has style
+            for img.style
+                this.$Dom.Style.AddClasses(it)
+                
+
+    data RedSkull : $mkCampaign("red_skull", "The Rise of Red Skull")
+    data GalaxysMostWanted : $mkCampaign("galaxys_most_wanted", "Galaxy's Most Wanted")
+    data MadTitan : $mkCampaign("mad_titan", "The Mad Titan's Shadow")
+    data SinisterMotives : dim $mkCampaign("sinister_motives", "Sinister Motives")
+        mixin $mixExtraStyle("shiftUp")
+    
+    
+    data Crossbones : $mkCard("crossbones", "Crossbones [II]")
+    data AbsorbingMan : $mkCard("absorbing_man", "Absorbing Man [II]")
+    data Taskmaster : dim $mkCard("taskmaster", "Taskmaster [II]")
+        mixin $mixExtraStyle("shiftDown")
+    data Zola : $mkCard("zola", "Zola [II]")
+    data RedSkullVillian : $mkCard("red_skull", "Red Skull [II]")
+
+    data HydraBomber : $mkCard("hydra_bomber", "Hydra Bomber")
+    data AbandonedFacility : $mkCard("abandoned_facility", "Abandoned Facility")
+    data PowerGauntlets : $mkCard("power_gauntlets", "Power Gauntlets")
+    data TaskmastersShield : $mkCard("taskmasters_shield", "Taskmaster's Shield")
+    data TechnologicalEnhancements : $mkCard("technological_enhancements", "Technological Enhancements")
+    data TwistedReality : $mkCard("twisted_reality", "Twisted Reality")
+
+    data Ronin : $mkCard("ronin", "Ronin")
+
+    data TwoAgainst : $mkCard("two_against", "Two Against The World")
+    data TripleThreat : $mkCard("triple_threat", "Triple Threat")
+    data StrengthInNumbers : $mkCard("strength_in_numbers", "Strength In Numbers")
+
+    data SwarmAttack : $mkCard("swarm_attack", "Swarm Attack")

@@ -1,0 +1,152 @@
+
+
+library Slide
+    ::CheckList(title, checks, ?text, ?card, ?showNext => slide)
+        text ?: "Check each box to continue"
+        showNext ?: false
+        slide : $Create(lambda(stage => async)[free checks,title,text, card, showNext])
+            @options : dim()
+            for checks
+                if !(it has condition) | $(it.condition, stage)
+                    options.$List.Add(it)
+            await $CheckList.DoChecklist(stage, title, text, options, card, showNext)
+    
+    library CheckList
+        ::MakeCheck(text, ?condition, ?onCheck, ?isChecked => check)
+            condition ?: `true`
+            isChecked ?: false
+            return dim
+                text : text
+                condition : free? condition
+                onCheck : free? onCheck
+                isChecked : isChecked
+
+        ::DoChecklist(stage, title, text, options, card, showNext => async)
+            using Dom
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create(title)
+                mixin $AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($MarkdownToHtml(text))
+                mixin $Style.SetClassIf("withCard", card != null)
+
+            if showNext
+                pop.$Popup.AddBotRightButton(lambda)
+                    pipe.$Pipe.Kill()
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            @elems : dim()
+            for @opt of options at @idx
+                @id : "chkOpt" + ~idx
+                @lbl : pop.$AppendChild($Checkbox.CreateLabelFor(id))
+                @chk : lbl.$AppendChild(dim $Checkbox.Create())
+                    mixin $SetId(id)
+                    mixin $Checkbox.HookChange(lambda)
+                        if !showNext & !elems.$List.Any(`!it.$Checkbox.IsChecked()`)
+                            pipe.$Pipe.Kill()
+                if opt.?isChecked ? false
+                    chk.$Checkbox.SetIsChecked(true)
+                @md : switch
+                    opt has dynamicText : $(opt.dynamicText, stage)
+                    else : opt["text"]
+                lbl.$AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($MarkdownToHtml(md))
+                elems.$List.Add(chk)
+
+            if card != null
+                $g.Stage.$AppendChild(dim card.$Img.MakeElem())
+                    mixin $Style.AddClasses("card")
+                
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                for @opt of options at @idx
+                    if opt.?onCheck != null & elems[idx].$Checkbox.IsChecked()
+                        $(opt.onCheck, stage)
+
+
+                pop.$Style.AddClasses("fadingOut")
+                await $Job.Pause(50) // pause is waiting for an animation frame already
+
+        ::DoPlayerList(stage, key, title, text, checkText, ?hookEnable, ?disableText => async)
+            hookEnable ?: `true`
+            using Dom
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+                
+                mixin $Popup.AddBotRightButton(lambda)
+                    pipe.$Pipe.Kill()
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            @elems : dim()
+            for @player of stage.state.player at @idx
+                @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
+                @isEnabled : $(hookEnable, player)
+                @id : "chkOpt" + ~idx
+                @lbl : pop.$AppendChild(dim $Checkbox.CreateLabelFor(id))
+                    mixin $AppendChild(dim $Div.Create())
+                        mixin $Style.AddClasses("player")
+                        mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $Style.SetClassIf("disabled", !isEnabled)
+                @chk : lbl.$AppendChild(dim $Checkbox.Create())
+                    mixin $SetId(id)
+                if stage.ghost["player", idx, key] ? false
+                    chk.$Checkbox.SetIsChecked(true)
+                @disp : switch
+                    isEnabled : checkText
+                    else : disableText
+                lbl.$AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($MarkdownToHtml(disp))
+                elems[idx] : chk
+                if !isEnabled
+                    chk.$SetAttribute("disabled", "disabled")
+                
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                for @idx in stage.state.player
+                    if elems[idx].$Checkbox.IsChecked()
+                        stage.delta["player", idx, key] : true
+
+                pop.$Style.AddClasses("fadingOut")
+                await $Job.Pause(50) // pause is waiting for an animation frame already
+
+        ::DoPlayerSpecificInstructions(stage, title, text, hookPlayInstruct => async)
+            //if hookPlayInstruct returns "" or null, the player is skipped
+            using Dom
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            @elems : dim()
+            for @player of stage.state.player at @idx
+                @instruct : $(hookPlayInstruct, player) ? ""
+                if instruct = "" \ continue
+                @hero : $Heroes.LookupByName(player.hero)
+
+                @id : "chkOpt" + ~idx
+                @lbl : pop.$AppendChild(dim $Checkbox.CreateLabelFor(id))
+                    mixin $AppendChild(dim $Div.Create())
+                        mixin $Style.AddClasses("player")
+                        mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $Checkbox.HookChange(lambda)
+                        if !elems.$List.Any(`!it.$Checkbox.IsChecked()`)
+                            pipe.$Pipe.Kill()
+                @chk : lbl.$AppendChild(dim $Checkbox.Create())
+                    mixin $SetId(id)
+                lbl.$AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($MarkdownToHtml(instruct))
+                elems[idx] : chk
+                
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                pop.$Style.AddClasses("fadingOut")
+                await $Job.Pause(50) // pause is waiting for an animation frame already

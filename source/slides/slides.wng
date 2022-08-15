@@ -1,0 +1,298 @@
+using Dom
+library Slide
+    ::Create(&func => slide)
+        => dim
+            func : free func
+
+    ::CampaignMode(=> slide)
+        slide : $Create(lambda(stage => async))
+            await $DoCampaignMode(stage)
+    ::NumPlayers(=> slide)
+         slide : $Create(lambda(stage => async))
+            await $DoNumPlayers(stage)
+    ::HeroPicker(pIdx => slide)
+        slide : $Create(lambda(stage => async))
+            await $DoHeroPicker(stage, pIdx)
+
+    ::Checkpoint(key, progress => slide)
+        slide : dim
+            checkpoint : key
+            delta : dim
+                progress : progress
+
+    ::Scenario(card, num, title, backSty, lineSty, foreSty => slide)
+        slide : $Create(lambda(stage => async))
+            await $DoScenarioStart(stage, card, num, stage.campaign, title, backSty, lineSty, foreSty)
+    
+    ::PlayGame(?onDefeat => slide)
+       slide : $Create(lambda(stage => async))
+            await $DoPlayGame(stage, free? onDefeat)
+
+    ::ConfirmDefeat(=> slide)
+        slide : $If(`state[$Campaign.Defeated] ? false`, $Create(lambda(stage => async)))
+            await $Fork.DoConfirmDefeat(stage)
+    
+    ::Victory(text => slide)
+        slide : $Create(lambda(stage => async))
+            await $DoVictory(stage, text)
+
+    ::Setup(text, ?hint => slide)
+        text : $GT(text)
+        slide : $Create(lambda(stage => async))
+            await $DoSimplePopup(stage, "Setup", text)
+
+    ::Popup(title, text => slide)
+        text : $GT(text)
+        slide : $Create(lambda(stage => async))
+            await $DoSimplePopup(stage, title, text)
+
+    ::If(&testCond, slide => slide)
+        slide.ifShow : free testCond
+                
+
+    ::IfExpert(&subSlide => slide)
+        => $If(`state.$Campaign.State.IsExpert()`, free subSlide)
+    
+    ::IfNotExpert(&subSlide => slide)
+        => $If(`!state.$Campaign.State.IsExpert()`, free subSlide)
+
+    ::IfDefeat(&subSlide => slide)
+        => $If(`state[$Campaign.Defeated] ? false`, free subSlide)
+    
+    ::IfNotDefeat(&subSlide => slide)
+        => $If(`!(state[$Campaign.Defeated] ? false)`, free subSlide)
+
+    ::Narrative(instructions => slide)
+        instructions : $GT(instructions)
+        slide : $Create(lambda(stage => async))
+            await $DoSimplePopup(stage, "Story", instructions)
+
+    
+    
+    ::EnemyStageCheck(villian => check)
+        // simple difficulty check for stage I/II/III villans
+        check : dim
+            dynamicText : lambda(stage => text)
+                text : "**Villian Deck**: " + switch(stage.state.difficulty)
+                    1 : villian + " (select any stage - your choice)"
+                    2 : villian + " (I), " + villian + " (II)"
+                    else : villian + " (II), " + villian + " (III)"
+
+    ::ExpertEncounterSetCheck(=> check)
+        // conditionally include the expert set
+        check : $CheckList.MakeCheck("Expert set", `stage.state.$Campaign.State.IsExpert()`)
+
+    ::HookAdvance(stage, lamb)
+        $g.HookKeyDown(stage.ct, lambda(event)[free? lamb])
+            if event.key = "ArrowRight" | event.key = "Enter"
+                $(lamb)
+
+    ::PassThrough(lamb => slide)
+        slide : $Create(lambda(stage => async)[free? lamb])
+            stage.overrideDir : stage.dir // continue going
+            $(lamb, stage)
+
+    ::DoSimplePopup(stage, title, text, ?btLabel => async)
+        btLabel ?: "OK"
+        @pipe : stage.ct.$Canceler.MakePipe()
+
+        @pop : dim $Popup.Create(title)
+
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml(text))
+                mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
+
+            mixin $Popup.AddBotRightButton(lambda, btLabel)
+                pipe.$Pipe.Kill()
+        
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+        
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(10) // pause is waiting for an animation frame already
+
+    ::DoVictory(stage, text => async)
+        @pipe : stage.ct.$Canceler.MakePipe()
+
+        @pop : dim $Popup.Create("VICTORY!")
+
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml(text))
+                mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
+
+            mixin $Popup.AddBotRightButton(lambda)
+                pipe.$Pipe.Kill()
+        
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        //@wrapper : $g.Stage.$AppendChild(dim $Div.Create())
+        //    mixin $Style.AddClasses("confettiWrap")
+        //for 0 to 200
+        //    wrapper.$AppendChild(dim $Div.Create())
+        //        mixin $Style.AddClasses("confetti-" + it)
+
+        await pipe.$Pipe.ReadAsync()
+        
+        pop.$Style.AddClasses("fadeOut", "slow")
+        await $Job.Pause(1000) // pause is waiting for an animation frame already
+
+
+::DoNumPlayers(stage => async)
+    @pipe : stage.ct.$Canceler.MakePipe()
+
+    @pop : $g.Stage.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("popup")
+
+    @cnt : await $Util.WaitGetFirst(stage.ct, dim)
+        1 : `await $pbHelper(stage, pop, "multitasking", "I work alone", "1 Player")`
+        2 : `await $pbHelper(stage, pop, "two_against", "Dynamic Duo", "2 Players")`
+        3 : `await $pbHelper(stage, pop, "triple_threat", "Titanic Trio", "3 Players")`
+        4 : `await $pbHelper(stage, pop, "strength_in_numbers", "Team Up", "4 Players")`
+
+    if cnt != null
+        stage.delta["players"] : cnt
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50) // pause is waiting for an animation frame already
+
+::pbHelper(stage, container, img, text, subtext => async)
+    @pipe : stage.ct.$Canceler.MakePipe()
+
+    container.$AppendChild(dim $Button.Create())
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+        mixin $Style.AddClasses("playerCount")
+        mixin $AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("pcImgContainer")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("pcImg")
+                mixin $Style.SetBackgroundImage("assets/cards/" + img + ".jpg")
+        mixin $AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("pcTextContainer")
+            mixin $AppendChild(dim $Paragraph.Create(text))
+                mixin $Style.AddClasses("pcDesc")
+            mixin $AppendChild(dim $Paragraph.Create(subtext))
+                mixin $Style.AddClasses("pcInfo")
+    
+    await pipe.$Pipe.ReadAsync()
+        
+
+::DoHeroPicker(stage, idx => async)
+    @pipe : stage.ct.$Canceler.MakePipe()
+
+    @pop : $g.Stage.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("popup", "heroSelect")
+
+        mixin $AppendChild(dim $Paragraph.Create("Player " + idx))
+            mixin $Style.AddClasses("text", "top-left")
+
+        mixin $AppendChild(dim $Paragraph.Create("Player Name:"))
+            mixin $Style.AddClasses("label")
+
+    @txt : pop.$AppendChild(dim $TextEntry.Create())
+        mixin $TextEntry.SetText("Player " + idx)
+
+    @scroller : pop.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("heroScroll")
+
+    for @hero : $Heroes.GetHeroes()
+        @bt : scroller.$AppendChild(dim $Button.Create())
+            mixin $Style.AddClasses("btHero")
+            mixin $Button.HookClick(lambda)
+                trap pipe.$Pipe.Write(hero)
+            
+            mixin $AppendChild(hero.$Heroes.MakeHeroBanner())
+    
+    @pick : await pipe.$Pipe.ReadAsync()
+    if pick != null
+        stage.delta["player", idx, "hero"] : pick.$Heroes.GetName()
+        @name : txt.$TextEntry.GetText()
+        if name = "" \ name : "Mr. Smartypants"
+        stage.delta["player", idx, "name"] : name
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50) // pause is waiting for an animation frame already
+
+
+
+::DoScenarioStart(stage, card, num, campaign, title, backSty, lineSty, foreSty => async)
+
+    @container : $g.Stage.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("scenario")
+
+    @book : $g.MakeComicBookCard(card, campaign.name, "", num, title, backSty, lineSty, foreSty)
+    container.$AppendChild(book)
+        
+    @heroContainer : book.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("heroes")
+
+    for @obj : stage.state["player"] ? dim()
+        @hero : $Heroes.LookupByName(obj.hero)
+        heroContainer.$AppendChild(hero.$Heroes.MakeHeroBadge())
+
+    @rPanel : container.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("rPanel")
+
+    @pipe : stage.ct.$Canceler.MakePipe()
+
+    rPanel.$AppendChild(dim $mkPowButton("START!"))
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+    
+    $Slide.HookAdvance(stage, lambda)
+        pipe.$Pipe.Kill()
+    
+    @diff : rPanel.$AppendChild(dim $Dropdown.Create())
+        mixin $Dropdown.AddOption("Difficulty - Rookie Mode", 1)
+        mixin $Dropdown.AddOption("Difficulty - Standard Mode", 2)
+        mixin $Dropdown.AddOption("Difficulty - Expert Mode", 3)
+        //mixin $Dropdown.AddOption("Difficulty - Heroic Mode", 4)
+    diff.$Dropdown.SetValue((stage.state["difficulty"] ? stage.ghost["difficulty"]) ? 2)
+
+    await pipe.$Pipe.ReadAsync()
+    stage.delta["difficulty"] : diff.$Dropdown.GetValue()
+    container.$Style.AddClasses("fadingOut")
+    await $Job.Pause(10)
+
+::DoPlayGame(stage, ?onDefeat => async)
+    @canDefeat : (onDefeat != null)
+    @pipe : stage.ct.$Canceler.MakePipe()
+    @container : $g.Stage.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("playGame")
+        mixin $Style.SetClassIf("canDefeat", canDefeat)
+        mixin $AppendChild($Paragraph.Create("All Set! Click the button below once the scenario is complete"))
+
+    if canDefeat
+        container.$AppendChild(dim $mkPowButton("DEFEAT"))
+            mixin $Style.AddClasses("defeat")
+            mixin $Button.HookClick(lambda)
+                if stage.ct.$Canceler.IsLive()
+                    $(onDefeat, stage)
+                pipe.$Pipe.Kill()
+
+    container.$AppendChild(dim $mkPowButton("VICTORY!"))
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+    if !canDefeat
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+    await pipe.$Pipe.ReadAsync()
+
+
+::mkPowButton(text => button)
+    using Dom
+    button : dim $Button.Create()
+        mixin $Style.AddClasses("powContainer")
+        mixin $AppendChild($mkDiv("pow", "back"))
+        mixin $AppendChild($mkDiv("pow", "fore"))
+        mixin $AppendChild(dim $mkDiv("powText"))
+            mixin $SetText(text)
+        //mixin $AppendChild(dim $Paragraph.Create(text))
+            //mixin $Style.AddClasses("powText")
+
+::mkDiv(classes[] => elem)
+    elem : dim $Dom.Div.Create()
+    for classes
+        elem.$Dom.Style.AddClasses(it)

@@ -1,0 +1,679 @@
+
+using Slide
+
+library Campaign
+    data : dim $Campaign.Create("The Rise of Red Skull", $Img.RedSkull)
+        mixin $Campaign.mixOfficalCampaign(1)
+        mixin $mixTooltipGen(`$RedSkull.TooltipGen(state, player)`)
+
+        mixin $mixProductInfo(dim)
+            "The Rise of Red Skull expansion"
+
+        mixin $mixSaveGameReminder()
+
+        mixin $mixHeroSelection()
+
+        mixin $mixModeSelect()
+
+            //$IfExpert($Slide.Create(lambda(stage => async)))
+            //    await $RedSkull.DoPickNumbers(stage)
+
+        //////////// MISSION 1 ////////////
+        mixin $mixMission("R0", 1, "Attack on Mount Athena", $Img.Crossbones, dim
+                _ , $g.BackStyle.Black, $g.LineStyle.Black, $g.ForeStyle.White
+                _ , "Read page 4 from The Rise of Red Skull rule book")
+
+            $CheckList("Setup", dim, null, $Img.Crossbones)
+                $EnemyStageCheck("Crossbones")
+                $CheckList.MakeCheck("**Main Scheme Deck**: Attack on Mount Athena, The Infinity Gem, The Getaway")
+
+            $CheckList("Setup", dim, "**Encounter Deck**", $Img.HydraBomber)
+                $CheckList.MakeCheck("Crossbones set")
+                $CheckList.MakeCheck("Experimental Weapons set (set this aside)")
+                $CheckList.MakeCheck("Hydra Assault set")
+                $CheckList.MakeCheck("Weapon Master set")
+                $CheckList.MakeCheck("Legions of Hydra set")
+                $CheckList.MakeCheck("Standard set")
+                $ExpertEncounterSetCheck()
+            
+            $Setup(textdata)
+                **Set up the Experimental Weapons deck**:
+                Shuffle the Experimental Weapons set cards together, and set them next to the main-scheme deck.
+            
+            $PlayGame()
+
+            $IfExpert($CheckList("Experimental Weapons", dim, "Which *EXPERIMENTAL* attachments entered the game?", null, true))
+                $CheckList.MakeCheck("Laser Rifle", null, lambda)
+                    stage.delta["Weapon", "Laser Rifle"] : true
+                $CheckList.MakeCheck("Energy Shield", null, lambda)
+                    stage.delta["Weapon", "Energy Shield"] : true
+                $CheckList.MakeCheck("Power Gauntlets", null, lambda)
+                    stage.delta["Weapon", "Power Gauntlets"] : true
+                $CheckList.MakeCheck("Exo Suit", null, lambda)
+                    stage.delta["Weapon", "Exo Suit"] : true
+                    
+            $IfExpert($RecordHP())
+
+            $Slide.Create(lambda(stage => async))
+                @text : "Each player chooses a TECH upgrade from the Hydra Campaign set and adds it to their deck."
+                await $RedSkull.DoDistributeVictory(stage, $RedSkull.TechUp, text, dim)
+                    "Adrenal Stims"
+                    "Tactical Scanner"
+                    "Emergency Teleport"
+                    "Laser Cannon"
+
+        //////////// MISSION 2 ////////////
+        mixin $mixMission("R1", 2, "None Shall Pass", $Img.AbsorbingMan, dim
+                _ , $g.BackStyle.Cyan, $g.LineStyle.Blue, $g.ForeStyle.Orange
+                _ , "Read page 6 from The Rise of Red Skull rule book")
+
+            $CheckList("Setup", dim, null, $Img.AbsorbingMan)
+                $EnemyStageCheck("Absorbing Man")
+                $CheckList.MakeCheck("**Main Scheme Deck**: None Shall Pass")
+
+            $CheckList("Setup", dim, "**Encounter Deck**", $Img.AbandonedFacility)
+                $CheckList.MakeCheck("Absorbing Man set")
+                $CheckList.MakeCheck("Hydra Patrol set")
+                $CheckList.MakeCheck("Standard set")
+                $ExpertEncounterSetCheck()
+
+            $RedSkull.SetupWeapons()
+            $RedSkull.SetupTechCards()
+            
+            $RedSkull.HealSlide()
+            $IfExpert($SetInitialHP())
+
+            $PlayGame()
+
+            $Slide.Create(lambda(stage => async))
+                await $RedSkull.DoRecordDelay(stage)
+
+            $IfExpert($RecordHP())
+
+            $Slide.Create(lambda(stage => async))
+                @text : $GTW(textdata)
+                    Each player may choose a "Basic" *Condition* upgrade from the Campaign set,
+                    attach it to their identity, and add it to their deck.
+                await $RedSkull.DoDistributeVictory(stage, $RedSkull.Condition, text, dim)
+                    "Basic Thwart Upgrade"
+                    "Basic Attack Upgrade"
+                    "Basic Defense Upgrade"
+                    "Basic Recovery Upgrade"
+            
+        //////////// MISSION 3 ////////////
+        mixin $mixMission("R2", 3, "Hunting Down Heroes", $Img.Taskmaster, dim
+                _ , $g.BackStyle.Black, $g.LineStyle.White, $g.ForeStyle.Orange
+                _ , "Read pages 8-9 from The Rise of Red Skull rule book")
+
+            $CheckList("Setup", dim, null, $Img.Taskmaster)
+                $EnemyStageCheck("Taskmaster")
+                $CheckList.MakeCheck("**Main Scheme Deck**: Hunting Down Heroes")
+
+            $CheckList("Setup", dim, "**Encounter Deck**", $Img.TaskmastersShield)
+                $CheckList.MakeCheck("Taskmaster set")
+                $CheckList.MakeCheck("Hydra Patrol set")
+                $CheckList.MakeCheck("Weapon Master set")
+                $CheckList.MakeCheck("Standard set")
+                $ExpertEncounterSetCheck()
+
+            $RedSkull.SetupWeapons()
+            $RedSkull.SetupTechCards()
+            
+            $RedSkull.HealSlide()
+            $IfExpert($SetInitialHP())
+
+            $PlayGame()
+
+            $IfExpert($RecordHP())
+            
+            $Slide.Create(lambda(stage => async))
+                @text : "Each player who rescured an ally from the Taskmaster encounter set adds those allies to their deck"
+                await $RedSkull.DoDistributeVictoryMulti(stage, $RedSkull.AlliesUnlocked, text, dim)
+                    "Moon Knight"
+                    "Shang-Chi"
+                    "White Tiger"
+                    "Elektra"
+
+        //////////// MISSION 4 ////////////
+        mixin $mixMission("R3", 4, "The Island of Dr. Zola", $Img.Zola, dim
+                _ , $g.BackStyle.Purple, $g.LineStyle.Yellow, $g.ForeStyle.Yellow
+                _ , "Read page 11 from The Rise of Red Skull rule book")
+            
+            $CheckList("Setup", dim, null, $Img.Zola)
+                $EnemyStageCheck("Zola")
+                $CheckList.MakeCheck("**Main Scheme Deck**: The Island of Dr. Zola, The Mad Doctor")
+
+            $CheckList("Setup", dim, "**Encounter Deck**", $Img.TechnologicalEnhancements)
+                $CheckList.MakeCheck("Zola set")
+                $CheckList.MakeCheck("Under Attack set")
+                $CheckList.MakeCheck("Standard set")
+                $ExpertEncounterSetCheck()
+
+            $RedSkull.SetupWeapons()
+            $RedSkull.SetupTechCards()
+            
+            $RedSkull.HealSlide()
+            $IfExpert($SetInitialHP())
+
+            $PlayGame()
+
+            $IfExpert($RecordHP())
+
+            $Slide.Create(lambda(stage => async))
+                @text : "Which players ended the game engaged with an enemy?"
+                await $CheckList.DoPlayerList(stage, $RedSkull.EnemyEngaged, "Victory", text,
+                    _ "Engaged with an enemy", `(player["hp"] ? 1) > 0`, "Not in play")
+
+            $Slide.Create(lambda(stage => async))
+                using Fork
+                @text : "Is the Hydra Prison side scheme still in play?"
+                await $DoFork(stage, $RedSkull.Prison, "Victory", text, dim)
+                    $MakeOption("Hydra Prison in play", true)
+                    $MakeOption("Not in play", false)
+
+            $If(`$RedSkull.IfPromptForPrisoners(state)`, $Slide.Create(lambda(stage => async)))
+                @poss : $RedSkull.GetAlliesFreed(stage.state)
+                using CheckList
+                @list : poss.$List.Map(`$MakeCheck(it, null, lambda, stage.ghost[$RedSkull.AlliesInPrison, it])`)
+                    stage.delta[$RedSkull.AlliesInPrison, it] : true
+                await $DoChecklist(stage, "Victory", $GT(textdata), list, null, true)
+                    Which allies are underneath the Hydra Prison side scheme?
+
+                    **These allies cannot be included in any deck for the remainder of the campaign.**
+
+            $If(`$RedSkull.IfUpgradeConditions(state)`, $Slide.Create(lambda(stage => async)))
+                @text : "Which players ended the game in hero form?"
+                await $RedSkull.DoUpgradeCondition(stage)
+
+        //////////// MISSION 5 ////////////
+        mixin $mixMission("R4", 5, "New World Hydra", $Img.RedSkullVillian, dim
+                _ , $g.BackStyle.Black, $g.LineStyle.Red, $g.ForeStyle.Red
+                _ , "Read page 13-14 from The Rise of Red Skull rule book")
+
+            $CheckList("Setup", dim, null, $Img.RedSkullVillian)
+                $EnemyStageCheck("Red Skull")
+                $CheckList.MakeCheck("**Main Scheme Deck**: The Rise of Red Skull, New World Hydra")
+
+            $CheckList("Setup", dim, "**Encounter Deck**", $Img.TwistedReality)
+                $CheckList.MakeCheck("Red Skull set")
+                $CheckList.MakeCheck("Hydra Assault set")
+                $CheckList.MakeCheck("Hydra Patrol set")
+                $CheckList.MakeCheck("Standard set")
+                $ExpertEncounterSetCheck()
+
+            $Setup(textdata)
+                Construct the side-scheme deck (see The Rise of Red Skull 1A).
+                Search the encounter deck for each side scheme and shuffle them together
+                into their own deck. This is the side-scheme deck. Set it next to the
+                main-scheme deck.
+
+                **Reminder:** the side-scheme deck has it's own discard pile. When a side-scheme is 
+                defeated or otherwise discarded, place it in the side-scheme discard pile.
+                if the side-scheme deck is ever empty, shuffle the side-scheme discard pile
+                into the side-scheme deck. There is no penalty for doing this.
+
+            $RedSkull.SetupWeapons()
+            $RedSkull.SetupTechCards()
+
+            $Slide.Create(lambda(stage => async))
+                @cnt : stage.state[$RedSkull.DelayCounters] ? 1
+                if stage.state.$Campaign.State.IsExpert()
+                    cnt *: stage.state.players
+                // the lightweight markdown library I found doesn't handle bolding numbers
+                // also, it just lets tags through... probably something to keep in mind.
+                @text : "Place <em><b>" + cnt + "</b></em> threat counters on the main scheme."
+                await $Slide.DoSimplePopup(stage, "Setup", text)
+            
+            $RedSkull.HealSlide()
+            $IfExpert($SetInitialHP())
+
+            $If(`$RedSkull.IfEnemyEngaged(state)`, $Slide.Create(lambda(stage => async)))
+                @text : "Players engaged with an enemy after the last mission deal themselves an encounter card"
+                await $CheckList.DoPlayerSpecificInstructions(stage, "Setup", text, lambda(player))
+                    return switch
+                        player[$RedSkull.EnemyEngaged] ? false : "Deal 1 face down encounter card"
+                        else : ""
+            
+            $IfNotExpert($PlayGame()) // can't lose on basic
+
+            $IfExpert($PlayGame(lambda)) // can lose on expert
+                stage.delta[$Campaign.Defeated] : true
+            $ConfirmDefeat()
+            
+            $PassThrough(lambda(stage))
+                stage.delta[$Campaign.Complete] : true
+
+        mixin $mixWrapUpDefeat(dim)
+            $Checkpoint("R5", "Red Skull conquers the world")
+            $Slide.Popup("DEFEAT","The heroes were defeated. Red Skull conquers the world.")
+
+        mixin $mixWrapUpVictory(dim)
+            $PassThrough(lambda(stage))
+                stage.delta[$Campaign.Victory] : true
+            $Checkpoint("R6", "Hydra was defeated!")
+            $Slide.Popup("VICTORY!", "Read page 16 from The Rise of Red Skull rule book")
+            $Slide.Victory("Hydra is defeated and the players win the campaign!")
+            
+
+library RedSkull
+    $TechUp : "tech upgrade"
+    $Condition : "condition"
+    $ConditionUpgraded : "condition upgraded"
+    $Obligations : "obligations"
+    $DelayCounters : "delay counters"
+    $AlliesUnlocked : "allies"
+    $EnemyEngaged : "enemy engaged"
+    $Prison : "prison in play"
+    $AlliesInPrison : "allies in prison"
+
+    ::TooltipGen(state, player => tooltip)
+        @addCard : dim()
+        @remCard : dim()
+        
+        for @key : dim($TechUp, $Condition)
+            if player[key] != null
+                addCard.$List.Add(player[key])
+
+        for @card of player[$AlliesUnlocked] ? dim()
+            if state[$AlliesInPrison, card] ? false
+                remCard.$List.Add(card)
+            else
+                addCard.$List.Add(card)
+
+        for @card in player[$Obligations] ? dim()
+            addCard.$List.Add(card)
+
+        if addCard.$Obj.HasChildren()
+            tooltip : "Additional Cards:"
+            for addCard
+                tooltip +: "\n\n" + "* *" + it + "*"
+            for remCard
+                tooltip +: "\n\n" + "* ~~" + it + "~~"
+
+    ::HealSlide( => slide)
+        => $IfCanHeal($Create(lambda(stage => async)))
+            await $DoHeal(stage)
+
+    ::IfCanHeal(&subSlide => slide)
+        => $If(lambda(state => bool), free subSlide)
+            if !state.$Campaign.State.IsExpert()
+                return false
+            for @idx in state.player
+                @hero : state.$Campaign.State.GetHero(idx)
+                if state.$Campaign.State.GetHp(idx) < hero.$Heroes.GetHp()
+                    return true
+            return false
+    ::SetupTechCards(=> slide)
+        => $Setup(textdata)
+            Each player searches their deck for all cards with the setup keyword and puts them into play.
+
+    ::IfWeapons(state => bool)
+        => state has Weapon
+
+    ::SetupWeapons(=> slide)
+        @lbl : $GT(textdata)
+            Shuffle each *EXPERIMENTAL* attachment recorded in the capaign log into the encounter deck
+        slide : $Slide.If(`$IfWeapons(state)`, $CheckList("Experimental Weapons", dim, lbl, $Img.PowerGauntlets))
+            $CheckList.MakeCheck("Laser Rifle", `stage.state["Weapon", "Laser Rifle"] ? false`)
+            $CheckList.MakeCheck("Energy Shield", `stage.state["Weapon", "Energy Shield"] ? false`)
+            $CheckList.MakeCheck("Power Gauntlets", `stage.state["Weapon", "Power Gauntlets"] ? false`)
+            $CheckList.MakeCheck("Exo Suit", `stage.state["Weapon", "Exo Suit"] ? false`)
+
+    ::DoPickNumbers(stage => async)
+        // TODO: probably delete this - I totally misunderstood how this worked
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+
+        @pop : dim $Popup.Create("Obligations")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                    Each player is assigned a number 1 to 4.
+                    This number corresponds to obligations which might later be added to the player's deck.
+
+        @container : pop.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("numberAssignments")
+        
+        @assignments : dim(1,2,3,4)
+        assignments.$List.Shuffle()
+
+        for @idx in stage.state.player
+            @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
+            @num : assignments[idx - 1]
+            stage.delta["player",idx,"obligationNum"] : num
+            container.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("assigned")
+                mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                mixin $AppendChild($Paragraph.Create("" + num))
+        
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50)
+    
+    ::DoDistributeVictory(stage, key, text, cards => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+        
+        @pop : dim $Popup.Create("Victory")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml($GTW(text)))
+
+        @container : pop.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("playerCardAssign")
+
+        @selectors : dim() // not every hero gets a selector!
+
+        for @idx in stage.state.player
+            @hero : stage.state.$Campaign.State.GetHero(idx)
+            @alive : !stage.state.$Campaign.State.IsExpert() | stage.state.$Campaign.State.GetHp(idx) > 0
+            @playerCard : container.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("player")
+                mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+            if !alive
+                playerCard.$Style.AddClasses("dead")
+            @rightPane : playerCard.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("pickers")
+            if alive
+                @drop : rightPane.$AppendChild(dim $Dropdown.Create())
+                    mixin $Dropdown.AddOption("")
+                for cards
+                    drop.$Dropdown.AddOption(it, it)
+                drop.$Dropdown.SetValue(stage.ghost["player", idx, key, 0] ? "")
+                selectors[idx] : drop
+            else
+                rightPane.$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))
+        
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+
+        for @pick of selectors at @idx
+            @val : pick.$Dropdown.GetValue()
+            if val != ""
+                stage.delta["player", idx, key] : val
+
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50)
+
+
+    ::DoHeal(stage => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+        
+        @pop : dim $Popup.Create("Persistent Damage")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                    Each player may heal to full health by adding an obligation from their
+                    expert-campaign set to their deck.
+
+        @container : pop.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("healing")
+
+        @allObligations : dim
+            "Zola's Algorithm"
+            "Medial Emergency"
+            "Martial Law"
+            "Anti-Hero Propaganda"
+
+        @checks : dim()
+        @selectors : dim()
+
+        for @idx in stage.state.player
+            @hp : stage.state.$Campaign.State.GetHp(idx)
+            @hero : stage.state.$Campaign.State.GetHero(idx)
+            @alive : hp > 0
+            @currOblig : stage.state.player[idx, $Obligations]
+            @possOblig : allObligations.$List.Filter(`!currOblig[it]`)
+            @ghost : stage.ghost["player", idx, $Obligations]
+
+            @playerCard : container.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("player")
+                mixin $Style.SetClassIf("dead", !alive)
+                mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $AppendChild(dim $Paragraph.Create("HP"))
+                        mixin $Style.AddClasses("hpLbl")
+                    mixin $AppendChild(dim $Paragraph.Create("" + hp + "/" + hero.$Heroes.GetHp()))
+                        mixin $Style.AddClasses("hp")
+            
+            @rightPane : playerCard.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("rPane")
+
+            @id : "chkOpt" + ~idx
+            @lbl : rightPane.$AppendChild(dim $Checkbox.CreateLabelFor(id))
+                mixin $Style.SetClassIf("noDisp", hp >= hero.$Heroes.GetHp() | !alive)
+
+            @paneAdd : rightPane.$AppendChild(dim $Div.Create())
+                mixin $Style.SetClassIf("noDisp", alive & ghost = null)
+            
+            (@chk, checks[idx]) : lbl.$AppendChild(dim $Checkbox.Create())
+                mixin $SetId(id)
+                mixin $Checkbox.SetIsChecked(!alive | ghost != null)
+            chk.$Checkbox.HookChange(lambda)
+                paneAdd.$Style.SetClassIf("noDisp", !chk.$Checkbox.IsChecked())
+            lbl.$AppendChild(dim $Paragraph.Create("Heal to full health"))
+            
+            @lblObligation : paneAdd.$AppendChild(dim $Paragraph.Create("Select an obligation to add to your deck:"))
+                mixin $Style.AddClasses("obligation")
+
+            selectors[idx] : paneAdd.$AppendChild(dim $Dropdown.Create())
+            for possOblig
+                selectors[idx].$Dropdown.AddOption(it, it)
+            @pick : possOblig.$List.QuickPick()
+            if ghost != null
+                pick : ghost.$Obj.NextKey()
+            selectors[idx].$Dropdown.SetValue(pick)
+        
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+
+        for @chk of checks at @idx
+            if chk.$Checkbox.IsChecked()
+                @pick : selectors[idx].$Dropdown.GetValue()
+                stage.delta["player", idx, $Obligations, pick] : true
+                @hero : stage.state.$Campaign.State.GetHero(idx)
+                stage.delta["player", idx, "hp"] : hero.$Heroes.GetHp()
+
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50)
+
+
+    ::DoRecordDelay(stage => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+
+        @pop : dim $Popup.Create("Delay")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                    How many delay counters are on the main scheme?
+        
+        @initNum : stage.ghost[$DelayCounters] ? 5
+        @entryField : pop.$AppendChild(dim $NumberEntry.Create())
+            mixin $Style.AddClasses("numberEntry")
+            mixin $NumberEntry.SetText(initNum)
+        
+        pop.$Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
+        $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
+
+        await pipe.$Pipe.ReadAsync()
+        if stage.ct.$Canceler.IsLive()
+            stage.delta[$DelayCounters] : $Math.Floor(entryField.$NumberEntry.GetText())
+            pop.$Style.AddClasses("fadingOut")
+            await $Job.Pause(50) // pause is waiting for an animation frame already
+
+
+    ::DoDistributeVictoryMulti(stage, key, text, cards => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+        
+        @pop : dim $Popup.Create("Victory")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml($GTW(text)))
+
+        @container : pop.$AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("playerCardAssign", "multi")
+
+        @panesForSelectors : dim()
+        @selectors : dim()
+
+        // I have a chicken an egg problem, this event needs to be able to add itself to new controls
+        // so I need a constant reference that it can capture with the lambda
+        // the alternative is to pre-build all the controls and hide/show them
+        // neither seems like a slam dunk
+        @placeholder : dim
+        placeholder.syncSelectors : lambda
+            for @idx in selectors
+                while !selectors[idx].$List.Any(`it.$Dropdown.GetValue() = ""`)
+                    @cIdx : selectors[idx].$Obj.Count()
+                    @prev : stage.ghost["player", idx, key, cIdx]
+                    @drop : dim $addSelectorToPane(panesForSelectors[idx], cards, prev)
+                        mixin $Dropdown.HookChange(placeholder.syncSelectors)
+                    selectors[idx].$List.Add(drop)
+
+        for @idx in stage.state.player
+            @hero : stage.state.$Campaign.State.GetHero(idx)
+            @alive : !stage.state.$Campaign.State.IsExpert() | stage.state.$Campaign.State.GetHp(idx) > 0
+            @playerCard : container.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("player")
+                mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+            if !alive
+                playerCard.$Style.AddClasses("dead")
+            panesForSelectors[idx] : playerCard.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("pickers")
+            if alive
+                selectors[idx] : dim()
+            else
+                panesForSelectors[idx].$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))
+        
+        $(placeholder.syncSelectors)
+        
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+
+        for @arr of selectors at @idx
+            stage.delta["player", idx, key] : dim()
+            for @pick of arr
+                @val : pick.$Dropdown.GetValue()
+                if val != ""
+                    stage.delta["player", idx, key].$List.Add(val)
+
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50)
+
+    ::addSelectorToPane(pane, options, ?selected => drop)
+        using Dom
+        drop : pane.$AppendChild(dim $Dropdown.Create())
+            mixin $Dropdown.AddOption("")
+        for options
+            drop.$Dropdown.AddOption(it, it)
+        if selected != null
+            drop.$Dropdown.SetValue(selected)
+
+
+    ::IfPromptForPrisoners(state => bool)
+        if state[$RedSkull.Prison] ? false
+            return $GetAlliesFreed(state).$Obj.Count() > 0
+        return false
+
+    ::GetAlliesFreed(state => list)
+        list : dim()
+        for state.player
+            if it[$AlliesUnlocked] != null
+                list.$List.AppendList(copy it[$AlliesUnlocked])
+
+    ::IfUpgradeConditions(state => bool)
+        if state[$RedSkull.Prison] ? false
+            return false
+        bool : state.player.$List.Any(`it[$Condition] != null`)
+
+    ::DoUpgradeCondition(stage => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+
+        @pop : dim $Popup.Create("Victory")
+            mixin $Style.AddClasses("upgradeCard")
+            mixin $Popup.AddMarkdown(textdata)
+                Each player who ended the game in hero form may replace their "Basic"
+                *Condition* upgarde with it's "Improved" side
+            mixin $Popup.AddBotRightButton(lambda)
+                pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        @elems : dim()
+        for @player of stage.state.player at @idx
+            @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
+            @condition : player[$Condition] ? ""
+            @isEnabled : condition != "" & (player["hp"] ? 1) > 0
+            @id : "chkOpt" + ~idx
+            @isPreChecked : stage.ghost["player", idx, $Condition] ? false
+            @lbl : pop.$AppendChild(dim $Checkbox.CreateLabelFor(id))
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("player")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                mixin $Style.SetClassIf("disabled", !isEnabled)
+            @chk : lbl.$AppendChild(dim $Checkbox.Create())
+                mixin $SetId(id)
+            if isPreChecked
+                chk.$Checkbox.SetIsChecked(true)
+            if !isEnabled
+                chk.$SetAttribute("disabled", "disabled")
+            elems[idx] : chk
+            
+            @disp : switch
+                condition = "" : "No Basic condition to upgrade"
+                isEnabled : "Ended the game in hero mode"
+                else : "Recovering (not participating)"
+            @rPane : lbl.$AppendChild(dim $Div.Create())
+            rPane.$AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($MarkdownToHtml(disp))
+            
+            @textBonus : "Replace " + condition + " with it's upgraded side"
+            @ctlBonus : rPane.$AppendChild(dim $Paragraph.Create(textBonus))
+                mixin $Style.AddClasses("bonus")
+                mixin $Style.SetClassIf("noDisp", !isPreChecked)
+            chk.$Checkbox.HookChange(lambda)
+                ctlBonus.$Style.SetClassIf("noDisp", !chk.$Checkbox.IsChecked())
+            
+        await pipe.$Pipe.ReadAsync()
+        if stage.ct.$Canceler.IsLive()
+            for @idx in stage.state.player
+                if elems[idx].$Checkbox.IsChecked()
+                    @prev : stage.state["player", idx, $Condition]
+                    stage.delta["player", idx, $Condition] : $GetUpgradedCondition(prev)
+
+            pop.$Style.AddClasses("fadingOut")
+            await $Job.Pause(50) // pause is waiting for an animation frame already
+
+    ::GetUpgradedCondition(condition => condition)
+        => switch(condition)
+            "Basic Thwart Upgrade" : "Improved Thwart Upgrade"
+            "Basic Attack Upgrade" : "Improved Attack Upgrade"
+            "Basic Defense Upgrade" : "Improved Defense Upgrade"
+            "Basic Recovery Upgrade" : "Improved Recovery Upgrade"
+            else : ""
+    
+    ::IfEnemyEngaged(state => bool)
+        if !state.$Campaign.State.IsExpert()
+            return false
+        bool : state.player.$List.Any(`it[$EnemyEngaged] ? false`)

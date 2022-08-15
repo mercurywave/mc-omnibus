@@ -1,0 +1,118 @@
+
+library Dom
+    extern $Body : dim
+    extern $Document : dim
+    extern ::CreateElement(tag => elem)
+    extern ::GetElement(id => elem)
+    
+    extern ::.HookEvent(evName, lamb)
+        // can assume "event"
+
+    library Div
+        ::Create( => div) => $CreateElement("div")
+
+    library Button
+        ::Create(=> button) => $CreateElement("button")
+        ::.HookClick(lamb) => this.$HookEvent("click", free? lamb)
+
+    library Checkbox
+        ::Create(=> checkbox) => $Input.Create("checkbox")
+        ::CreateLabelFor(id => label) // makes a new element - must have ID!
+            => dim $CreateElement("label")
+                mixin $SetAttribute("htmlFor", id)
+        ::.HookChange(lamb) => this.$HookEvent("change", free? lamb)
+        ::.IsChecked(=> checked) => this.$GetAttribute("checked")
+        ::.SetIsChecked(checked)
+            this.$SetAttribute("checked", checked)
+
+    library TextEntry
+        ::Create(=> input) => $Input.Create("text")
+        ::.SetText(text) \ this.$SetAttribute("value", text)
+        ::.GetText(=> text) => this.$GetAttribute("value")
+    
+    library NumberEntry
+        ::Create(=> input) => $Input.Create("number")
+        ::.SetText(num) \ this.$SetAttribute("value", num)
+        ::.GetText(=> num) => this.$GetAttribute("value")
+
+    library Dropdown
+        ::Create(=> elem) => $CreateElement("select")
+        ::.AddOption(text, ?val)
+            val ?: ""
+            this.$AppendChild(dim $CreateElement("option"))
+                mixin $SetAttribute("value", val)
+                mixin $SetText(text)
+        ::.GetValue(=> val) => this.$GetAttribute("value")
+        ::.SetValue(val) \ this.$SetAttribute("value", val)
+        ::.HookChange(lamb) => this.$HookEvent("change", free? lamb)
+
+    library Input
+        ::Create(type => input)
+            input : dim $CreateElement("input")
+                mixin $Input.SetType(type)
+        extern ::.SetType(type)
+        extern ::.SetValue(type)
+
+
+    library Paragraph
+        ::Create(?text => para)
+            para : $CreateElement("p")
+            if text != null \ para.$SetText(text)
+
+    library Heading
+        ::Create(level, ?text => elem)
+            elem : $CreateElement("h" + level)
+            if text != null \ elem.$SetText(text)
+
+    library Image
+        ::Create(path, ?alt => img)
+            => dim $CreateElement("img")
+                mixin $SetAttribute("src", path)
+                mixin $SetAttribute("alt", alt ? "")
+    
+    extern ::.AppendChild(child => child)
+    extern ::.ClearChildren()
+    extern ::.RemoveChild(child)
+    extern ::.SetAttribute(key, value)
+    extern ::.GetAttribute(key => value)
+    extern ::.GetId(=> id)
+    extern ::.SetId(id)
+    ::.HideShow(show)
+        if show \ this.$Style.RemoveClasses("noDisp")
+        else \ this.$Style.AddClasses("noDisp")
+    
+    library Style
+        extern ::.AddClasses(class[])
+        extern ::.RemoveClasses(class[])
+        extern ::.SetAttribute(key, value)
+        ::.SetBackgroundColor(clr) 
+            this.$Style.SetAttribute("backgroundColor", clr)
+        ::.SetBackgroundImage(url)
+            this.$Style.SetAttribute("backgroundImage", "url(" + url + ")")
+        ::.SetClassIf(class, condition)
+            if condition \ this.$AddClasses(class)
+            else \ this.$RemoveClasses(class)
+        ::.ToggleBetweenClasses(condition, trueClass, falseClass)
+            this.$SetClassIf(trueClass, condition)
+            this.$SetClassIf(falseClass, !condition)
+
+    ::.Hide() => this.$Style.AddClasses("nodisp")
+    ::.Show() => this.$Style.RemoveClasses("nodisp")
+
+    extern ::.SetHtml(html)
+    extern ::.SetText(text)
+
+    extern ::MarkdownToHtml(text => html)
+
+library Storage
+    // NOTE: storage requires JSON normalization
+    // you do NOT want to save references to static data / enums
+    extern ::Save(key, obj)
+    extern ::Load(key, def => obj)
+    extern ::Remove(key)
+    extern ::Clear()
+    extern ::AllKeys(=> keyArr)
+
+library Time
+    extern ::Now( => ticks)
+    extern ::NowUtc( => ticks)

@@ -1,0 +1,79 @@
+using Dom
+
+library Slide
+
+    ::RecordHP( => slide)
+        slide : $Create(lambda(stage => async))
+            await $HP.DoRecordHP(stage)
+
+    ::SetInitialHP( => slide)
+        slide : $Create(lambda(stage => async))
+            await $HP.DoSetInitialHP(stage)
+
+    library HP
+        ::DoRecordHP(stage => async)
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create("Persistent Damage")
+                mixin $AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                        Record each players final hit points (up to their printed hit points):
+
+            @container : pop.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hpRecord")
+
+            @fields : dim()
+            for @idx in stage.state.player
+                @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
+                @lastHp : stage.ghost["player",idx,"hp"] ? hero.$Heroes.GetHp()
+                @cell : container.$AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("heroHp")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                fields[idx] : cell.$AppendChild(dim $NumberEntry.Create())
+                    mixin $NumberEntry.SetText(lastHp)
+                // don't like how this looks
+                //cell.$AppendChild(dim $Paragraph.Create("/" + ~hero.$Heroes.GetHp()))
+                //    mixin $Style.AddClasses("hp")
+
+            @tryAdvance : lambda
+                if !fields.$List.Any(`it.$NumberEntry.GetText() = ""`)
+                    pipe.$Pipe.Kill()
+            
+            pop.$Popup.AddBotRightButton(tryAdvance)
+
+            $Slide.HookAdvance(stage, tryAdvance)
+
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                for @elem of fields at @idx
+                    stage.delta["player",idx,"hp"] : $Math.Floor(elem.$NumberEntry.GetText())
+                pop.$Style.AddClasses("fadingOut")
+                await $Job.Pause(50) // pause is waiting for an animation frame already
+
+        ::DoSetInitialHP(stage => async)
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create("Persistent Damage")
+                mixin $AppendChild(dim $Paragraph.Create())
+                    mixin $SetHtml($GTW(textdata))
+                        Set each player's starting hit points for the scenario to the following
+
+            @container : pop.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hpRecord")
+
+            for @idx in stage.state.player
+                @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
+                @lastHp : stage.state["player",idx,"hp"]
+                @cell : container.$AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("heroHp")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $AppendChild(dim $Paragraph.Create("" + ~lastHp))
+                        mixin $Style.AddClasses("hp")
+            
+            pop.$Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
+            $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
+
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                pop.$Style.AddClasses("fadingOut")
+                await $Job.Pause(50) // pause is waiting for an animation frame already

@@ -1,0 +1,49 @@
+
+library Storage
+
+    ::GetNewSaveKey(=> key)
+        => "cmp" + $Time.NowUtc()
+
+    ::SaveGame(campaign, key, state)
+        if !(state has checkpoint) \ quit
+        @obj : dim
+            campaign : campaign.$Campaign.GetName()
+            version : 1
+        obj.$Obj.MergeIn(state)
+        //$IO.Log("Saving:")
+        //$logDeep(obj)
+        $Storage.Save(key, obj)
+        $Storage.Save("lastSave", key)
+
+    ::GetContinueKey(=> key)
+        => $Storage.Load("lastSave", "")
+
+    ::CanContinue(=> bool)
+        @key : $GetContinueKey()
+        if key = "" \ return false
+        @state : $LoadGameState(key)
+        return switch
+            state = null : false
+            !(state has campaign) : false
+            state[$Campaign.Complete] ? false : false
+            else : true
+        
+    ::LoadGameState(key => state)
+        state : $UpdateSave($Load(key, null))
+
+    ::FindAllSaves(=> keys)
+        @map : dim()
+        for $AllKeys()
+            map[it] : true
+        keys : dim()
+        for @it in map
+            if it.$Str.SubStr(0,3).$Str.ToLower() = "cmp"
+                keys.$List.Add(it)
+        keys.$List.Reverse()
+
+    ::HasSaveGames(=> bool)
+        => $FindAllSaves().$Obj.HasChildren()
+
+::UpdateSave(&obj => cleaned)
+    // handle any breaking changes in the save format
+    cleaned : free obj

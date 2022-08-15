@@ -1,0 +1,253 @@
+global enum eNext
+    Forwards; Backwards; Done; Menu
+
+global ::Main(=> async)
+    
+    await $Menu.Run($Menu.DoMain)
+    //await $RunCampaign($Campaign.GetAllCampaigns()[0])
+
+
+global ::RunCampaign(campaign, ?key => async)
+    key ?: $Storage.GetNewSaveKey()
+    $IO.Log("RunCampaign " + key)
+    $SyncHeroFooter(campaign)
+    @history : dim()
+
+    @idx : 0
+    @minIdx : -1
+    @dir : $eNext.Forwards
+    @waitingForFirstSlide : false
+
+    @load : $Storage.LoadGameState(key)
+    if load != null & load.?checkpoint != null
+        for idx : 0 to campaign.slides.$Obj.Count()
+            if campaign.slides[idx,"checkpoint"] = load.checkpoint
+                break
+        idx : idx + 1
+        if idx >= campaign.slides.$Obj.Count()
+            $IO.Log("FAILED TO FIND CHECKPOINT!")
+        minIdx : idx
+        waitingForFirstSlide : true
+        history[0] : free load
+
+    @header : $MakeCampaignHeader(campaign)
+    defer header.$Dom.Style.AddClasses("fadeOut")
+
+    while true
+        @state, @checkState : $BuildStateFromDeltas(history, idx)
+        $Storage.SaveGame(campaign, key, checkState)
+
+        $SyncHeroFooter(campaign, state)
+        @showBack : idx > minIdx & !waitingForFirstSlide
+        dir, @delta, @didShow : await $RunSlide(campaign, state, idx, dir, history, showBack)
+        if waitingForFirstSlide & didShow
+            $IO.Log("min idx set " + idx)
+            minIdx : idx
+            waitingForFirstSlide : false
+
+        if dir = $eNext.Forwards
+            if delta.$Obj.HasChildren()
+                $log("Write delta:")
+                $logDeep(delta)
+            history[idx] : free delta
+
+        if dir = $eNext.Menu
+            $IO.Log("Quit to menu")
+            break
+        if dir = $eNext.Done 
+            $IO.Log("Done!")
+            break
+
+        idx : $GetNextIdx(idx, dir)
+        if idx >= campaign.slides.$Obj.Count()
+            $IO.Log("Reached end!")
+            break
+        if idx < 0
+            $IO.Log("Hit begining")
+            break
+    $SyncHeroFooter(campaign)
+    if idx < 0 // cancelling out of a campaign entirely
+        $Storage.Remove(key)
+        arun $Menu.Run($Menu.DoNewGame)
+    else
+        arun $Menu.Run($Menu.DoMain)
+
+::MakeCampaignHeader(campaign => element)
+    using Campaign
+    using Dom
+    $g.CampaignHeader.$ClearChildren()
+    element : $g.CampaignHeader.$AppendChild(dim $Div.Create())
+        mixin $AppendChild(campaign.$Campaign.MakeHeader())
+        mixin $AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("vh", "borderHelp")
+
+        mixin $AppendChild(dim $Div.Create())
+            mixin $SetText(campaign.$GetName())
+            mixin $Style.AddClasses("vt")
+
+::BuildStateFromDeltas(history, idx => state, checkState)
+    state : dim()
+    checkState : dim()
+    @temp : dim()
+    for 0 to idx
+        if history[it] != null
+            state.$Obj.MergeIn(history[it])
+            temp.$Obj.MergeIn(history[it])
+            if history[it] has checkpoint
+                checkState.$Obj.MergeIn(free temp)
+                temp : dim()
+
+::GetNextIdx(idx, dir => idx)
+    => switch(dir)
+        $eNext.Backwards : idx - 1
+        $eNext.Forwards : idx + 1
+        else : idx
+
+
+::RunSlide(campaign, state, idx, dir, history, canBackUp => async next, delta, didShow)
+
+    @slide : campaign.slides[idx]
+    delta : dim()
+    next : dir
+    didShow : false
+    @ct : $Canceler.Create()
+
+    @stage : dim
+        state : state
+        delta : delta
+        ct : ct
+        campaign : campaign
+        ghost : history[idx]
+        dir : dir
+        overrideDir : null
+    
+    if slide has ifShow
+        if !$(slide.ifShow, stage, state)
+            $IO.Log("[Skipping slide " + ~idx + "]")
+            quit // continue in this direction
+
+    if slide has checkpoint
+        if slide has delta \ delta.$Obj.MergeIn(copy slide.delta)
+        delta["checkpoint"] : slide.checkpoint
+        $IO.Log("Checkpoint: " + slide.checkpoint)
+
+    if slide.?func != null
+        $IO.Log("Run slide: " + ~idx)
+
+        if dir = $eNext.Backwards
+            $g.Stage.$Dom.Style.AddClasses("backwards")
+        else
+            $g.Stage.$Dom.Style.RemoveClasses("backwards")
+
+        @interactions : dim
+            $eNext.Menu : `await $MenuButton(ct)`
+            $eNext.Forwards : `await $(slide.func, stage)`
+        if canBackUp
+            interactions[$eNext.Backwards] : `await $BackButton(ct)`
+            
+        next : await $Util.WaitGetFirst(ct, free interactions)
+        if stage.overrideDir != null
+            next : stage.overrideDir
+        didShow : true
+            
+        $g.Stage.$Dom.ClearChildren()
+    ct.$Canceler.Cancel()
+
+
+::MenuButton(ct => async)
+    @pipe : $Pipe.Create()
+    ct.$Canceler.PipeClean(pipe)
+    
+    using Dom
+    @bt : $g.Stage.$AppendChild(dim $Button.Create())
+        mixin $Style.AddClasses("btMenu")
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+        mixin $SetText("Menu")
+        //mixin $AppendChild(dim $Image.Create("assets/menu.png"))
+
+    $g.HookKeyDown(ct, lambda(event))
+        if event.key = "Escape"
+            pipe.$Pipe.Kill()
+
+    await pipe.$Pipe.ReadAsync()
+
+::BackButton(ct => async)
+    @pipe : $Pipe.Create()
+    ct.$Canceler.PipeClean(pipe)
+    
+    using Dom
+    @bt : $g.Stage.$AppendChild(dim $Button.Create())
+        mixin $Style.AddClasses("btBack")
+        mixin $Button.HookClick(lambda)
+            pipe.$Pipe.Kill()
+        mixin $AppendChild(dim $Image.Create("assets/back.png"))
+
+    $g.HookKeyDown(ct, lambda(event))
+        if event.key = "ArrowLeft" | event.key = "Backspace"
+            pipe.$Pipe.Kill()
+
+    await pipe.$Pipe.ReadAsync()
+
+scratch RenderedHeroes : dim()
+//  ^RenderedHeroes[idx] : dim
+//      elem : {html element}
+//      hash : {hash of player}
+
+::SyncHeroFooter(camp, ?state)
+    state ?: dim()
+    //@dirty : false
+    //for @idx : 1 to 5
+        //@player : state["player", idx]
+        //if player = null | $PlayerHash(player) != ^RenderedHeroes[idx, "hash"]
+            //dirty : true
+    //if dirty
+    for @idx : 1 to 5
+        $UpdateHeroFooterBadge(state, idx, camp)
+
+    $g.HeroFooter.$Dom.HideShow(state["player"].$Obj.HasChildren())
+    
+::PlayerHash(player => hash)
+    if player = null \ return ""
+    //TODO: this is very hacky, and probably not neccessary anymore
+    // could probably just always build the tooltips
+    @str : ""
+    for @val of player at @key
+        if val.$Obj.HasChildren()
+            val : key + ":" + $PlayerHash(val)
+        str +: "\n" + key + ":" + val
+    hash : str //.$Str.Hash() // I could use a real hash, but there's very little reason to
+
+::UpdateHeroFooterBadge(state, idx, camp)
+    using Dom
+    @hostElem : $GetElement("hero_" + idx)
+    @prevObj : ^RenderedHeroes[idx]
+    @player : state["player", idx]
+    
+    if prevObj != null
+        if player = null | prevObj.hero != player.hero
+            hostElem.$ClearChildren()
+            free ^RenderedHeroes[idx]
+
+    if player != null
+        if prevObj = null | prevObj.hero != player.hero
+            @hero : $Heroes.LookupByName(player.hero)
+            @elem : hostElem.$AppendChild(dim hero.$Heroes.MakeHeroBadge())
+                mixin $Style.AddClasses("tooltipped")
+            @tooltip : elem.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("tooltip")
+            (^RenderedHeroes[idx], prevObj) : dim
+                hero : player.hero
+                hash : $PlayerHash(player)
+                elem : elem
+                tooltip : tooltip
+        @tooltip : ^RenderedHeroes[idx].tooltip
+        tooltip.$ClearChildren()
+        tooltip.$AppendChild(dim $Paragraph.Create(player.name ? ""))
+            mixin $Style.AddClasses("heroName")
+        if camp has tooltipGen
+            @text : $(camp.tooltipGen, state, player)
+            if text != null
+                tooltip.$AppendChild(dim $Div.Create())
+                    mixin $SetHtml($MarkdownToHtml(text))
+        

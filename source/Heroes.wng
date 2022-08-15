@@ -1,0 +1,137 @@
+
+registry AllHeroes : dim()
+::mkHero(left, right, band, file, alt, hp => img) 
+    => dim $Heroes.Create(file, alt, hp)
+        mixin $Heroes.mixColors(left, right, band)
+
+::.mixBannerLower() \ this.bannerLower : true
+::.mixBadgeLeft() \ this.badgeLeft : true
+::.mixBadgeRight() \ this.badgeRight : true
+::.mixBadgeDown() \ this.badgeDown : true
+
+library Heroes
+    ::Create(file, alt, hp => hero)
+        => ^AllHeroes.$List.Add(dim $Img.Reg("assets/heroes/" + file + ".png", "Card: " + alt))
+            name : alt
+            hp : hp
+    ::GetHeroes(=> list) => ^AllHeroes
+    ::.GetHp(=> hp) => this.hp
+    ::.GetName(=> name) => this.name
+    ::.mixColors(left, right, band)
+        this.clrLeft : "#" + left
+        if right = "" \ right : left
+        this.clrRight : "#" + right
+        this.clrBand : "#" + band
+    ::LookupByName(name => hero)
+        for ^AllHeroes
+            if it.name = name
+                return it
+        //TODO: custom hero / fallback
+
+    ::.MakeHeroBanner(=> elem)
+        using Dom
+        elem : dim $Div.Create()
+            mixin $Style.AddClasses("hero")
+            //mixin $AppendChild(dim $Image.Create(this.$Img.GetPath()))
+                //mixin $Style.AddClasses("hImg")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hImg")
+                mixin $Style.SetBackgroundImage(this.$Img.GetPath())
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hLeft")
+                mixin $Style.SetBackgroundColor(this.clrLeft)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hRight")
+                mixin $Style.SetBackgroundColor(this.clrRight)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hBandL")
+                mixin $Style.SetBackgroundColor(this.clrBand)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hBandR")
+                mixin $Style.SetBackgroundColor(this.clrBand)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hName")
+                mixin $SetText(this.name)
+            //mixin $AppendChild(dim $Paragraph.Create(this.name))
+        if this has bannerLower
+            elem.$Style.AddClasses("bannerLower")
+
+    ::.MakeHeroBadge(=> elem)
+        using Dom
+        elem : dim $Div.Create()
+            mixin $Style.AddClasses("heroBadge")
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hbRight")
+                mixin $Style.SetBackgroundColor(this.clrRight)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hbLeft")
+                mixin $Style.SetBackgroundColor(this.clrLeft)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hbBand")
+                mixin $Style.SetBackgroundColor(this.clrBand)
+            mixin $AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("hbImg")
+                mixin $Style.SetBackgroundImage(this.$Img.GetPath())
+            //mixin $AppendChild(dim $Image.Create(this.$Img.GetPath()))
+                //mixin $Style.AddClasses("hImg")
+        if this has badgeLeft
+            elem.$Style.AddClasses("hbNudgeLeft")
+        if this has badgeRight
+            elem.$Style.AddClasses("hbNudgeRight")
+        if this has badgeDown
+            elem.$Style.AddClasses("hbNudgeDown")
+
+
+    
+    data : dim $mkHero("111A28", "9F1A40", "FEBA12", "adam_warlock", "Adam Warlock", 11)
+    data : dim $mkHero("949599", "B32426", "211E25", "ant-man", "Ant Man", 12)
+        mixin $mixBadgeDown()
+    data : dim $mkHero("492A63", "", "F0E436", "black_panther", "Black Panther", 11)
+        mixin $mixBannerLower()
+    data : dim $mkHero("3D1213", "", "B12424", "black_widow", "Black Widow", 9)
+        mixin $mixBannerLower()
+    data : dim $mkHero("285380", "9E2E2C", "FFF", "captain_america", "Captain America", 11)
+        mixin $mixBadgeRight()
+    data : dim $mkHero("2A367E", "8E2A28", "F0E91F", "captain_marvel", "Captain Marvel", 12)
+    data : dim $mkHero("797C81", "841619", "D6A621", "doctor_strange", "Doctor Strange", 10)
+    data : dim $mkHero("40482A", "6F8443", "EC1F24", "drax", "Drax", 14)
+    data : dim $mkHero("D6D6D7", "0F542A", "040707", "gamora", "Gamora", 10)
+    data : dim $mkHero("F2F2F3", "2D1721", "D61586", "ghost-spider", "Ghost-Spider", 10)
+        mixin $mixBadgeRight()
+    data : dim $mkHero("6F4A1D", "432815", "432815", "groot", "Groot", 10)
+    data : dim $mkHero("1B3282", "000", "93278E", "hawkeye", "Hawkeye", 9)
+        mixin $mixBannerLower()
+    data : dim $mkHero("039856", "", "783D93", "hulk", "Hulk", 18)
+    data : dim $mkHero("912727", "", "F2EB21", "iron_man", "Iron Man", 9)
+    data : dim $mkHero("A42861", "1D2C3C", "DBA627", "ironheart", "Ironheart", 10)
+    data : dim $mkHero("C82F34", "3684B2", "F7E008", "ms_marvel", "Ms. Marvel", 10)
+    data : dim $mkHero("A2238E", "31225D", "84C1EA", "nebula", "Nebula", 9)
+        mixin $mixBannerLower()
+    data : dim $mkHero("D2AD2A", "122932", "A72024", "nova", "Nova", 10)
+        mixin $mixBannerLower()
+    data : dim $mkHero("50C2DD", "135180", "FFF", "quicksilver", "Quicksilver", 9)
+        mixin $mixBadgeDown()
+    data : dim $mkHero("302B27", "716654", "DF6626", "rocket_raccoon", "Rocket Raccoon", 9)
+        mixin $mixBadgeRight()
+    data : dim $mkHero("C61D21", "6E1517", "EC0778", "scarlet_witch", "Scarlet Witch", 10)
+    data : dim $mkHero("572C7B", "178D43", "FFF", "she_hulk", "She Hulk", 15)
+    data : dim $mkHero("7A7D7F", "9F1C2E", "FDB912", "sp-dr", "SP//dr", 14)
+        mixin $mixBannerLower()
+    data : dim $mkHero("31302E", "FFF", "D5BB17", "spectrum", "Spectrum", 11)
+    data : dim $mkHero("02518A", "C92127", "040707", "spider-ham", "Spider-Ham", 12)
+        mixin $mixBannerLower()
+    data : dim $mkHero("942C29", "29387B", "2E2C1D", "spider-man", "Spider-Man (Peter Parker)", 10)
+    data : dim $mkHero("981723", "313032", "E2DDDA", "spider-man_miles", "Spider-Man (Miles Morales)", 9)
+    data : dim $mkHero("EC1B2F", "FFDD19", "000", "spider-woman", "Spider-Woman", 11)
+    data : dim $mkHero("792817", "6A707C", "C1C1C1", "star-lord", "Star-Lord", 10)
+        mixin $mixBadgeRight()
+    data : dim $mkHero("3A3D4E", "822921", "B9BCA1", "thor", "Thor", 14)
+    data : dim $mkHero("CCC2C0", "124680", "4A2421", "valkyrie", "Valkyrie", 12)
+    data : dim $mkHero("231F20", "09090A", "FFF", "venom", "Venom", 12)
+    data : dim $mkHero("FFDE00", "226531", "C83E31", "vision", "Vision", 11)
+        mixin $mixBadgeDown()
+    data : dim $mkHero("C1BEB7", "46433E", "D13839", "war_machine", "War Machine", 10)
+        mixin $mixBannerLower()
+    data : dim $mkHero("B42127", "20211B", "95989F", "wasp", "Wasp", 11)
+        mixin $mixBadgeDown()
+    //data : dim $mkHero("", "")

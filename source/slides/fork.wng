@@ -1,0 +1,75 @@
+using Dom
+
+library Slide
+    ::DoCampaignMode(stage => async)
+        using Fork
+        await $DoFork(stage, $Campaign.ExpertMode, "Campaign Mode", "Select the Campaign Mode", dim)
+            $MakeOption("Standard Campaign", false)
+            $MakeOption("Expert Campaign", true, "For players who want a more challenging campaign experience")
+
+    library Fork
+        ::MakeOption(text, value, ?subtext, ?condition => opt)
+            => dim
+                text : text
+                value : value
+                subtext : subtext ? ""
+                condition : free? condition
+        
+        ::DoFork(stage, key, title, text, options => async)
+            // use $MakeOption to build array of options
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+            
+            @ghost : null
+            for @opt : options
+                if opt.condition = null | $(opt.condition, stage)
+                    pop.$AppendChild(dim $Button.Create())
+                        mixin $Style.AddClasses("pickList")
+                        mixin $AppendChild(dim $Paragraph.Create(opt.text))
+                            mixin $Style.AddClasses("mainText")
+                        mixin $AppendChild(dim $Paragraph.Create(opt.subtext))
+                            mixin $Style.AddClasses("subText")
+                        
+                        mixin $Button.HookClick(lambda)
+                            trap pipe.$Pipe.Write(opt.value)
+                    if stage.ghost != null & opt.value = stage.ghost[key]
+                        ghost : opt
+            
+            // looking this up in the loop to make sure the option is still valid
+            if ghost != null
+                $Slide.HookAdvance(stage, lambda)
+                    trap pipe.$Pipe.Write(ghost.value)
+
+            @pick : await pipe.$Pipe.ReadAsync()
+            if pick != null
+                stage.delta[key] : pick
+
+        ::DoConfirmDefeat(stage => async)
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @pop : dim $Popup.Create("DEFEAT")
+                mixin $Popup.AddMarkdown("A loss on this scenario means a loss for the whole campaign. Are you sure?")
+            
+            @options : dim
+                $MakeOption("The heroes were defeated", true, "You will not be able to continue")
+                $MakeOption("Nevermind", false, "Take me back")
+
+            for @opt : options
+                pop.$AppendChild(dim $Button.Create())
+                    mixin $Style.AddClasses("pickList")
+                    mixin $AppendChild(dim $Paragraph.Create(opt.text))
+                        mixin $Style.AddClasses("mainText")
+                    mixin $AppendChild(dim $Paragraph.Create(opt.subtext))
+                        mixin $Style.AddClasses("subText")
+                    
+                    mixin $Button.HookClick(lambda)
+                        trap pipe.$Pipe.Write(opt.value)
+
+            @pick : await pipe.$Pipe.ReadAsync()
+            if pick != null
+                if pick
+                    stage.delta[$Campaign.Complete] : true
+                else
+                    stage.overrideDir : $eNext.Backwards
