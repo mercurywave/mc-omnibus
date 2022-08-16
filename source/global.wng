@@ -85,7 +85,17 @@ library Util
         
         val : await pipe.$Pipe.ReadAsync()
 
-    
+    ::.MergeIn(target)
+        // will destroy the target as neccessary
+        for @key in target
+            if this[key] = target[key] \ continue
+            else if this.$Obj.Owns(key)
+                this[key].$MergeIn(target[key])
+            else
+                this[key] : copy target[key]
+
+library Obj // TODO: move to Stdlib
+    extern ::.Owns(key => bool)
 
 library Popup
     ::Create(?title => div)

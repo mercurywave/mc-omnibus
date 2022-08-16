@@ -35,7 +35,7 @@ class ORuntime {
 		this.AddExternalMethod("Obj.Keys", function () { return new OObj(null, OObj.getKeys(this)); });
 		this.AddExternalMethod("Obj.HasChildren", function () { return OObj.ChildCount(this) > 0; });
 		this.AddExternalMethod("Obj.ShallowCopy", function () { return new OObj(null, { ...this.inner }) });
-		this.AddExternalMethod("Obj.MergeIn", function(obj) { this.MergeIn(obj); } );
+		this.AddExternalMethod("Obj.Owns", function(key) { return OObj.Owns(this, key); });
 
 		this.AddExternalMethod("Set.Has", function (val) { return OObj.HasChildKey(this, val); });
 
@@ -115,19 +115,6 @@ class ORuntime {
 		this.AddExternalMethod("Str.ToUpper", function () { return this.toUpperCase(); });
 		this.AddExternalMethod("Str.ToLower", function () { return this.toLowerCase(); });
 		this.AddExternalMethod("Str.Trim", function () { return this.trim(); });
-		this.AddExternalMethod("Str.Hash", function (){
-			// note: not a secure implementation, but fast enough for most operations
-			const seed = 0;
-			let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
-			for (let i = 0, ch; i < this.length; i++) {
-				ch = this.charCodeAt(i);
-				h1 = Math.imul(h1 ^ ch, 2654435761);
-				h2 = Math.imul(h2 ^ ch, 1597334677);
-			}
-			h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
-			h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
-			return 4294967296 * (2097151 & h2) + (h1>>>0);
-		})
 
 		this.AddExternalFunction("Scratch.Alloc", () => new OObj(_run));
 		this.AddExternalFunction("Scratch.Free", (node) => {
@@ -544,22 +531,11 @@ class OObj {
 		obj.keyMap = [...this.keyMap];
 		return obj;
 	}
-
-	MergeIn(target) {
-		if(!(target instanceof OObj)) { return; }
-		if(!(this instanceof OObj)) { throw "can't merge into non-object"; }
-		for(var key in target.inner) {
-			const sub = target.inner[key];
-			if (sub instanceof OObj && sub.parent.uniqId == target.uniqId){
-				if (this.inner[key] == null)
-					this.inner[key] = new OObj(this);
-				this.inner[key].MergeIn(sub);
-			} 
-			else
-			{
-				this.inner[key] = sub;
-			}
-		}
+	
+	static Owns(obj, key) {
+		if (!(obj instanceof OObj)) { return false; }
+		key = makeKey(key, obj);
+		return (key in obj.inner) && (obj.inner[key] instanceof OObj) && (obj.inner[key].parent.inner === obj.inner);
 	}
 
 	MakeRef() {

@@ -179,10 +179,6 @@ library Rand
     extern ::Int(min, max => val)
         return min + $Math.Floor($Math.Mod($_Next(), max - min))
 
-library Obj
-    // TODO: move to standard library
-    extern ::.MergeIn(obj)
-
 
 global ::GT(strOrArr => str)
     // combine a textdata object or string into a single string (newline separated)

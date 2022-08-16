@@ -91,10 +91,10 @@ global ::RunCampaign(campaign, ?key => async)
     @temp : dim()
     for 0 to idx
         if history[it] != null
-            state.$Obj.MergeIn(history[it])
-            temp.$Obj.MergeIn(history[it])
+            state.$Util.MergeIn(copy history[it])
+            temp.$Util.MergeIn(copy history[it])
             if history[it] has checkpoint
-                checkState.$Obj.MergeIn(free temp)
+                checkState.$Util.MergeIn(free temp)
                 temp : dim()
 
 ::GetNextIdx(idx, dir => idx)
@@ -127,7 +127,7 @@ global ::RunCampaign(campaign, ?key => async)
             quit // continue in this direction
 
     if slide has checkpoint
-        if slide has delta \ delta.$Obj.MergeIn(copy slide.delta)
+        if slide has delta \ delta.$Util.MergeIn(copy slide.delta)
         delta["checkpoint"] : slide.checkpoint
         $IO.Log("Checkpoint: " + slide.checkpoint)
 
@@ -191,32 +191,16 @@ global ::RunCampaign(campaign, ?key => async)
 
 scratch RenderedHeroes : dim()
 //  ^RenderedHeroes[idx] : dim
-//      elem : {html element}
-//      hash : {hash of player}
+//      hero : player.hero
+//      elem : actual element
+//      tooltip : tooltip container element
 
 ::SyncHeroFooter(camp, ?state)
     state ?: dim()
-    //@dirty : false
-    //for @idx : 1 to 5
-        //@player : state["player", idx]
-        //if player = null | $PlayerHash(player) != ^RenderedHeroes[idx, "hash"]
-            //dirty : true
-    //if dirty
     for @idx : 1 to 5
         $UpdateHeroFooterBadge(state, idx, camp)
 
     $g.HeroFooter.$Dom.HideShow(state["player"].$Obj.HasChildren())
-    
-::PlayerHash(player => hash)
-    if player = null \ return ""
-    //TODO: this is very hacky, and probably not neccessary anymore
-    // could probably just always build the tooltips
-    @str : ""
-    for @val of player at @key
-        if val.$Obj.HasChildren()
-            val : key + ":" + $PlayerHash(val)
-        str +: "\n" + key + ":" + val
-    hash : str //.$Str.Hash() // I could use a real hash, but there's very little reason to
 
 ::UpdateHeroFooterBadge(state, idx, camp)
     using Dom
@@ -238,7 +222,6 @@ scratch RenderedHeroes : dim()
                 mixin $Style.AddClasses("tooltip")
             (^RenderedHeroes[idx], prevObj) : dim
                 hero : player.hero
-                hash : $PlayerHash(player)
                 elem : elem
                 tooltip : tooltip
         @tooltip : ^RenderedHeroes[idx].tooltip

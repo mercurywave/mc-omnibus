@@ -9,9 +9,7 @@ library Storage
         @obj : dim
             campaign : campaign.$Campaign.GetName()
             version : 1
-        obj.$Obj.MergeIn(state)
-        //$IO.Log("Saving:")
-        //$logDeep(obj)
+        obj.$Util.MergeIn(state)
         $Storage.Save(key, obj)
         $Storage.Save("lastSave", key)
 
