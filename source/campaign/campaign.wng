@@ -25,7 +25,7 @@ library Campaign
     ::GetOfficialCampaigns(=> list)
         @sorted : dim()
         for ^AllCampaigns
-            if it["isOfficial"] ? false
+            if it.?isOfficial ? false
                 sorted[it.sort] : it
         list : dim()
         for sorted
@@ -34,7 +34,7 @@ library Campaign
     ::GetCustomCampaigns(=> list)
         @sorted : dim()
         for ^AllCampaigns
-            if !(it["isOfficial"] ? false)
+            if !(it.?isOfficial ? false)
                 sorted[it.name] : it
         list : dim()
         for sorted

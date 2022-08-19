@@ -182,7 +182,7 @@ library Slide
 ::DoHeroPicker(stage, idx => async)
     @pipe : stage.ct.$Canceler.MakePipe()
 
-    @ghostName : stage.ghost["player",idx, "name"] ? ("Player " + idx)
+    @ghostName : stage.ghost["player", idx, "name"] ? ("Player " + idx)
 
     @pop : $g.Stage.$AppendChild(dim $Div.Create())
         mixin $Style.AddClasses("popup", "heroSelect")
@@ -229,7 +229,7 @@ library Slide
     @heroContainer : book.$AppendChild(dim $Div.Create())
         mixin $Style.AddClasses("heroes")
 
-    for @obj : stage.state["player"] ? dim()
+    for @obj : stage.state.?player ? dim()
         @hero : $Heroes.LookupByName(obj.hero)
         heroContainer.$AppendChild(hero.$Heroes.MakeHeroBadge())
 
@@ -250,7 +250,7 @@ library Slide
         mixin $Dropdown.AddOption("Difficulty - Standard Mode", 2)
         mixin $Dropdown.AddOption("Difficulty - Expert Mode", 3)
         //mixin $Dropdown.AddOption("Difficulty - Heroic Mode", 4)
-    diff.$Dropdown.SetValue((stage.state["difficulty"] ? stage.ghost["difficulty"]) ? 2)
+    diff.$Dropdown.SetValue((stage.state.?difficulty ? stage.ghost.?difficulty) ? 2)
 
     await pipe.$Pipe.ReadAsync()
     stage.delta["difficulty"] : diff.$Dropdown.GetValue()

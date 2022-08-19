@@ -623,7 +623,7 @@ library RedSkull
         for @player of stage.state.player at @idx
             @hero : $Heroes.LookupByName(stage.state.player[idx].hero)
             @condition : player[$Condition] ? ""
-            @isEnabled : condition != "" & (player["hp"] ? 1) > 0
+            @isEnabled : condition != "" & (player.?hp ? 1) > 0
             @id : "chkOpt" + ~idx
             @isPreChecked : stage.ghost["player", idx, $Condition] ? false
             @lbl : pop.$AppendChild(dim $Checkbox.CreateLabelFor(id))

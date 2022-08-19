@@ -18,8 +18,12 @@ global ::RunCampaign(campaign, ?key => async)
     @dir : $eNext.Forwards
     @waitingForFirstSlide : false
 
+    @header : $MakeCampaignHeader(campaign)
+    defer header.$Dom.Style.AddClasses("fadeOut")
+
     @load : $Storage.LoadGameState(key)
     if load != null & load.?checkpoint != null
+        await $Resume()
         for idx : 0 to campaign.slides.$Obj.Count()
             if campaign.slides[idx,"checkpoint"] = load.checkpoint
                 break
@@ -29,9 +33,6 @@ global ::RunCampaign(campaign, ?key => async)
         minIdx : idx
         waitingForFirstSlide : true
         history[0] : free load
-
-    @header : $MakeCampaignHeader(campaign)
-    defer header.$Dom.Style.AddClasses("fadeOut")
 
     while true
         @state, @checkState : $BuildStateFromDeltas(history, idx)
@@ -71,6 +72,18 @@ global ::RunCampaign(campaign, ?key => async)
         arun $Menu.Run($Menu.DoNewGame)
     else
         arun $Menu.Run($Menu.DoMain)
+
+::Resume(=> async)
+    using Dom
+    @container : $g.Stage.$AppendChild(dim $Div.Create())
+        mixin $Style.AddClasses("spinContainer")
+        mixin $AppendChild(dim $Div.Create())
+            mixin $Style.AddClasses("spin")
+        mixin $AppendChild(dim $Paragraph.Create("Resuming"))
+    
+    await $Job.Pause(1000)
+    container.$Style.AddClasses("fadingOut")
+    await $Job.Pause(500)
 
 ::MakeCampaignHeader(campaign => element)
     using Campaign

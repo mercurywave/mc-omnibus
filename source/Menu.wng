@@ -99,7 +99,7 @@ library Menu
 
     ::renderCampaignCover(ct, camp => elem)
         using Dom
-        @comingSoon : camp["comingSoon"] ? false
+        @comingSoon : camp.?comingSoon ? false
         elem : dim $Button.Create()
             mixin $Style.AddClasses("campaignContainer")
             mixin $Style.SetClassIf("comingSoon", comingSoon)
@@ -112,7 +112,7 @@ library Menu
         else
             elem.$SetAttribute("disabled", "disabled")
 
-        if camp["isOfficial"] ? false
+        if camp.?isOfficial ? false
             elem.$AppendChild($mkCampaignComic(camp))
         else
             @book : $g.MakeComicBookCard(camp.img, "Champions", "The Card Game", 0, camp.name
@@ -212,7 +212,7 @@ library Menu
     camp : $Campaign.LookupByName(state["campaign"])
     if camp = null \ throw "no camp"
     
-    @cnt : state["players"] ? 0
+    @cnt : state.?players ? 0
     heroes : dim()
     for @idx : 1 to cnt + 1
         @play : state["player", idx]

@@ -661,6 +661,7 @@ label.disabled p{
     border-top:solid 3px #000;
     border-bottom:solid 3px #000;
     z-index: 10;
+    animation: fadeIn .8s;
 }
 
 .vh.vImg {
@@ -687,6 +688,7 @@ label.disabled p{
     z-index: 8;
     border:solid 2px #000;
     transform:skew(-15deg);
+    animation: fadeIn .8s;
 }
 
 
@@ -709,7 +711,7 @@ label.disabled p{
 }
 #heroes_footer_helper{
     width: 40px;
-    height: 120px;
+    height: 110px;
     float: left;
     background-image: linear-gradient(to right, #F9DA4E, #F0B43C);
     clip-path: polygon(0 100%, calc(100% - 12px) 0, 100% 0, 100% 100%);
@@ -725,7 +727,7 @@ label.disabled p{
     background-color: #000;
     clip-path: polygon(12px 100%, 0 100%, 0 0, 100% 0);
     width: 40px;
-    height: 120px;
+    height: 110px;
     border-bottom:solid 3px #000;
     /*
     border-bottom:solid 3px #000;
@@ -741,6 +743,7 @@ label.disabled p{
 }
 #heroes_footer .heroBadge{
     animation: fadeIn .8s;
+    margin-bottom: -10px;
 }
 
 
@@ -819,6 +822,16 @@ label.disabled p{
         drop-shadow(.5px -.5px 0px rgba(0,0,0,1))
         drop-shadow(-.5px -.5px 0px rgba(0,0,0,1))
         drop-shadow(2px 2px 1px rgba(0,0,0,1));
+}
+.playerCount:hover .pcImgContainer{
+    transition: .5s;
+    transform: translate(-2px, -2px);
+    filter:
+        drop-shadow(.5px .5px 0px rgba(0,0,0,1))
+        drop-shadow(-.5px .5px 0px rgba(0,0,0,1))
+        drop-shadow(.5px -.5px 0px rgba(0,0,0,1))
+        drop-shadow(-.5px -.5px 0px rgba(0,0,0,1))
+        drop-shadow(4px 4px 4px rgba(0,0,0,1));
 }
 .pcImg{
     display: block;
@@ -1259,7 +1272,6 @@ label.disabled p{
 }
 
 .playGame .powContainer{
-    margin-top: 5px;
     margin-bottom: -60px;
 }
 
@@ -1271,7 +1283,7 @@ label.disabled p{
     text-align: center;
     margin-top: 40px;
     height: 100px;
-    min-width: 220px;
+    width: 220px;
 }
 .pow {
     display: block;
@@ -1514,3 +1526,58 @@ label.disabled p{
     margin: 0;
 }
 
+.spinContainer{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    filter: drop-shadow(2px 2px 3px #000);
+    animation: slideIn .5s;
+}
+.spinContainer p{
+    display: block;
+    font-family: 'BebasNeueBold', sans-serif;
+    font-size: 26pt;
+    color: #fff;
+    filter:
+        drop-shadow(.5px .5px 0px #000)
+        drop-shadow(-.5px .5px 0px #000)
+        drop-shadow(.5px -.5px 0px #000)
+        drop-shadow(-.5px -.5px 0px #000);
+}
+.spinContainer .spin{
+    
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+}
+.spinContainer .spin::before{
+    content: "";
+    display: block;
+    animation: .6s linear infinite spinner;
+    animation-play-state: inherit;
+    /*
+    border: solid 5px #000;
+    border-bottom-color: #ece10e;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    */
+    background-color: #fff;
+    height: 40px;
+    width: 8px;
+    margin: 0 16px;
+}
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.spinContainer.fadingOut{
+    opacity: 0;
+    animation: slideOut .5s;
+}
