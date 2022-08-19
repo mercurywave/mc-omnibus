@@ -1274,14 +1274,17 @@ label.disabled p{
 .playGame .powContainer{
     margin-bottom: -60px;
 }
+.scenario .rPanel{
+    padding-top: 40px;
+}
 
 
 .powContainer{
+    position: relative;
     filter: drop-shadow(3px 3px 3px rgba(0,0,0,1));
     background-color: transparent;
     border: 0;
     text-align: center;
-    margin-top: 40px;
     height: 100px;
     width: 220px;
 }
@@ -1307,7 +1310,6 @@ label.disabled p{
 .powText{
     display: block;
     position: relative;
-    padding: 20px;
     left: 0;
     top: 0;
     font-family: 'BebasNeueBold', sans-serif;
