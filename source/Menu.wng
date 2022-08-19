@@ -159,14 +159,14 @@ library Menu
 
             mixin $Popup.AddMarkdown(textdata)
                 Marvel Champions: The Card Game is copyrighted by Fantasy Flight Games.
-                This website is not produced, endorsed, supported, or affiliated either Fantasy Flight Games.
+                This website is not produced, endorsed, supported, or affiliated with Fantasy Flight Games.
                 
                 This app was coded using the [Wingra programming language](https://github.com/mercurywave/wingra).
 
                 Please post bug reports and feature requests to the projects 
                 [GitHub page](https://github.com/mercurywave/mc-omnibus).
 
-                Question? Contact [@mercurywave on Twitter](https://twitter.com/mercurywave).
+                Questions? Contact [@mercurywave on Twitter](https://twitter.com/mercurywave).
 
         arun $BackButton(ct, lambda)
             $QueueMenu($DoMain)

@@ -521,6 +521,7 @@ label.disabled p{
     top: 0;
 }
 .loadHeader{
+    text-align: center;
     font-family: 'RedkostComicRegular', sans-serif;
     color: #fff;
     font-size: 24pt;
