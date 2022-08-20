@@ -1583,6 +1583,8 @@ label.disabled p{
         padding: 50px 100px 70px 40px;
         width: 420px;
     }
+}
+@media only screen and (min-width: 700px) {
     .scenario .rPanel{
         position: absolute;
         right: 20px;
@@ -1621,6 +1623,28 @@ label.disabled p{
         clip-path: polygon(6px 100%, 0 100%, 0 0, 100% 0);
         width: 20px;
         height: 55px;
+    }
+
+    .scenario {
+        top: 60%;
+        width: 90%;
+        max-width: 360px;
+        height: 380px;
+    }
+    .scenario .bigBook{
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50px;
+    }
+    .scenario .rPanel{
+        width: 100%;
+        margin-top: 190px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
+    }
+    .scenario select{
+        margin: 10px 0;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -1671,27 +1695,6 @@ label.disabled p{
     .pickList {
         width: 90%;
         padding: 10px;
-    }
-
-    .scenario {
-        top: 60%;
-        width: 90%;
-        height: 380px;
-    }
-    .scenario .bigBook{
-        transform: translate(-50%, -50%);
-        left: 50%;
-        top: 50px;
-    }
-    .scenario .rPanel{
-        width: 100%;
-        margin-top: 190px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;   
-    }
-    .scenario select{
-        margin: 10px 0;
     }
 
     .healing .player .heroBadge{
@@ -1777,5 +1780,25 @@ label.disabled p{
     .campaignScroller{
         padding-left: 0px;
         width: 100%;
+    }
+}
+/*short and small screens*/
+@media only screen and (max-width: 700px) and (max-height: 700px) , screen and (max-width:300px) {
+    .scenario {
+        top: 60%;
+        width: 90%;
+        max-width: 360px;
+        height: 280px;
+    }
+    .scenario .bigBook{
+        transform: translate(-50%, -50%) scale(.7);
+        top: -10px;
+    }
+    .scenario .rPanel{
+        width: 100%;
+        margin-top: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
     }
 }
