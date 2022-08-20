@@ -167,13 +167,13 @@ library Str
 
 registry RND : $Time.Now()
 library Rand
-    extern ::_Next(=> val)
+    ::_Next(=> val)
         ^RND : (^RND + 37) * 6211
         ^RND : $Math.Mod(^RND, 27361)
         return ^RND
         
     // [min, max)
-    extern ::Int(min, max => val)
+    ::Int(min, max => val)
         return min + $Math.Floor($Math.Mod($_Next(), max - min))
 
 

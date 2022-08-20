@@ -468,10 +468,14 @@ var T48=OObj.MakeFunc(__FUNCS["util.w_15"]["338::Abs"]);
 __RUN.setStaticGlo("Math.Abs",T48);
 var T50=OObj.MakeFunc(__FUNCS["util.w_15"]["351::RepeatStr"]);
 __RUN.setStaticGlo("Str.RepeatStr",T50);
-var T52=OObj.MakeFunc(__FUNCS["util.w_15"]["364::GT"]);
-__RUN.setStaticGlo("GT",T52);
-var T54=OObj.MakeFunc(__FUNCS["util.w_15"]["377::GTW"]);
-__RUN.setStaticGlo("GTW",T54);
+var T52=OObj.MakeFunc(__FUNCS["util.w_15"]["364::_Next"]);
+__RUN.setStaticGlo("Rand._Next",T52);
+var T54=OObj.MakeFunc(__FUNCS["util.w_15"]["377::Int"]);
+__RUN.setStaticGlo("Rand.Int",T54);
+var T56=OObj.MakeFunc(__FUNCS["util.w_15"]["390::GT"]);
+__RUN.setStaticGlo("GT",T56);
+var T58=OObj.MakeFunc(__FUNCS["util.w_15"]["403::GTW"]);
+__RUN.setStaticGlo("GTW",T58);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
 var T0=false;
@@ -15755,36 +15759,44 @@ var T21=gVal(T19) > gVal(T20);
 if(!T21){break;}
 //  @target : $Rand.Int(0, cnt)
 var T23=0;
-var T24=DU.Ref($cnt);
-var T25=[T23,T24];
-var T26=__RUN.getStaticGlo("Rand.Int").func(null,...T25);
-var T27=DU.ReadReturn(T26,1);
-$target=T27;
+var T24=__RUN.getStaticGlo("Rand._Next").func(null);
+var T25=DU.ReadReturn(T24,1);
+var T26=DU.Ref($cnt);
+var T27=0;
+var T28=gVal(T26)-gVal(T27);
+var T29=[T25,T28];
+var T30=__RUN.getStaticGlo("Math.Mod").func(null,...T29);
+var T31=DU.ReadReturn(T30,1);
+var T32=[T31];
+var T33=__RUN.getStaticGlo("Math.Floor").func(null,...T32);
+var T34=DU.ReadReturn(T33,1);
+var T35=gVal(T23)+gVal(T34);
+$target=T35;
 //  if target != it
-var T29=DU.Ref($target);
-var T30=DU.Ref($it);
-var T31=!DU.AreEqual(T29,T30);
-if(T31)
+var T37=DU.Ref($target);
+var T38=DU.Ref($it);
+var T39=!DU.AreEqual(T37,T38);
+if(T39)
 {
 //  @temp : free? this[it]
-var T33=DU.Ref(__THIS);
-var T34=DU.Ref($it);
-var T35=OObj.FreePath(T33, [T34]);
-$temp=T35;
+var T41=DU.Ref(__THIS);
+var T42=DU.Ref($it);
+var T43=OObj.FreePath(T41, [T42]);
+$temp=T43;
 //  this[it] : free? this[target]
-var T37=DU.Ref(__THIS);
-var T38=DU.Ref($target);
-var T39=OObj.FreePath(T37, [T38]);
-var T40=DU.Ref(__THIS);
-var T41=DU.Ref($it);
-OObj.SetPath(T40,[T41],T39);
+var T45=DU.Ref(__THIS);
+var T46=DU.Ref($target);
+var T47=OObj.FreePath(T45, [T46]);
+var T48=DU.Ref(__THIS);
+var T49=DU.Ref($it);
+OObj.SetPath(T48,[T49],T47);
 //  this[target] : free? temp
-var T43=$temp;
+var T51=$temp;
 $temp=undefined;
-var T44=DU.Ref(__THIS);
-var T45=DU.Ref($target);
-OObj.SetPath(T44,[T45],T43);
-}var T48=$temp;
+var T52=DU.Ref(__THIS);
+var T53=DU.Ref($target);
+OObj.SetPath(T52,[T53],T51);
+}var T56=$temp;
 $temp=undefined;
 continue;
 }return [];
@@ -16141,18 +16153,26 @@ var $item,__THIS,$idx;
 __THIS=__DIV.__THIS;
 //  @idx : $Rand.Int(0, this.$Obj.Count())
 var T0=0;
-var T1=DU.Ref(__THIS);
-var T2=__RUN.getStaticGlo("Obj.Count").func({__THIS:T1});
-var T3=DU.ReadReturn(T2,1);
-var T4=[T0,T3];
-var T5=__RUN.getStaticGlo("Rand.Int").func(null,...T4);
-var T6=DU.ReadReturn(T5,1);
-$idx=T6;
+var T1=__RUN.getStaticGlo("Rand._Next").func(null);
+var T2=DU.ReadReturn(T1,1);
+var T3=DU.Ref(__THIS);
+var T4=__RUN.getStaticGlo("Obj.Count").func({__THIS:T3});
+var T5=DU.ReadReturn(T4,1);
+var T6=0;
+var T7=gVal(T5)-gVal(T6);
+var T8=[T2,T7];
+var T9=__RUN.getStaticGlo("Math.Mod").func(null,...T8);
+var T10=DU.ReadReturn(T9,1);
+var T11=[T10];
+var T12=__RUN.getStaticGlo("Math.Floor").func(null,...T11);
+var T13=DU.ReadReturn(T12,1);
+var T14=gVal(T0)+gVal(T13);
+$idx=T14;
 //  item : this[idx]
-var T8=DU.Ref(__THIS);
-var T9=DU.Ref($idx);
-var T10=OObj.GetPath(T8,[T9]);
-$item=T10;
+var T16=DU.Ref(__THIS);
+var T17=DU.Ref($idx);
+var T18=OObj.GetPath(T16,[T17]);
+$item=T18;
 return [$item];
 },
 "169::NumMatches" : function(__DIV, $lamb){
@@ -16656,7 +16676,52 @@ $str=T36;
 continue;
 }return [$str];
 },
-"364::GT" : function(__DIV, $strOrArr){
+"364::_Next" : function(__DIV){
+var $val;
+//  ^RND : (^RND + 37) * 6211
+var T0="util.w_15";
+var T1=DU.Ref(__RUN.getScratchFile(T0,"RND_18"));
+var T2=37;
+var T3=gVal(T1)+gVal(T2);
+var T4=6211;
+var T5=gVal(T3)*gVal(T4);
+var T6="util.w_15";
+__RUN.setScratchFile(T6,"RND_18",T5);
+//  ^RND : $Math.Mod(^RND, 27361)
+var T8="util.w_15";
+var T9=DU.Ref(__RUN.getScratchFile(T8,"RND_18"));
+var T10=27361;
+var T11=[T9,T10];
+var T12=__RUN.getStaticGlo("Math.Mod").func(null,...T11);
+var T13=DU.ReadReturn(T12,1);
+var T14="util.w_15";
+__RUN.setScratchFile(T14,"RND_18",T13);
+//  return ^RND
+var T16="util.w_15";
+var T17=DU.Ref(__RUN.getScratchFile(T16,"RND_18"));
+$val=T17;
+return [$val];
+},
+"377::Int" : function(__DIV, $min, $max){
+var $val;
+//  return min + $Math.Floor($Math.Mod($_Next(), max - min))
+var T2=DU.Ref($min);
+var T3=__RUN.getStaticGlo("Rand._Next").func(null);
+var T4=DU.ReadReturn(T3,1);
+var T5=DU.Ref($max);
+var T6=DU.Ref($min);
+var T7=gVal(T5)-gVal(T6);
+var T8=[T4,T7];
+var T9=__RUN.getStaticGlo("Math.Mod").func(null,...T8);
+var T10=DU.ReadReturn(T9,1);
+var T11=[T10];
+var T12=__RUN.getStaticGlo("Math.Floor").func(null,...T11);
+var T13=DU.ReadReturn(T12,1);
+var T14=gVal(T2)+gVal(T13);
+$val=T14;
+return [$val];
+},
+"390::GT" : function(__DIV, $strOrArr){
 var $str,$$sOut2;
 //  strOrArr.$Obj.HasChildren() : strOrArr.$List.Join("\n")
 var T2=DU.Ref($strOrArr);
@@ -16687,7 +16752,7 @@ var T22=DU.ReadReturn(T21,1);
 $str=T22;
 return [$str];
 },
-"377::GTW" : function(__DIV, $strOrArr){
+"403::GTW" : function(__DIV, $strOrArr){
 var $str,$$sOut2;
 //  strOrArr.$Obj.HasChildren() : strOrArr.$List.Join(" ")
 var T2=DU.Ref($strOrArr);
