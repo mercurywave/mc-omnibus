@@ -504,6 +504,7 @@ library RedSkull
         @entryField : pop.$AppendChild(dim $NumberEntry.Create())
             mixin $Style.AddClasses("numberEntry")
             mixin $NumberEntry.SetText(initNum)
+            mixin $NumberEntry.DoSelectAllOnFocus()
         
         pop.$Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
         $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)

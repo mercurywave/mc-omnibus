@@ -5823,56 +5823,59 @@ var T69=DU.Ref(T60);
 var T70=DU.Ref($initNum);
 var T71=[T70];
 var T72=__RUN.getStaticGlo("Dom.NumberEntry.SetText").func({__THIS:T69},...T71);
-var T73=[T60];
-var T74=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T56},...T73);
-var T75=DU.ReadReturn(T74,1);
-$entryField=T75;
+//  mixin $NumberEntry.DoSelectAllOnFocus()
+var T73=DU.Ref(T60);
+var T74=__RUN.getStaticGlo("Dom.NumberEntry.DoSelectAllOnFocus").func({__THIS:T73});
+var T75=[T60];
+var T76=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T56},...T75);
+var T77=DU.ReadReturn(T76,1);
+$entryField=T77;
 //  pop.$Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
-var T77=DU.Ref($pop);
-var T78=OObj.MakeFunc(__FUNCS["Red Sk_3"]["637_func"],{$pipe: DU.Ref($pipe)});
-var T79=[T78];
-var T80=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T77},...T79);
-var T81=DU.ReadReturn(T80,1);
+var T79=DU.Ref($pop);
+var T80=OObj.MakeFunc(__FUNCS["Red Sk_3"]["637_func"],{$pipe: DU.Ref($pipe)});
+var T81=[T80];
+var T82=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T79},...T81);
+var T83=DU.ReadReturn(T82,1);
 //  $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
-var T83=DU.Ref($stage);
-var T84=OObj.MakeFunc(__FUNCS["Red Sk_3"]["650_func"],{$pipe: DU.Ref($pipe)});
-var T85=[T83,T84];
-var T86=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T85);
-var T87=DU.ReadReturn(T86,1);
+var T85=DU.Ref($stage);
+var T86=OObj.MakeFunc(__FUNCS["Red Sk_3"]["650_func"],{$pipe: DU.Ref($pipe)});
+var T87=[T85,T86];
+var T88=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T87);
+var T89=DU.ReadReturn(T88,1);
 //  await pipe.$Pipe.ReadAsync()
-var T89=DU.Ref($pipe);
-var T91=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T89});
-var T92=DU.ReadReturn(T91,1);
+var T91=DU.Ref($pipe);
+var T93=await __RUN.getStaticGlo("Pipe.ReadAsync").func({__THIS:T91});
+var T94=DU.ReadReturn(T93,1);
 //  if stage.ct.$Canceler.IsLive()
-var T94=DU.Ref($stage);
-var T95=OObj.DotAccess(T94,"ct");
-var T96=OObj.DotAccess(T95,"live");
-if(T96)
+var T96=DU.Ref($stage);
+var T97=OObj.DotAccess(T96,"ct");
+var T98=OObj.DotAccess(T97,"live");
+if(T98)
 {
 //  stage.delta[$DelayCounters] : $Math.Floor(entryField.$NumberEntry.GetText())
-var T98=DU.Ref($entryField);
-var T99="value";
-var T100=[T99];
-var T101=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T98},...T100);
-var T102=DU.ReadReturn(T101,1);
-var T103=[T102];
-var T104=__RUN.getStaticGlo("Math.Floor").func(null,...T103);
-var T105=DU.ReadReturn(T104,1);
-var T106=DU.Ref($stage);
-var T107=OObj.DotAccess(T106,"delta");
-var T108="delay counters";
-OObj.SetPath(T107,[T108],T105);
+var T100=DU.Ref($entryField);
+var T101="value";
+var T102=[T101];
+var T103=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T100},...T102);
+var T104=DU.ReadReturn(T103,1);
+var T105=[T104];
+var T106=__RUN.getStaticGlo("Math.Floor").func(null,...T105);
+var T107=DU.ReadReturn(T106,1);
+var T108=DU.Ref($stage);
+var T109=OObj.DotAccess(T108,"delta");
+var T110="delay counters";
+OObj.SetPath(T109,[T110],T107);
 //  pop.$Style.AddClasses("fadingOut")
-var T110=DU.Ref($pop);
-var T111="fadingOut";
-var T112=[T111];
-var T113=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T110},...T112);
-var T114=DU.ReadReturn(T113,1);
+var T112=DU.Ref($pop);
+var T113="fadingOut";
+var T114=[T113];
+var T115=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T112},...T114);
+var T116=DU.ReadReturn(T115,1);
 //  await $Job.Pause(50) // pause is waiting for an animation frame already
-var T116=50;
-var T118=[T116];
-var T119=await __RUN.getStaticGlo("Job.Pause").func(null,...T118);
-var T120=DU.ReadReturn(T119,1);
+var T118=50;
+var T120=[T118];
+var T121=await __RUN.getStaticGlo("Job.Pause").func(null,...T120);
+var T122=DU.ReadReturn(T121,1);
 }return [];
 },
 "637_func" : function(__DIV){
@@ -5962,7 +5965,7 @@ $selectors=T61;
 var T63=new OObj();
 $placeholder=T63;
 //  placeholder.syncSelectors : lambda
-var T65=OObj.MakeFunc(__FUNCS["Red Sk_3"]["676_func536"],{$stage: DU.Ref($stage),$key: DU.Ref($key),$cards: DU.Ref($cards),$panesForSelectors: DU.Ref($panesForSelectors),$selectors: DU.Ref($selectors),$placeholder: DU.Ref($placeholder),$idx: DU.Ref($idx)});
+var T65=OObj.MakeFunc(__FUNCS["Red Sk_3"]["676_func537"],{$stage: DU.Ref($stage),$key: DU.Ref($key),$cards: DU.Ref($cards),$panesForSelectors: DU.Ref($panesForSelectors),$selectors: DU.Ref($selectors),$placeholder: DU.Ref($placeholder),$idx: DU.Ref($idx)});
 var T66=DU.Ref($placeholder);
 OObj.SetChild(T66,"syncSelectors",T65);
 //  for @idx in stage.state.player
@@ -6117,13 +6120,13 @@ var T188=OObj._RunLambda(T187,{});
 var T189=DU.ReadReturn(T188,1);
 //  pop.$Popup.AddBotRightButton(lambda)
 var T191=DU.Ref($pop);
-var T192=OObj.MakeFunc(__FUNCS["Red Sk_3"]["702_func562"],{$pipe: DU.Ref($pipe)});
+var T192=OObj.MakeFunc(__FUNCS["Red Sk_3"]["702_func563"],{$pipe: DU.Ref($pipe)});
 var T193=[T192];
 var T194=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T191},...T193);
 var T195=DU.ReadReturn(T194,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T197=DU.Ref($stage);
-var T198=OObj.MakeFunc(__FUNCS["Red Sk_3"]["715_func565"],{$pipe: DU.Ref($pipe)});
+var T198=OObj.MakeFunc(__FUNCS["Red Sk_3"]["715_func566"],{$pipe: DU.Ref($pipe)});
 var T199=[T197,T198];
 var T200=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T199);
 var T201=DU.ReadReturn(T200,1);
@@ -6239,7 +6242,7 @@ var T296=await __RUN.getStaticGlo("Job.Pause").func(null,...T295);
 var T297=DU.ReadReturn(T296,1);
 return [];
 },
-"676_func536" : function(__DIV){
+"676_func537" : function(__DIV){
 var $selectors,$idx,$$idx2,$cIdx,$stage,$key,$prev,$panesForSelectors,$cards,$placeholder,$drop,$it;
 if('$selectors' in __DIV.capture){$selectors=__DIV.capture["$selectors"];}
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
@@ -6339,7 +6342,7 @@ var T5=DU.ReadReturn(T4,1);
 var T6="";
 var T7=DU.AreEqual(T5,T6);
 return [T7];},
-"702_func562" : function(__DIV){
+"702_func563" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6348,7 +6351,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"715_func565" : function(__DIV){
+"715_func566" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6557,13 +6560,13 @@ var T24=[T19];
 var T25=__RUN.getStaticGlo("Popup.AddMarkdown").func({__THIS:T18},...T24);
 //  mixin $Popup.AddBotRightButton(lambda)
 var T26=DU.Ref(T13);
-var T27=OObj.MakeFunc(__FUNCS["Red Sk_3"]["806_func615"],{$pipe: DU.Ref($pipe)});
+var T27=OObj.MakeFunc(__FUNCS["Red Sk_3"]["806_func616"],{$pipe: DU.Ref($pipe)});
 var T28=[T27];
 var T29=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T26},...T28);
 $pop=T13;
 //  $Slide.HookAdvance(stage, lambda)
 var T31=DU.Ref($stage);
-var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["819_func618"],{$pipe: DU.Ref($pipe)});
+var T32=OObj.MakeFunc(__FUNCS["Red Sk_3"]["819_func619"],{$pipe: DU.Ref($pipe)});
 var T33=[T31,T32];
 var T34=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T33);
 var T35=DU.ReadReturn(T34,1);
@@ -6826,7 +6829,7 @@ var T250=DU.ReadReturn(T249,1);
 $ctlBonus=T250;
 //  chk.$Checkbox.HookChange(lambda)
 var T252=DU.Ref($chk);
-var T253=OObj.MakeFunc(__FUNCS["Red Sk_3"]["832_func653"],{$chk: DU.Ref($chk),$ctlBonus: DU.Ref($ctlBonus)});
+var T253=OObj.MakeFunc(__FUNCS["Red Sk_3"]["832_func654"],{$chk: DU.Ref($chk),$ctlBonus: DU.Ref($ctlBonus)});
 var T254=[T253];
 var T255=__RUN.getStaticGlo("Dom.Checkbox.HookChange").func({__THIS:T252},...T254);
 var T256=DU.ReadReturn(T255,1);
@@ -6976,7 +6979,7 @@ var T386=await __RUN.getStaticGlo("Job.Pause").func(null,...T385);
 var T387=DU.ReadReturn(T386,1);
 }return [];
 },
-"806_func615" : function(__DIV){
+"806_func616" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6985,7 +6988,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"819_func618" : function(__DIV){
+"819_func619" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -6994,7 +6997,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"832_func653" : function(__DIV){
+"832_func654" : function(__DIV){
 var $ctlBonus,$chk;
 if('$ctlBonus' in __DIV.capture){$ctlBonus=__DIV.capture["$ctlBonus"];}
 if('$chk' in __DIV.capture){$chk=__DIV.capture["$chk"];}
