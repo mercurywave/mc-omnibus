@@ -121,6 +121,10 @@ input[type=text] {
     font-weight: bold;
     margin: 1px;
 }
+select{
+    padding: 4px;
+    border-radius: 0;
+}
 
 .tooltipped .tooltip{
     /*
@@ -1018,7 +1022,6 @@ label.disabled p{
     box-shadow: 4px 4px 4px 0px #000;
     overflow:hidden;
     margin: 0;
-    transform: scale(1); /* TODO: smarter scaling on taller devices */
 }
 .bigBook .topBack {
     position: absolute;
@@ -1611,7 +1614,7 @@ label.disabled p{
         max-width: calc(100% - 40px);
     }
     #heroes_footer .heroBadge{
-        margin: -30px;
+        margin: -27px -30px -32px -30px;
         transform: scale(.5);
     }
     #heroes_footer_helper{
@@ -1761,8 +1764,7 @@ label.disabled p{
     }
     .loadGame .heroBadge{
         transform: scale(.5);
-        margin: -30px;
-        margin-right: -50px;
+        margin: -25px -50px -30px -30px;
     }
 }
 @media only screen and (max-width: 300px) {
