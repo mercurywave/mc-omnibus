@@ -694,7 +694,7 @@ label.disabled p{
     display: flex;
     right: 0;
     bottom: 20px;
-    max-width: calc(100% - 190px);
+    max-width: calc(100% - 80px);
     text-align: right;
     /*
     background-image: linear-gradient(to right, #F0B43C, #F9DA4E);
@@ -1590,38 +1590,7 @@ label.disabled p{
         width: 250px;
     }
 }
-@media only screen and (max-width: 500px) {
-    #Title{
-        padding: 10px 40px 10px 40px;
-        margin-right: 30px;
-        top: 35px;
-        left: -35px;
-        font-size: 24pt;
-    }
-    .continueGame{
-        width: 400px;
-        height: 160px;
-    }
-    .continueGame .heroes{
-        right: 30px;
-    }
-    .continueGame .heroBadge{
-        transform: scale(.5);
-        margin: 0 -30px;
-    }
-    
-    .mainMenu .titleButton{
-        font-size: 36pt;
-        width: 90%;
-    }
-
-    .popup {
-        width: calc(100% - 50px);
-        max-width: 400px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    
+@media only screen and (max-width: 700px) {
     .vh {
         top: 5px;
         width: 190px;
@@ -1653,6 +1622,51 @@ label.disabled p{
         width: 20px;
         height: 55px;
     }
+}
+@media only screen and (max-width: 600px) {
+    #Title{
+        padding: 10px 40px 10px 40px;
+        margin-right: 30px;
+        top: 35px;
+        left: -35px;
+        font-size: 24pt;
+    }
+    .popup {
+        width: calc(100% - 50px);
+        max-width: 400px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .card{
+        display: none;
+    }
+
+    .heroHp{
+        width: 200px;
+        margin: 3px 20px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .continueGame{
+        width: 400px;
+        height: 160px;
+    }
+    .continueGame .heroes{
+        right: 30px;
+    }
+    .continueGame .heroBadge{
+        transform: scale(.5);
+        margin: 0 -30px;
+    }
+    
+    .mainMenu .titleButton{
+        font-size: 36pt;
+        width: 90%;
+    }
+    .loadGame{
+        flex-direction: column;
+    }
+
 
     .pickList {
         width: 90%;
@@ -1671,16 +1685,11 @@ label.disabled p{
     .scenario .rPanel{
         width: 100%;
         margin-top: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
     }
 
-    .card{
-        display: none;
-    }
-
-    .heroHp{
-        width: 200px;
-        margin: 3px 20px;
-    }
     .healing .player .heroBadge{
         margin: -12px 0px;
     }
@@ -1701,9 +1710,68 @@ label.disabled p{
     }
     .playGame .powContainer{
         height: 60px;
-        width: 160px;
+        width: 120px;
     }
     .playGame .powText{
         font-size: 36pt;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .continueGame{
+        width: 300px;
+        height: 120px;
+    }
+    .continueGame .heroBadge{
+        margin: 0 -30px 0 -50px;
+    }
+    .continueGame h3{
+        font-size: 12pt;
+    }
+    .continueGame p{
+        font-size: 10pt;
+    }
+    .campaignScroller{
+        padding-left: 50px;
+        width: calc(100% - 50px);
+    }
+    .playerCardAssign .pickers select{
+        width: 150px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .loadGame .heroBadge{
+        margin-right: -50px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .loadGame .content{
+        width: calc(100%);
+        padding-left: 0px;
+    }
+    .loadGame .campaignBadge{
+        width: 140px;
+        height: 80px;
+    }
+    .loadGame .heroBadge{
+        transform: scale(.5);
+        margin: -30px;
+        margin-right: -50px;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .continueGame{
+        width: 240px;
+        height: 120px;
+    }
+    .continueGame h1{
+        display: none;
+    }
+    .loadScroller{
+        padding-left: 60px;
+        width: calc(100% - 60px);
+    }
+    .campaignScroller{
+        padding-left: 0px;
+        width: 100%;
     }
 }
