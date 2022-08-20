@@ -31,6 +31,7 @@ library Slide
                     mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
                 fields[idx] : cell.$AppendChild(dim $NumberEntry.Create())
                     mixin $NumberEntry.SetText(lastHp)
+                    mixin $NumberEntry.DoSelectAllOnFocus()
                 // don't like how this looks
                 //cell.$AppendChild(dim $Paragraph.Create("/" + ~hero.$Heroes.GetHp()))
                 //    mixin $Style.AddClasses("hp")

@@ -194,6 +194,7 @@ library Slide
             mixin $Style.AddClasses("label")
 
     @txt : pop.$AppendChild(dim $TextEntry.Create())
+        mixin $TextEntry.DoSelectAllOnFocus()
         mixin $TextEntry.SetText(ghostName)
 
     @scroller : pop.$AppendChild(dim $Div.Create())

@@ -29,11 +29,17 @@ library Dom
         ::Create(=> input) => $Input.Create("text")
         ::.SetText(text) \ this.$SetAttribute("value", text)
         ::.GetText(=> text) => this.$GetAttribute("value")
+        extern ::.SelectAll()
+        ::.DoSelectAllOnFocus()
+            this.$HookEvent("focus",lambda)
+                this.$SelectAll()
     
     library NumberEntry
         ::Create(=> input) => $Input.Create("number")
         ::.SetText(num) \ this.$SetAttribute("value", num)
         ::.GetText(=> num) => this.$GetAttribute("value")
+        ::.SelectAll() => this.$TextEntry.SelectAll()
+        ::.DoSelectAllOnFocus() => this.$TextEntry.DoSelectAllOnFocus()
 
     library Dropdown
         ::Create(=> elem) => $CreateElement("select")

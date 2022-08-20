@@ -63,6 +63,10 @@ RT.AddExternalMethod("Dom.Input.SetValue", function(type) {
 	gtInner(this).value = type;
 });
 
+RT.AddExternalMethod("Dom.TextEntry.SelectAll", function(type) {
+	gtInner(this).select();
+});
+
 
 RT.AddExternalMethod("Dom.Style.AddClasses", function(...styles) {
 	gtInner(this).classList.add(...styles);
