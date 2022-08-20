@@ -33,6 +33,9 @@ library Dom
         ::.DoSelectAllOnFocus()
             this.$HookEvent("focus",lambda)
                 this.$SelectAll()
+                arun lambda // attempting to workaround android OSK issue
+                    await $Job.Pause(300)
+                    this.$ScrollIntoView()
     
     library NumberEntry
         ::Create(=> input) => $Input.Create("number")
@@ -86,6 +89,8 @@ library Dom
     ::.HideShow(show)
         if show \ this.$Style.RemoveClasses("noDisp")
         else \ this.$Style.AddClasses("noDisp")
+
+    extern ::.ScrollIntoView()
     
     library Style
         extern ::.AddClasses(class[])

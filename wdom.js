@@ -54,6 +54,10 @@ RT.AddExternalMethod("Dom.SetHtml", function(html) {
 	gtInner(this).innerHTML = html;
 });
 
+RT.AddExternalMethod("Dom.ScrollIntoView", function(type) {
+	gtInner(this).scrollIntoView();
+});
+
 
 
 RT.AddExternalMethod("Dom.Input.SetType", function(type) {

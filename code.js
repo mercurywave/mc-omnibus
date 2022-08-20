@@ -132,47 +132,47 @@ var T20=OObj.MakeFunc(__FUNCS["dom.wn_4"]["143::GetText"]);
 __RUN.setStaticGlo("Dom.TextEntry.GetText",T20);
 var T22=OObj.MakeFunc(__FUNCS["dom.wn_4"]["156::DoSelectAllOnFocus"]);
 __RUN.setStaticGlo("Dom.TextEntry.DoSelectAllOnFocus",T22);
-var T24=OObj.MakeFunc(__FUNCS["dom.wn_4"]["182::Create"]);
+var T24=OObj.MakeFunc(__FUNCS["dom.wn_4"]["195::Create"]);
 __RUN.setStaticGlo("Dom.NumberEntry.Create",T24);
-var T26=OObj.MakeFunc(__FUNCS["dom.wn_4"]["195::SetText"]);
+var T26=OObj.MakeFunc(__FUNCS["dom.wn_4"]["208::SetText"]);
 __RUN.setStaticGlo("Dom.NumberEntry.SetText",T26);
-var T28=OObj.MakeFunc(__FUNCS["dom.wn_4"]["208::GetText"]);
+var T28=OObj.MakeFunc(__FUNCS["dom.wn_4"]["221::GetText"]);
 __RUN.setStaticGlo("Dom.NumberEntry.GetText",T28);
-var T30=OObj.MakeFunc(__FUNCS["dom.wn_4"]["221::SelectAll"]);
+var T30=OObj.MakeFunc(__FUNCS["dom.wn_4"]["234::SelectAll"]);
 __RUN.setStaticGlo("Dom.NumberEntry.SelectAll",T30);
-var T32=OObj.MakeFunc(__FUNCS["dom.wn_4"]["234::DoSelectAllOnFocus"]);
+var T32=OObj.MakeFunc(__FUNCS["dom.wn_4"]["247::DoSelectAllOnFocus"]);
 __RUN.setStaticGlo("Dom.NumberEntry.DoSelectAllOnFocus",T32);
-var T34=OObj.MakeFunc(__FUNCS["dom.wn_4"]["247::Create"]);
+var T34=OObj.MakeFunc(__FUNCS["dom.wn_4"]["260::Create"]);
 __RUN.setStaticGlo("Dom.Dropdown.Create",T34);
-var T36=OObj.MakeFunc(__FUNCS["dom.wn_4"]["260::AddOption"]);
+var T36=OObj.MakeFunc(__FUNCS["dom.wn_4"]["273::AddOption"]);
 __RUN.setStaticGlo("Dom.Dropdown.AddOption",T36);
-var T38=OObj.MakeFunc(__FUNCS["dom.wn_4"]["273::GetValue"]);
+var T38=OObj.MakeFunc(__FUNCS["dom.wn_4"]["286::GetValue"]);
 __RUN.setStaticGlo("Dom.Dropdown.GetValue",T38);
-var T40=OObj.MakeFunc(__FUNCS["dom.wn_4"]["286::SetValue"]);
+var T40=OObj.MakeFunc(__FUNCS["dom.wn_4"]["299::SetValue"]);
 __RUN.setStaticGlo("Dom.Dropdown.SetValue",T40);
-var T42=OObj.MakeFunc(__FUNCS["dom.wn_4"]["299::HookChange"]);
+var T42=OObj.MakeFunc(__FUNCS["dom.wn_4"]["312::HookChange"]);
 __RUN.setStaticGlo("Dom.Dropdown.HookChange",T42);
-var T44=OObj.MakeFunc(__FUNCS["dom.wn_4"]["312::Create"]);
+var T44=OObj.MakeFunc(__FUNCS["dom.wn_4"]["325::Create"]);
 __RUN.setStaticGlo("Dom.Input.Create",T44);
-var T46=OObj.MakeFunc(__FUNCS["dom.wn_4"]["325::Create"]);
+var T46=OObj.MakeFunc(__FUNCS["dom.wn_4"]["338::Create"]);
 __RUN.setStaticGlo("Dom.Paragraph.Create",T46);
-var T48=OObj.MakeFunc(__FUNCS["dom.wn_4"]["338::Create"]);
+var T48=OObj.MakeFunc(__FUNCS["dom.wn_4"]["351::Create"]);
 __RUN.setStaticGlo("Dom.Heading.Create",T48);
-var T50=OObj.MakeFunc(__FUNCS["dom.wn_4"]["351::Create"]);
+var T50=OObj.MakeFunc(__FUNCS["dom.wn_4"]["364::Create"]);
 __RUN.setStaticGlo("Dom.Image.Create",T50);
-var T52=OObj.MakeFunc(__FUNCS["dom.wn_4"]["364::HideShow"]);
+var T52=OObj.MakeFunc(__FUNCS["dom.wn_4"]["377::HideShow"]);
 __RUN.setStaticGlo("Dom.HideShow",T52);
-var T54=OObj.MakeFunc(__FUNCS["dom.wn_4"]["377::SetBackgroundColor"]);
+var T54=OObj.MakeFunc(__FUNCS["dom.wn_4"]["390::SetBackgroundColor"]);
 __RUN.setStaticGlo("Dom.Style.SetBackgroundColor",T54);
-var T56=OObj.MakeFunc(__FUNCS["dom.wn_4"]["390::SetBackgroundImage"]);
+var T56=OObj.MakeFunc(__FUNCS["dom.wn_4"]["403::SetBackgroundImage"]);
 __RUN.setStaticGlo("Dom.Style.SetBackgroundImage",T56);
-var T58=OObj.MakeFunc(__FUNCS["dom.wn_4"]["403::SetClassIf"]);
+var T58=OObj.MakeFunc(__FUNCS["dom.wn_4"]["416::SetClassIf"]);
 __RUN.setStaticGlo("Dom.Style.SetClassIf",T58);
-var T60=OObj.MakeFunc(__FUNCS["dom.wn_4"]["416::ToggleBetweenClasses"]);
+var T60=OObj.MakeFunc(__FUNCS["dom.wn_4"]["429::ToggleBetweenClasses"]);
 __RUN.setStaticGlo("Dom.Style.ToggleBetweenClasses",T60);
-var T62=OObj.MakeFunc(__FUNCS["dom.wn_4"]["429::Hide"]);
+var T62=OObj.MakeFunc(__FUNCS["dom.wn_4"]["442::Hide"]);
 __RUN.setStaticGlo("Dom.Hide",T62);
-var T64=OObj.MakeFunc(__FUNCS["dom.wn_4"]["442::Show"]);
+var T64=OObj.MakeFunc(__FUNCS["dom.wn_4"]["455::Show"]);
 __RUN.setStaticGlo("Dom.Show",T64);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
@@ -7270,9 +7270,27 @@ if('__THIS' in __DIV.capture){__THIS=__DIV.capture["__THIS"];}
 var T1=DU.Ref(__THIS);
 var T2=__RUN.getStaticGlo("Dom.TextEntry.SelectAll").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
+//  arun lambda // attempting to workaround android OSK issue
+var T5=OObj.MakeFunc(__FUNCS["dom.wn_4"]["182_func35"],{__THIS: DU.Ref(__THIS)});
+var T6=__RUN.runJobLambda(T5);
 return [];
 },
-"182::Create" : function(__DIV){
+"182_func35" : async function(__DIV){
+var __THIS;
+__THIS=__DIV.__THIS;
+if('__THIS' in __DIV.capture){__THIS=__DIV.capture["__THIS"];}
+//  await $Job.Pause(300)
+var T1=300;
+var T3=[T1];
+var T4=await __RUN.getStaticGlo("Job.Pause").func(null,...T3);
+var T5=DU.ReadReturn(T4,1);
+//  this.$ScrollIntoView()
+var T7=DU.Ref(__THIS);
+var T8=__RUN.getStaticGlo("Dom.ScrollIntoView").func({__THIS:T7});
+var T9=DU.ReadReturn(T8,1);
+return [];
+},
+"195::Create" : function(__DIV){
 var $input;
 //  ::Create(=> input) => $Input.Create("number")
 var T0="input";
@@ -7286,7 +7304,7 @@ var T7=__RUN.getStaticGlo("Dom.Input.SetType").func({__THIS:T4},...T6);
 $input=T3;
 return [$input];
 },
-"195::SetText" : function(__DIV, $num){
+"208::SetText" : function(__DIV, $num){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.SetText(num) \ this.$SetAttribute("value", num)
@@ -7298,7 +7316,7 @@ var T5=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T1},...T4);
 var T6=DU.ReadReturn(T5,1);
 return [];
 },
-"208::GetText" : function(__DIV){
+"221::GetText" : function(__DIV){
 var $num,__THIS;
 __THIS=__DIV.__THIS;
 //  ::.GetText(=> num) => this.$GetAttribute("value")
@@ -7310,7 +7328,7 @@ var T4=DU.ReadReturn(T3,1);
 $num=T4;
 return [$num];
 },
-"221::SelectAll" : function(__DIV){
+"234::SelectAll" : function(__DIV){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.SelectAll() => this.$TextEntry.SelectAll()
@@ -7319,7 +7337,7 @@ var T1=__RUN.getStaticGlo("Dom.TextEntry.SelectAll").func({__THIS:T0});
 var T2=DU.ReadReturn(T1,1);
 return [];
 },
-"234::DoSelectAllOnFocus" : function(__DIV){
+"247::DoSelectAllOnFocus" : function(__DIV){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.DoSelectAllOnFocus() => this.$TextEntry.DoSelectAllOnFocus()
@@ -7328,7 +7346,7 @@ var T1=__RUN.getStaticGlo("Dom.TextEntry.DoSelectAllOnFocus").func({__THIS:T0});
 var T2=DU.ReadReturn(T1,1);
 return [];
 },
-"247::Create" : function(__DIV){
+"260::Create" : function(__DIV){
 var $elem;
 //  ::Create(=> elem) => $CreateElement("select")
 var T0="select";
@@ -7338,7 +7356,7 @@ var T3=DU.ReadReturn(T2,1);
 $elem=T3;
 return [$elem];
 },
-"260::AddOption" : function(__DIV, $text, $val){
+"273::AddOption" : function(__DIV, $text, $val){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  val ?: ""
@@ -7369,7 +7387,7 @@ var T21=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T6},...T20);
 var T22=DU.ReadReturn(T21,1);
 return [];
 },
-"273::GetValue" : function(__DIV){
+"286::GetValue" : function(__DIV){
 var $val,__THIS;
 __THIS=__DIV.__THIS;
 //  ::.GetValue(=> val) => this.$GetAttribute("value")
@@ -7381,7 +7399,7 @@ var T4=DU.ReadReturn(T3,1);
 $val=T4;
 return [$val];
 },
-"286::SetValue" : function(__DIV, $val){
+"299::SetValue" : function(__DIV, $val){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.SetValue(val) \ this.$SetAttribute("value", val)
@@ -7393,7 +7411,7 @@ var T5=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T1},...T4);
 var T6=DU.ReadReturn(T5,1);
 return [];
 },
-"299::HookChange" : function(__DIV, $lamb){
+"312::HookChange" : function(__DIV, $lamb){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.HookChange(lamb) => this.$HookEvent("change", free? lamb)
@@ -7406,7 +7424,7 @@ var T5=__RUN.getStaticGlo("Dom.HookEvent").func({__THIS:T1},...T4);
 var T6=DU.ReadReturn(T5,1);
 return [];
 },
-"312::Create" : function(__DIV, $type){
+"325::Create" : function(__DIV, $type){
 var $input;
 //  input : dim $CreateElement("input")
 var T1="input";
@@ -7421,7 +7439,7 @@ var T8=__RUN.getStaticGlo("Dom.Input.SetType").func({__THIS:T5},...T7);
 $input=T4;
 return [$input];
 },
-"325::Create" : function(__DIV, $text){
+"338::Create" : function(__DIV, $text){
 var $para;
 //  para : $CreateElement("p")
 var T1="p";
@@ -7442,7 +7460,7 @@ var T13=__RUN.getStaticGlo("Dom.SetText").func({__THIS:T10},...T12);
 var T14=DU.ReadReturn(T13,1);
 }return [$para];
 },
-"338::Create" : function(__DIV, $level, $text){
+"351::Create" : function(__DIV, $level, $text){
 var $elem;
 //  elem : $CreateElement("h" + level)
 var T2="h";
@@ -7465,7 +7483,7 @@ var T16=__RUN.getStaticGlo("Dom.SetText").func({__THIS:T13},...T15);
 var T17=DU.ReadReturn(T16,1);
 }return [$elem];
 },
-"351::Create" : function(__DIV, $path, $alt){
+"364::Create" : function(__DIV, $path, $alt){
 var $img;
 //  => dim $CreateElement("img")
 var T2="img";
@@ -7492,7 +7510,7 @@ var T18=__RUN.getStaticGlo("Dom.SetAttribute").func({__THIS:T11},...T17);
 $img=T5;
 return [$img];
 },
-"364::HideShow" : function(__DIV, $show){
+"377::HideShow" : function(__DIV, $show){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  if show \ this.$Style.RemoveClasses("noDisp")
@@ -7514,7 +7532,7 @@ var T14=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T11},...T13);
 var T15=DU.ReadReturn(T14,1);
 }return [];
 },
-"377::SetBackgroundColor" : function(__DIV, $clr){
+"390::SetBackgroundColor" : function(__DIV, $clr){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  this.$Style.SetAttribute("backgroundColor", clr)
@@ -7526,7 +7544,7 @@ var T5=__RUN.getStaticGlo("Dom.Style.SetAttribute").func({__THIS:T1},...T4);
 var T6=DU.ReadReturn(T5,1);
 return [];
 },
-"390::SetBackgroundImage" : function(__DIV, $url){
+"403::SetBackgroundImage" : function(__DIV, $url){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  this.$Style.SetAttribute("backgroundImage", "url(" + url + ")")
@@ -7542,7 +7560,7 @@ var T9=__RUN.getStaticGlo("Dom.Style.SetAttribute").func({__THIS:T1},...T8);
 var T10=DU.ReadReturn(T9,1);
 return [];
 },
-"403::SetClassIf" : function(__DIV, $class, $condition){
+"416::SetClassIf" : function(__DIV, $class, $condition){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  if condition \ this.$AddClasses(class)
@@ -7564,7 +7582,7 @@ var T15=__RUN.getStaticGlo("Dom.Style.RemoveClasses").func({__THIS:T12},...T14);
 var T16=DU.ReadReturn(T15,1);
 }return [];
 },
-"416::ToggleBetweenClasses" : function(__DIV, $condition, $trueClass, $falseClass){
+"429::ToggleBetweenClasses" : function(__DIV, $condition, $trueClass, $falseClass){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  this.$SetClassIf(trueClass, condition)
@@ -7584,7 +7602,7 @@ var T15=__RUN.getStaticGlo("Dom.Style.SetClassIf").func({__THIS:T10},...T14);
 var T16=DU.ReadReturn(T15,1);
 return [];
 },
-"429::Hide" : function(__DIV){
+"442::Hide" : function(__DIV){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.Hide() => this.$Style.AddClasses("nodisp")
@@ -7595,7 +7613,7 @@ var T3=__RUN.getStaticGlo("Dom.Style.AddClasses").func({__THIS:T0},...T2);
 var T4=DU.ReadReturn(T3,1);
 return [];
 },
-"442::Show" : function(__DIV){
+"455::Show" : function(__DIV){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  ::.Show() => this.$Style.RemoveClasses("nodisp")
