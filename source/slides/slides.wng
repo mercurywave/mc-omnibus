@@ -128,12 +128,6 @@ library Slide
         $Slide.HookAdvance(stage, lambda)
             pipe.$Pipe.Kill()
 
-        //@wrapper : $g.Stage.$AppendChild(dim $Div.Create())
-        //    mixin $Style.AddClasses("confettiWrap")
-        //for 0 to 200
-        //    wrapper.$AppendChild(dim $Div.Create())
-        //        mixin $Style.AddClasses("confetti-" + it)
-
         await pipe.$Pipe.ReadAsync()
         
         pop.$Style.AddClasses("fadeOut", "slow")
@@ -234,14 +228,12 @@ library Slide
         @hero : $Heroes.LookupByName(obj.hero)
         heroContainer.$AppendChild(hero.$Heroes.MakeHeroBadge())
 
+    @pipe : stage.ct.$Canceler.MakePipe()
     @rPanel : container.$AppendChild(dim $Div.Create())
         mixin $Style.AddClasses("rPanel")
-
-    @pipe : stage.ct.$Canceler.MakePipe()
-
-    rPanel.$AppendChild(dim $mkPowButton("START!"))
-        mixin $Button.HookClick(lambda)
-            pipe.$Pipe.Kill()
+        mixin $AppendChild(dim $mkPowButton("START!"))
+            mixin $Button.HookClick(lambda)
+                pipe.$Pipe.Kill()
     
     $Slide.HookAdvance(stage, lambda)
         pipe.$Pipe.Kill()

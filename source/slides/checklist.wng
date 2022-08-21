@@ -132,6 +132,7 @@ library Slide
                 if instruct = "" \ continue
                 @hero : $Heroes.LookupByName(player.hero)
 
+                @chk
                 @id : "chkOpt" + ~idx
                 @lbl : pop.$AppendChild(dim $Checkbox.CreateLabelFor(id))
                     mixin $AppendChild(dim $Div.Create())
@@ -140,10 +141,10 @@ library Slide
                     mixin $Checkbox.HookChange(lambda)
                         if !elems.$List.Any(`!it.$Checkbox.IsChecked()`)
                             pipe.$Pipe.Kill()
-                @chk : lbl.$AppendChild(dim $Checkbox.Create())
-                    mixin $SetId(id)
-                lbl.$AppendChild(dim $Paragraph.Create())
-                    mixin $SetHtml($MarkdownToHtml(instruct))
+                    mixin $AppendChild(dim $Checkbox.Create() >> chk)
+                        mixin $SetId(id)
+                    mixin $AppendChild(dim $Paragraph.Create())
+                        mixin $SetHtml($MarkdownToHtml(instruct))
                 elems[idx] : chk
                 
             await pipe.$Pipe.ReadAsync()

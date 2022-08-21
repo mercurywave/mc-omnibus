@@ -186,6 +186,7 @@ library Menu
         throw error
     
     using Dom
+    @content
     elem : dim $Button.Create()
         mixin $Style.AddClasses("loadGame")
         mixin $Button.HookClick(lambda)
@@ -198,10 +199,10 @@ library Menu
         mixin $Style.SetClassIf("defeat", state[$Campaign.Defeated] ? false)
         mixin $Style.SetClassIf("victory", state[$Campaign.Victory] ? false)
     
-    @content : elem.$AppendChild(dim $Div.Create())
-        mixin $Style.AddClasses("content")
-        mixin $AppendChild($Heading.Create(3, camp.$Campaign.GetName()))
-        mixin $AppendChild($Paragraph.Create(state["progress"]))
+        mixin $AppendChild(dim $Div.Create() >> content)
+            mixin $Style.AddClasses("content")
+            mixin $AppendChild($Heading.Create(3, camp.$Campaign.GetName()))
+            mixin $AppendChild($Paragraph.Create(state["progress"]))
 
     for heroes
         content.$AppendChild(it.$Heroes.MakeHeroBadge())
@@ -226,6 +227,7 @@ library Menu
         throw error
 
     using Dom
+    @content
     elem : dim $Button.Create()
         mixin $Style.AddClasses("continueGame")
         mixin $Style.SetBackgroundImage(camp.$Campaign.GetImagePath())
@@ -240,8 +242,8 @@ library Menu
             mixin $AppendChild($Heading.Create(3, camp.$Campaign.GetName()))
             mixin $AppendChild($Paragraph.Create(state["progress"]))
     
-    @content : elem.$AppendChild(dim $Div.Create())
-        mixin $Style.AddClasses("heroes")
+        mixin $AppendChild(dim $Div.Create() >> content)
+            mixin $Style.AddClasses("heroes")
 
     for heroes
         content.$AppendChild(it.$Heroes.MakeHeroBadge())

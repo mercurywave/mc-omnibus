@@ -52,9 +52,8 @@ library Heroes
             mixin $AppendChild(dim $Div.Create())
                 mixin $Style.AddClasses("hName")
                 mixin $SetText(this.name)
-            //mixin $AppendChild(dim $Paragraph.Create(this.name))
-        if this has bannerLower
-            elem.$Style.AddClasses("bannerLower")
+            
+            mixin $Style.SetClassIf("bannerLower", this.?bannerLower ? false)
 
     ::.MakeHeroBadge(=> elem)
         using Dom
@@ -72,14 +71,10 @@ library Heroes
             mixin $AppendChild(dim $Div.Create())
                 mixin $Style.AddClasses("hbImg")
                 mixin $Style.SetBackgroundImage(this.$Img.GetPath())
-            //mixin $AppendChild(dim $Image.Create(this.$Img.GetPath()))
-                //mixin $Style.AddClasses("hImg")
-        if this has badgeLeft
-            elem.$Style.AddClasses("hbNudgeLeft")
-        if this has badgeRight
-            elem.$Style.AddClasses("hbNudgeRight")
-        if this has badgeDown
-            elem.$Style.AddClasses("hbNudgeDown")
+
+            mixin $Style.SetClassIf("hbNudgeLeft", this.?badgeLeft ? false)
+            mixin $Style.SetClassIf("hbNudgeRight", this.?badgeRight ? false)
+            mixin $Style.SetClassIf("hbNudgeDown", this.?badgeDown ? false)
 
 
     

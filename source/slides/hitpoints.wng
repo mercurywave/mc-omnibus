@@ -14,13 +14,14 @@ library Slide
         ::DoRecordHP(stage => async)
             @pipe : stage.ct.$Canceler.MakePipe()
 
+            @container
             @pop : dim $Popup.Create("Persistent Damage")
                 mixin $AppendChild(dim $Paragraph.Create())
                     mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
                         Record each players final hit points (up to their printed hit points):
 
-            @container : pop.$AppendChild(dim $Div.Create())
-                mixin $Style.AddClasses("hpRecord")
+                mixin $AppendChild(dim $Div.Create() >> container)
+                    mixin $Style.AddClasses("hpRecord")
 
             @fields : dim()
             for @idx in stage.state.player
@@ -29,12 +30,9 @@ library Slide
                 @cell : container.$AppendChild(dim $Div.Create())
                     mixin $Style.AddClasses("heroHp")
                     mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
-                fields[idx] : cell.$AppendChild(dim $NumberEntry.Create())
-                    mixin $NumberEntry.SetText(lastHp)
-                    mixin $NumberEntry.DoSelectAllOnFocus()
-                // don't like how this looks
-                //cell.$AppendChild(dim $Paragraph.Create("/" + ~hero.$Heroes.GetHp()))
-                //    mixin $Style.AddClasses("hp")
+                    mixin $AppendChild(dim $NumberEntry.Create() >> fields[idx])
+                        mixin $NumberEntry.SetText(lastHp)
+                        mixin $NumberEntry.DoSelectAllOnFocus()
 
             @tryAdvance : lambda
                 if !fields.$List.Any(`it.$NumberEntry.GetText() = ""`)
@@ -54,13 +52,14 @@ library Slide
         ::DoSetInitialHP(stage => async)
             @pipe : stage.ct.$Canceler.MakePipe()
 
+            @container
             @pop : dim $Popup.Create("Persistent Damage")
                 mixin $AppendChild(dim $Paragraph.Create())
                     mixin $SetHtml($GTW(textdata))
                         Set each player's starting hit points for the scenario to the following
 
-            @container : pop.$AppendChild(dim $Div.Create())
-                mixin $Style.AddClasses("hpRecord")
+                mixin $AppendChild(dim $Div.Create() >> container)
+                    mixin $Style.AddClasses("hpRecord")
 
             for @idx in stage.state.player
                 @hero : $Heroes.LookupByName(stage.state.player[idx].hero)

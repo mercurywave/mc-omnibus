@@ -370,13 +370,15 @@ library RedSkull
         for @idx in stage.state.player
             @hero : stage.state.$Campaign.State.GetHero(idx)
             @alive : !stage.state.$Campaign.State.IsExpert() | stage.state.$Campaign.State.GetHp(idx) > 0
+
+            @rightPane
             @playerCard : container.$AppendChild(dim $Div.Create())
                 mixin $Style.AddClasses("player")
                 mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
-            if !alive
-                playerCard.$Style.AddClasses("dead")
-            @rightPane : playerCard.$AppendChild(dim $Div.Create())
-                mixin $Style.AddClasses("pickers")
+                mixin $Style.SetClassIf("dead", !alive)
+                mixin $AppendChild(dim $Div.Create() >> rightPane)
+                    mixin $Style.AddClasses("pickers")
+
             if alive
                 @drop : rightPane.$AppendChild(dim $Dropdown.Create())
                     mixin $Dropdown.AddOption("")
@@ -408,14 +410,15 @@ library RedSkull
         using Dom
         @pipe : stage.ct.$Canceler.MakePipe()
         
+        @container
         @pop : dim $Popup.Create("Persistent Damage")
             mixin $AppendChild(dim $Paragraph.Create())
                 mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
                     Each player may heal to full health by adding an obligation from their
                     expert-campaign set to their deck.
 
-        @container : pop.$AppendChild(dim $Div.Create())
-            mixin $Style.AddClasses("healing")
+            mixin $AppendChild(dim $Div.Create() >> container)
+                mixin $Style.AddClasses("healing")
 
         @allObligations : dim
             "Zola's Algorithm"
@@ -433,7 +436,9 @@ library RedSkull
             @currOblig : stage.state.player[idx, $Obligations]
             @possOblig : allObligations.$List.Filter(`!currOblig[it]`)
             @ghost : stage.ghost["player", idx, $Obligations]
+            @id : "chkOpt" + ~idx
 
+            @rightPane; @lbl; @paneAdd
             @playerCard : container.$AppendChild(dim $Div.Create())
                 mixin $Style.AddClasses("player")
                 mixin $Style.SetClassIf("dead", !alive)
@@ -443,16 +448,13 @@ library RedSkull
                         mixin $Style.AddClasses("hpLbl")
                     mixin $AppendChild(dim $Paragraph.Create("" + hp + "/" + hero.$Heroes.GetHp()))
                         mixin $Style.AddClasses("hp")
-            
-            @rightPane : playerCard.$AppendChild(dim $Div.Create())
-                mixin $Style.AddClasses("rPane")
 
-            @id : "chkOpt" + ~idx
-            @lbl : rightPane.$AppendChild(dim $Checkbox.CreateLabelFor(id))
-                mixin $Style.SetClassIf("noDisp", hp >= hero.$Heroes.GetHp() | !alive)
-
-            @paneAdd : rightPane.$AppendChild(dim $Div.Create())
-                mixin $Style.SetClassIf("noDisp", alive & ghost = null)
+                mixin $AppendChild(dim $Div.Create() >> rightPane)
+                    mixin $Style.AddClasses("rPane")
+                    mixin $AppendChild(dim $Checkbox.CreateLabelFor(id) >> lbl)
+                        mixin $Style.SetClassIf("noDisp", hp >= hero.$Heroes.GetHp() | !alive)
+                    mixin $AppendChild(dim $Div.Create() >> paneAdd)
+                        mixin $Style.SetClassIf("noDisp", alive & ghost = null)
             
             (@chk, checks[idx]) : lbl.$AppendChild(dim $Checkbox.Create())
                 mixin $SetId(id)
@@ -461,7 +463,7 @@ library RedSkull
                 paneAdd.$Style.SetClassIf("noDisp", !chk.$Checkbox.IsChecked())
             lbl.$AppendChild(dim $Paragraph.Create("Heal to full health"))
             
-            @lblObligation : paneAdd.$AppendChild(dim $Paragraph.Create("Select an obligation to add to your deck:"))
+            paneAdd.$AppendChild(dim $Paragraph.Create("Select an obligation to add to your deck:"))
                 mixin $Style.AddClasses("obligation")
 
             selectors[idx] : paneAdd.$AppendChild(dim $Dropdown.Create())
@@ -550,10 +552,9 @@ library RedSkull
             @playerCard : container.$AppendChild(dim $Div.Create())
                 mixin $Style.AddClasses("player")
                 mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
-            if !alive
-                playerCard.$Style.AddClasses("dead")
-            panesForSelectors[idx] : playerCard.$AppendChild(dim $Div.Create())
-                mixin $Style.AddClasses("pickers")
+                mixin $Style.SetClassIf("dead", !alive)
+                mixin $AppendChild(dim $Div.Create() >> panesForSelectors[idx])
+                    mixin $Style.AddClasses("pickers")
             if alive
                 selectors[idx] : dim()
             else
@@ -632,6 +633,7 @@ library RedSkull
                     mixin $Style.AddClasses("player")
                     mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
                 mixin $Style.SetClassIf("disabled", !isEnabled)
+                
             @chk : lbl.$AppendChild(dim $Checkbox.Create())
                 mixin $SetId(id)
             if isPreChecked
