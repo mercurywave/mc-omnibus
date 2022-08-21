@@ -11850,41 +11850,47 @@ return [$key];
 },
 "26::SaveGame" : function(__DIV, $campaign, $key, $state){
 var $obj;
-//  if !(state has checkpoint) \ quit
+//  if !(state has checkpoint)
 var T3=DU.Ref($state);
 var T4=T3.inner!=null && ("checkpoint" in T3.inner);
 var T5=!T4;
 if(T5)
 {
+//  $Storage.Remove(key)
+var T7=DU.Ref($key);
+var T8=[T7];
+var T9=__RUN.getStaticGlo("Storage.Remove").func(null,...T8);
+var T10=DU.ReadReturn(T9,1);
+//  quit
 return [];
 }//  @obj : dim
-var T9=new OObj();
+var T14=new OObj();
 //  campaign : campaign.$Campaign.GetName()
-var T10=DU.Ref($campaign);
-var T11=OObj.DotAccess(T10,"name");
-OObj.SetChild(T9,"campaign",T11);
+var T15=DU.Ref($campaign);
+var T16=OObj.DotAccess(T15,"name");
+OObj.SetChild(T14,"campaign",T16);
 //  version : 1
-var T13=1;
-OObj.SetChild(T9,"version",T13);
-$obj=T9;
+var T18=1;
+OObj.SetChild(T14,"version",T18);
+$obj=T14;
 //  obj.$Util.MergeIn(state)
-var T16=DU.Ref($obj);
-var T17=DU.Ref($state);
-var T18=[T17];
-var T19=__RUN.getStaticGlo("Util.MergeIn").func({__THIS:T16},...T18);
-var T20=DU.ReadReturn(T19,1);
+var T21=DU.Ref($obj);
+var T22=DU.Ref($state);
+var T23=[T22];
+var T24=__RUN.getStaticGlo("Util.MergeIn").func({__THIS:T21},...T23);
+var T25=DU.ReadReturn(T24,1);
 //  $Storage.Save(key, obj)
-var T22=DU.Ref($key);
-var T23=DU.Ref($obj);
-var T24=[T22,T23];
-var T25=__RUN.getStaticGlo("Storage.Save").func(null,...T24);
-var T26=DU.ReadReturn(T25,1);
+var T27=DU.Ref($key);
+var T28=DU.Ref($obj);
+var T29=[T27,T28];
+var T30=__RUN.getStaticGlo("Storage.Save").func(null,...T29);
+var T31=DU.ReadReturn(T30,1);
 //  $Storage.Save("lastSave", key)
-var T28="lastSave";
-var T29=DU.Ref($key);
-var T30=[T28,T29];
-var T31=__RUN.getStaticGlo("Storage.Save").func(null,...T30);
-var T32=DU.ReadReturn(T31,1);
+var T33="lastSave";
+var T34=DU.Ref($key);
+var T35=[T33,T34];
+var T36=__RUN.getStaticGlo("Storage.Save").func(null,...T35);
+var T37=DU.ReadReturn(T36,1);
 return [];
 },
 "39::GetContinueKey" : function(__DIV){

@@ -5,7 +5,10 @@ library Storage
         => "cmp" + $Time.NowUtc()
 
     ::SaveGame(campaign, key, state)
-        if !(state has checkpoint) \ quit
+        if !(state has checkpoint)
+            // you got into a campaign, but backed out
+            $Storage.Remove(key)
+            quit
         @obj : dim
             campaign : campaign.$Campaign.GetName()
             version : 1
