@@ -1,0 +1,75 @@
+
+using Slide
+using Campaign
+
+
+data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
+    mixin $Campaign.mixOfficalCampaign(4)
+    mixin $mixTooltipGen(`$SinMo.TooltipGen(state, player)`)
+    
+    mixin $mixProductInfo(dim)
+        "Sinister Motives expansion"
+
+    mixin $mixSaveGameReminder()
+
+    mixin $mixHeroSelection()
+
+    mixin $mixSlides(dim)
+        $Slide.Popup("Note", textdata)
+            You may not include the following cards in your player decks 
+            unless a campaign rule states otherwise:
+            * Venom (Eddie Brock)
+            * Symbiote Suit
+
+    mixin $mixModeSelect()
+    
+    mixin $mixSlides(dim)
+        $IfExpert($Slide.Popup("Expert Campaign", textdata))
+            **Optionally** as an additional challenge, you may choose to restrict 
+            your deckbuilding for the expert campaign.
+            
+            After building your deck for the expert campaign, you cannot add, remove, or 
+            change the aspect and/or basic cards in you deck for the remainder of the campaign.
+            However, campaign-specific cards can be added to you deck as per the campaign rules.
+
+            This app does not currently track your deck for this option,
+            so you will have to do so using an external tool.
+
+    //////////// MISSION 1 ////////////
+    mixin $mixMission("S0", 1, "City in Chaos", $Img.Sandman, dim
+            _ , $g.BackStyle.Black, $g.LineStyle.Yellow, $g.ForeStyle.Orange
+            _ , "Read page 7-8 from the Sinister Motives rule book")
+        
+        $CheckList("Setup", dim, null, $Img.Sandman)
+            $EnemyStageCheck("Sandman")
+            $CheckList.MakeCheck("**Main Scheme Deck**: Hapless Pedestrians")
+
+        $CheckList("Setup", dim, "**Encounter Deck**", $Img.SandClone)
+            $CheckList.MakeCheck("Sandman set")
+            $CheckList.MakeCheck("City in Chaos")
+            $CheckList.MakeCheck("Down to Earth")
+            $CheckList.MakeCheck("Standard set")
+            $ExpertEncounterSetCheck()
+
+        $Slide.Create(lambda(stage => async))
+            @mode : switch(stage.state.$Campaign.State.IsExpert())
+                true : "Expert"
+                else : "Standard"
+            @text : "Put the Public Outcry environment into play.\n\n"
+            text +: "Use the side with the text \"" + mode + " Mode Only\""
+            await $Slide.DoSimplePopup(stage, "Setup", text)
+
+        $Setup("Shuffle the Smear Campaign treachery into the encounter deck")
+
+        $SinMo.CommunityService()
+
+        $IfExpert($CheckList("Expert Setup", dim, "**Encounter Deck**", $Img.CityStreets))
+            $CheckList.MakeCheck("Place 2 additional sand counters on the City Streets environment")
+            $CheckList.MakeCheck("Resolve the \"Surging Sands\" ability of the City Streets environment")
+
+        $PlayGame()
+
+library SinMo
+    ::TooltipGen(state, player => tooltip)
+
+    ::CommunityService( => slide)

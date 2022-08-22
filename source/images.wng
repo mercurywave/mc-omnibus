@@ -29,7 +29,7 @@ library Img
     data SinisterMotives : dim $mkCampaign("sinister_motives", "Sinister Motives")
         mixin $mixExtraStyle("shiftUp")
     
-    
+    ///// RED SKULL /////
     data Crossbones : $mkCard("crossbones", "Crossbones [II]")
     data AbsorbingMan : $mkCard("absorbing_man", "Absorbing Man [II]")
     data Taskmaster : dim $mkCard("taskmaster", "Taskmaster [II]")
@@ -44,6 +44,13 @@ library Img
     data TechnologicalEnhancements : $mkCard("technological_enhancements", "Technological Enhancements")
     data TwistedReality : $mkCard("twisted_reality", "Twisted Reality")
 
+    ///// SINISTER MOTIVES /////
+    data Sandman : $mkCard("sandman", "Sandman [II]")
+
+    data SandClone : $mkCard("sand_clone", "Sand Clone")
+    data CityStreets : $mkCard("city_streets", "City Streets")
+
+    ///// MISC /////
     data Ronin : $mkCard("ronin", "Ronin")
 
     data TwoAgainst : $mkCard("two_against", "Two Against The World")
