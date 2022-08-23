@@ -47,10 +47,13 @@ library Dom
     library Dropdown
         ::Create(=> elem) => $CreateElement("select")
         ::.AddOption(text, ?val)
-            val ?: ""
+            val ?: text
             this.$AppendChild(dim $CreateElement("option"))
                 mixin $SetAttribute("value", val)
                 mixin $SetText(text)
+        ::.AddListOfOptions(list)
+            for list
+                this.$AddOption(it)
         ::.GetValue(=> val) => this.$GetAttribute("value")
         ::.SetValue(val) \ this.$SetAttribute("value", val)
         ::.HookChange(lamb) => this.$HookEvent("change", free? lamb)

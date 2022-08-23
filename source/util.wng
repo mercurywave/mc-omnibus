@@ -190,3 +190,6 @@ global ::GTW(strOrArr => str)
         strOrArr.$Obj.HasChildren() : strOrArr.$List.Join(" ")
         else : strOrArr
     
+global ::GTA(arr => arr)
+    // given a textdata, remove the blanks into an array of strings
+    arr.$List.RemoveAll(`it = ""`)

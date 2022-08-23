@@ -230,6 +230,7 @@ library Menu
     @content
     elem : dim $Button.Create()
         mixin $Style.AddClasses("continueGame")
+        mixin $Campaign.mixApplyExtraStyles(camp)
         mixin $Style.SetBackgroundImage(camp.$Campaign.GetImagePath())
         mixin $Button.HookClick(lambda)
             if ct.$Canceler.TryCancel()

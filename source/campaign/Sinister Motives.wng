@@ -51,25 +51,77 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
             $CheckList.MakeCheck("Standard set")
             $ExpertEncounterSetCheck()
 
-        $Slide.Create(lambda(stage => async))
-            @mode : switch(stage.state.$Campaign.State.IsExpert())
-                true : "Expert"
-                else : "Standard"
-            @text : "Put the Public Outcry environment into play.\n\n"
-            text +: "Use the side with the text \"" + mode + " Mode Only\""
-            await $Slide.DoSimplePopup(stage, "Setup", text)
+        $SinMo.PublicOutcry()
+        
+        $SinMo.CommunityService(1)
 
-        $Setup("Shuffle the Smear Campaign treachery into the encounter deck")
-
-        $SinMo.CommunityService()
-
-        $IfExpert($CheckList("Expert Setup", dim, "**Encounter Deck**", $Img.CityStreets))
+        $IfExpert($CheckList("Expert Setup", dim, "", $Img.CityStreets))
             $CheckList.MakeCheck("Place 2 additional sand counters on the City Streets environment")
             $CheckList.MakeCheck("Resolve the \"Surging Sands\" ability of the City Streets environment")
 
         $PlayGame()
 
 library SinMo
+    library Const
+        $ComServ : "community service"
+        $LastComServ : "current community service"
+
     ::TooltipGen(state, player => tooltip)
 
-    ::CommunityService( => slide)
+    ::PublicOutcry(=> slide)
+        return $Slide.CheckList("Bad Publicity", dim, "From the Bad Publicity campaign set:", $Img.PublicOutcry)
+            $CheckList.MakeCheck($GT(textdata), `!stage.state.$Campaign.State.IsExpert()`)
+                Put the Public Outcry environment into play <br>
+                <i>(Use the side with the text "Standard Mode Only")</i>
+            $CheckList.MakeCheck($GT(textdata), `stage.state.$Campaign.State.IsExpert()`)
+                Put the Public Outcry environment into play <br>
+                <i>(Use the side with the text "Expert Mode Only")</i>
+            $CheckList.MakeCheck("Shuffle the Smear Campaign treachery card into the encounter deck")
+
+    ::CommunityService(mission => slide)
+        @text1 : "Choose a \"Campaign - Community Service\" side scheme at random"
+        @text2 : "Shuffle that side scheme card into the encounter deck"
+        return $GetAnotherNewFromPile(mission, "Community Service", text1, text2, $GTA(textdata))
+            Back Alley Burglary
+            Cat in a Tree
+            Henchmen Heist
+            Off the Rails
+            Rubble Rescue
+
+    ::GetAnotherNewFromPile(mission, title, text1, text2, &possibleCards => slide)
+        return $Slide.Create(lambda(stage => async)[mission, title, text1, text2, free possibleCards])
+            
+            @unpicked : possibleCards.$List.Filter(`!stage.state[$Const.ComServ, it] ? false`)
+            @initial : stage.ghost[$Const.LastComServ] ? possibleCards.$List.QuickPick()
+
+            @pick : await $DoGetAnotherNewFromPile(stage, title, text1, text2, unpicked, initial)
+
+            stage.delta[$Const.LastComServ] : pick ? ""
+
+
+    ::DoGetAnotherNewFromPile(stage, title, text1, text2, possibleCards, initial => async selection)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+        
+        @drop
+        @pop : dim $Popup.Create(title)
+            mixin $Style.AddClasses("getFromPile")
+            mixin $Popup.AddMarkdown(text1)
+            mixin $AppendChild(dim $Dropdown.Create() >> drop)
+                mixin $Dropdown.AddListOfOptions(possibleCards)
+                mixin $Dropdown.SetValue(initial)
+            mixin $Popup.AddMarkdown(text2)
+
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+
+        if stage.ct.$Canceler.IsLive()
+            selection : drop.$Dropdown.GetValue()
+
+        pop.$Style.AddClasses("fadingOut")
+        await $Job.Pause(50)

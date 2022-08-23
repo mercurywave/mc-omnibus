@@ -49,6 +49,7 @@ library Img
 
     data SandClone : $mkCard("sand_clone", "Sand Clone")
     data CityStreets : $mkCard("city_streets", "City Streets")
+    data PublicOutcry : $mkCard("public_outcry", "Public Outcry")
 
     ///// MISC /////
     data Ronin : $mkCard("ronin", "Ronin")

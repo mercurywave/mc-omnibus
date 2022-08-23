@@ -102,6 +102,7 @@ library Campaign
     ::.MakeHeader(=> img)
         => dim this.img.$Img.MakeElem()
             mixin $Dom.Style.AddClasses("vh", "vImg")
+            mixin $mixApplyExtraStyles(this)
     ::.MakeBadge(=> elem)
         => dim $Dom.Div.Create()
             mixin $Dom.Style.AddClasses("campaignBadgeContainer")

@@ -446,6 +446,9 @@ label.disabled p{
     text-align: right;
     position: relative;
 }
+.continueGame.shiftUp{
+    background-position: 50% 60%;
+}
 .continueGame::before{
     content: '';
     background-image: linear-gradient(to bottom left, rgba(0,0,0,.9), transparent 50%);
@@ -669,6 +672,9 @@ label.disabled p{
     object-fit: cover;
     object-position: 50% 45%;
     clip-path: polygon(0 0, 100% 0%, calc(90%) 100%, 0% 100%);
+}
+.vh.vImg.shiftUp {
+    object-position: 50% 58%;
 }
 .vh.borderHelp {
     background-color: #000;
@@ -1576,6 +1582,14 @@ label.disabled p{
 .spinContainer.fadingOut{
     opacity: 0;
     animation: slideOut .5s;
+}
+
+.getFromPile select{
+    font-family: 'ComicNeueRegular', sans-serif;
+    font-weight: bold;
+    padding: 5;
+    width: 220px;
+    font-size: 16pt;
 }
 
 
