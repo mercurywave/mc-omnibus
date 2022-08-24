@@ -122,6 +122,12 @@ library Campaign
             return $Heroes.LookupByName(name)
         ::.GetHp(idx => hp) => this["player",idx,"hp"] ? 0
         ::.IsComplete(=> bool) => this[$Campaign.Complete] ? false
+        ::.AnyPlayerDefeated(=> bool)
+            // always returns false in standard mode
+            bool : false
+            for this["player"]
+                bool |: (it.?hp ? 1) <= 0
+
 
 
 data : dim $Campaign.Create("The Galaxy's Most Wanted", $Img.GalaxysMostWanted)

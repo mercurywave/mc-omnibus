@@ -17,9 +17,7 @@ library Dom
 
     library Checkbox
         ::Create(=> checkbox) => $Input.Create("checkbox")
-        ::CreateLabelFor(id => label) // makes a new element - must have ID!
-            => dim $CreateElement("label")
-                mixin $SetAttribute("htmlFor", id)
+        ::CreateLabelFor(id => label) => $Input.CreateLabelFor(id)
         ::.HookChange(lamb) => this.$HookEvent("change", free? lamb)
         ::.IsChecked(=> checked) => this.$GetAttribute("checked")
         ::.SetIsChecked(checked)
@@ -64,6 +62,10 @@ library Dom
                 mixin $Input.SetType(type)
         extern ::.SetType(type)
         extern ::.SetValue(type)
+            
+        ::CreateLabelFor(id => label) // makes a new element - must have ID!
+            => dim $CreateElement("label")
+                mixin $SetAttribute("htmlFor", id)
 
 
     library Paragraph

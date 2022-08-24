@@ -61,10 +61,24 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
 
         $PlayGame()
 
+        $IfExpert($RecordHP())
+
+        $SinMo.Reputation.MakeSlide(1)
+
+        $PlayGame()
+
 library SinMo
     library Const
         $ComServ : "community service"
         $LastComServ : "current community service"
+        $Rep : "reputation"
+        $Mission : "mission"
+        $Victory : "victory points"
+        $NoMinions : "no minions"
+        $NoSideSchemes : "no side schemes"
+        $NoMainThreat : "no threat"
+        $NoAccel : "no acceleration"
+        $NoDefeated : "no defeats"
 
     ::TooltipGen(state, player => tooltip)
 
@@ -125,3 +139,90 @@ library SinMo
 
         pop.$Style.AddClasses("fadingOut")
         await $Job.Pause(50)
+
+    library Reputation
+        ::MakeSlide(mission => slide)
+            => $Slide.Create(lambda(stage => async))
+                await $DoCalculateSlide(stage, mission)
+
+        ::CalcCurr(state => val)
+            val : 0
+            using Const
+            for @miss in state[$Mission]
+                val +: state[$Mission, miss, $Const.Victory] ? 0
+                for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
+                    if state[$Mission, miss, key] ? false
+                        key +: 1
+
+        ::DoCalculateSlide(stage, mission => async)
+            using Dom
+            @pipe : stage.ct.$Canceler.MakePipe()
+
+            @ghost : stage.ghost[$Const.Mission, mission] ? dim()
+            @initVic : ghost[$Const.Victory] ? 0
+            @isExpert : stage.state.$State.IsExpert()
+
+            @vicCtl; @pane
+            
+            @pop : dim $Popup.Create("Conditions")
+                mixin $Style.AddClasses("conditions")
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("scroller")
+                    mixin $Popup.AddMarkdown($GTW(textdata))
+                        Enter Victory points and mark each condition met at the end of
+                        the game to calculate your reputation score for the mission
+                    
+                    //mixin $AppendChild(dim $Div.Create())
+                        //mixin $Style.AddClasses("numPane")
+                    mixin $AppendChild(dim $Input.CreateLabelFor("txtVic"))
+                        mixin $AppendChild(dim $NumberEntry.Create() >> vicCtl)
+                            mixin $Style.AddClasses("numberEntry")
+                            mixin $NumberEntry.SetText(initVic)
+                            mixin $NumberEntry.DoSelectAllOnFocus()
+                            mixin $SetId("txtVic")
+                        mixin $AppendChild($Paragraph.Create("Victory points in the victory display"))
+
+                    mixin $AppendChild(dim $Div.Create() >> pane)
+
+                mixin $Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
+            $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
+            
+            @chkMinions : pane.$mixAddCheckBox("No minions in play (+1)", ghost[$Const.NoMinions] ? false)
+            @chkSide : pane.$mixAddCheckBox("No side schemes in play (+1)", ghost[$Const.NoSideSchemes] ? false)
+            @chkMain : pane.$mixAddCheckBox("No threat on the main scheme (+1)", ghost[$Const.NoMainThreat] ? false)
+            @chkAccel : pane.$mixAddCheckBox(
+                _ "Fewer than " + stage.state.players + " acceleration tokens in play (+1)"
+                _ , ghost[$Const.NoAccel] ? false)
+            @anyDefeat : switch
+                isExpert : stage.state.$State.AnyPlayerDefeated()
+                else : ghost[$Const.NoDefeated] ? false
+            @chkDefeat : pane.$mixAddCheckBox("No defeated players (+1)", !anyDefeat, isExpert)
+
+            await pipe.$Pipe.ReadAsync()
+            if stage.ct.$Canceler.IsLive()
+                using Const
+                (stage.delta[$Mission, mission], @node) : dim()
+                node[$Const.Victory] : vicCtl.$NumberEntry.GetText()
+                node[$Const.NoMinions] : chkMinions.$Checkbox.IsChecked()
+                node[$Const.NoSideSchemes] : chkSide.$Checkbox.IsChecked()
+                node[$Const.NoMainThreat] : chkMain.$Checkbox.IsChecked()
+                node[$Const.NoAccel] : chkAccel.$Checkbox.IsChecked()
+                node[$Const.NoDefeated] : chkDefeat.$Checkbox.IsChecked() 
+
+            pop.$Style.AddClasses("fadingOut")
+            await $Job.Pause(50)
+
+scratch _uniqChkID : 0
+::.mixAddCheckBox(label, ?isChecked, ?disable => chk)
+    using Dom
+    ^_uniqChkID +: 1
+    @id : "chkUniq" + ^_uniqChkID
+    this.$AppendChild(dim $Checkbox.CreateLabelFor(id))
+        mixin $AppendChild(dim $Checkbox.Create() >> chk)
+            mixin $SetId(id)
+            mixin $Checkbox.SetIsChecked(isChecked ? false)
+        mixin $Style.SetClassIf("disabled", disable ? false)
+        mixin $AppendChild($Paragraph.Create(label))
+    if disable
+        chk.$SetAttribute("disabled", "disabled")
+

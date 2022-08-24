@@ -81,9 +81,9 @@ global ::RunCampaign(campaign, ?key => async)
             mixin $Style.AddClasses("spin")
         mixin $AppendChild(dim $Paragraph.Create("Resuming"))
     
-    await $Job.Pause(1000)
+    await $Job.Pause(800)
     container.$Style.AddClasses("fadingOut")
-    await $Job.Pause(500)
+    await $Job.Pause(400)
 
 ::MakeCampaignHeader(campaign => element)
     using Campaign
