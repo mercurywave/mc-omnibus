@@ -1388,15 +1388,16 @@ label.disabled p{
     width: 200px;
     display: inline-table;
     clear: both;
-    margin: 20px 20px;
+    margin: 0 20px;
 }
 .heroHp .heroBadge{
-    transform: scale(75%);
+    transform: scale(.75);
     transform-origin: top left;
+    display: table-cell;
+    margin: -20px;
+    /*
     width: 80px;
     height: 80px;
-    display: table-cell;
-    /*
     display: inline-block;
     display: inline-block;
     */
@@ -1749,6 +1750,17 @@ label.disabled p{
     }
 }
 @media only screen and (max-width: 400px) {
+    #Title{
+        top: 5px;
+        left: -35px;
+        font-size: 18pt;
+    }
+    #heroes_footer .heroBadge{
+        margin-left: -50px;
+    }
+    #heroes_footer_inner {
+        padding-left: 25px;
+    }
     .continueGame{
         width: 300px;
         height: 120px;
@@ -1768,6 +1780,16 @@ label.disabled p{
     }
     .playerCardAssign .pickers select{
         width: 150px;
+    }
+    .playGame{
+        width: calc(100% - 100px);
+    }
+    .playGame .powText{
+        font-size: 28pt;
+    }
+    p.long {
+        font-size: small;
+        margin: 0;
     }
 }
 @media only screen and (max-width: 800px) {
@@ -1824,5 +1846,22 @@ label.disabled p{
         display: flex;
         flex-direction: column;
         align-items: center;   
+    }
+    .heroHp .heroBadge{
+        transform: scale(.5);
+        margin: -25px -50px -30px -30px;
+        height: 50px;
+        width: 50px;
+    }
+    .heroHp input{
+        font-size: 24pt;
+        width: 50px;
+    }
+}
+/*short screens*/
+@media only screen and (max-height: 600px) {
+    .playerCardAssign .player .heroBadge{
+        transform: scale(.4);
+        margin: -25px -50px -30px -30px;
     }
 }

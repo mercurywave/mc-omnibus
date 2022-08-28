@@ -354,13 +354,13 @@ library RedSkull
         pop.$Style.AddClasses("fadingOut")
         await $Job.Pause(50)
     
-    ::DoDistributeVictory(stage, key, text, cards => async)
+    ::DoDistributeVictory(stage, key, text, cards, ?title => async)
         using Dom
+        title ?: "Victory"
         @pipe : stage.ct.$Canceler.MakePipe()
         
-        @pop : dim $Popup.Create("Victory")
-            mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml($GTW(text)))
+        @pop : dim $Popup.Create(title)
+            mixin $Popup.AddMarkdown(text)
 
         @container : pop.$AppendChild(dim $Div.Create())
             mixin $Style.AddClasses("playerCardAssign")
@@ -633,7 +633,7 @@ library RedSkull
                     mixin $Style.AddClasses("player")
                     mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
                 mixin $Style.SetClassIf("disabled", !isEnabled)
-                
+
             @chk : lbl.$AppendChild(dim $Checkbox.Create())
                 mixin $SetId(id)
             if isPreChecked

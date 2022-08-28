@@ -62,8 +62,10 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
         $PlayGame()
 
         $IfExpert($RecordHP())
-
-        $SinMo.Reputation.MakeSlide(1)
+        $SinMo.CommunityServiceComplete()
+    
+    mixin $SinMo.Reputation.mixMissionEnd(1)
+    mixin $Campaign.mixSlides(dim)
 
         $PlayGame()
 
@@ -79,6 +81,8 @@ library SinMo
         $NoMainThreat : "no threat"
         $NoAccel : "no acceleration"
         $NoDefeated : "no defeats"
+        $ShieldTech : "shield tech"
+        $OsbornTech : "osborn tech"
 
     ::TooltipGen(state, player => tooltip)
 
@@ -140,26 +144,66 @@ library SinMo
         pop.$Style.AddClasses("fadingOut")
         await $Job.Pause(50)
 
+    ::CommunityServiceComplete(=> slide)
+        => $Slide.Create(lambda(stage => async))
+            using Fork
+            @service : stage.state[$Const.LastComServ]
+            @text : "Is the " + service + " side scheme in the victory display?"
+            @opts : dim
+                $MakeOption(service + " in victory display", true)
+                $MakeOption("Not in victory display", false)
+            @preSelect : stage.ghost[$Const.ComServ, service] ? false
+            await $DoForkThen(stage, lambda(pick), "Victory", text, opts, preSelect)
+                if pick
+                    stage.delta[$Const.ComServ, service] : true
+
     library Reputation
-        ::MakeSlide(mission => slide)
-            => $Slide.Create(lambda(stage => async))
-                await $DoCalculateSlide(stage, mission)
+        ::.mixMissionEnd(mission)
+            this.$Campaign.mixSlides(dim)
+                $MakeCalculateSlide(mission)
+                $IfPassing(1, $DistributeShieldTech())
+                $IfPassing(1, $OsTech(mission))
+
+        ::IfPassing(value, &subSlide => slide)
+            => $Slide.If(`$IsPassing(state, value)`, free subSlide)
+        
+        ::IsPassing(state, value => bool)
+            using Const
+            @lastMission : state[$Mission].$Obj.PrevKey()
+            @score : $CalcCurr(state)
+            if score >= value
+                @delta : $CalcForMission(state, lastMission)
+                if score - delta < value
+                    return true
+            return false
 
         ::CalcCurr(state => val)
             val : 0
             using Const
             for @miss in state[$Mission]
-                val +: state[$Mission, miss, $Const.Victory] ? 0
+                val +: $CalcForMission(state, miss)
+
+        ::CalcForMission(state, mission => val)
+            val : 0
+            using Const
+            state[$Mission, mission, $Const.Victory] ? 0
                 for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
-                    if state[$Mission, miss, key] ? false
-                        key +: 1
+                    if state[$Mission, mission, key] ? false
+                        val +: 1
+
+        ::MakeCalculateSlide(mission => slide)
+            => $Slide.Create(lambda(stage => async))
+                    await $DoCalculateSlide(stage, mission)
 
         ::DoCalculateSlide(stage, mission => async)
             using Dom
             @pipe : stage.ct.$Canceler.MakePipe()
 
             @ghost : stage.ghost[$Const.Mission, mission] ? dim()
-            @initVic : ghost[$Const.Victory] ? 0
+            @commServiceVal : switch
+                stage.state[$Const.ComServ, stage.state[$Const.LastComServ]] ? false : 1
+                else : 0
+            @initVic : ghost[$Const.Victory] ? commServiceVal
             @isExpert : stage.state.$State.IsExpert()
 
             @vicCtl; @pane
@@ -211,6 +255,33 @@ library SinMo
 
             pop.$Style.AddClasses("fadingOut")
             await $Job.Pause(50)
+        
+        ::DistributeShieldTech(=> slide)
+            => $Slide.Create(lambda(stage => async))
+                    @text : $GTW(textdata)
+                        Deal 3 "Campaign - S.H.I.E.L.D. Tech" upgrades at random to each 
+                        player. Each player may choose 1 to add to their deck for the 
+                        rest of the campaign.<br/>
+                        <em>(These do not count toward minimum/maximum deck size)</em>
+                    await $RedSkull.DoDistributeVictory(stage, $Const.ShieldTech, text, $GTA(textdata), "Reputation")
+                        Compact Darts
+                        Impact-Dampening Suit
+                        Laser Googles
+                        Propulsion Gauntlet
+                        Retinal Display
+                        Shock Knuckles
+                        Wave Bracers
+                        Wrist Navigators
+
+        ::OsTech(mission => slide)
+            @text1 : "Choose one \"Osborn Tech\" attachment at random"
+            return $GetAnotherNewFromPile(mission, "Reputation", text1, "", $GTA(textdata))
+                Arm Cannon
+                Ionic Boots
+                Kinetic Armor
+                Neocarbon Scales
+                Spiked Gauntlet
+                Tracking Display
 
 scratch _uniqChkID : 0
 ::.mixAddCheckBox(label, ?isChecked, ?disable => chk)

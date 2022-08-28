@@ -14,15 +14,20 @@ library Slide
                 value : value
                 subtext : subtext ? ""
                 condition : free? condition
-        
+
         ::DoFork(stage, key, title, text, options => async)
+            @preSelect : stage.ghost[key]
+            await $DoForkThen(stage, lambda, title, text, options, preSelect)
+                stage.delta[key] : pick
+        
+        ::DoForkThen(stage, doThen, title, text, options, preSelect => async)
             // use $MakeOption to build array of options
+            // if preselect != null, it will enable quick-advance
             @pipe : stage.ct.$Canceler.MakePipe()
 
             @pop : dim $Popup.Create(title)
                 mixin $Popup.AddMarkdown(text)
             
-            @ghost : null
             for @opt : options
                 if opt.condition = null | $(opt.condition, stage)
                     pop.$AppendChild(dim $Button.Create())
@@ -34,17 +39,15 @@ library Slide
                         
                         mixin $Button.HookClick(lambda)
                             trap pipe.$Pipe.Write(opt.value)
-                    if stage.ghost != null & opt.value = stage.ghost[key]
-                        ghost : opt
             
             // looking this up in the loop to make sure the option is still valid
-            if ghost != null
+            if preSelect != null
                 $Slide.HookAdvance(stage, lambda)
-                    trap pipe.$Pipe.Write(ghost.value)
+                    trap pipe.$Pipe.Write(preSelect)
 
             @pick : await pipe.$Pipe.ReadAsync()
             if pick != null
-                stage.delta[key] : pick
+                $(doThen, pick)
 
         ::DoConfirmDefeat(stage => async)
             @pipe : stage.ct.$Canceler.MakePipe()
