@@ -89,9 +89,14 @@ library SinMo
         $OsbornTech : "osborn tech"
 
     ::TooltipGen(state, player => tooltip)
+        tooltip : ""
         @rep : $Reputation.CalcCurr(state)
         if rep > 0
-            tooltip : "Reputation: " + rep + "\n"
+            tooltip : "Reputation: " + rep + "\n\n"
+        @addCard : dim()
+        if player[$Const.ShieldTech] != null
+            addCard.$List.Add(player[$Const.ShieldTech])
+        tooltip +: $Heroes.TooltipAddCardsHelper(addCard, null)
 
     ::PublicOutcry(=> slide)
         return $Slide.CheckList("Bad Publicity", dim, "From the Bad Publicity campaign set:", $Img.PublicOutcry)
@@ -166,17 +171,20 @@ library SinMo
             this.$Campaign.mixSlides(dim)
                 $MakeCalculateSlide(mission)
                 $IfPassing(1, $DistributeShieldTech())
-                $IfPassing(1, $OsTech(mission))
+                $IfPassing(1, $OsTech())
+                $IfPassing(13, $OsTech())
+                $IfPassing(21, $OsTech())
 
         ::.mixEncounterSetup(mission)
             this.$Campaign.mixSlides(dim)
                 $IfPassing(1, $OsTechSetup())
+                $IfGreater(9, $EncounterChecklist())
+                $IfGreater(5, $PerPlayerThreat(1))
 
         ::.mixMissionSetup(mission)
             this.$Campaign.mixSlides(dim)
-                $IfGreater(5, $PerPlayerThreat(1))
-
-                $IfGreater(5, $SimpleSetup("Each player may take 1 additional mulligan this game"))
+                $IfGreater(13, $BonusChecklist())
+                $IfGreater(5, $SimpleSetup("Each player may take 1 additional mulligan"))
 
         ::IfPassing(value, &subSlide => slide)
             => $Slide.If(`$IsPassing(state, value)`, free subSlide)
@@ -305,7 +313,7 @@ library SinMo
                 if pick != null & pick != ""
                     stage.delta[key, pick] : true
 
-        ::OsTech(mission => slide)
+        ::OsTech( => slide)
             @text1 : "Choose one \"Osborn Tech\" attachment at random"
             return $LogAnotherFromPile($Const.OsbornTech, "Reputation", text1, "",  $GTA(textdata))
                 Arm Cannon
@@ -324,10 +332,38 @@ library SinMo
                 await $CheckList.DoChecklist(stage, "Reputation", text, opts, null, false)
 
         ::PerPlayerThreat(threat => slide)
+            // kinda weird to have this on it's own, but the checklist is crowded
             => $Slide.Create(lambda(stage => async))
                 @cnt : stage.state["players"]
-                @text : "Place " + (threat * cnt) + " threat on the main scheme"
+                @text : "Place <PLAYER*1> threat on the main scheme"
                 await $DoSimplePopup(stage, "Reputation", text)
+        
+
+        ::EncounterChecklist( =>slide)
+            => $Slide.CheckList("Reputation", dim)
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 9`)
+                    Each player searches the encounter deck for a minion and puts that minion
+                    into play engaged with themself. Each player that cannot is dealt
+                    a facedown encounter card.
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 17`)
+                    The first player searches the encounter deck for a side scheme, then reveals it
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 17`)
+                    Place <PLAYER*1> threat on the revealed side scheme
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 25`)
+                    Deal 1 facedown encounter card to each player
+        
+        ::BonusChecklist( =>slide)
+            => $Slide.CheckList("Reputation", dim)
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 13`)
+                    Each player flips their "Campaign - S.H.I.E.L.D. Tech"
+                    upgrade to its Enhanced side.
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 21`)
+                    Each player may search their collection for a Helicarrier 
+                    support card and put it into play under their control.
+                $CheckList.MakeCheck($GTW(textdata), `$CalcCurr(stage.state) >= 25`)
+                    Each player may search their collection for a Symbiote 
+                    Suit upgrade card and put it into play under their control.
+
                 
 
 scratch _uniqChkID : 0

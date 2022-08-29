@@ -73,6 +73,22 @@ library g
                     mixin $Style.AddClasses("subtitle", "fore")
                     mixin $SetText(title)
 
+    ::HTMLify(txt, ?stage => html)
+        txt : $GTW(txt)
+        using Str
+
+        @output : txt
+        @arr : txt.$Split("<PLAYER*")
+        for @pc of arr at @idx
+            if idx = 0
+                output : pc
+            else
+                @left : pc.$Piece(">")
+                @right : pc.$Piece(">", 2)
+                @num : $Math.Round(left.$Trim()) * stage.state.players
+                output +: num + right
+
+        return $Dom.MarkdownToHtml(output)
 
 library Util
     ::WaitGetFirst(ct, &valToLambda => async val)
@@ -111,7 +127,7 @@ library Popup
         using Dom
         @text : $GT(md)
         this.$AppendChild(dim $Paragraph.Create())
-            mixin $SetHtml($MarkdownToHtml(text))
+            mixin $SetHtml($g.HTMLify(text))
             mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
     
     ::.AddBotRightButton(onclick, ?label)

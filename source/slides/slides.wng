@@ -99,7 +99,7 @@ library Slide
         @pop : dim $Popup.Create(title)
 
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml(text))
+                mixin $SetHtml($g.HTMLify(text, stage))
                 mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
 
             mixin $Popup.AddBotRightButton(lambda, btLabel)
@@ -116,7 +116,7 @@ library Slide
         @pop : dim $Popup.Create("VICTORY!")
 
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml(text))
+                mixin $SetHtml($g.HTMLify(text, stage))
                 mixin $Style.SetClassIf("long", text.$Str.Len() > 150)
 
             mixin $Popup.AddBotRightButton(lambda)

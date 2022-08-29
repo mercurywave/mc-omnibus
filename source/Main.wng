@@ -251,5 +251,5 @@ scratch RenderedHeroes : dim()
             @text : $(camp.tooltipGen, state, player)
             if text != null
                 tooltip.$AppendChild(dim $Div.Create())
-                    mixin $SetHtml($MarkdownToHtml(text))
+                    mixin $SetHtml($g.HTMLify(text))
         

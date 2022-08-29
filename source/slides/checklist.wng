@@ -27,7 +27,7 @@ library Slide
 
             @pop : dim $Popup.Create(title)
                 mixin $AppendChild(dim $Paragraph.Create())
-                    mixin $SetHtml($MarkdownToHtml(text))
+                    mixin $SetHtml($g.HTMLify(text, stage))
                 mixin $Style.SetClassIf("withCard", card != null)
 
             if showNext
@@ -52,7 +52,7 @@ library Slide
                     opt has dynamicText : $(opt.dynamicText, stage)
                     else : opt["text"]
                 lbl.$AppendChild(dim $Paragraph.Create())
-                    mixin $SetHtml($MarkdownToHtml(md))
+                    mixin $SetHtml($g.HTMLify(md, stage))
                 elems.$List.Add(chk)
 
             if card != null
@@ -97,7 +97,7 @@ library Slide
                     isEnabled : checkText
                     else : disableText
                 lbl.$AppendChild(dim $Paragraph.Create())
-                    mixin $SetHtml($MarkdownToHtml(disp))
+                    mixin $SetHtml($g.HTMLify(disp, stage))
                 elems[idx] : chk
                 if !isEnabled
                     chk.$SetAttribute("disabled", "disabled")
@@ -137,7 +137,7 @@ library Slide
                     mixin $AppendChild(dim $Checkbox.Create() >> chk)
                         mixin $SetId(id)
                     mixin $AppendChild(dim $Paragraph.Create())
-                        mixin $SetHtml($MarkdownToHtml(instruct))
+                        mixin $SetHtml($g.HTMLify(instruct, stage))
                 elems[idx] : chk
                 
             await pipe.$Pipe.ReadAsync()

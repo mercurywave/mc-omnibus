@@ -282,12 +282,7 @@ library RedSkull
         for @card in player[$Obligations] ? dim()
             addCard.$List.Add(card)
 
-        if addCard.$Obj.HasChildren()
-            tooltip : "Additional Cards:"
-            for addCard
-                tooltip +: "\n\n" + "* *" + it + "*"
-            for remCard
-                tooltip +: "\n\n" + "* ~~" + it + "~~"
+        tooltip : $Heroes.TooltipAddCardsHelper(addCard, remCard)
 
     ::HealSlide( => slide)
         => $IfCanHeal($Create(lambda(stage => async)))
@@ -325,7 +320,7 @@ library RedSkull
 
         @pop : dim $Popup.Create("Obligations")
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
                     Each player is assigned a number 1 to 4.
                     This number corresponds to obligations which might later be added to the player's deck.
 
@@ -407,7 +402,7 @@ library RedSkull
         @container
         @pop : dim $Popup.Create("Persistent Damage")
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
                     Each player may heal to full health by adding an obligation from their
                     expert-campaign set to their deck.
 
@@ -490,7 +485,7 @@ library RedSkull
 
         @pop : dim $Popup.Create("Delay")
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
                     How many delay counters are on the main scheme?
         
         @initNum : stage.ghost[$DelayCounters] ? 5
@@ -513,7 +508,7 @@ library RedSkull
         
         @pop : dim $Popup.Create("Victory")
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml($GTW(text)))
+                mixin $SetHtml($g.HTMLify($GTW(text), stage))
 
         @container : pop.$AppendChild(dim $Div.Create())
             mixin $Style.AddClasses("playerCardAssign", "multi")
@@ -634,7 +629,7 @@ library RedSkull
                 else : "Recovering (not participating)"
             @rPane : lbl.$AppendChild(dim $Div.Create())
             rPane.$AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($MarkdownToHtml(disp))
+                mixin $SetHtml($g.HTMLify(disp, stage))
             
             @textBonus : "Replace " + condition + " with it's upgraded side"
             @ctlBonus : rPane.$AppendChild(dim $Paragraph.Create(textBonus))

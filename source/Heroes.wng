@@ -28,6 +28,15 @@ library Heroes
                 return it
         //TODO: custom hero / fallback
 
+    ::TooltipAddCardsHelper(addCard, remCard => tooltip)
+        tooltip : ""
+        if addCard.$Obj.HasChildren()
+            tooltip : "Additional Cards:"
+            for addCard
+                tooltip +: "\n\n" + "* *" + it + "*"
+            for remCard ? dim()
+                tooltip +: "\n\n" + "* ~~" + it + "~~"
+
     ::.MakeHeroBanner(=> elem)
         using Dom
         elem : dim $Div.Create()

@@ -17,7 +17,7 @@ library Slide
             @container
             @pop : dim $Popup.Create("Persistent Damage")
                 mixin $AppendChild(dim $Paragraph.Create())
-                    mixin $SetHtml($MarkdownToHtml($GTW(textdata)))
+                    mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
                         Record each players final hit points (up to their printed hit points):
 
                 mixin $AppendChild(dim $Div.Create() >> container)
