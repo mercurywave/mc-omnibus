@@ -46,8 +46,6 @@ library Slide
             if stage.ct.$Canceler.IsLive()
                 for @elem of fields at @idx
                     stage.delta["player",idx,"hp"] : $Math.Floor(elem.$NumberEntry.GetText())
-                pop.$Style.AddClasses("fadingOut")
-                await $Job.Pause(50) // pause is waiting for an animation frame already
 
         ::DoSetInitialHP(stage => async)
             @pipe : stage.ct.$Canceler.MakePipe()
@@ -74,6 +72,3 @@ library Slide
             $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
 
             await pipe.$Pipe.ReadAsync()
-            if stage.ct.$Canceler.IsLive()
-                pop.$Style.AddClasses("fadingOut")
-                await $Job.Pause(50) // pause is waiting for an animation frame already

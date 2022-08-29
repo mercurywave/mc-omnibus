@@ -351,8 +351,6 @@ library RedSkull
             pipe.$Pipe.Kill()
 
         await pipe.$Pipe.ReadAsync()
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50)
     
     ::DoDistributeVictory(stage, key, text, cards, ?title => async)
         using Dom
@@ -401,10 +399,6 @@ library RedSkull
             @val : pick.$Dropdown.GetValue()
             if val != ""
                 stage.delta["player", idx, key] : val
-
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50)
-
 
     ::DoHeal(stage => async)
         using Dom
@@ -489,9 +483,6 @@ library RedSkull
                 @hero : stage.state.$Campaign.State.GetHero(idx)
                 stage.delta["player", idx, "hp"] : hero.$Heroes.GetHp()
 
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50)
-
 
     ::DoRecordDelay(stage => async)
         using Dom
@@ -514,8 +505,6 @@ library RedSkull
         await pipe.$Pipe.ReadAsync()
         if stage.ct.$Canceler.IsLive()
             stage.delta[$DelayCounters] : $Math.Floor(entryField.$NumberEntry.GetText())
-            pop.$Style.AddClasses("fadingOut")
-            await $Job.Pause(50) // pause is waiting for an animation frame already
 
 
     ::DoDistributeVictoryMulti(stage, key, text, cards => async)
@@ -576,9 +565,6 @@ library RedSkull
                 @val : pick.$Dropdown.GetValue()
                 if val != ""
                     stage.delta["player", idx, key].$List.Add(val)
-
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50)
 
     ::addSelectorToPane(pane, options, ?selected => drop)
         using Dom
@@ -663,9 +649,6 @@ library RedSkull
                 if elems[idx].$Checkbox.IsChecked()
                     @prev : stage.state["player", idx, $Condition]
                     stage.delta["player", idx, $Condition] : $GetUpgradedCondition(prev)
-
-            pop.$Style.AddClasses("fadingOut")
-            await $Job.Pause(50) // pause is waiting for an animation frame already
 
     ::GetUpgradedCondition(condition => condition)
         => switch(condition)

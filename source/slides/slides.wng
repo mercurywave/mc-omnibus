@@ -109,9 +109,6 @@ library Slide
             pipe.$Pipe.Kill()
 
         await pipe.$Pipe.ReadAsync()
-        
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(10) // pause is waiting for an animation frame already
 
     ::DoVictory(stage, text => async)
         @pipe : stage.ct.$Canceler.MakePipe()
@@ -148,8 +145,6 @@ library Slide
 
     if cnt != null
         stage.delta["players"] : cnt
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50) // pause is waiting for an animation frame already
 
 ::pbHelper(stage, container, img, text, subtext => async)
     @pipe : stage.ct.$Canceler.MakePipe()
@@ -208,8 +203,6 @@ library Slide
         @name : txt.$TextEntry.GetText()
         if name = "" \ name : "Mr. Smartypants"
         stage.delta["player", idx, "name"] : name
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50) // pause is waiting for an animation frame already
 
 
 
@@ -247,8 +240,6 @@ library Slide
 
     await pipe.$Pipe.ReadAsync()
     stage.delta["difficulty"] : diff.$Dropdown.GetValue()
-    container.$Style.AddClasses("fadingOut")
-    await $Job.Pause(10)
 
 ::DoPlayGame(stage, ?onDefeat => async)
     @canDefeat : (onDefeat != null)

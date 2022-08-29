@@ -12,17 +12,64 @@ body {
     overscroll-behavior: none;
 }
 .noDisp { display: none !important;}
-.stage {
-    width: max-content;
-    height: max-content;
-}
 button{
     cursor: pointer;
 }
-.popup {
+
+#stage{
+    z-index: 10;
     position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.stageIn{
+    opacity: 1;
+    animation: stageFromRight .25s, aFadeIn .25s;
+}
+.stageIn.backwards{
+    animation: stageFromLeft .25s, aFadeIn .25s;
+}
+
+.stageOut{
+    opacity: 0;
+    animation: stageToLeft .25s, aFadeOut .1s;
+}
+.stageOut.backwards{
+    animation: stageToRight .25s, aFadeOut .1s;
+}
+
+
+@keyframes stageFromLeft {
+    from { transform: translate(-50px, 0); }
+    to { transform: translate(0, 0); }
+}
+@keyframes stageFromRight {
+    from { transform: translate(50px, 0); }
+    to { transform: translate(0, 0); }
+}
+@keyframes stageToLeft {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-50px, 0); }
+}
+@keyframes stageToRight {
+    from { transform: translate(0, 0); }
+    to { transform: translate(50px, 0); }
+}
+@keyframes aFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes aFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+.popup {
     top: 50%;
     left: 50%;
+    position: fixed;
     transform: translate(-50%, -50%);
     margin-top: -10px;
     width: 100%;
@@ -35,10 +82,6 @@ button{
     border:solid 2px #000;
     box-shadow: 16px 16px 8px -12px #000;
     overflow:hidden;
-    animation: slideIn .25s;
-}
-.backwards .popup {
-    animation: slideInBack .25s;
 }
 
 .popup ul {
@@ -47,36 +90,6 @@ button{
 }
 .popup .long {
     text-align: left;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translate(-40%, -50%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-@keyframes slideInBack {
-    from {
-        transform: translate(-60%, -50%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 
@@ -94,10 +107,12 @@ button{
     transition: .2s;
 }
 
+/*
 .fadingOut{
     opacity: 0;
     animation: slideOut .25s;
 }
+*/
 
 @keyframes slideOut {
     from {
@@ -109,6 +124,7 @@ button{
         opacity: 0;
     }
 }
+
 
 input[type=text] {
     font-family: 'ComicNeueRegular', 'Comic Sans', cursive;
@@ -271,7 +287,7 @@ label.disabled p{
     top: 45%;
     transform: translateX(280px) translate(-50%, -50%) scale(.5) rotate(10deg);
     
-    animation: fadeIn .5s;
+    animation: aFadeIn .5s;
 }
 
 
@@ -665,7 +681,7 @@ label.disabled p{
     border-top:solid 3px #000;
     border-bottom:solid 3px #000;
     z-index: 10;
-    animation: fadeIn .8s;
+    animation: aFadeIn .8s;
 }
 
 .vh.vImg {
@@ -695,7 +711,7 @@ label.disabled p{
     z-index: 8;
     border:solid 2px #000;
     transform:skew(-15deg);
-    animation: fadeIn .8s;
+    animation: aFadeIn .8s;
 }
 
 
@@ -749,7 +765,7 @@ label.disabled p{
     border-bottom:solid 3px #000;
 }
 #heroes_footer .heroBadge{
-    animation: fadeIn .8s;
+    animation: aFadeIn .8s;
     margin-bottom: -10px;
 }
 
@@ -952,7 +968,7 @@ label.disabled p{
 }
 .btHero:hover .hName{
     opacity: 100%;
-    animation: fadeIn .4s;
+    animation: aFadeIn .4s;
 }
 
 

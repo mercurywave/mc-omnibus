@@ -3,6 +3,8 @@
 library g
     data Body : $Dom.GetElement("base")
     data CampaignHeader : $Dom.GetElement("camp_header")
+    data StageWrap : $Dom.GetElement("stageWrap")
+    data StageUI : $Dom.GetElement("stageUI")
     data Stage : $Dom.GetElement("stage")
     data HeroFooter : $Dom.GetElement("heroes_footer")
     data HeroFooterInner : $Dom.GetElement("heroes_footer_inner")

@@ -99,14 +99,14 @@ library SinMo
     ::CommunityService(mission => slide)
         @text1 : "Choose a \"Campaign - Community Service\" side scheme at random"
         @text2 : "Shuffle that side scheme card into the encounter deck"
-        return $GetAnotherNewFromPile(mission, "Community Service", text1, text2, $GTA(textdata))
+        return $GetAnotherComServ(mission, "Community Service", text1, text2, $GTA(textdata))
             Back Alley Burglary
             Cat in a Tree
             Henchmen Heist
             Off the Rails
             Rubble Rescue
 
-    ::GetAnotherNewFromPile(mission, title, text1, text2, &possibleCards => slide)
+    ::GetAnotherComServ(mission, title, text1, text2, &possibleCards => slide)
         return $Slide.Create(lambda(stage => async)[mission, title, text1, text2, free possibleCards])
             
             @unpicked : possibleCards.$List.Filter(`!stage.state[$Const.ComServ, it] ? false`)
@@ -141,9 +141,6 @@ library SinMo
         if stage.ct.$Canceler.IsLive()
             selection : drop.$Dropdown.GetValue()
 
-        pop.$Style.AddClasses("fadingOut")
-        await $Job.Pause(50)
-
     ::CommunityServiceComplete(=> slide)
         => $Slide.Create(lambda(stage => async))
             using Fork
@@ -164,8 +161,15 @@ library SinMo
                 $IfPassing(1, $DistributeShieldTech())
                 $IfPassing(1, $OsTech(mission))
 
+        ::.mixMissionSetup(mission)
+            this.$Campaign.mixSlides(dim)
+                $IfPassing(1, $OsTech(mission))
+
         ::IfPassing(value, &subSlide => slide)
             => $Slide.If(`$IsPassing(state, value)`, free subSlide)
+            
+        ::IfGreater(value, &subSlide => slide)
+            => $Slide.If(`$IsGreater(state, value)`, free subSlide)
         
         ::IsPassing(state, value => bool)
             using Const
@@ -176,6 +180,9 @@ library SinMo
                 if score - delta < value
                     return true
             return false
+        
+        ::IsGreater(state, value => bool)
+            => $CalcCurr(state) >= value
 
         ::CalcCurr(state => val)
             val : 0
@@ -252,9 +259,6 @@ library SinMo
                 node[$Const.NoMainThreat] : chkMain.$Checkbox.IsChecked()
                 node[$Const.NoAccel] : chkAccel.$Checkbox.IsChecked()
                 node[$Const.NoDefeated] : chkDefeat.$Checkbox.IsChecked() 
-
-            pop.$Style.AddClasses("fadingOut")
-            await $Job.Pause(50)
         
         ::DistributeShieldTech(=> slide)
             => $Slide.Create(lambda(stage => async))
@@ -273,15 +277,36 @@ library SinMo
                         Wave Bracers
                         Wrist Navigators
 
+        ::LogAnotherFromPile(key, title, text1, text2, &possibleCards => slide)
+            return $Slide.Create(lambda(stage => async)[key, title, text1, text2, free possibleCards])
+                
+                @unpicked : possibleCards.$List.Filter(`!stage.state[key, it] ? false`)
+                @initial : stage.ghost[key]?.$Obj.NextKey() ? possibleCards.$List.QuickPick()
+
+                @pick : await $DoGetAnotherNewFromPile(stage, title, text1, text2, unpicked, initial)
+
+                if pick != null & pick != ""
+                    stage.delta[key, pick] : true
+
         ::OsTech(mission => slide)
             @text1 : "Choose one \"Osborn Tech\" attachment at random"
-            return $GetAnotherNewFromPile(mission, "Reputation", text1, "", $GTA(textdata))
+            return $LogAnotherFromPile($Const.OsbornTech, "Reputation", text1, "",  $GTA(textdata))
                 Arm Cannon
                 Ionic Boots
                 Kinetic Armor
                 Neocarbon Scales
                 Spiked Gauntlet
                 Tracking Display
+        
+        ::OsTechSetup(=> slide)
+            => $Slide.Create(lambda(stage => async))
+                @opts : dim()
+                for @card in stage.state[$Const.OsbornTech]
+                    opts.$List.Add($CheckList.MakeCheck(card))
+                @text : "Shuffle each of the following Osborn Tech cards into the encounter deck"
+                await $CheckList.DoChecklist(stage, "Reputation", text, opts, null, false)
+                
+                
 
 scratch _uniqChkID : 0
 ::.mixAddCheckBox(label, ?isChecked, ?disable => chk)

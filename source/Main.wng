@@ -82,8 +82,10 @@ global ::RunCampaign(campaign, ?key => async)
         mixin $AppendChild(dim $Paragraph.Create("Resuming"))
     
     await $Job.Pause(800)
-    container.$Style.AddClasses("fadingOut")
+    $g.Stage.$Style.AddClasses("stageOut")
     await $Job.Pause(400)
+    $g.Stage.$Dom.ClearChildren()
+    $g.Stage.$Style.RemoveClasses("stageOut")
 
 ::MakeCampaignHeader(campaign => element)
     using Campaign
@@ -147,10 +149,8 @@ global ::RunCampaign(campaign, ?key => async)
     if slide.?func != null
         $IO.Log("Run slide: " + ~idx)
 
-        if dir = $eNext.Backwards
-            $g.Stage.$Dom.Style.AddClasses("backwards")
-        else
-            $g.Stage.$Dom.Style.RemoveClasses("backwards")
+        $g.Stage.$Dom.Style.AddClasses("stageIn")
+        $g.Stage.$Dom.Style.SetClassIf("backwards", dir = $eNext.Backwards)
 
         @interactions : dim
             $eNext.Menu : `await $MenuButton(ct)`
@@ -162,8 +162,14 @@ global ::RunCampaign(campaign, ?key => async)
         if stage.overrideDir != null
             next : stage.overrideDir
         didShow : true
-            
+        
+        $g.Stage.$Dom.Style.RemoveClasses("stageIn")
+        $g.Stage.$Dom.Style.AddClasses("stageOut")
+        $g.Stage.$Dom.Style.SetClassIf("backwards", next = $eNext.Backwards)
+        await $Job.Pause(75) // pause is waiting for an animation frame already
         $g.Stage.$Dom.ClearChildren()
+        $g.StageUI.$Dom.ClearChildren()
+        $g.Stage.$Dom.Style.RemoveClasses("stageOut")
     ct.$Canceler.Cancel()
 
 
@@ -172,7 +178,7 @@ global ::RunCampaign(campaign, ?key => async)
     ct.$Canceler.PipeClean(pipe)
     
     using Dom
-    @bt : $g.Stage.$AppendChild(dim $Button.Create())
+    @bt : $g.StageUI.$AppendChild(dim $Button.Create())
         mixin $Style.AddClasses("btMenu")
         mixin $Button.HookClick(lambda)
             pipe.$Pipe.Kill()
@@ -190,7 +196,7 @@ global ::RunCampaign(campaign, ?key => async)
     ct.$Canceler.PipeClean(pipe)
     
     using Dom
-    @bt : $g.Stage.$AppendChild(dim $Button.Create())
+    @bt : $g.StageUI.$AppendChild(dim $Button.Create())
         mixin $Style.AddClasses("btBack")
         mixin $Button.HookClick(lambda)
             pipe.$Pipe.Kill()
