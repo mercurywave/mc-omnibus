@@ -65,9 +65,13 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
         $SinMo.CommunityServiceComplete()
     
     mixin $SinMo.Reputation.mixMissionEnd(1)
-    mixin $Campaign.mixSlides(dim)
 
-        $PlayGame()
+    //
+
+    mixin $SinMo.Reputation.mixEncounterSetup(1)
+    mixin $SinMo.Reputation.mixMissionSetup(1)
+
+    mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
 
 library SinMo
     library Const
@@ -85,6 +89,9 @@ library SinMo
         $OsbornTech : "osborn tech"
 
     ::TooltipGen(state, player => tooltip)
+        @rep : $Reputation.CalcCurr(state)
+        if rep > 0
+            tooltip : "Reputation: " + rep + "\n"
 
     ::PublicOutcry(=> slide)
         return $Slide.CheckList("Bad Publicity", dim, "From the Bad Publicity campaign set:", $Img.PublicOutcry)
@@ -161,9 +168,15 @@ library SinMo
                 $IfPassing(1, $DistributeShieldTech())
                 $IfPassing(1, $OsTech(mission))
 
+        ::.mixEncounterSetup(mission)
+            this.$Campaign.mixSlides(dim)
+                $IfPassing(1, $OsTechSetup())
+
         ::.mixMissionSetup(mission)
             this.$Campaign.mixSlides(dim)
-                $IfPassing(1, $OsTech(mission))
+                $IfGreater(5, $PerPlayerThreat(1))
+
+                $IfGreater(5, $SimpleSetup("Each player may take 1 additional mulligan this game"))
 
         ::IfPassing(value, &subSlide => slide)
             => $Slide.If(`$IsPassing(state, value)`, free subSlide)
@@ -187,16 +200,15 @@ library SinMo
         ::CalcCurr(state => val)
             val : 0
             using Const
-            for @miss in state[$Mission]
+            for @miss in state[$Mission] ? dim()
                 val +: $CalcForMission(state, miss)
 
         ::CalcForMission(state, mission => val)
-            val : 0
             using Const
-            state[$Mission, mission, $Const.Victory] ? 0
-                for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
-                    if state[$Mission, mission, key] ? false
-                        val +: 1
+            val : state[$Mission, mission, $Const.Victory] ? 0
+            for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
+                if state[$Mission, mission, key] ? false
+                    val +: 1
 
         ::MakeCalculateSlide(mission => slide)
             => $Slide.Create(lambda(stage => async))
@@ -259,6 +271,11 @@ library SinMo
                 node[$Const.NoMainThreat] : chkMain.$Checkbox.IsChecked()
                 node[$Const.NoAccel] : chkAccel.$Checkbox.IsChecked()
                 node[$Const.NoDefeated] : chkDefeat.$Checkbox.IsChecked() 
+
+        ::SimpleSetup(text, ?hint => slide)
+            text : $GT(text)
+            slide : $Slide.Create(lambda(stage => async))
+                await $DoSimplePopup(stage, "Reputation", text)
         
         ::DistributeShieldTech(=> slide)
             => $Slide.Create(lambda(stage => async))
@@ -305,7 +322,12 @@ library SinMo
                     opts.$List.Add($CheckList.MakeCheck(card))
                 @text : "Shuffle each of the following Osborn Tech cards into the encounter deck"
                 await $CheckList.DoChecklist(stage, "Reputation", text, opts, null, false)
-                
+
+        ::PerPlayerThreat(threat => slide)
+            => $Slide.Create(lambda(stage => async))
+                @cnt : stage.state["players"]
+                @text : "Place " + (threat * cnt) + " threat on the main scheme"
+                await $DoSimplePopup(stage, "Reputation", text)
                 
 
 scratch _uniqChkID : 0

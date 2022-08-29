@@ -124,34 +124,40 @@ var T10=OObj.MakeFunc(__FUNCS["Sinist_4"]["169::CommunityServiceComplete"]);
 __RUN.setStaticGlo("SinMo.CommunityServiceComplete",T10);
 var T12=OObj.MakeFunc(__FUNCS["Sinist_4"]["208::mixMissionEnd"]);
 __RUN.setStaticGlo("SinMo.Reputation.mixMissionEnd",T12);
-var T14=OObj.MakeFunc(__FUNCS["Sinist_4"]["221::mixMissionSetup"]);
-__RUN.setStaticGlo("SinMo.Reputation.mixMissionSetup",T14);
-var T16=OObj.MakeFunc(__FUNCS["Sinist_4"]["234::IfPassing"]);
-__RUN.setStaticGlo("SinMo.Reputation.IfPassing",T16);
-var T18=OObj.MakeFunc(__FUNCS["Sinist_4"]["260::IfGreater"]);
-__RUN.setStaticGlo("SinMo.Reputation.IfGreater",T18);
-var T20=OObj.MakeFunc(__FUNCS["Sinist_4"]["286::IsPassing"]);
-__RUN.setStaticGlo("SinMo.Reputation.IsPassing",T20);
-var T22=OObj.MakeFunc(__FUNCS["Sinist_4"]["299::IsGreater"]);
-__RUN.setStaticGlo("SinMo.Reputation.IsGreater",T22);
-var T24=OObj.MakeFunc(__FUNCS["Sinist_4"]["312::CalcCurr"]);
-__RUN.setStaticGlo("SinMo.Reputation.CalcCurr",T24);
-var T26=OObj.MakeFunc(__FUNCS["Sinist_4"]["325::CalcForMission"]);
-__RUN.setStaticGlo("SinMo.Reputation.CalcForMission",T26);
-var T28=OObj.MakeFunc(__FUNCS["Sinist_4"]["338::MakeCalculateSlide"]);
-__RUN.setStaticGlo("SinMo.Reputation.MakeCalculateSlide",T28);
-var T30=OObj.MakeFunc(__FUNCS["Sinist_4"]["364::DoCalculateSlide"]);
-__RUN.setStaticGlo("SinMo.Reputation.DoCalculateSlide",T30);
-var T32=OObj.MakeFunc(__FUNCS["Sinist_4"]["403::DistributeShieldTech"]);
-__RUN.setStaticGlo("SinMo.Reputation.DistributeShieldTech",T32);
-var T34=OObj.MakeFunc(__FUNCS["Sinist_4"]["429::LogAnotherFromPile"]);
-__RUN.setStaticGlo("SinMo.Reputation.LogAnotherFromPile",T34);
-var T36=OObj.MakeFunc(__FUNCS["Sinist_4"]["468::OsTech"]);
-__RUN.setStaticGlo("SinMo.Reputation.OsTech",T36);
-var T38=OObj.MakeFunc(__FUNCS["Sinist_4"]["481::OsTechSetup"]);
-__RUN.setStaticGlo("SinMo.Reputation.OsTechSetup",T38);
-var T40="mixAddCheckBox";
-__RUN.setStaticFile("Sinist_4",T40,OObj.MakeFunc(__FUNCS["Sinist_4"]["507::mixAddCheckBox"]));
+var T14=OObj.MakeFunc(__FUNCS["Sinist_4"]["221::mixEncounterSetup"]);
+__RUN.setStaticGlo("SinMo.Reputation.mixEncounterSetup",T14);
+var T16=OObj.MakeFunc(__FUNCS["Sinist_4"]["234::mixMissionSetup"]);
+__RUN.setStaticGlo("SinMo.Reputation.mixMissionSetup",T16);
+var T18=OObj.MakeFunc(__FUNCS["Sinist_4"]["247::IfPassing"]);
+__RUN.setStaticGlo("SinMo.Reputation.IfPassing",T18);
+var T20=OObj.MakeFunc(__FUNCS["Sinist_4"]["273::IfGreater"]);
+__RUN.setStaticGlo("SinMo.Reputation.IfGreater",T20);
+var T22=OObj.MakeFunc(__FUNCS["Sinist_4"]["299::IsPassing"]);
+__RUN.setStaticGlo("SinMo.Reputation.IsPassing",T22);
+var T24=OObj.MakeFunc(__FUNCS["Sinist_4"]["312::IsGreater"]);
+__RUN.setStaticGlo("SinMo.Reputation.IsGreater",T24);
+var T26=OObj.MakeFunc(__FUNCS["Sinist_4"]["325::CalcCurr"]);
+__RUN.setStaticGlo("SinMo.Reputation.CalcCurr",T26);
+var T28=OObj.MakeFunc(__FUNCS["Sinist_4"]["338::CalcForMission"]);
+__RUN.setStaticGlo("SinMo.Reputation.CalcForMission",T28);
+var T30=OObj.MakeFunc(__FUNCS["Sinist_4"]["351::MakeCalculateSlide"]);
+__RUN.setStaticGlo("SinMo.Reputation.MakeCalculateSlide",T30);
+var T32=OObj.MakeFunc(__FUNCS["Sinist_4"]["377::DoCalculateSlide"]);
+__RUN.setStaticGlo("SinMo.Reputation.DoCalculateSlide",T32);
+var T34=OObj.MakeFunc(__FUNCS["Sinist_4"]["416::SimpleSetup"]);
+__RUN.setStaticGlo("SinMo.Reputation.SimpleSetup",T34);
+var T36=OObj.MakeFunc(__FUNCS["Sinist_4"]["442::DistributeShieldTech"]);
+__RUN.setStaticGlo("SinMo.Reputation.DistributeShieldTech",T36);
+var T38=OObj.MakeFunc(__FUNCS["Sinist_4"]["468::LogAnotherFromPile"]);
+__RUN.setStaticGlo("SinMo.Reputation.LogAnotherFromPile",T38);
+var T40=OObj.MakeFunc(__FUNCS["Sinist_4"]["507::OsTech"]);
+__RUN.setStaticGlo("SinMo.Reputation.OsTech",T40);
+var T42=OObj.MakeFunc(__FUNCS["Sinist_4"]["520::OsTechSetup"]);
+__RUN.setStaticGlo("SinMo.Reputation.OsTechSetup",T42);
+var T44=OObj.MakeFunc(__FUNCS["Sinist_4"]["546::PerPlayerThreat"]);
+__RUN.setStaticGlo("SinMo.Reputation.PerPlayerThreat",T44);
+var T46="mixAddCheckBox";
+__RUN.setStaticFile("Sinist_4",T46,OObj.MakeFunc(__FUNCS["Sinist_4"]["572::mixAddCheckBox"]));
 return [];
 });__RUN._initFuncs.push(function(__DIV){
 var T0=OObj.MakeFunc(__FUNCS["dom.wn_5"]["13::Create"]);
@@ -1694,15 +1700,24 @@ var T187=DU.Ref(T11);
 var T188=1;
 var T189=[T188];
 var T190=__RUN.getStaticGlo("SinMo.Reputation.mixMissionEnd").func({__THIS:T187},...T189);
-//  mixin $Campaign.mixSlides(dim)
+//  mixin $SinMo.Reputation.mixEncounterSetup(1)
 var T191=DU.Ref(T11);
-var T192=new OObj();
-//  $PlayGame()
-var T193=__RUN.getStaticGlo("Slide.PlayGame").func(null);
-var T194=DU.ReadReturn(T193,1);
-OObj.SetChild(T192,0,T194);
-var T196=[T192];
-var T197=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T191},...T196);
+var T192=1;
+var T193=[T192];
+var T194=__RUN.getStaticGlo("SinMo.Reputation.mixEncounterSetup").func({__THIS:T191},...T193);
+//  mixin $SinMo.Reputation.mixMissionSetup(1)
+var T195=DU.Ref(T11);
+var T196=1;
+var T197=[T196];
+var T198=__RUN.getStaticGlo("SinMo.Reputation.mixMissionSetup").func({__THIS:T195},...T197);
+//  mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
+var T199=DU.Ref(T11);
+var T200=new OObj();
+var T201=__RUN.getStaticGlo("Slide.PlayGame").func(null);
+var T202=DU.ReadReturn(T201,1);
+OObj.SetChild(T200,0,T202);
+var T204=[T200];
+var T205=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T199},...T204);
 return [];
 });__RUN._initFuncs.push(function(__DIV){
 var T0="base";
@@ -6198,12 +6213,15 @@ var T102=[T101];
 var T103=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T100},...T102);
 var T104=DU.ReadReturn(T103,1);
 var T105=[T104];
-var T106=__RUN.getStaticGlo("Math.Floor").func(null,...T105);
+var T106=__RUN.getStaticGlo("Math.Round").func(null,...T105);
 var T107=DU.ReadReturn(T106,1);
-var T108=DU.Ref($stage);
-var T109=OObj.DotAccess(T108,"delta");
-var T110="delay counters";
-OObj.SetPath(T109,[T110],T107);
+var T108=[T107];
+var T109=__RUN.getStaticGlo("Math.Floor").func(null,...T108);
+var T110=DU.ReadReturn(T109,1);
+var T111=DU.Ref($stage);
+var T112=OObj.DotAccess(T111,"delta");
+var T113="delay counters";
+OObj.SetPath(T112,[T113],T110);
 }return [];
 },
 "637_func" : function(__DIV){
@@ -7418,8 +7436,27 @@ var T4=__RUN.getStaticGlo("SinMo.TooltipGen").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 return [T5];},
 "26::TooltipGen" : function(__DIV, $state, $player){
-var $tooltip;
-return [$tooltip];
+var $tooltip,$rep;
+//  @rep : $Reputation.CalcCurr(state)
+var T2=DU.Ref($state);
+var T3=[T2];
+var T4=__RUN.getStaticGlo("SinMo.Reputation.CalcCurr").func(null,...T3);
+var T5=DU.ReadReturn(T4,1);
+$rep=T5;
+//  if rep > 0
+var T7=DU.Ref($rep);
+var T8=0;
+var T9=gVal(T7) > gVal(T8);
+if(T9)
+{
+//  tooltip : "Reputation: " + rep + "\n"
+var T11="Reputation: ";
+var T12=DU.Ref($rep);
+var T13=gVal(T11)+gVal(T12);
+var T14="\n";
+var T15=gVal(T13)+gVal(T14);
+$tooltip=T15;
+}return [$tooltip];
 },
 "39::PublicOutcry" : function(__DIV){
 var $slide;
@@ -7539,7 +7576,7 @@ return [$slide];
 "91::GetAnotherComServ" : function(__DIV, $mission, $title, $text1, $text2, $possibleCards){
 var $slide;
 //  return $Slide.Create(lambda(stage => async)[mission, title, text1, text2, free possibleCards])
-var T5=OObj.MakeFunc(__FUNCS["Sinist_4"]["104_func109"],{});
+var T5=OObj.MakeFunc(__FUNCS["Sinist_4"]["104_func116"],{});
 T5.InjectCapture("$mission",DU.Ref($mission));
 T5.InjectCapture("$title",DU.Ref($title));
 T5.InjectCapture("$text1",DU.Ref($text1));
@@ -7552,7 +7589,7 @@ var T13=DU.ReadReturn(T12,1);
 $slide=T13;
 return [$slide];
 },
-"104_func109" : async function(__DIV, $stage){
+"104_func116" : async function(__DIV, $stage){
 var $mission,$title,$text1,$text2,$possibleCards,$unpicked,$initial,$pick;
 if('$mission' in __DIV.capture){$mission=__DIV.capture["$mission"];}
 if('$title' in __DIV.capture){$title=__DIV.capture["$title"];}
@@ -7675,13 +7712,13 @@ var T47=__RUN.getStaticGlo("Popup.AddMarkdown").func({__THIS:T44},...T46);
 $pop=T18;
 //  pop.$Popup.AddBotRightButton(lambda)
 var T49=DU.Ref($pop);
-var T50=OObj.MakeFunc(__FUNCS["Sinist_4"]["143_func132"],{$pipe: DU.Ref($pipe)});
+var T50=OObj.MakeFunc(__FUNCS["Sinist_4"]["143_func139"],{$pipe: DU.Ref($pipe)});
 var T51=[T50];
 var T52=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T49},...T51);
 var T53=DU.ReadReturn(T52,1);
 //  $Slide.HookAdvance(stage, lambda)
 var T55=DU.Ref($stage);
-var T56=OObj.MakeFunc(__FUNCS["Sinist_4"]["156_func135"],{$pipe: DU.Ref($pipe)});
+var T56=OObj.MakeFunc(__FUNCS["Sinist_4"]["156_func142"],{$pipe: DU.Ref($pipe)});
 var T57=[T55,T56];
 var T58=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T57);
 var T59=DU.ReadReturn(T58,1);
@@ -7704,7 +7741,7 @@ var T74=DU.ReadReturn(T73,1);
 $selection=T74;
 }return [$selection];
 },
-"143_func132" : function(__DIV){
+"143_func139" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -7713,7 +7750,7 @@ var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [];
 },
-"156_func135" : function(__DIV){
+"156_func142" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
 //  pipe.$Pipe.Kill()
@@ -7725,14 +7762,14 @@ return [];
 "169::CommunityServiceComplete" : function(__DIV){
 var $slide;
 //  => $Slide.Create(lambda(stage => async))
-var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["182_func144"],{});
+var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["182_func151"],{});
 var T1=[T0];
 var T2=__RUN.getStaticGlo("Slide.Create").func(null,...T1);
 var T3=DU.ReadReturn(T2,1);
 $slide=T3;
 return [$slide];
 },
-"182_func144" : async function(__DIV, $stage){
+"182_func151" : async function(__DIV, $stage){
 var $service,$text,$opts,$preSelect;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @service : stage.state[$Const.LastComServ]
@@ -7781,7 +7818,7 @@ var T35=false;
 }$preSelect=T35;
 //  await $DoForkThen(stage, lambda(pick), "Victory", text, opts, preSelect)
 var T37=DU.Ref($stage);
-var T38=OObj.MakeFunc(__FUNCS["Sinist_4"]["195_func152"],{$stage: DU.Ref($stage),$service: DU.Ref($service)});
+var T38=OObj.MakeFunc(__FUNCS["Sinist_4"]["195_func159"],{$stage: DU.Ref($stage),$service: DU.Ref($service)});
 var T39="Victory";
 var T40=DU.Ref($text);
 var T41=DU.Ref($opts);
@@ -7791,7 +7828,7 @@ var T45=await __RUN.getStaticGlo("Slide.Fork.DoForkThen").func(null,...T44);
 var T46=DU.ReadReturn(T45,1);
 return [];
 },
-"195_func152" : function(__DIV, $pick){
+"195_func159" : function(__DIV, $pick){
 var $stage,$service;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 if('$service' in __DIV.capture){$service=__DIV.capture["$service"];}
@@ -7844,31 +7881,60 @@ var T25=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T1},...T24);
 var T26=DU.ReadReturn(T25,1);
 return [];
 },
-"221::mixMissionSetup" : function(__DIV, $mission){
+"221::mixEncounterSetup" : function(__DIV, $mission){
 var __THIS;
 __THIS=__DIV.__THIS;
 //  this.$Campaign.mixSlides(dim)
 var T1=DU.Ref(__THIS);
 var T2=new OObj();
-//  $IfPassing(1, $OsTech(mission))
+//  $IfPassing(1, $OsTechSetup())
 var T3=1;
-var T4=DU.Ref($mission);
-var T5=[T4];
-var T6=__RUN.getStaticGlo("SinMo.Reputation.OsTech").func(null,...T5);
-var T7=DU.ReadReturn(T6,1);
-var T8=[T3,T7];
-var T9=__RUN.getStaticGlo("SinMo.Reputation.IfPassing").func(null,...T8);
-var T10=DU.ReadReturn(T9,1);
-OObj.SetChild(T2,0,T10);
-var T12=[T2];
-var T13=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T1},...T12);
-var T14=DU.ReadReturn(T13,1);
+var T4=__RUN.getStaticGlo("SinMo.Reputation.OsTechSetup").func(null);
+var T5=DU.ReadReturn(T4,1);
+var T6=[T3,T5];
+var T7=__RUN.getStaticGlo("SinMo.Reputation.IfPassing").func(null,...T6);
+var T8=DU.ReadReturn(T7,1);
+OObj.SetChild(T2,0,T8);
+var T10=[T2];
+var T11=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T1},...T10);
+var T12=DU.ReadReturn(T11,1);
 return [];
 },
-"234::IfPassing" : function(__DIV, $value, $subSlide){
+"234::mixMissionSetup" : function(__DIV, $mission){
+var __THIS;
+__THIS=__DIV.__THIS;
+//  this.$Campaign.mixSlides(dim)
+var T1=DU.Ref(__THIS);
+var T2=new OObj();
+//  $IfGreater(5, $PerPlayerThreat(1))
+var T3=5;
+var T4=1;
+var T5=[T4];
+var T6=__RUN.getStaticGlo("SinMo.Reputation.PerPlayerThreat").func(null,...T5);
+var T7=DU.ReadReturn(T6,1);
+var T8=[T3,T7];
+var T9=__RUN.getStaticGlo("SinMo.Reputation.IfGreater").func(null,...T8);
+var T10=DU.ReadReturn(T9,1);
+OObj.SetChild(T2,0,T10);
+//  $IfGreater(5, $SimpleSetup("Each player may take 1 additional mulligan this game"))
+var T12=5;
+var T13="Each player may take 1 additional mulligan this game";
+var T14=[T13];
+var T15=__RUN.getStaticGlo("SinMo.Reputation.SimpleSetup").func(null,...T14);
+var T16=DU.ReadReturn(T15,1);
+var T17=[T12,T16];
+var T18=__RUN.getStaticGlo("SinMo.Reputation.IfGreater").func(null,...T17);
+var T19=DU.ReadReturn(T18,1);
+OObj.SetChild(T2,1,T19);
+var T21=[T2];
+var T22=__RUN.getStaticGlo("Campaign.mixSlides").func({__THIS:T1},...T21);
+var T23=DU.ReadReturn(T22,1);
+return [];
+},
+"247::IfPassing" : function(__DIV, $value, $subSlide){
 var $slide;
 //  => $Slide.If(`$IsPassing(state, value)`, free subSlide)
-var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["247_func"],{$value: DU.Ref($value)});
+var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["260_func"],{$value: DU.Ref($value)});
 var T3=$subSlide;
 $subSlide=undefined;
 var T4=[T2,T3];
@@ -7877,7 +7943,7 @@ var T6=DU.ReadReturn(T5,1);
 $slide=T6;
 return [$slide];
 },
-"247_func" : function(__DIV){
+"260_func" : function(__DIV){
 var $state,$value;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 if('$value' in __DIV.capture){$value=__DIV.capture["$value"];}
@@ -7887,10 +7953,10 @@ var T3=[T1,T2];
 var T4=__RUN.getStaticGlo("SinMo.Reputation.IsPassing").func(null,...T3);
 var T5=DU.ReadReturn(T4,1);
 return [T5];},
-"260::IfGreater" : function(__DIV, $value, $subSlide){
+"273::IfGreater" : function(__DIV, $value, $subSlide){
 var $slide;
 //  => $Slide.If(`$IsGreater(state, value)`, free subSlide)
-var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["273_func"],{$value: DU.Ref($value)});
+var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["286_func"],{$value: DU.Ref($value)});
 var T3=$subSlide;
 $subSlide=undefined;
 var T4=[T2,T3];
@@ -7899,7 +7965,7 @@ var T6=DU.ReadReturn(T5,1);
 $slide=T6;
 return [$slide];
 },
-"273_func" : function(__DIV){
+"286_func" : function(__DIV){
 var $state,$value;
 if('$state' in __DIV.capture){$state=__DIV.capture["$state"];}
 if('$value' in __DIV.capture){$value=__DIV.capture["$value"];}
@@ -7910,7 +7976,7 @@ var T4=DU.ReadReturn(T3,1);
 var T5=DU.Ref($value);
 var T6=gVal(T4) >= gVal(T5);
 return [T6];},
-"286::IsPassing" : function(__DIV, $state, $value){
+"299::IsPassing" : function(__DIV, $state, $value){
 var $bool,$lastMission,$score,$delta;
 //  @lastMission : state[$Mission].$Obj.PrevKey()
 var T2=DU.Ref($state);
@@ -7957,7 +8023,7 @@ var T36=false;
 $bool=T36;
 return [$bool];
 },
-"299::IsGreater" : function(__DIV, $state, $value){
+"312::IsGreater" : function(__DIV, $state, $value){
 var $bool;
 //  => $CalcCurr(state) >= value
 var T2=DU.Ref($state);
@@ -7969,127 +8035,130 @@ var T7=gVal(T5) >= gVal(T6);
 $bool=T7;
 return [$bool];
 },
-"312::CalcCurr" : function(__DIV, $state){
+"325::CalcCurr" : function(__DIV, $state){
 var $val,$$struct2,$miss,$$miss3;
 //  val : 0
 var T1=0;
 $val=T1;
-//  for @miss in state[$Mission]
+//  for @miss in state[$Mission] ? dim()
 var T3=DU.Ref($state);
 var T4="mission";
 var T5=OObj.GetPath(T3,[T4]);
-$$struct2=T5;
-var T7=DU.Ref($$struct2);
-var T8=OObj.getFirstKey(T7);
-$miss=T8;
-for(var T10=0;;T10++)
+if(T5 != null)
 {
-if(T10>0)
+var T8=T5;
+}else{
+var T8=new OObj();
+}$$struct2=T8;
+var T10=DU.Ref($$struct2);
+var T11=OObj.getFirstKey(T10);
+$miss=T11;
+for(var T13=0;;T13++)
 {
-var T11=DU.Ref($$struct2);
-var T12=DU.Ref($miss);
-var T13=OObj.getNextKey(T11,T12);
-var T14=$miss;
+if(T13>0)
+{
+var T14=DU.Ref($$struct2);
+var T15=DU.Ref($miss);
+var T16=OObj.getNextKey(T14,T15);
+var T17=$miss;
 $miss=null;
-$$miss3=T14;
-$miss=T13;
-}var T17=DU.Ref($miss);
-var T18=T17 != null;
-if(!T18){break;}
+$$miss3=T17;
+$miss=T16;
+}var T20=DU.Ref($miss);
+var T21=T20 != null;
+if(!T21){break;}
 //  val +: $CalcForMission(state, miss)
-var T20=DU.Ref($val);
-var T21=DU.Ref($state);
-var T22=DU.Ref($miss);
-var T23=[T21,T22];
-var T24=__RUN.getStaticGlo("SinMo.Reputation.CalcForMission").func(null,...T23);
-var T25=DU.ReadReturn(T24,1);
-var T26=gVal(T20)+gVal(T25);
-$val=T26;
+var T23=DU.Ref($val);
+var T24=DU.Ref($state);
+var T25=DU.Ref($miss);
+var T26=[T24,T25];
+var T27=__RUN.getStaticGlo("SinMo.Reputation.CalcForMission").func(null,...T26);
+var T28=DU.ReadReturn(T27,1);
+var T29=gVal(T23)+gVal(T28);
+$val=T29;
 continue;
 }return [$val];
 },
-"325::CalcForMission" : function(__DIV, $state, $mission){
+"338::CalcForMission" : function(__DIV, $state, $mission){
 var $val,$$struct2,$$key3,$$$key34,$key;
-//  val : 0
-var T2=0;
-$val=T2;
-//  state[$Mission, mission, $Const.Victory] ? 0
-var T4=DU.Ref($state);
-var T5="mission";
-var T6=DU.Ref($mission);
-var T7="victory points";
-var T8=OObj.GetPath(T4,[T5,T6,T7]);
-if(T8 != null)
+//  val : state[$Mission, mission, $Const.Victory] ? 0
+var T2=DU.Ref($state);
+var T3="mission";
+var T4=DU.Ref($mission);
+var T5="victory points";
+var T6=OObj.GetPath(T2,[T3,T4,T5]);
+if(T6 != null)
 {
-var T11=T8;
+var T9=T6;
 }else{
-var T11=0;
-}//  for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
-var T13=new OObj();
-var T14="no minions";
-OObj.SetChild(T13,0,T14);
-var T16="no side schemes";
-OObj.SetChild(T13,1,T16);
-var T18="no threat";
-OObj.SetChild(T13,2,T18);
-var T20="no acceleration";
-OObj.SetChild(T13,3,T20);
-var T22="no defeats";
-OObj.SetChild(T13,4,T22);
-$$struct2=T13;
-var T25=DU.Ref($$struct2);
-var T26=OObj.getFirstKey(T25);
-$$key3=T26;
-for(var T28=0;;T28++)
+var T9=0;
+}$val=T9;
+//  for @key of dim($NoMinions, $NoSideSchemes, $NoMainThreat, $NoAccel, $NoDefeated)
+var T11=new OObj();
+var T12="no minions";
+OObj.SetChild(T11,0,T12);
+var T14="no side schemes";
+OObj.SetChild(T11,1,T14);
+var T16="no threat";
+OObj.SetChild(T11,2,T16);
+var T18="no acceleration";
+OObj.SetChild(T11,3,T18);
+var T20="no defeats";
+OObj.SetChild(T11,4,T20);
+$$struct2=T11;
+var T23=DU.Ref($$struct2);
+var T24=OObj.getFirstKey(T23);
+$$key3=T24;
+for(var T26=0;;T26++)
 {
-if(T28>0)
+if(T26>0)
 {
-var T29=DU.Ref($$struct2);
-var T30=DU.Ref($$key3);
-var T31=OObj.getNextKey(T29,T30);
-var T32=$$key3;
+var T27=DU.Ref($$struct2);
+var T28=DU.Ref($$key3);
+var T29=OObj.getNextKey(T27,T28);
+var T30=$$key3;
 $$key3=null;
-$$$key34=T32;
-$$key3=T31;
-}var T35=DU.Ref($$key3);
-var T36=T35 != null;
-if(!T36){break;}
-var T38=DU.Ref($$struct2);
-var T39=DU.Ref($$key3);
-var T40=OObj.GetPath(T38,[T39]);
-$key=T40;
+$$$key34=T30;
+$$key3=T29;
+}var T33=DU.Ref($$key3);
+var T34=T33 != null;
+if(!T34){break;}
+var T36=DU.Ref($$struct2);
+var T37=DU.Ref($$key3);
+var T38=OObj.GetPath(T36,[T37]);
+$key=T38;
 //  if state[$Mission, mission, key] ? false
-var T42=DU.Ref($state);
-var T43="mission";
-var T44=DU.Ref($mission);
-var T45=DU.Ref($key);
-var T46=OObj.GetPath(T42,[T43,T44,T45]);
-if(T46 != null)
+var T40=DU.Ref($state);
+var T41="mission";
+var T42=DU.Ref($mission);
+var T43=DU.Ref($key);
+var T44=OObj.GetPath(T40,[T41,T42,T43]);
+if(T44 != null)
 {
-var T49=T46;
+var T47=T44;
 }else{
-var T49=false;
-}if(T49)
+var T47=false;
+}if(T47)
 {
 //  val +: 1
-var T51=DU.Ref($val);
-var T52=1;
-var T53=gVal(T51)+gVal(T52);
-$val=T53;
+var T49=DU.Ref($val);
+var T50=1;
+var T51=gVal(T49)+gVal(T50);
+$val=T51;
 }continue;
 }return [$val];
 },
-"338::MakeCalculateSlide" : function(__DIV, $mission){
+"351::MakeCalculateSlide" : function(__DIV, $mission){
 var $slide;
 //  => $Slide.Create(lambda(stage => async))
-var T1=OObj.MakeFunc(__FUNCS["Sinist_4"]["351_func201"],{$mission: DU.Ref($mission)});
+var T1=OObj.MakeFunc(__FUNCS["Sinist_4"]["364_func213"],{$mission: DU.Ref($mission)});
 var T2=[T1];
 var T3=__RUN.getStaticGlo("Slide.Create").func(null,...T2);
 var T4=DU.ReadReturn(T3,1);
 $slide=T4;
 return [$slide];
 },
-"351_func201" : async function(__DIV, $stage){
+"364_func213" : async function(__DIV, $stage){
 var $mission;
 if('$mission' in __DIV.capture){$mission=__DIV.capture["$mission"];}
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
@@ -8101,7 +8170,7 @@ var T5=await __RUN.getStaticGlo("SinMo.Reputation.DoCalculateSlide").func(null,.
 var T6=DU.ReadReturn(T5,1);
 return [];
 },
-"364::DoCalculateSlide" : async function(__DIV, $stage, $mission){
+"377::DoCalculateSlide" : async function(__DIV, $stage, $mission){
 var $pipe,$ghost,$$sOut2,$commServiceVal,$initVic,$isExpert,$vicCtl,$pane,$$parTmp3,$$$sOut24,$pop,$chkMinions,$chkSide,$chkMain,$chkAccel,$$sOut5,$anyDefeat,$chkDefeat,$node;
 //  @pipe : stage.ct.$Canceler.MakePipe()
 var T2=DU.Ref($stage);
@@ -8290,13 +8359,13 @@ var T154=[T67];
 var T155=__RUN.getStaticGlo("Dom.AppendChild").func({__THIS:T63},...T154);
 //  mixin $Popup.AddBotRightButton(`pipe.$Pipe.Kill()`)
 var T156=DU.Ref(T58);
-var T157=OObj.MakeFunc(__FUNCS["Sinist_4"]["377_func"],{$pipe: DU.Ref($pipe)});
+var T157=OObj.MakeFunc(__FUNCS["Sinist_4"]["390_func"],{$pipe: DU.Ref($pipe)});
 var T158=[T157];
 var T159=__RUN.getStaticGlo("Popup.AddBotRightButton").func({__THIS:T156},...T158);
 $pop=T58;
 //  $Slide.HookAdvance(stage, `pipe.$Pipe.Kill()`)
 var T161=DU.Ref($stage);
-var T162=OObj.MakeFunc(__FUNCS["Sinist_4"]["390_func"],{$pipe: DU.Ref($pipe)});
+var T162=OObj.MakeFunc(__FUNCS["Sinist_4"]["403_func"],{$pipe: DU.Ref($pipe)});
 var T163=[T161,T162];
 var T164=__RUN.getStaticGlo("Slide.HookAdvance").func(null,...T163);
 var T165=DU.ReadReturn(T164,1);
@@ -8428,63 +8497,59 @@ var T270="value";
 var T271=[T270];
 var T272=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T269},...T271);
 var T273=DU.ReadReturn(T272,1);
-var T274=DU.Ref($node);
-var T275="victory points";
-OObj.SetPath(T274,[T275],T273);
+var T274=[T273];
+var T275=__RUN.getStaticGlo("Math.Round").func(null,...T274);
+var T276=DU.ReadReturn(T275,1);
+var T277=DU.Ref($node);
+var T278="victory points";
+OObj.SetPath(T277,[T278],T276);
 //  node[$Const.NoMinions] : chkMinions.$Checkbox.IsChecked()
-var T277=DU.Ref($chkMinions);
-var T278="checked";
-var T279=[T278];
-var T280=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T277},...T279);
-var T281=DU.ReadReturn(T280,1);
-var T282=DU.Ref($node);
-var T283="no minions";
-OObj.SetPath(T282,[T283],T281);
+var T280=DU.Ref($chkMinions);
+var T281="checked";
+var T282=[T281];
+var T283=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T280},...T282);
+var T284=DU.ReadReturn(T283,1);
+var T285=DU.Ref($node);
+var T286="no minions";
+OObj.SetPath(T285,[T286],T284);
 //  node[$Const.NoSideSchemes] : chkSide.$Checkbox.IsChecked()
-var T285=DU.Ref($chkSide);
-var T286="checked";
-var T287=[T286];
-var T288=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T285},...T287);
-var T289=DU.ReadReturn(T288,1);
-var T290=DU.Ref($node);
-var T291="no side schemes";
-OObj.SetPath(T290,[T291],T289);
+var T288=DU.Ref($chkSide);
+var T289="checked";
+var T290=[T289];
+var T291=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T288},...T290);
+var T292=DU.ReadReturn(T291,1);
+var T293=DU.Ref($node);
+var T294="no side schemes";
+OObj.SetPath(T293,[T294],T292);
 //  node[$Const.NoMainThreat] : chkMain.$Checkbox.IsChecked()
-var T293=DU.Ref($chkMain);
-var T294="checked";
-var T295=[T294];
-var T296=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T293},...T295);
-var T297=DU.ReadReturn(T296,1);
-var T298=DU.Ref($node);
-var T299="no threat";
-OObj.SetPath(T298,[T299],T297);
+var T296=DU.Ref($chkMain);
+var T297="checked";
+var T298=[T297];
+var T299=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T296},...T298);
+var T300=DU.ReadReturn(T299,1);
+var T301=DU.Ref($node);
+var T302="no threat";
+OObj.SetPath(T301,[T302],T300);
 //  node[$Const.NoAccel] : chkAccel.$Checkbox.IsChecked()
-var T301=DU.Ref($chkAccel);
-var T302="checked";
-var T303=[T302];
-var T304=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T301},...T303);
-var T305=DU.ReadReturn(T304,1);
-var T306=DU.Ref($node);
-var T307="no acceleration";
-OObj.SetPath(T306,[T307],T305);
+var T304=DU.Ref($chkAccel);
+var T305="checked";
+var T306=[T305];
+var T307=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T304},...T306);
+var T308=DU.ReadReturn(T307,1);
+var T309=DU.Ref($node);
+var T310="no acceleration";
+OObj.SetPath(T309,[T310],T308);
 //  node[$Const.NoDefeated] : chkDefeat.$Checkbox.IsChecked()
-var T309=DU.Ref($chkDefeat);
-var T310="checked";
-var T311=[T310];
-var T312=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T309},...T311);
-var T313=DU.ReadReturn(T312,1);
-var T314=DU.Ref($node);
-var T315="no defeats";
-OObj.SetPath(T314,[T315],T313);
+var T312=DU.Ref($chkDefeat);
+var T313="checked";
+var T314=[T313];
+var T315=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T312},...T314);
+var T316=DU.ReadReturn(T315,1);
+var T317=DU.Ref($node);
+var T318="no defeats";
+OObj.SetPath(T317,[T318],T316);
 }return [];
 },
-"377_func" : function(__DIV){
-var $pipe;
-if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
-var T1=DU.Ref($pipe);
-var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
-var T3=DU.ReadReturn(T2,1);
-return [T3];},
 "390_func" : function(__DIV){
 var $pipe;
 if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
@@ -8492,17 +8557,53 @@ var T1=DU.Ref($pipe);
 var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
 var T3=DU.ReadReturn(T2,1);
 return [T3];},
-"403::DistributeShieldTech" : function(__DIV){
+"403_func" : function(__DIV){
+var $pipe;
+if('$pipe' in __DIV.capture){$pipe=__DIV.capture["$pipe"];}
+var T1=DU.Ref($pipe);
+var T2=__RUN.getStaticGlo("Pipe.Kill").func({__THIS:T1});
+var T3=DU.ReadReturn(T2,1);
+return [T3];},
+"416::SimpleSetup" : function(__DIV, $text, $hint){
+var $slide;
+//  text : $GT(text)
+var T2=DU.Ref($text);
+var T3=[T2];
+var T4=__RUN.getStaticGlo("GT").func(null,...T3);
+var T5=DU.ReadReturn(T4,1);
+$text=T5;
+//  slide : $Slide.Create(lambda(stage => async))
+var T7=OObj.MakeFunc(__FUNCS["Sinist_4"]["429_func276"],{$text: DU.Ref($text)});
+var T8=[T7];
+var T9=__RUN.getStaticGlo("Slide.Create").func(null,...T8);
+var T10=DU.ReadReturn(T9,1);
+$slide=T10;
+return [$slide];
+},
+"429_func276" : async function(__DIV, $stage){
+var $text;
+if('$text' in __DIV.capture){$text=__DIV.capture["$text"];}
+if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
+//  await $DoSimplePopup(stage, "Reputation", text)
+var T1=DU.Ref($stage);
+var T2="Reputation";
+var T3=DU.Ref($text);
+var T5=[T1,T2,T3];
+var T6=await __RUN.getStaticGlo("Slide.DoSimplePopup").func(null,...T5);
+var T7=DU.ReadReturn(T6,1);
+return [];
+},
+"442::DistributeShieldTech" : function(__DIV){
 var $slide;
 //  => $Slide.Create(lambda(stage => async))
-var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["416_func263"],{});
+var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["455_func280"],{});
 var T1=[T0];
 var T2=__RUN.getStaticGlo("Slide.Create").func(null,...T1);
 var T3=DU.ReadReturn(T2,1);
 $slide=T3;
 return [$slide];
 },
-"416_func263" : async function(__DIV, $stage){
+"455_func280" : async function(__DIV, $stage){
 var $$parTmp2,$$$sOut23,$text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @text : $GTW(textdata)
@@ -8565,10 +8666,10 @@ var T56=await __RUN.getStaticGlo("RedSkull.DoDistributeVictory").func(null,...T5
 var T57=DU.ReadReturn(T56,1);
 return [];
 },
-"429::LogAnotherFromPile" : function(__DIV, $key, $title, $text1, $text2, $possibleCards){
+"468::LogAnotherFromPile" : function(__DIV, $key, $title, $text1, $text2, $possibleCards){
 var $slide;
 //  return $Slide.Create(lambda(stage => async)[key, title, text1, text2, free possibleCards])
-var T5=OObj.MakeFunc(__FUNCS["Sinist_4"]["442_func280"],{});
+var T5=OObj.MakeFunc(__FUNCS["Sinist_4"]["481_func297"],{});
 T5.InjectCapture("$key",DU.Ref($key));
 T5.InjectCapture("$title",DU.Ref($title));
 T5.InjectCapture("$text1",DU.Ref($text1));
@@ -8581,7 +8682,7 @@ var T13=DU.ReadReturn(T12,1);
 $slide=T13;
 return [$slide];
 },
-"442_func280" : async function(__DIV, $stage){
+"481_func297" : async function(__DIV, $stage){
 var $key,$title,$text1,$text2,$possibleCards,$unpicked,$initial,$pick;
 if('$key' in __DIV.capture){$key=__DIV.capture["$key"];}
 if('$title' in __DIV.capture){$title=__DIV.capture["$title"];}
@@ -8591,7 +8692,7 @@ if('$possibleCards' in __DIV.capture){$possibleCards=__DIV.capture["$possibleCar
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @unpicked : possibleCards.$List.Filter(`!stage.state[key, it] ? false`)
 var T1=DU.Ref($possibleCards);
-var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["455_func"],{$key: DU.Ref($key),$stage: DU.Ref($stage)});
+var T2=OObj.MakeFunc(__FUNCS["Sinist_4"]["494_func"],{$key: DU.Ref($key),$stage: DU.Ref($stage)});
 var T3=[T2];
 var T4=__RUN.getStaticGlo("List.Filter").func({__THIS:T1},...T3);
 var T5=DU.ReadReturn(T4,1);
@@ -8648,7 +8749,7 @@ var T44=DU.Ref($pick);
 OObj.SetPath(T42,[T43,T44],T40);
 }return [];
 },
-"455_func" : function(__DIV){
+"494_func" : function(__DIV){
 var $stage,$key,$it;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 if('$key' in __DIV.capture){$key=__DIV.capture["$key"];}
@@ -8665,7 +8766,7 @@ var T9=T6;
 }else{
 var T9=false;
 }return [T9];},
-"468::OsTech" : function(__DIV, $mission){
+"507::OsTech" : function(__DIV, $mission){
 var $slide,$text1;
 //  @text1 : "Choose one \"Osborn Tech\" attachment at random"
 var T1="Choose one \"Osborn Tech\" attachment at random";
@@ -8699,17 +8800,17 @@ var T27=DU.ReadReturn(T26,1);
 $slide=T27;
 return [$slide];
 },
-"481::OsTechSetup" : function(__DIV){
+"520::OsTechSetup" : function(__DIV){
 var $slide;
 //  => $Slide.Create(lambda(stage => async))
-var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["494_func301"],{});
+var T0=OObj.MakeFunc(__FUNCS["Sinist_4"]["533_func318"],{});
 var T1=[T0];
 var T2=__RUN.getStaticGlo("Slide.Create").func(null,...T1);
 var T3=DU.ReadReturn(T2,1);
 $slide=T3;
 return [$slide];
 },
-"494_func301" : async function(__DIV, $stage){
+"533_func318" : async function(__DIV, $stage){
 var $opts,$$struct2,$card,$$card3,$text;
 if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
 //  @opts : dim()
@@ -8766,7 +8867,45 @@ var T43=await __RUN.getStaticGlo("Slide.CheckList.DoChecklist").func(null,...T42
 var T44=DU.ReadReturn(T43,1);
 return [];
 },
-"507::mixAddCheckBox" : function(__DIV, $label, $isChecked, $disable){
+"546::PerPlayerThreat" : function(__DIV, $threat){
+var $slide;
+//  => $Slide.Create(lambda(stage => async))
+var T1=OObj.MakeFunc(__FUNCS["Sinist_4"]["559_func326"],{$threat: DU.Ref($threat)});
+var T2=[T1];
+var T3=__RUN.getStaticGlo("Slide.Create").func(null,...T2);
+var T4=DU.ReadReturn(T3,1);
+$slide=T4;
+return [$slide];
+},
+"559_func326" : async function(__DIV, $stage){
+var $cnt,$threat,$text;
+if('$threat' in __DIV.capture){$threat=__DIV.capture["$threat"];}
+if('$stage' in __DIV.capture){$stage=__DIV.capture["$stage"];}
+//  @cnt : stage.state["players"]
+var T1=DU.Ref($stage);
+var T2=OObj.DotAccess(T1,"state");
+var T3="players";
+var T4=OObj.GetPath(T2,[T3]);
+$cnt=T4;
+//  @text : "Place " + (threat * cnt) + " threat on the main scheme"
+var T6="Place ";
+var T7=DU.Ref($threat);
+var T8=DU.Ref($cnt);
+var T9=gVal(T7)*gVal(T8);
+var T10=gVal(T6)+gVal(T9);
+var T11=" threat on the main scheme";
+var T12=gVal(T10)+gVal(T11);
+$text=T12;
+//  await $DoSimplePopup(stage, "Reputation", text)
+var T14=DU.Ref($stage);
+var T15="Reputation";
+var T16=DU.Ref($text);
+var T18=[T14,T15,T16];
+var T19=await __RUN.getStaticGlo("Slide.DoSimplePopup").func(null,...T18);
+var T20=DU.ReadReturn(T19,1);
+return [];
+},
+"572::mixAddCheckBox" : function(__DIV, $label, $isChecked, $disable){
 var $chk,__THIS,$id;
 __THIS=__DIV.__THIS;
 //  ^_uniqChkID +: 1
@@ -9068,13 +9207,16 @@ return [];
 "221::GetText" : function(__DIV){
 var $num,__THIS;
 __THIS=__DIV.__THIS;
-//  ::.GetText(=> num) => this.$GetAttribute("value")
+//  ::.GetText(=> num) => $Math.Round(this.$GetAttribute("value"))
 var T0=DU.Ref(__THIS);
 var T1="value";
 var T2=[T1];
 var T3=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T0},...T2);
 var T4=DU.ReadReturn(T3,1);
-$num=T4;
+var T5=[T4];
+var T6=__RUN.getStaticGlo("Math.Round").func(null,...T5);
+var T7=DU.ReadReturn(T6,1);
+$num=T7;
 return [$num];
 },
 "234::SelectAll" : function(__DIV){
@@ -15679,19 +15821,22 @@ var T194=[T193];
 var T195=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T192},...T194);
 var T196=DU.ReadReturn(T195,1);
 var T197=[T196];
-var T198=__RUN.getStaticGlo("Math.Floor").func(null,...T197);
+var T198=__RUN.getStaticGlo("Math.Round").func(null,...T197);
 var T199=DU.ReadReturn(T198,1);
-var T200=DU.Ref($stage);
-var T201=OObj.DotAccess(T200,"delta");
-var T202="player";
-var T203=DU.Ref($idx);
-var T204="hp";
-OObj.SetPath(T201,[T202,T203,T204],T199);
+var T200=[T199];
+var T201=__RUN.getStaticGlo("Math.Floor").func(null,...T200);
+var T202=DU.ReadReturn(T201,1);
+var T203=DU.Ref($stage);
+var T204=OObj.DotAccess(T203,"delta");
+var T205="player";
+var T206=DU.Ref($idx);
+var T207="hp";
+OObj.SetPath(T204,[T205,T206,T207],T202);
 continue;
-}var T207=$$idx7;
+}var T210=$$idx7;
 $$idx7=null;
-$idx=T207;
-var T209=$elem;
+$idx=T210;
+var T212=$elem;
 $elem=undefined;
 }return [];
 },
@@ -15723,9 +15868,12 @@ var T2="value";
 var T3=[T2];
 var T4=__RUN.getStaticGlo("Dom.GetAttribute").func({__THIS:T1},...T3);
 var T5=DU.ReadReturn(T4,1);
-var T6="";
-var T7=DU.AreEqual(T5,T6);
-return [T7];},
+var T6=[T5];
+var T7=__RUN.getStaticGlo("Math.Round").func(null,...T6);
+var T8=DU.ReadReturn(T7,1);
+var T9="";
+var T10=DU.AreEqual(T8,T9);
+return [T10];},
 "104::DoSetInitialHP" : async function(__DIV, $stage){
 var $pipe,$container,$$parTmp2,$$$sOut23,$pop,$$struct4,$idx,$$idx5,$hero,$lastHp,$cell;
 //  @pipe : stage.ct.$Canceler.MakePipe()

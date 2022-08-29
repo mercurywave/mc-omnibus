@@ -17,10 +17,14 @@ button{
 }
 
 #stage{
-    z-index: 10;
     position: fixed;
     width: 100vw;
     height: 100vh;
+    pointer-events: none;
+    z-index: 100;
+}
+#stage *{
+    pointer-events: auto;
 }
 
 .stageIn{

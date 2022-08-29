@@ -38,7 +38,7 @@ library Dom
     library NumberEntry
         ::Create(=> input) => $Input.Create("number")
         ::.SetText(num) \ this.$SetAttribute("value", num)
-        ::.GetText(=> num) => this.$GetAttribute("value")
+        ::.GetText(=> num) => $Math.Round(this.$GetAttribute("value"))
         ::.SelectAll() => this.$TextEntry.SelectAll()
         ::.DoSelectAllOnFocus() => this.$TextEntry.DoSelectAllOnFocus()
 
