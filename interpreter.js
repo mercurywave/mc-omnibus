@@ -27,6 +27,7 @@ class ORuntime {
 	setupStandardHooks() {
 		const _run = this;
 		this.AddExternalFunction("IO.Log", function (val) { console.log(val); });
+		this.AddExternalFunction("IO.DebugLog", function (val) { console.log(val); });
 		this.AddExternalFunction("IO.Write", function (val) { console.log(val); });
 
 		this.AddExternalMethod("Obj.NextKey", function (val) { return OObj.getNextKey(this, val); });

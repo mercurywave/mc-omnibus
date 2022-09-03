@@ -1451,6 +1451,10 @@ label.disabled p{
     flex-direction: row;
     align-items: center;
 }
+.playerCardAssign.freeText .player{
+    max-width: 350px;
+    margin: 0 auto;
+}
 .playerCardAssign .player .heroBadge{
     transform: scale(75%);
     margin: -12px 10px;
@@ -1466,6 +1470,9 @@ label.disabled p{
     font-family:'ComicNeueRegular', 'Comic Sans', cursive;
     font-weight: bold;
 }
+.playerCardAssign .pickers input[type=text]{
+    max-width: 45vw;
+}
 .playerCardAssign.multi .pickers{
     margin: 10px 0;
 }
@@ -1479,6 +1486,7 @@ label.disabled p{
 .playerCardAssign .dead .pickers p{
     color: #AF1621;
     font-style: italic;
+    margin-left: 30px;
 }
 
 

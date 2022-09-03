@@ -87,6 +87,7 @@ library SinMo
         $NoDefeated : "no defeats"
         $ShieldTech : "shield tech"
         $OsbornTech : "osborn tech"
+        $AspectAdvantage : "aspect advantage"
 
     ::TooltipGen(state, player => tooltip)
         tooltip : ""
@@ -94,8 +95,9 @@ library SinMo
         if rep > 0
             tooltip : "Reputation: " + rep + "\n\n"
         @addCard : dim()
-        if player[$Const.ShieldTech] != null
-            addCard.$List.Add(player[$Const.ShieldTech])
+        for @key of dim($Const.ShieldTech, $Const.AspectAdvantage)
+            if player[key] != null
+                addCard.$List.Add(player[key])
         tooltip +: $Heroes.TooltipAddCardsHelper(addCard, null)
 
     ::PublicOutcry(=> slide)
@@ -172,6 +174,7 @@ library SinMo
                 $MakeCalculateSlide(mission)
                 $IfPassing(1, $DistributeShieldTech())
                 $IfPassing(1, $OsTech())
+                $IfPassing(9, $AspectAdvantage())
                 $IfPassing(13, $OsTech())
                 $IfPassing(21, $OsTech())
 
@@ -364,7 +367,59 @@ library SinMo
                     Each player may search their collection for a Symbiote 
                     Suit upgrade card and put it into play under their control.
 
-                
+        ::AspectAdvantage( => slide)
+            => $Slide.Create(lambda(stage => async))
+                @text : $GT(textdata)
+                    Each player chooses and aspect card from their collection and adds the
+                    max copies of that card to their deck.
+
+                    <em>(These cards do not count towards min/max deck size)</em>
+                await $DoLogAspectCard(stage, $Const.AspectAdvantage, text, "Reputation")
+
+        ::DoLogAspectCard(stage, key, text, ?title => async)
+            using Dom
+            // this shares styles with $RedSkull.DoDistributeVictory
+            title ?: "Victory"
+            @pipe : stage.ct.$Canceler.MakePipe()
+            
+            @container
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+                mixin $AppendChild(dim $Div.Create() >> container)
+                    mixin $Style.AddClasses("playerCardAssign", "freeText")
+
+            @fields : dim() // not every hero gets a selector!
+
+            for @idx in stage.state.player
+                @hero : stage.state.$Campaign.State.GetHero(idx)
+                @alive : !stage.state.$Campaign.State.IsExpert() | stage.state.$Campaign.State.GetHp(idx) > 0
+
+                @rightPane
+                @playerCard : container.$AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("player")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $Style.SetClassIf("dead", !alive)
+                    mixin $AppendChild(dim $Div.Create() >> rightPane)
+                        mixin $Style.AddClasses("pickers")
+
+                if alive
+                    fields[idx] : rightPane.$AppendChild(dim $TextEntry.Create())
+                        mixin $TextEntry.SetText(stage.ghost["player", idx, key] ? "")
+                else
+                    rightPane.$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))
+            
+            pop.$Popup.AddBotRightButton(lambda)
+                pipe.$Pipe.Kill()
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            await pipe.$Pipe.ReadAsync()
+
+            for @pick of fields at @idx
+                @val : pick.$TextEntry.GetText()
+                if val != ""
+                    stage.delta["player", idx, key] : val
 
 scratch _uniqChkID : 0
 ::.mixAddCheckBox(label, ?isChecked, ?disable => chk)

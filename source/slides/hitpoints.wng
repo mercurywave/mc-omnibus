@@ -35,7 +35,7 @@ library Slide
                         mixin $NumberEntry.DoSelectAllOnFocus()
 
             @tryAdvance : lambda
-                if !fields.$List.Any(`it.$NumberEntry.GetText() = ""`)
+                if !fields.$List.Any(`it.$NumberEntry.GetText() < 0`)
                     pipe.$Pipe.Kill()
             
             pop.$Popup.AddBotRightButton(tryAdvance)
