@@ -66,11 +66,46 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
     
     mixin $SinMo.Reputation.mixMissionEnd(1)
 
-    //
+    //////////// MISSION 2 ////////////
+    mixin $mixMission("S1", 2, "Leave Us Alone!", $Img.Venom, dim
+            _ , $g.BackStyle.Black, $g.LineStyle.Black, $g.ForeStyle.White
+            _ , "Read page 10 from the Sinister Motives rule book")
+        
+        $CheckList("Setup", dim, null, $Img.Venom)
+            $EnemyStageCheck("Venom")
+            $CheckList.MakeCheck("**Main Scheme Deck**: \"Leave Us Alone!\"")
 
+        $CheckList("Setup", dim, "**Encounter Deck**", $Img.BellTower)
+            $CheckList.MakeCheck("Venom set")
+            $CheckList.MakeCheck("Down to Earth")
+            $CheckList.MakeCheck("Symbiotic Strength")
+            $CheckList.MakeCheck("Standard set")
+            $ExpertEncounterSetCheck()
+        
     mixin $SinMo.Reputation.mixEncounterSetup(1)
-    mixin $SinMo.Reputation.mixMissionSetup(1)
 
+    mixin $mixSlides(dim)
+
+        $SinMo.PublicOutcry()
+        
+        $SinMo.CommunityService(2)
+
+        $IfExpert($Setup("Place 1 facedown boost card on each identity"))
+
+        $SinMo.HealSlide()
+        $IfExpert($SetInitialHP())
+
+    mixin $SinMo.Reputation.mixMissionSetup(2)
+
+    mixin $Campaign.mixSlides(dim)
+        $PlayGame()
+
+        $IfExpert($RecordHP())
+        $SinMo.CommunityServiceComplete()
+
+    mixin $SinMo.Reputation.mixMissionEnd(2)
+
+    //////////// MISSION 3 ////////////
     mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
 
 library SinMo
@@ -125,7 +160,7 @@ library SinMo
         return $Slide.Create(lambda(stage => async)[mission, title, text1, text2, free possibleCards])
             
             @unpicked : possibleCards.$List.Filter(`!stage.state[$Const.ComServ, it] ? false`)
-            @initial : stage.ghost[$Const.LastComServ] ? possibleCards.$List.QuickPick()
+            @initial : stage.ghost[$Const.LastComServ] ? unpicked.$List.QuickPick()
 
             @pick : await $DoGetAnotherNewFromPile(stage, title, text1, text2, unpicked, initial)
 
@@ -168,6 +203,75 @@ library SinMo
             await $DoForkThen(stage, lambda(pick), "Victory", text, opts, preSelect)
                 if pick
                     stage.delta[$Const.ComServ, service] : true
+
+    
+    ::HealSlide( => slide)
+        => $RedSkull.IfCanHeal($Slide.Create(lambda(stage => async)))
+            await $DoHeal(stage)
+
+    ::DoHeal(stage => async)
+        using Dom
+        @pipe : stage.ct.$Canceler.MakePipe()
+        
+        @container
+        @pop : dim $Popup.Create("Persistent Damage")
+            mixin $AppendChild(dim $Paragraph.Create())
+                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
+                    Each player may heal to full health by dealing themselves
+                    1 facedown encounter card.
+
+            mixin $AppendChild(dim $Div.Create() >> container)
+                mixin $Style.AddClasses("healing")
+
+        @checks : dim()
+
+        for @idx in stage.state.player
+            @hp : stage.state.$Campaign.State.GetHp(idx)
+            @hero : stage.state.$Campaign.State.GetHero(idx)
+            @alive : hp > 0
+            @ghost : (stage.ghost["player", idx, "hp"] != null)
+            @id : "chkOpt" + ~idx
+
+            @rightPane; @lbl; @paneAdd
+            @playerCard : container.$AppendChild(dim $Div.Create())
+                mixin $Style.AddClasses("player")
+                mixin $Style.SetClassIf("dead", !alive)
+                mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                mixin $AppendChild(dim $Div.Create())
+                    mixin $AppendChild(dim $Paragraph.Create("HP"))
+                        mixin $Style.AddClasses("hpLbl")
+                    mixin $AppendChild(dim $Paragraph.Create("" + hp + "/" + hero.$Heroes.GetHp()))
+                        mixin $Style.AddClasses("hp")
+
+                mixin $AppendChild(dim $Div.Create() >> rightPane)
+                    mixin $Style.AddClasses("rPane")
+                    mixin $AppendChild(dim $Checkbox.CreateLabelFor(id) >> lbl)
+                        mixin $Style.SetClassIf("noDisp", hp >= hero.$Heroes.GetHp() | !alive)
+                    mixin $AppendChild(dim $Div.Create() >> paneAdd)
+                        mixin $Style.SetClassIf("noDisp", alive & !ghost)
+            
+            (@chk, checks[idx]) : lbl.$AppendChild(dim $Checkbox.Create())
+                mixin $SetId(id)
+                mixin $Checkbox.SetIsChecked(!alive | ghost)
+            chk.$Checkbox.HookChange(lambda)
+                paneAdd.$Style.SetClassIf("noDisp", !chk.$Checkbox.IsChecked())
+            lbl.$AppendChild(dim $Paragraph.Create("Heal to full health"))
+            
+            paneAdd.$AppendChild(dim $Paragraph.Create("Deal yourself 1 facedown encounter card"))
+                mixin $Style.AddClasses("obligation")
+        
+        pop.$Popup.AddBotRightButton(lambda)
+            pipe.$Pipe.Kill()
+
+        $Slide.HookAdvance(stage, lambda)
+            pipe.$Pipe.Kill()
+
+        await pipe.$Pipe.ReadAsync()
+
+        for @chk of checks at @idx
+            if chk.$Checkbox.IsChecked()
+                @hero : stage.state.$Campaign.State.GetHero(idx)
+                stage.delta["player", idx, "hp"] : hero.$Heroes.GetHp()
 
     library Reputation
         ::.mixMissionEnd(mission)

@@ -46,10 +46,15 @@ library Img
 
     ///// SINISTER MOTIVES /////
     data Sandman : $mkCard("sandman", "Sandman [II]")
+    data Venom : $mkCard("venom", "Venom [II]")
+    data Mysterio : $mkCard("mysterio", "Mysterio [II]")
+    data DocOc : $mkCard("doc_oc", "Doctor Octopus [I]")
+    data VenomGoblin : $mkCard("venom_goblin", "Venom Goblin [II]")
 
     data SandClone : $mkCard("sand_clone", "Sand Clone")
     data CityStreets : $mkCard("city_streets", "City Streets")
     data PublicOutcry : $mkCard("public_outcry", "Public Outcry")
+    data BellTower : $mkCard("bell_tower", "Bell Tower")
 
     ///// MISC /////
     data Ronin : $mkCard("ronin", "Ronin")
