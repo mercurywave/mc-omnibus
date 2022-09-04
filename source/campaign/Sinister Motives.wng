@@ -88,6 +88,7 @@ library SinMo
         $ShieldTech : "shield tech"
         $OsbornTech : "osborn tech"
         $AspectAdvantage : "aspect advantage"
+        $PlanningAhead : "planning ahead"
 
     ::TooltipGen(state, player => tooltip)
         tooltip : ""
@@ -175,8 +176,9 @@ library SinMo
                 $IfPassing(1, $DistributeShieldTech())
                 $IfPassing(1, $OsTech())
                 $IfPassing(9, $AspectAdvantage())
-                $IfPassing(13, $UpgradeShieldTech())
+                //$IfPassing(13, $UpgradeShieldTech()) // this is done during setup instead
                 $IfPassing(13, $OsTech())
+                $IfPassing(17, $PlanningAhead())
                 $IfPassing(21, $OsTech())
 
         ::.mixEncounterSetup(mission)
@@ -189,6 +191,7 @@ library SinMo
             this.$Campaign.mixSlides(dim)
                 $IfGreater(13, $BonusChecklist())
                 $IfGreater(5, $SimpleSetup("Each player may take 1 additional mulligan"))
+                $IfGreater(17, $GetPlannedCard())
 
         ::IfPassing(value, &subSlide => slide)
             => $Slide.If(`$IsPassing(state, value)`, free subSlide)
@@ -360,7 +363,7 @@ library SinMo
             return $Slide.Create(lambda(stage => async)[key, title, text1, text2, free possibleCards])
                 
                 @unpicked : possibleCards.$List.Filter(`!stage.state[key, it] ? false`)
-                @initial : stage.ghost[key]?.$Obj.NextKey() ? possibleCards.$List.QuickPick()
+                @initial : stage.ghost[key]?.$Obj.NextKey() ? unpicked.$List.QuickPick()
 
                 @pick : await $DoGetAnotherNewFromPile(stage, title, text1, text2, unpicked, initial)
 
@@ -426,6 +429,15 @@ library SinMo
 
                     <em>(These cards do not count towards min/max deck size)</em>
                 await $DoLogAspectCard(stage, $Const.AspectAdvantage, text, "Reputation")
+        
+        ::PlanningAhead( => slide)
+            => $Slide.Create(lambda(stage => async))
+                @text : $GT(textdata)
+                    Each player selects and logs one card from their deck.
+
+                    <em>(Players will be able to add one copy of this card
+                    to their hand at the start of future games)</em>
+                await $DoLogAspectCard(stage, $Const.PlanningAhead, text, "Reputation")
 
         ::DoLogAspectCard(stage, key, text, ?title => async)
             using Dom
@@ -471,6 +483,49 @@ library SinMo
                 @val : pick.$TextEntry.GetText()
                 if val != ""
                     stage.delta["player", idx, key] : val
+
+        ::GetPlannedCard( => slide)
+            => $Slide.Create(lambda(stage => async))
+                @text : $GT(textdata)
+                    Each player searches their deck and discard for 1 copy of their logged
+                    card below and add that card to your hand.
+                await $DoGetPlannedCard(stage, $Const.PlanningAhead, text, "Reputation")
+        
+        ::DoGetPlannedCard(stage, key, text, ?title => async)
+            using Dom
+            // this shares styles with $RedSkull.DoDistributeVictory
+            title ?: "Reputation"
+            @pipe : stage.ct.$Canceler.MakePipe()
+            
+            @container
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+                mixin $AppendChild(dim $Div.Create() >> container)
+                    mixin $Style.AddClasses("playerCardAssign", "instruction")
+
+            for @idx in stage.state.player
+                @hero : stage.state.$Campaign.State.GetHero(idx)
+
+                @rightPane
+                @playerCard : container.$AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("player")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $AppendChild(dim $Div.Create() >> rightPane)
+                        mixin $Style.AddClasses("pickers")
+
+                @card : stage.state["player", idx, key]
+                if card = null
+                    rightPane.$AppendChild(dim $Paragraph.Create("(No card logged)"))
+                else
+                    rightPane.$AppendChild(dim $Paragraph.Create(card))
+            
+            pop.$Popup.AddBotRightButton(lambda)
+                pipe.$Pipe.Kill()
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            await pipe.$Pipe.ReadAsync()
 
 scratch _uniqChkID : 0
 ::.mixAddCheckBox(label, ?isChecked, ?disable => chk)
