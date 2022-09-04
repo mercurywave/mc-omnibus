@@ -1455,6 +1455,10 @@ label.disabled p{
     max-width: 350px;
     margin: 0 auto;
 }
+.playerCardAssign.instruction .player{
+    max-width: 350px;
+    margin: 0 auto;
+}
 .playerCardAssign .player .heroBadge{
     transform: scale(75%);
     margin: -12px 10px;

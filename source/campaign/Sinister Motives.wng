@@ -175,6 +175,7 @@ library SinMo
                 $IfPassing(1, $DistributeShieldTech())
                 $IfPassing(1, $OsTech())
                 $IfPassing(9, $AspectAdvantage())
+                $IfPassing(13, $UpgradeShieldTech())
                 $IfPassing(13, $OsTech())
                 $IfPassing(21, $OsTech())
 
@@ -290,20 +291,70 @@ library SinMo
         
         ::DistributeShieldTech(=> slide)
             => $Slide.Create(lambda(stage => async))
-                    @text : $GTW(textdata)
-                        Deal 3 "Campaign - S.H.I.E.L.D. Tech" upgrades at random to each 
-                        player. Each player may choose 1 to add to their deck for the 
-                        rest of the campaign.<br/>
-                        <em>(These do not count toward minimum/maximum deck size)</em>
-                    await $RedSkull.DoDistributeVictory(stage, $Const.ShieldTech, text, $GTA(textdata), "Reputation")
-                        Compact Darts
-                        Impact-Dampening Suit
-                        Laser Googles
-                        Propulsion Gauntlet
-                        Retinal Display
-                        Shock Knuckles
-                        Wave Bracers
-                        Wrist Navigators
+                @text : $GTW(textdata)
+                    Deal 3 "Campaign - S.H.I.E.L.D. Tech" upgrades at random to each 
+                    player. Each player may choose 1 to add to their deck for the 
+                    rest of the campaign.<br/>
+                    <em>(These do not count toward minimum/maximum deck size)</em>
+                await $RedSkull.DoDistributeVictory(stage, $Const.ShieldTech, text, $GTA(textdata), "Reputation")
+                    Compact Darts
+                    Impact-Dampening Suit
+                    Laser Googles
+                    Propulsion Gauntlet
+                    Retinal Display
+                    Shock Knuckles
+                    Wave Bracers
+                    Wrist Navigators
+
+        ::UpgradeShieldTech(=> slide)
+            => $Slide.Create(lambda(stage => async))
+                @text : $GTW(textdata)
+                    Each player flips their "Campaign - S.H.I.E.L.D. Tech" upgrade
+                    to it's upgraded side.
+                await $DoUpgradeShieldTech(stage, $Const.ShieldTech, text, "Reputation")
+        
+        ::DoUpgradeShieldTech(stage, key, text, ?title => async)
+            using Dom
+            // this shares styles with $RedSkull.DoDistributeVictory
+            title ?: "Victory"
+            @pipe : stage.ct.$Canceler.MakePipe()
+            
+            @container
+            @pop : dim $Popup.Create(title)
+                mixin $Popup.AddMarkdown(text)
+                mixin $AppendChild(dim $Div.Create() >> container)
+                    mixin $Style.AddClasses("playerCardAssign", "instruction")
+
+            for @idx in stage.state.player
+                @hero : stage.state.$Campaign.State.GetHero(idx)
+                @alive : !stage.state.$Campaign.State.IsExpert() | stage.state.$Campaign.State.GetHp(idx) > 0
+
+                @rightPane
+                @playerCard : container.$AppendChild(dim $Div.Create())
+                    mixin $Style.AddClasses("player")
+                    mixin $AppendChild(hero.$Heroes.MakeHeroBadge())
+                    mixin $Style.SetClassIf("dead", !alive)
+                    mixin $AppendChild(dim $Div.Create() >> rightPane)
+                        mixin $Style.AddClasses("pickers")
+
+                @card : stage.state["player", idx, key]
+                if !alive
+                    rightPane.$AppendChild(dim $Paragraph.Create("Recovering (not participating)"))
+                else
+                    if card = null
+                        rightPane.$AppendChild(dim $Paragraph.Create("(No card to upgrade)"))
+                    else
+                        rightPane.$AppendChild(dim $Paragraph.Create("Upgrade " + card))
+                        stage.delta["player", idx, key] : card + " (Upgraded)"
+            
+            pop.$Popup.AddBotRightButton(lambda)
+                pipe.$Pipe.Kill()
+
+            $Slide.HookAdvance(stage, lambda)
+                pipe.$Pipe.Kill()
+
+            await pipe.$Pipe.ReadAsync()
+                
 
         ::LogAnotherFromPile(key, title, text1, text2, &possibleCards => slide)
             return $Slide.Create(lambda(stage => async)[key, title, text1, text2, free possibleCards])
@@ -370,7 +421,7 @@ library SinMo
         ::AspectAdvantage( => slide)
             => $Slide.Create(lambda(stage => async))
                 @text : $GT(textdata)
-                    Each player chooses and aspect card from their collection and adds the
+                    Each player chooses any aspect card from their collection and adds the
                     max copies of that card to their deck.
 
                     <em>(These cards do not count towards min/max deck size)</em>
