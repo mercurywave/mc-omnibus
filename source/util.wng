@@ -164,6 +164,12 @@ library Str
                 str : str + delim
             str : str + piece
 
+    ::.Interp(replaceArr[] => interp)
+        //TODO: move to standard library
+        interp : this
+        for @sub of replaceArr at @idx
+            interp : interp.$Replace("{" + idx + "}", sub)
+
 
 registry RND : $Time.Now()
 library Rand

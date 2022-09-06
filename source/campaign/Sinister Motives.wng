@@ -81,18 +81,18 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
             $CheckList.MakeCheck("Symbiotic Strength")
             $CheckList.MakeCheck("Standard set")
             $ExpertEncounterSetCheck()
-        
-    mixin $SinMo.Reputation.mixEncounterSetup(1)
-
-    mixin $mixSlides(dim)
 
         $SinMo.PublicOutcry()
         
         $SinMo.CommunityService(2)
+        
+    mixin $SinMo.Reputation.mixEncounterSetup(2)
+
+    mixin $mixSlides(dim)
 
         $IfExpert($Setup("Place 1 facedown boost card on each identity"))
 
-        $SinMo.HealSlide()
+        $SinMo.HealSlide(1)
         $IfExpert($SetInitialHP())
 
     mixin $SinMo.Reputation.mixMissionSetup(2)
@@ -106,6 +106,50 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
     mixin $SinMo.Reputation.mixMissionEnd(2)
 
     //////////// MISSION 3 ////////////
+    mixin $mixMission("S2", 3, "Maze of Mirrors", $Img.Mysterio, dim
+            _ , $g.BackStyle.Green, $g.LineStyle.Purple, $g.ForeStyle.Yellow
+            _ , "Read page 12 from the Sinister Motives rule book")
+
+        $CheckList("Setup", dim, null, $Img.Mysterio)
+            $EnemyStageCheck("Mysterio")
+            $CheckList.MakeCheck("**Main Scheme Deck**: Maze of Mirrors, Edge of Reality")
+
+        $CheckList("Setup", dim, "**Encounter Deck**", $Img.ShiftingApparition)
+            $CheckList.MakeCheck("Mysterio set")
+            $CheckList.MakeCheck("Personal Nightmare")
+            $CheckList.MakeCheck("Whispers of Paranoia")
+            $CheckList.MakeCheck("Standard set")
+            $ExpertEncounterSetCheck()
+
+        $SinMo.PublicOutcry()
+
+        $SinMo.CommunityService(3)
+    
+    mixin $SinMo.Reputation.mixEncounterSetup(3)
+
+    mixin $mixSlides(dim)
+        
+        $Setup("Put the Venom ally card into play under the first player's control")
+
+        $IfExpert($Setup(textdata))
+            Each player shuffles the top two cards of the encounter deck into their deck
+
+        $SinMo.HealSlide(2)
+        $IfExpert($SetInitialHP())
+
+    mixin $SinMo.Reputation.mixMissionSetup(3)
+
+    mixin $Campaign.mixSlides(dim)
+        $PlayGame()
+
+        $IfExpert($RecordHP())
+        $SinMo.CommunityServiceComplete()
+
+        $Slide.Create(lambda(stage => async))
+            await $SinMo.DoCountIllusions(stage)
+
+    mixin $SinMo.Reputation.mixMissionEnd(2)
+
     mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
 
 library SinMo
@@ -124,6 +168,7 @@ library SinMo
         $OsbornTech : "osborn tech"
         $AspectAdvantage : "aspect advantage"
         $PlanningAhead : "planning ahead"
+        $WakingNightmare : "waking nightmare"
 
     ::TooltipGen(state, player => tooltip)
         tooltip : ""
@@ -205,20 +250,20 @@ library SinMo
                     stage.delta[$Const.ComServ, service] : true
 
     
-    ::HealSlide( => slide)
+    ::HealSlide(numCards => slide)
         => $RedSkull.IfCanHeal($Slide.Create(lambda(stage => async)))
-            await $DoHeal(stage)
+            await $DoHeal(stage, numCards)
 
-    ::DoHeal(stage => async)
+    ::DoHeal(stage, numCards => async)
         using Dom
         @pipe : stage.ct.$Canceler.MakePipe()
         
         @container
         @pop : dim $Popup.Create("Persistent Damage")
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
+                mixin $SetHtml($g.HTMLify($GTW(textdata).$Str.Interp(numCards), stage))
                     Each player may heal to full health by dealing themselves
-                    1 facedown encounter card.
+                    {0} facedown encounter card.
 
             mixin $AppendChild(dim $Div.Create() >> container)
                 mixin $Style.AddClasses("healing")
@@ -257,7 +302,9 @@ library SinMo
                 paneAdd.$Style.SetClassIf("noDisp", !chk.$Checkbox.IsChecked())
             lbl.$AppendChild(dim $Paragraph.Create("Heal to full health"))
             
-            paneAdd.$AppendChild(dim $Paragraph.Create("Deal yourself 1 facedown encounter card"))
+            // I18N: this would need to be re-worked
+            paneAdd.$AppendChild(dim $Paragraph.Create("Deal yourself " + numCards 
+                    _ + " facedown encounter card" + $iif(numCards > 1, "s", "")))
                 mixin $Style.AddClasses("obligation")
         
         pop.$Popup.AddBotRightButton(lambda)
@@ -272,6 +319,11 @@ library SinMo
             if chk.$Checkbox.IsChecked()
                 @hero : stage.state.$Campaign.State.GetHero(idx)
                 stage.delta["player", idx, "hp"] : hero.$Heroes.GetHp()
+
+    ::DoCountIllusions(stage => async)
+        @text : $GTW(textdata)
+            What is the total number of *ILLUSION* cards in all player decks?
+        await $RedSkull.DoRecordNumber(stage, $Const.WakingNightmare, "Waking Nightmare", text, 0)
 
     library Reputation
         ::.mixMissionEnd(mission)

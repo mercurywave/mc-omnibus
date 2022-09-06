@@ -1192,6 +1192,9 @@ label.disabled p{
 .bigBook.bPurple{
     background-image: linear-gradient(to bottom right, #9b45fc, #521a92);
 }
+.bigBook.bGreen{
+    background-image: linear-gradient(to bottom right, #76A72A, #406011);
+}
 
 /* Comic Cover Colors (Line Colors) */
 .bigBook.lGray .back{
@@ -1215,6 +1218,9 @@ label.disabled p{
     background-color: #ece10e;
 }
 .bigBook.lYellow .issueNum{color: #000;}
+.bigBook.lPurple .back{
+    background-color: #A02967;
+}
 
 /* Comic Cover Colors (Fore Colors) */
 .bigBook.fOrange .fore{
@@ -1265,6 +1271,18 @@ label.disabled p{
         drop-shadow(-.5px .5px 0px #d60000)
         drop-shadow(.5px -.5px 0px #d60000)
         drop-shadow(-.5px -.5px 0px #d60000)
+        drop-shadow(2px 2px 2px rgba(0,0,0,1));
+}
+
+.bigBook.fPurple .fore{
+    color: #8d1fb8;
+}
+.bigBook.fPurple .title{
+    filter:
+        drop-shadow(.5px .5px 0px #8d1fb8)
+        drop-shadow(-.5px .5px 0px #8d1fb8)
+        drop-shadow(.5px -.5px 0px #8d1fb8)
+        drop-shadow(-.5px -.5px 0px #8d1fb8)
         drop-shadow(2px 2px 2px rgba(0,0,0,1));
 }
 

@@ -480,15 +480,20 @@ library RedSkull
 
 
     ::DoRecordDelay(stage => async)
+        @text : $GTW(textdata)
+            How many delay counters are on the main scheme?
+        await $DoRecordNumber(stage, $DelayCounters, "Delay", text, 5)
+
+    ::DoRecordNumber(stage, key, title, text, inital => async)
         using Dom
         @pipe : stage.ct.$Canceler.MakePipe()
 
-        @pop : dim $Popup.Create("Delay")
+        @pop : dim $Popup.Create(title)
             mixin $AppendChild(dim $Paragraph.Create())
-                mixin $SetHtml($g.HTMLify($GTW(textdata), stage))
-                    How many delay counters are on the main scheme?
+                mixin $SetHtml($g.HTMLify(text, stage))
+                    
         
-        @initNum : stage.ghost[$DelayCounters] ? 5
+        @initNum : stage.ghost[key] ? inital
         @entryField : pop.$AppendChild(dim $NumberEntry.Create())
             mixin $Style.AddClasses("numberEntry")
             mixin $NumberEntry.SetText(initNum)
@@ -499,7 +504,7 @@ library RedSkull
 
         await pipe.$Pipe.ReadAsync()
         if stage.ct.$Canceler.IsLive()
-            stage.delta[$DelayCounters] : $Math.Floor(entryField.$NumberEntry.GetText())
+            stage.delta[key] : $Math.Floor(entryField.$NumberEntry.GetText())
 
 
     ::DoDistributeVictoryMulti(stage, key, text, cards => async)

@@ -14,6 +14,7 @@ library g
         $Gray : "bGray"
         $Black : "bBlack"
         $Purple : "bPurple"
+        $Green : "bGreen"
 
     library LineStyle
         $Blue : "lBlue"
@@ -22,11 +23,12 @@ library g
         $White : "lWhite"
         $Yellow : "lYellow"
         $Red : "lRed"
+        $Purple : "lPurple"
     
     library ForeStyle
         $Orange : "fOrange"
         $White : "fWhite" // this is a lie - it's actually black because it's on white background
-        $Purple : "fPurple" // not implement
+        $Purple : "fPurple"
         $Yellow : "fYellow"
         $Red : "fRed"
 

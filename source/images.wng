@@ -55,6 +55,7 @@ library Img
     data CityStreets : $mkCard("city_streets", "City Streets")
     data PublicOutcry : $mkCard("public_outcry", "Public Outcry")
     data BellTower : $mkCard("bell_tower", "Bell Tower")
+    data ShiftingApparition : $mkCard("shifting_apparition", "Shifting Apparition")
 
     ///// MISC /////
     data Ronin : $mkCard("ronin", "Ronin")
