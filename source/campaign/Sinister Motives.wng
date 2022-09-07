@@ -116,8 +116,8 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
 
         $CheckList("Setup", dim, "**Encounter Deck**", $Img.ShiftingApparition)
             $CheckList.MakeCheck("Mysterio set")
-            $CheckList.MakeCheck("Personal Nightmare")
-            $CheckList.MakeCheck("Whispers of Paranoia")
+            $CheckList.MakeCheck("Personal Nightmare set")
+            $CheckList.MakeCheck("Whispers of Paranoia set")
             $CheckList.MakeCheck("Standard set")
             $ExpertEncounterSetCheck()
 
@@ -148,8 +148,70 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
         $Slide.Create(lambda(stage => async))
             await $SinMo.DoCountIllusions(stage)
 
-    mixin $SinMo.Reputation.mixMissionEnd(2)
+    mixin $SinMo.Reputation.mixMissionEnd(3)
 
+    //////////// MISSION 4 ////////////
+    mixin $mixMission("S3", 4, "The Sinister Six", $Img.DocOc, dim
+            _ , $g.BackStyle.Purple, $g.LineStyle.Yellow, $g.ForeStyle.Yellow
+            _ , "Read page 14 from the Sinister Motives rule book")
+
+        $CheckList("Setup", dim, null, $Img.DocOc)
+            $CheckList.MakeCheck($GTW(textdata))
+                **Villians**: Doctor Octopus (I), Electro (I), Hobgoblin (I), 
+                Kraven the Hunter (I), Scorpion (I), Vulture (I)
+            $CheckList.MakeCheck("**Main Scheme Deck**: Sinister Synchronization, Sinister Beatdown")
+
+        $CheckList("Setup", dim, "**Encounter Deck**", $Img.LifeSizeDecoy)
+            $CheckList.MakeCheck("The Sinister Six set")
+            $CheckList.MakeCheck("Guerilla Tactics set")
+            $CheckList.MakeCheck("Standard set")
+            $ExpertEncounterSetCheck()
+
+        $SinMo.PublicOutcry()
+
+        $SinMo.CommunityService(4)
+    mixin $SinMo.Reputation.mixEncounterSetup(4)
+
+    mixin $mixSlides(dim)
+
+        $Slide.Create(lambda(stage => async))
+            @text : $GTW(textdata).$Str.Interp(stage.state[$SinMo.Const.WakingNightmare])
+                Place {0} threat on the Light at the End side scheme
+            await $DoSimplePopup(stage, "Setup", text)
+        
+        $Setup("Put the Venom ally card into play under the first player's control")
+
+        $SinMo.HealSlide(2)
+        $IfExpert($SetInitialHP())
+
+    mixin $SinMo.Reputation.mixMissionSetup(4)
+
+    mixin $Campaign.mixSlides(dim)
+        $Setup("Review page 15 for details about the active counter and villian setup and activation order")
+        $PlayGame()
+
+        $IfExpert($RecordHP())
+        $SinMo.CommunityServiceComplete()
+
+        $Slide.Create(lambda(stage => async))
+            using SinMo.Const
+            @opts : dim()
+            @sins : $GTA(textdata)
+                Doctor Octopus
+                Electro
+                Hobgoblin
+                Kraven the Hunter
+                Scorpion
+                Vulture
+            for sins
+                opts.$List.Add($CheckList.MakeCheck(it, null, lambda, stage.ghost[$LastOnesStanding, it] ? false))
+                    stage.delta[$LastOnesStanding, it] : true
+            await $CheckList.DoChecklist(stage, "Last Ones Standing"
+                _, "Which villians are in play?", opts, null, true)
+
+    mixin $SinMo.Reputation.mixMissionEnd(4)
+
+    //////////// MISSION 5 ////////////
     mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
 
 library SinMo
@@ -169,6 +231,7 @@ library SinMo
         $AspectAdvantage : "aspect advantage"
         $PlanningAhead : "planning ahead"
         $WakingNightmare : "waking nightmare"
+        $LastOnesStanding : "last ones standing"
 
     ::TooltipGen(state, player => tooltip)
         tooltip : ""
