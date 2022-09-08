@@ -57,6 +57,8 @@ library Img
     data BellTower : $mkCard("bell_tower", "Bell Tower")
     data ShiftingApparition : $mkCard("shifting_apparition", "Shifting Apparition")
     data LifeSizeDecoy : $mkCard("life-size_decoy", "Life-Size Decoy")
+    data SymbioticThrall : $mkCard("symbiotic_thrall", "Symbiotic Thrall")
+    data KravenTheHunter : $mkCard("kraven_the_hunter", "Kraven The Hunter")
 
     ///// MISC /////
     data Ronin : $mkCard("ronin", "Ronin")

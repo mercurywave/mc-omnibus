@@ -90,7 +90,7 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
 
     mixin $mixSlides(dim)
 
-        $IfExpert($Setup("Place 1 facedown boost card on each identity"))
+        $IfExpert($ExpSetup("Place 1 facedown boost card on each identity"))
 
         $SinMo.HealSlide(1)
         $IfExpert($SetInitialHP())
@@ -131,7 +131,7 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
         
         $Setup("Put the Venom ally card into play under the first player's control")
 
-        $IfExpert($Setup(textdata))
+        $IfExpert($ExpSetup(textdata))
             Each player shuffles the top two cards of the encounter deck into their deck
 
         $SinMo.HealSlide(2)
@@ -196,13 +196,7 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
         $Slide.Create(lambda(stage => async))
             using SinMo.Const
             @opts : dim()
-            @sins : $GTA(textdata)
-                Doctor Octopus
-                Electro
-                Hobgoblin
-                Kraven the Hunter
-                Scorpion
-                Vulture
+            @sins : $SinMo.SinisterSix()
             for sins
                 opts.$List.Add($CheckList.MakeCheck(it, null, lambda, stage.ghost[$LastOnesStanding, it] ? false))
                     stage.delta[$LastOnesStanding, it] : true
@@ -212,7 +206,63 @@ data : dim $Campaign.Create("Sinister Motives", $Img.SinisterMotives)
     mixin $SinMo.Reputation.mixMissionEnd(4)
 
     //////////// MISSION 5 ////////////
-    mixin $Campaign.mixSlides(dim($PlayGame())) // REMOVE
+    mixin $mixMission("S4", 5, "Skies Over New York", $Img.VenomGoblin, dim
+            _ , $g.BackStyle.Green, $g.LineStyle.Purple, $g.ForeStyle.Orange
+            _ , "Read page 16 from the Sinister Motives rule book")
+
+        $CheckList("Setup", dim, null, $Img.VenomGoblin)
+            $EnemyStageCheck("Venom Goblin")
+            $CheckList.MakeCheck($GTW(textdata))
+                **Main Scheme Deck**: Skies Over New York, Lower Manhattan,
+                Midtown Manhattan, Upper Manhattan
+
+        $CheckList("Setup", dim, "**Encounter Deck**", $Img.SymbioticThrall)
+            $CheckList.MakeCheck("Venom Goblin set")
+            $CheckList.MakeCheck("Symbiotic Strength set")
+            $CheckList.MakeCheck("Goblin Gear set")
+            $CheckList.MakeCheck("Standard set")
+            $ExpertEncounterSetCheck()
+
+        $SinMo.PublicOutcry()
+
+        $SinMo.CommunityService(4)
+        
+        $SinMo.SetupSinisterMod()
+
+    mixin $SinMo.Reputation.mixEncounterSetup(4)
+
+    mixin $mixSlides(dim)
+
+        $IfExpert($ExpSetup("Place <PLAYER*1> threat on each main scheme"))
+
+        $SinMo.HealSlide(3)
+        $IfExpert($SetInitialHP())
+
+    mixin $SinMo.Reputation.mixMissionSetup(4)
+
+    mixin $Campaign.mixSlides(dim)
+        $Setup("Review page 17 for details about the glider counter")
+        
+
+        $IfNotExpert($PlayGame()) // can't lose on basic
+
+        $IfExpert($PlayGame(lambda)) // can lose on expert
+            stage.delta[$Campaign.Defeated] : true
+        $ConfirmDefeat()
+        
+        $PassThrough(lambda(stage))
+            stage.delta[$Campaign.Complete] : true
+
+    mixin $mixWrapUpDefeat(dim)
+        $Checkpoint("S5", "Venom Goblin controls New York City")
+        $Slide.Popup("DEFEAT","The heroes were defeated. Venom Goblin takes control of New York City.")
+
+    mixin $mixWrapUpVictory(dim)
+        $PassThrough(lambda(stage))
+            stage.delta[$Campaign.Victory] : true
+        $Checkpoint("S6", "Venom Goblin was defeated!")
+        $Slide.Popup("VICTORY!", "Read page 18-19 from The Sinister Motives rule book")
+        $Slide.Victory("Venom Goblin is defeated and the players win the campaign!")
 
 library SinMo
     library Const
@@ -388,6 +438,27 @@ library SinMo
             What is the total number of *ILLUSION* cards in all player decks?
         await $RedSkull.DoRecordNumber(stage, $Const.WakingNightmare, "Waking Nightmare", text, 0)
 
+    ::SinisterSix(=> list)
+        => $GTA(textdata)
+            Doctor Octopus
+            Electro
+            Hobgoblin
+            Kraven the Hunter
+            Scorpion
+            Vulture
+    
+    ::IfSinSixStanding(state => bool)
+        => state[$Const.LastOnesStanding] != null
+
+    ::SetupSinisterMod(=> slide)
+        @lbl : $GT(textdata)
+            Search the Sinister Assault modular set for each of the following minions and
+            shuffle them into the encounter deck.
+        @ops : dim()
+        for $SinisterSix()
+            ops.$List.Add($CheckList.MakeCheck(it, `stage.state[$Const.LastOnesStanding, it] ? false`))
+        slide : $Slide.If(`$IfSinSixStanding(state)`, $CheckList("Last Ones Standing", free ops, lbl, $Img.KravenTheHunter))
+
     library Reputation
         ::.mixMissionEnd(mission)
             this.$Campaign.mixSlides(dim)
@@ -492,7 +563,7 @@ library SinMo
                 _ , ghost[$Const.NoAccel] ? false)
             @anyDefeat : switch
                 isExpert : stage.state.$State.AnyPlayerDefeated()
-                else : ghost[$Const.NoDefeated] ? false
+                else : ghost[$Const.NoDefeated] ? true // "assume" someone was defeated so the box isn't pre-checked in standard
             @chkDefeat : pane.$mixAddCheckBox("No defeated players (+1)", !anyDefeat, isExpert)
 
             await pipe.$Pipe.ReadAsync()

@@ -36,10 +36,11 @@ library Slide
         slide : $Create(lambda(stage => async))
             await $DoVictory(stage, text)
 
-    ::Setup(text, ?hint => slide)
-        text : $GT(text)
-        slide : $Create(lambda(stage => async))
-            await $DoSimplePopup(stage, "Setup", text)
+    ::Setup(text => slide)
+        => $Slide.Popup("Setup", text)
+        
+    ::ExpSetup(text => slide)
+        => $Slide.Popup("Expert Setup", text)
 
     ::Popup(title, text => slide)
         text : $GT(text)
